@@ -1,0 +1,37 @@
+{
+  "_notice": "SYNTHETIC DEMONSTRATION. No prices, sales counts, products, or URLs in this file are actual market observations.",
+  "assumptions": {
+    "ebay_fee_rate": "0.136",
+    "ebay_fee_fixed": "0.40",
+    "promotion_rate": "0.00",
+    "buyer_shipping_collected": "0.00",
+    "buyer_sales_tax": "0.00",
+    "outbound_shipping": "6.00",
+    "packaging_cost": "0.75",
+    "return_reserve": "1.00",
+    "min_profit": "10.00",
+    "min_roi": "0.30",
+    "min_sold_30d": 5,
+    "maximum_age_days": 14
+  },
+  "candidates": [
+    {
+      "id": "fixture-clear-001",
+      "name": "Fixture Brand Model 101 (fictional)",
+      "retail": {"identity": {"brand": "Fixture Brand", "model": "101", "gtin": "0000000000011", "condition": "new"}, "source_url": "https://example.com/fictional-item-101", "observed_on": "2026-10-20", "price": "20.00", "sales_tax_rate": "0.07", "shipping_cost": "0.00", "in_stock": true},
+      "market": {"identity": {"brand": "Fixture Brand", "model": "101", "gtin": "0000000000011", "condition": "new"}, "source_type": "manual_completed_sales", "evidence_ref": "SYNTHETIC-FIXTURE-001", "observed_on": "2026-10-20", "sold_price_estimate": "52.00", "sold_count_30d": 20, "active_competing_listings": 12}
+    },
+    {
+      "id": "fixture-unsold-002",
+      "name": "Fixture Brand Model 202 (fictional, no demand)",
+      "retail": {"identity": {"brand": "Fixture Brand", "model": "202", "gtin": "0000000000028", "condition": "new"}, "source_url": "https://example.com/fictional-item-202", "observed_on": "2026-10-20", "price": "15.00", "sales_tax_rate": "0.07", "in_stock": true},
+      "market": {"identity": {"brand": "Fixture Brand", "model": "202", "gtin": "0000000000028", "condition": "new"}, "source_type": "manual_completed_sales", "evidence_ref": "SYNTHETIC-FIXTURE-002", "observed_on": "2026-10-20", "sold_price_estimate": "60.00", "sold_count_30d": 0, "active_competing_listings": 55}
+    },
+    {
+      "id": "fixture-mismatch-003",
+      "name": "Fixture Brand Model 303 (fictional, wrong variant)",
+      "retail": {"identity": {"brand": "Fixture Brand", "model": "303", "gtin": "0000000000035", "condition": "new"}, "source_url": "https://example.com/fictional-item-303", "observed_on": "2026-10-20", "price": "10.00", "sales_tax_rate": "0.07", "in_stock": true},
+      "market": {"identity": {"brand": "Fixture Brand", "model": "303-PRO", "gtin": "0000000000035", "condition": "new"}, "source_type": "manual_completed_sales", "evidence_ref": "SYNTHETIC-FIXTURE-003", "observed_on": "2026-10-20", "sold_price_estimate": "100.00", "sold_count_30d": 20, "active_competing_listings": 2}
+    }
+  ]
+}

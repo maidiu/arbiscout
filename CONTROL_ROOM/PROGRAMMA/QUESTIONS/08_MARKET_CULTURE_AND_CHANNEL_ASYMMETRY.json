@@ -1,0 +1,428 @@
+{
+  "schema_version": "1.0",
+  "section": "H",
+  "title": "Sector demand, high-ticket goods and cross-channel cultural/attention asymmetry",
+  "items": [
+    {
+      "id": "Q096",
+      "question": "Which sector/subsector hypotheses combine unusually high regular eBay buyer demand with genuine discount-producing retailer sources?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-020"
+      ],
+      "proof_requires_tasks": [],
+      "source_ids": [
+        "E-EBAY-2025-10K"
+      ],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/ebay-20251231.htm"
+      ],
+      "acceptance": "Survey sectors broadly and rank only as hypotheses unless actual eBay transaction and retail offer data exist.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q097",
+      "question": "How many same-SKU eBay completed sales occur in each time window, how evenly distributed, and how concentrated among buyers/variants?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q025",
+        "Q060"
+      ],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-010",
+        "ARB-041"
+      ],
+      "proof_requires_tasks": [
+        "ARB-010",
+        "ARB-051"
+      ],
+      "source_ids": [
+        "E-EBAY-RESEARCH"
+      ],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [
+        "https://www.ebay.com/help/selling/selling-tools/research?id=4853"
+      ],
+      "acceptance": "Require sample, sold records, weekly zero-sale share, recency and condition; category GMV is insufficient.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q098",
+      "question": "Which product price/ticket bands offer high absolute retailer-to-eBay purchase gaps without sparse or noncomparable historical eBay price samples?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q062",
+        "Q063"
+      ],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-050"
+      ],
+      "proof_requires_tasks": [
+        "ARB-050",
+        "ARB-051"
+      ],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Use observed dollars and statistical uncertainty, not a hypothetical future transaction profit.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q099",
+      "question": "Which sector×retailer pairs exhibit recurrent genuine price dips, and how long do discounted purchase offers remain available?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-020",
+        "ARB-032"
+      ],
+      "proof_requires_tasks": [
+        "ARB-020",
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Observe retailer price time series and actual inventory availability; do not equate MSRP-off badges with real discounts.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q100",
+      "question": "Is there measurable non-overlap between habitual eBay buyers for a sector and people tracking those retailers' promotions and deal feeds?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-035"
+      ],
+      "proof_requires_tasks": [],
+      "source_ids": [
+        "E-EBAY-RECOMMERCE-2026"
+      ],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [
+        "https://www.ebayinc.com/recommerce-report/"
+      ],
+      "acceptance": "Buyer channel separation cannot be asserted from category GMV, coarse demographic summaries or selected anecdotes.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q101",
+      "question": "Which causal mechanisms might produce a persistent channel gap: attention, specialized search habits, urgency, geography, catalog fragmentation or information costs?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-035"
+      ],
+      "proof_requires_tasks": [],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Develop competing theories and falsifiers; no demographic or cultural stereotype as proof.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q102",
+      "question": "Do enthusiast/professional/repair communities monitor promotions and automated deal alerts more closely than general shoppers, contradicting an assumed knowledge gap?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-035"
+      ],
+      "proof_requires_tasks": [],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Seek disconfirming public community/channel evidence and assess selection bias.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q103",
+      "question": "How long do retailer discounts remain hidden from eBay price formation, and when does cross-channel competition rapidly close a gap?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q099"
+      ],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-073"
+      ],
+      "proof_requires_tasks": [
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Compare real time-ordered retailer sale windows and eBay distributions, with seasonality and SKU controls.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q104",
+      "question": "How do weight, packaging, trust, warranty, counterfeit, fitment and geography undermine seemingly attractive high-ticket purchase gaps?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-053"
+      ],
+      "proof_requires_tasks": [],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Purchase-side comparison comparability and item quality hazards; no projected future sale accounting in ArbiScout.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q105",
+      "question": "Which sectors have standardized, durable and precisely matchable part/product identifiers, and which have persistent condition/variant ambiguity?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q060"
+      ],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-030"
+      ],
+      "proof_requires_tasks": [
+        "ARB-030"
+      ],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Provide sector-specific false-positive test cases for variant, bundle, revision, condition, part number and compatibility.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q106",
+      "question": "What direct or indirect methods could identify cross-platform buyer/deal-channel attention, and what can each method legitimately establish?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-035"
+      ],
+      "proof_requires_tasks": [],
+      "source_ids": [
+        "E-EBAY-RECOMMERCE-2026"
+      ],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [
+        "https://www.ebayinc.com/recommerce-report/"
+      ],
+      "acceptance": "Distinguish linked cohort panels/surveys from Google Trends, community commentary and aggregate traffic proxies; do not commit ecological inference.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q107",
+      "question": "What nonarbitrary Pareto comparison balances observed absolute gap, regular sale frequency, markdown cadence, discoverability, ticket size and evidence confidence?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q097",
+        "Q098",
+        "Q099",
+        "Q105"
+      ],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-029",
+        "ARB-060"
+      ],
+      "proof_requires_tasks": [
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Present separate axes and sensitivity analyses; invented numeric scores or private behavior assumptions cannot determine a winner.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q108",
+      "question": "What stratified SKU×sector×retailer sampling plan and negative controls avoid cherry-picking spectacular discounts and isolated eBay sales?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-029"
+      ],
+      "proof_requires_tasks": [
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Pre-register control strata, 30/90/365-day windows when available, counterfactual no-discount and no-demand items; explicit NOT_EXECUTED if no access.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q109",
+      "question": "Which 15 or more competing sector hypotheses—including professional equipment, tools, automotive parts and collectibles—deserve tests, and what would falsify each?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q096"
+      ],
+      "related_tasks": [
+        "ARB-035"
+      ],
+      "proof_requires_tasks": [],
+      "source_ids": [
+        "E-EBAY-2025-10K"
+      ],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/ebay-20251231.htm"
+      ],
+      "acceptance": "Separate official eBay sector emphasis from specific retail markdown and consumer-attention evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q110",
+      "question": "What would justify asserting an actual sector winner rather than merely highest research priority given source/survey uncertainty?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q107",
+        "Q108"
+      ],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-029"
+      ],
+      "proof_requires_tasks": [
+        "ARB-010",
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Require independently reproducible exact-item paid transaction distributions, retailer markdown frequency, robust error bars and a separate attention-overlap measure.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q111",
+      "question": "How do seasonality, obsolescence, model release cycles, replacement urgency and geographically localized clearance change the observed sector opportunity distribution?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-020"
+      ],
+      "proof_requires_tasks": [
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Look for retailer markdown and eBay demand dislocations over time, without assuming price-gap permanence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    },
+    {
+      "id": "Q112",
+      "question": "Do sellers and buyers within high-ticket eBay niches actually have enough recurring unit transactions for continuous opportunities rather than rare expensive outliers?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q097"
+      ],
+      "related_tasks": [
+        "ARB-035",
+        "ARB-041"
+      ],
+      "proof_requires_tasks": [
+        "ARB-010"
+      ],
+      "source_ids": [],
+      "findings": "New source-free research question from the user 2026-10-31; no empirically validated sector winner or buyer attention separation.",
+      "evidence_refs": [],
+      "acceptance": "Measure share of weeks with actual comparable sales, intervals and return of regular price baseline, not category-wide value.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+      "proof_dependency_meaning": "Tasks required for operational empirical verification, not prerequisite for source-free documentary science",
+      "finding_updated_at": null
+    }
+  ]
+}

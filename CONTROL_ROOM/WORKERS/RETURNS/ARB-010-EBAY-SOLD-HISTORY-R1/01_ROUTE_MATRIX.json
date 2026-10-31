@@ -1,0 +1,1131 @@
+{
+  "schema_version": "arb010-route-matrix-1.0",
+  "observed_at": "2026-10-31",
+  "repo_baseline_sha": "64ae2a67bb13dca0a0711409651e41a55c8917cb",
+  "method": "Official documentation and providers' own claims only. Zero authenticated eBay/provider API calls; no independent benchmark.",
+  "routes": [
+    {
+      "route_id": "O01",
+      "provider": "eBay Product Research (Terapeak)",
+      "classification": "OFFICIAL_UI",
+      "disposition": "MANUAL_ORACLE_FIRST",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.ebay.com/help/selling/selling-tools/product-research?id=4853",
+        "https://www.ebay.com/help/account/team-access/team-access?id=5197"
+      ],
+      "history_window": "up to 3 years",
+      "actual_transaction_price_evidence": "eBay documents actual sold amounts",
+      "accepted_best_offer_treatment": "Accepted Best Offer actual paid recorded by first party",
+      "identity_shipping_condition_marketplace_fields": "keyword, MPN, UPC, ePID, EAN, ISBN; condition/category/marketplace/date, average shipping",
+      "page_pagination_refresh": "seller UI, summaries and sales, no documented public pagination/CSV or API; live tool not tested",
+      "entry_requirements": "Seller Hub opted-in seller; free Product Research; mobile listing/90d history eligibility notes; Team Access research permission",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "TERMS_REVIEW_REQUIRED for human research and derivative index; no automated extraction rights shown",
+      "cost_and_quotas": "$0 Product Research for eligible sellers; manual labor dominates",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "A_OFFICIAL_DOCUMENTARY_NOT_EXECUTED",
+      "principal_failure_mode": "No verified automated export, entitlement or permission for publication",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-011/051"
+    },
+    {
+      "route_id": "O02",
+      "provider": "eBay ordinary sold/completed-search UI",
+      "classification": "OFFICIAL_UI",
+      "disposition": "LIMITED_MANUAL_CROSSCHECK",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.ebay.com/help/selling/selling-tools/product-research?id=4853",
+        "https://www.ebay.com/help/policies/user-agreement/user-agreement?id=4259"
+      ],
+      "history_window": "recent ~90 days",
+      "actual_transaction_price_evidence": "displayed sale page price may be last ask, not paid Best Offer",
+      "accepted_best_offer_treatment": "eBay says not actual accepted amount for Best Offer",
+      "identity_shipping_condition_marketplace_fields": "keywords and page filters, results related may contaminate",
+      "page_pagination_refresh": "interactive UI, no authorized scraping/pagination integration",
+      "entry_requirements": "public site human access subject to agreement",
+      "permissions_class": "PROHIBITED_IN_CURRENT_FORM",
+      "permissions_retention_redistribution": "PROHIBITED_IN_CURRENT_FORM for unapproved automated extraction",
+      "cost_and_quotas": "free human viewing; machine cost invalid",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "A_OFFICIAL_DOCUMENTARY_NOT_EXECUTED",
+      "principal_failure_mode": "false sale prices and related results",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O03",
+      "provider": "eBay Marketplace Insights item_sales",
+      "classification": "OFFICIAL_RESTRICTED_API",
+      "disposition": "HOLD_ENTITLEMENT",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.edp.ebay.com/api-docs/buy/marketplace-insights/static/overview.html",
+        "https://developer.ebay.com/api-docs/buy/static/ref-marketplace-supported.html"
+      ],
+      "history_window": "90 days",
+      "actual_transaction_price_evidence": "eBay describes sales history API",
+      "accepted_best_offer_treatment": "actual offer paid-price semantics not established in public accessible current spec",
+      "identity_shipping_condition_marketplace_fields": "keyword, GTIN, ePID, category, condition/site filters",
+      "page_pagination_refresh": "marketplace-limited, category whitelisting; page limits not independently verified",
+      "entry_requirements": "Limited Release business approval, OAuth market insights scope; eBay says NOT OPEN TO NEW USERS",
+      "permissions_class": "RESTRICTED",
+      "permissions_retention_redistribution": "RESTRICTED; partner rights, per-category approvals, retention application specific",
+      "cost_and_quotas": "no public price; inaccessible to new entrants",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "A_OFFICIAL_DOCUMENTARY_NOT_EXECUTED",
+      "principal_failure_mode": "inaccessible to new users; 90d/category gaps",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O04",
+      "provider": "eBay Browse REST API",
+      "classification": "OFFICIAL_ACTIVE_ONLY",
+      "disposition": "REJECT_FOR_SALES",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://developer.ebay.com/develop/buying-apps/inventory-discovery-and-refresh"
+      ],
+      "history_window": "none",
+      "actual_transaction_price_evidence": "active listing offers not completed prices",
+      "accepted_best_offer_treatment": "none",
+      "identity_shipping_condition_marketplace_fields": "GTIN/product/catalog/listing variants, item/offer price",
+      "page_pagination_refresh": "live availability; no historic sale endpoint",
+      "entry_requirements": "developer keys and application OAuth",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "TERMS_REVIEW_REQUIRED; API license; does not supply requested data",
+      "cost_and_quotas": "developer API limits vary; irrelevant for historical price producer",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "A_OFFICIAL_DOCUMENTARY_NOT_EXECUTED",
+      "principal_failure_mode": "active ask substitution is invalid",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O05",
+      "provider": "eBay GraphQL developer tools",
+      "classification": "OFFICIAL_ACTIVE_ONLY",
+      "disposition": "REJECT_UNPROVEN_SOLD_OPERATION",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://developer.ebay.com/develop/get-started/get-started-on-a-buying-application"
+      ],
+      "history_window": "none established",
+      "actual_transaction_price_evidence": "no public mass-history sold field established",
+      "accepted_best_offer_treatment": "none",
+      "identity_shipping_condition_marketplace_fields": "API explorer/schema methods require scoped documentation",
+      "page_pagination_refresh": "no verified sold-search query; developer docs evolving",
+      "entry_requirements": "developer app and auth; access varies",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "TERMS_REVIEW_REQUIRED",
+      "cost_and_quotas": "not applicable",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "A_OFFICIAL_DOCUMENTARY_NOT_EXECUTED",
+      "principal_failure_mode": "GraphQL label is not a data entitlement",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O06",
+      "provider": "eBay Sell Fulfillment/Order REST",
+      "classification": "INVALID_FOR_COMPLETED_SALES",
+      "disposition": "REJECT_MARKETWIDE",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://developer.ebay.com/develop/selling-apps/order-management"
+      ],
+      "history_window": "own account retention windows only",
+      "actual_transaction_price_evidence": "own transactions, not market-wide sales",
+      "accepted_best_offer_treatment": "own account actual order price possible",
+      "identity_shipping_condition_marketplace_fields": "seller order IDs and line items",
+      "page_pagination_refresh": "account-specific only",
+      "entry_requirements": "seller OAuth user grants",
+      "permissions_class": "RESTRICTED",
+      "permissions_retention_redistribution": "RESTRICTED to authorized user's orders, privacy",
+      "cost_and_quotas": "developer access; not suitable",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "scope is only own sale orders",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O07",
+      "provider": "eBay Trading API",
+      "classification": "INVALID_FOR_COMPLETED_SALES",
+      "disposition": "REJECT_MARKETWIDE",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://developer.ebay.com/develop/selling-apps/order-management"
+      ],
+      "history_window": "seller-owned",
+      "actual_transaction_price_evidence": "own sold/order records, no others",
+      "accepted_best_offer_treatment": "own account only",
+      "identity_shipping_condition_marketplace_fields": "seller order/item data",
+      "page_pagination_refresh": "seller-scoped",
+      "entry_requirements": "seller auth tokens",
+      "permissions_class": "RESTRICTED",
+      "permissions_retention_redistribution": "RESTRICTED seller permissions and privacy",
+      "cost_and_quotas": "not applicable",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "not marketplace comps",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O08",
+      "provider": "eBay Sell Analytics API",
+      "classification": "INVALID_FOR_COMPLETED_SALES",
+      "disposition": "REJECT_MARKETWIDE",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://developer.ebay.com/develop/selling-apps/analytics-and-reporting"
+      ],
+      "history_window": "performance reports",
+      "actual_transaction_price_evidence": "own listing traffic/performance analytics",
+      "accepted_best_offer_treatment": "no marketwide accepted offer proof",
+      "identity_shipping_condition_marketplace_fields": "seller/account metrics",
+      "page_pagination_refresh": "not item-level competing closed sales",
+      "entry_requirements": "seller user token and permissions",
+      "permissions_class": "RESTRICTED",
+      "permissions_retention_redistribution": "RESTRICTED seller data only",
+      "cost_and_quotas": "not applicable",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "seller-centric analytics",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O09",
+      "provider": "eBay Feed/Feed Beta",
+      "classification": "OFFICIAL_ACTIVE_ONLY",
+      "disposition": "REJECT_FOR_SALES",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://developer.ebay.com/api-docs/buy/feed/feed/overview.html",
+        "https://developer.ebay.com/api-docs/buy/feed/v1/release-notes.html"
+      ],
+      "history_window": "daily newly-listed/weekly active/hourly changes",
+      "actual_transaction_price_evidence": "listing snapshots and asks; not actual paid history",
+      "accepted_best_offer_treatment": "none",
+      "identity_shipping_condition_marketplace_fields": "item/category/variant/current availability",
+      "page_pagination_refresh": "bulk files; Oct 21 2026 added ITEM_GROUP_ALL_ACTIVE, not sold payments",
+      "entry_requirements": "Feed entitlement; beta Limited Release",
+      "permissions_class": "REQUIRES_VENDOR_APPROVAL",
+      "permissions_retention_redistribution": "REQUIRES_VENDOR_APPROVAL; API terms",
+      "cost_and_quotas": "developer/partner only; sales no",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "A_OFFICIAL_DOCUMENTARY_NOT_EXECUTED",
+      "principal_failure_mode": "end/status transition != verified paid transaction",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O10",
+      "provider": "eBay Buy Marketing API",
+      "classification": "INVALID_FOR_COMPLETED_SALES",
+      "disposition": "REJECT_FOR_SALES",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://developer.ebay.com/develop/get-started/get-started-on-a-buying-application"
+      ],
+      "history_window": "best-selling rankings only",
+      "actual_transaction_price_evidence": "product-level marketing indicators; no sales rows",
+      "accepted_best_offer_treatment": "none",
+      "identity_shipping_condition_marketplace_fields": "catalog/category product IDs",
+      "page_pagination_refresh": "not sale-observation feed",
+      "entry_requirements": "developer app",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "TERMS_REVIEW_REQUIRED",
+      "cost_and_quotas": "not applicable",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "aggregate popularity not prices",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O11",
+      "provider": "eBay Finding findCompletedItems",
+      "classification": "RETIRED",
+      "disposition": "REJECT",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.developer.ebay.com/develop/get-started/api-deprecation-status"
+      ],
+      "history_window": "historically ~90d before retirement",
+      "actual_transaction_price_evidence": "old sold search not live",
+      "accepted_best_offer_treatment": "old displayed prices unreliable for offer paid",
+      "identity_shipping_condition_marketplace_fields": "keyword/condition",
+      "page_pagination_refresh": "decommissioned 2025-02-04",
+      "entry_requirements": "no current key can revive it",
+      "permissions_class": "PROHIBITED_IN_CURRENT_FORM",
+      "permissions_retention_redistribution": "PROHIBITED_IN_CURRENT_FORM as dead endpoint",
+      "cost_and_quotas": "$0 irrelevant",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "A_OFFICIAL_DEPRECATION",
+      "principal_failure_mode": "retired Feb 4 2025",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O12",
+      "provider": "eBay Shopping API",
+      "classification": "RETIRED",
+      "disposition": "REJECT",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.developer.ebay.com/develop/get-started/api-deprecation-status"
+      ],
+      "history_window": "none now",
+      "actual_transaction_price_evidence": "decommissioned",
+      "accepted_best_offer_treatment": "none",
+      "identity_shipping_condition_marketplace_fields": "legacy catalog",
+      "page_pagination_refresh": "retired 2025-02-04",
+      "entry_requirements": "not available",
+      "permissions_class": "PROHIBITED_IN_CURRENT_FORM",
+      "permissions_retention_redistribution": "PROHIBITED_IN_CURRENT_FORM as dead endpoint",
+      "cost_and_quotas": "$0 irrelevant",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "A_OFFICIAL_DEPRECATION",
+      "principal_failure_mode": "retired Feb 4 2025",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "O13",
+      "provider": "Direct eBay commercial data licence/partnership",
+      "classification": "UNRESOLVED",
+      "disposition": "STRATEGIC_CONTACT",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://developer.ebay.com/develop/get-started/get-started-on-a-buying-application",
+        "https://developer.ebay.com/join/api-license-agreement"
+      ],
+      "history_window": "negotiable; unknown",
+      "actual_transaction_price_evidence": "potential direct data/actual-price provenance",
+      "accepted_best_offer_treatment": "contract/field definitions must specify true realized paid",
+      "identity_shipping_condition_marketplace_fields": "negotiable granular transaction observations",
+      "page_pagination_refresh": "breadth/refresh and category availability unknown",
+      "entry_requirements": "business developer partnership conversation and written special grant",
+      "permissions_class": "REQUIRES_VENDOR_APPROVAL",
+      "permissions_retention_redistribution": "REQUIRES_VENDOR_APPROVAL plus purpose, price stats, retention, publication permission",
+      "cost_and_quotas": "custom unknown",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "no disclosed open purchase program, pricing or guarantee",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T01",
+      "provider": "CompsAPI /v1/sold",
+      "classification": "THIRD_PARTY_VENDOR_CLAIM_UNTESTED",
+      "disposition": "EVALUATE_FIRST_TIER",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://compsapi.com/docs",
+        "https://compsapi.com/pricing",
+        "https://compsapi.com/terms"
+      ],
+      "history_window": "Free/Starter 1 year, Growth+ 3 years",
+      "actual_transaction_price_evidence": "claims actual buyer-paid including best offers; not independently proven",
+      "accepted_best_offer_treatment": "best_offer=1, verify; null/likely distinctions, multiunits averaged",
+      "identity_shipping_condition_marketplace_fields": "title/item_id/last_sold/price/shipping/format, GTIN not independently assured; eBay US plus merged other marketplaces",
+      "page_pagination_refresh": "10-240 page; page up to 50 free/200 paid; temporal pagination; refresh not benchmarked",
+      "entry_requirements": "Google sign-in, X-API-Key or Bearer",
+      "permissions_class": "EXPLICITLY_PERMITTED_SCOPED",
+      "permissions_retention_redistribution": "EXPLICITLY_PERMITTED_SCOPED by vendor for own product/derived stats, retained indefinitely; raw bulk resale forbidden. Vendor specifically disclaims third-party underlying rights",
+      "cost_and_quotas": "Free 100/mo; $9 5k 1y; $29 25k 3y; $79 100k 3y; 300k custom",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "C_VENDOR_DOCUMENTARY_NO_LIVE_TRUTH",
+      "principal_failure_mode": "no verified paid-price source, completeness, provenance; limits category/GTIN",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T02",
+      "provider": "CompSniper /v1/scrape recent",
+      "classification": "THIRD_PARTY_VENDOR_CLAIM_UNTESTED",
+      "disposition": "EVALUATE_PARALLEL",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://api.compsniper.com/docs",
+        "https://api.compsniper.com/pricing",
+        "https://compsniper.com/terms"
+      ],
+      "history_window": "about 90 days",
+      "actual_transaction_price_evidence": "claimed real sold list, not verified",
+      "accepted_best_offer_treatment": "marketing says accepted paid prices; Aug Terms says accepted best offer displayed is upper bound",
+      "identity_shipping_condition_marketplace_fields": "title, date, item, condition/market; exact GTIN uncertain",
+      "page_pagination_refresh": "up to 240/page; 8 marketplaces; pagination/batch; response/refresh not tested",
+      "entry_requirements": "account, bearer key or OAuth for MCP",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "UPSTREAM_PROVENANCE_UNVERIFIED; vendor permits commercial SaaS but terms deny upstream affiliation and paid accuracy",
+      "cost_and_quotas": "Free 100/mo; $9 2k; $29 10k; $79 50k; $129 100k; $549 500k",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "C_VENDOR_DOCUMENTARY_NO_LIVE_TRUTH",
+      "principal_failure_mode": "internal contradiction actual accepted-offer price",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T03",
+      "provider": "CompSniper /v1/research/sold archival",
+      "classification": "THIRD_PARTY_VENDOR_CLAIM_UNTESTED",
+      "disposition": "SPECIALIZED_LONG_HISTORY_TEST",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://api.compsniper.com/docs/sold-history",
+        "https://compsniper.com/terms"
+      ],
+      "history_window": "up to 3 years",
+      "actual_transaction_price_evidence": "listing-level aggregates, not always single sale observations",
+      "accepted_best_offer_treatment": "multiunit listing aggregates: soldPrice null, averageSoldPrice; accepted offer truth unclear",
+      "identity_shipping_condition_marketplace_fields": "condition null in history! IDs/titles missing for some old records",
+      "page_pagination_refresh": "50 rows/page up to 200 pages; 8 marketplaces; USD normalization",
+      "entry_requirements": "same bearer account/key as T02",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "UPSTREAM_PROVENANCE_UNVERIFIED; vendor commercial licence subject to rights of sources",
+      "cost_and_quotas": "same quotas as T02; deep 3y search may take many pages",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "C_VENDOR_DOCUMENTARY_NO_LIVE_TRUTH",
+      "principal_failure_mode": "listings aggregated, condition missing, not comparable to per-sale oracle",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T04",
+      "provider": "Soldgraph /v1/ebay/sold",
+      "classification": "THIRD_PARTY_VENDOR_CLAIM_UNTESTED",
+      "disposition": "USE_ONLY_PAID_VERIFIED_SUBSET",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://soldgraph.com/docs/api/sold",
+        "https://soldgraph.com/docs/api/usage",
+        "https://soldgraph.com/terms"
+      ],
+      "history_window": "~90d public sold listings",
+      "actual_transaction_price_evidence": "docs say displayed price; offer not realized paid",
+      "accepted_best_offer_treatment": "explicitly best_offer_accepted true means asking price; medians can exclude offers",
+      "identity_shipping_condition_marketplace_fields": "id/title/date/condition/displayed_shipping/site",
+      "page_pagination_refresh": "up to 200 page, 15 minute cache, page-only completeness",
+      "entry_requirements": "email account bearer key",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "UPSTREAM_PROVENANCE_UNVERIFIED; vendor permits own analysis, disclaims third-party terms",
+      "cost_and_quotas": "new users 100 free ONE TIME; $9 2k; $19 5k; $49 20k; $149 100k; $499 350k",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "C_VENDOR_DOCUMENTARY_NO_LIVE_TRUTH",
+      "principal_failure_mode": "Best Offer exclusion bias, incomplete sample",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T05",
+      "provider": "SoldComps /v1/scrape + hydrateBoa",
+      "classification": "THIRD_PARTY_VENDOR_CLAIM_UNTESTED",
+      "disposition": "EVALUATE_WITH_COST_CONTROL",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://sold-comps.com/docs",
+        "https://sold-comps.com/"
+      ],
+      "history_window": "up to 90 days",
+      "actual_transaction_price_evidence": "soldPrice defaults ask on offer, when hydrateBoa succeeds actual paid appears",
+      "accepted_best_offer_treatment": "hydrateBoa extra request if successful; cross-currency accepted amount separate",
+      "identity_shipping_condition_marketplace_fields": "item IDs/title/condition/shipping/date/quantity/itemSpecifics often item details",
+      "page_pagination_refresh": "240/page, max 100-page jobs; extra credits for hydrating; no cache claims",
+      "entry_requirements": "account bearer API key",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "UPSTREAM_PROVENANCE_UNVERIFIED; vendor commercial use claim, upstream rights unverified",
+      "cost_and_quotas": "Free 100/mo; $9 2k; $29 10k; $79 50k; $129 100k; $549 500k (see own site)",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "C_VENDOR_DOCUMENTARY_NO_LIVE_TRUTH",
+      "principal_failure_mode": "nonhydrated offer prices and variable listings low end",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T06",
+      "provider": "Trawl /ebay/v1/sold archive",
+      "classification": "THIRD_PARTY_VENDOR_CLAIM_UNTESTED",
+      "disposition": "EVALUATE_ARCHIVE_COVERAGE",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://trawl.dev/docs",
+        "https://trawl.dev/docs/ebay/sold",
+        "https://trawl.dev/pricing",
+        "https://trawl.dev/terms"
+      ],
+      "history_window": "claims multi-year stored history; depth varies",
+      "actual_transaction_price_evidence": "sold list price; offered actual only in categories via details",
+      "accepted_best_offer_treatment": "docs say for best offers sale_price is listing price; details on collectibles only",
+      "identity_shipping_condition_marketplace_fields": "title/condition/dates/currency; details may add listing specifics",
+      "page_pagination_refresh": "100/page, max 20 pages/call, cursor; 1 credit per page or 2 with details",
+      "entry_requirements": "console signup x-api-key",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "UPSTREAM_PROVENANCE_UNVERIFIED; independent public source claim, disclaims accuracy/upstream rights",
+      "cost_and_quotas": "Free 250 monthly; $20 3k; $50 15k; $100 60k; $250 200k; 300k custom/variable",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "C_VENDOR_DOCUMENTARY_NO_LIVE_TRUTH",
+      "principal_failure_mode": "archive selected/recentness, offer price ask, credits multiply with details",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T07",
+      "provider": "eBay Sold Listings API /scrape",
+      "classification": "THIRD_PARTY_VENDOR_CLAIM_UNTESTED",
+      "disposition": "EVALUATE_ACCEPTED_OFFER_CLAIM",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://ebaysoldlistingsapi.com/docs",
+        "https://ebaysoldlistingsapi.com/docs/best-offer-prices",
+        "https://ebaysoldlistingsapi.com/"
+      ],
+      "history_window": "~90 days; no established older archive",
+      "actual_transaction_price_evidence": "listing displayed soldPrice upper bound on offers; acceptedOfferPrice separate claim",
+      "accepted_best_offer_treatment": "acceptedOfferPriceStatus found/pending/not_available; USD emphasis",
+      "identity_shipping_condition_marketplace_fields": "title/date/condition/shipping/itemID/seller; item specifics TBD",
+      "page_pagination_refresh": "up to 240/page, 8 sites, 100 keyword batch, 90s timeout",
+      "entry_requirements": "signup bearer key",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "UPSTREAM_PROVENANCE_UNVERIFIED; states its own signed-in retrieval, eBay grant not proven",
+      "cost_and_quotas": "Free 50/mo; $9.99 3k; $29.99 15k; $59.99 40k; $129.99 100k; $299 unlimited fair use",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "C_VENDOR_DOCUMENTARY_NO_LIVE_TRUTH",
+      "principal_failure_mode": "login-based source and accepted-offer proof and permission unresolved",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T08",
+      "provider": "PriceCharting Prices API",
+      "classification": "CATEGORY_SPECIFIC",
+      "disposition": "REJECT_AS_EBAY_ROWS_CONTEXT_ONLY",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.pricecharting.com/api-documentation"
+      ],
+      "history_window": "current values only",
+      "actual_transaction_price_evidence": "officially says no historic prices or historic sales in Prices API",
+      "accepted_best_offer_treatment": "not applicable",
+      "identity_shipping_condition_marketplace_fields": "UPC/game/card/condition price guide",
+      "page_pagination_refresh": "1 req/sec; 24h CSV; video game/collectible specific",
+      "entry_requirements": "paid subscription; commercial redistribution separate agreement",
+      "permissions_class": "REQUIRES_VENDOR_APPROVAL",
+      "permissions_retention_redistribution": "REQUIRES_VENDOR_APPROVAL for external app; purge when subscription ends; NOT an eBay sale-history API",
+      "cost_and_quotas": "paid price undocumented here; 1rps; CSV Legendary",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "explicit no historical sales endpoint",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-051"
+    },
+    {
+      "route_id": "T09",
+      "provider": "WorthPoint / Worthopedia",
+      "classification": "CATEGORY_SPECIFIC",
+      "disposition": "HOLD_NONPROGRAMMATIC",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.worthpoint.com/"
+      ],
+      "history_window": "claims long archival completed listings incl eBay/auctions",
+      "actual_transaction_price_evidence": "historical price database, not validated per paid eBay row via API",
+      "accepted_best_offer_treatment": "offer price not verified",
+      "identity_shipping_condition_marketplace_fields": "collectibles/antiques, condition heterogeneous",
+      "page_pagination_refresh": "subscription user interface; no verified general API or bulk licensed feed",
+      "entry_requirements": "paid subscription, enterprise inquiry",
+      "permissions_class": "REQUIRES_VENDOR_APPROVAL",
+      "permissions_retention_redistribution": "REQUIRES_VENDOR_APPROVAL for any automated export or index use",
+      "cost_and_quotas": "price unknown for compliant bulk feed",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "no qualified programmatic feed",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T10",
+      "provider": "130point eBay sales",
+      "classification": "MANUAL_ORACLE",
+      "disposition": "MANUAL_SPECIALIST_ONLY",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://130point.com/sales/"
+      ],
+      "history_window": "variable recent history",
+      "actual_transaction_price_evidence": "website sold search and best offer context, no verified API",
+      "accepted_best_offer_treatment": "potential offer lookup unverified and rights unclear",
+      "identity_shipping_condition_marketplace_fields": "collector specialty",
+      "page_pagination_refresh": "human site; no documented API/retention rights",
+      "entry_requirements": "web manual",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "TERMS_REVIEW_REQUIRED; do not automate",
+      "cost_and_quotas": "unknown",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "interface not broad licensed feed",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T11",
+      "provider": "ZIK Analytics",
+      "classification": "CATEGORY_SPECIFIC",
+      "disposition": "HOLD_UI_ONLY",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.zikanalytics.com/"
+      ],
+      "history_window": "historical research claims, window varies",
+      "actual_transaction_price_evidence": "analytics estimates not proven raw paid records/API",
+      "accepted_best_offer_treatment": "unknown",
+      "identity_shipping_condition_marketplace_fields": "product niche and sellers",
+      "page_pagination_refresh": "subscription research interface",
+      "entry_requirements": "paid plan, manual review",
+      "permissions_class": "REQUIRES_VENDOR_APPROVAL",
+      "permissions_retention_redistribution": "REQUIRES_VENDOR_APPROVAL for structured programmatic and retention",
+      "cost_and_quotas": "unknown",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "no verified API itemized realized sales",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T12",
+      "provider": "ShelfTrend",
+      "classification": "CATEGORY_SPECIFIC",
+      "disposition": "HOLD_UI_ONLY",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.shelftrend.com/"
+      ],
+      "history_window": "eBay market trends context",
+      "actual_transaction_price_evidence": "not proven per-sale buyer-paid records",
+      "accepted_best_offer_treatment": "unknown",
+      "identity_shipping_condition_marketplace_fields": "categories/product research",
+      "page_pagination_refresh": "SaaS UI; API not established",
+      "entry_requirements": "paid manual inquiry",
+      "permissions_class": "REQUIRES_VENDOR_APPROVAL",
+      "permissions_retention_redistribution": "REQUIRES_VENDOR_APPROVAL for exports and commercial reuse",
+      "cost_and_quotas": "unknown",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "analytics aggregates not observed sales",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T13",
+      "provider": "Apify / Bright Data / Oxylabs / scraping vendors",
+      "classification": "UNRESOLVED",
+      "disposition": "HOLD_PROVENANCE_LICENSE",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://apify.com/topapi/ebay-sold-listings-scraper",
+        "https://www.ebay.com/help/policies/user-agreement/user-agreement?id=4259"
+      ],
+      "history_window": "typically current publicly displayed sold pages ~90d",
+      "actual_transaction_price_evidence": "usually display/listing prices; actual offers often unknown",
+      "accepted_best_offer_treatment": "no automatic true accepted amount",
+      "identity_shipping_condition_marketplace_fields": "HTML selection and parser dependent",
+      "page_pagination_refresh": "per-result/per-page, non-exhaustive, site breakage",
+      "entry_requirements": "account/API key; actor runtime",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "UPSTREAM_PROVENANCE_UNVERIFIED; upstream eBay express permission not proven",
+      "cost_and_quotas": "Apify actor advertises $0.99/1k rows plus details; different vendors priced separately",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "third party paid scraping not proof eBay authorization",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T14",
+      "provider": "Github open-source findCompletedItems/scrapers",
+      "classification": "INVALID_FOR_COMPLETED_SALES",
+      "disposition": "REJECT_UNLESS_SEPARATE_PROOF",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.developer.ebay.com/develop/get-started/api-deprecation-status",
+        "https://www.ebay.com/help/policies/user-agreement/user-agreement?id=4259"
+      ],
+      "history_window": "retired API or unapproved scraping",
+      "actual_transaction_price_evidence": "unreliable or no sold history",
+      "accepted_best_offer_treatment": "not evidenced",
+      "identity_shipping_condition_marketplace_fields": "parsers with no identity quality guarantee",
+      "page_pagination_refresh": "stale API or HTML bots",
+      "entry_requirements": "source code, local runtime",
+      "permissions_class": "PROHIBITED_IN_CURRENT_FORM",
+      "permissions_retention_redistribution": "PROHIBITED_IN_CURRENT_FORM where automated extraction without eBay permission",
+      "cost_and_quotas": "development costs don't solve access",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "stale endpoints or unauthorized scrape",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "T15",
+      "provider": "Licenced archives/public datasets/private warehouses",
+      "classification": "UNRESOLVED",
+      "disposition": "HOLD_PROVENANCE",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://developer.ebay.com/join/api-license-agreement"
+      ],
+      "history_window": "historic snapshots possibly noncontinuous",
+      "actual_transaction_price_evidence": "no verified actual-sale paid prices or completeness",
+      "accepted_best_offer_treatment": "unknown",
+      "identity_shipping_condition_marketplace_fields": "dataset-specific identity",
+      "page_pagination_refresh": "nonstreaming, survivorship/time bias",
+      "entry_requirements": "supplier agreement or explicit open licence",
+      "permissions_class": "REQUIRES_VENDOR_APPROVAL",
+      "permissions_retention_redistribution": "REQUIRES_VENDOR_APPROVAL; no identified lawful broad eBay sale transaction set",
+      "cost_and_quotas": "custom/unknown",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "archive age and license/refresh unsupported",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    },
+    {
+      "route_id": "H01",
+      "provider": "Manual first-party Product Research + conditional vendor adapter",
+      "classification": "MANUAL_ORACLE",
+      "disposition": "BEST_STAGED_ARCHITECTURE",
+      "observation_date": "2026-10-31",
+      "primary_urls": [
+        "https://www.ebay.com/help/selling/selling-tools/product-research?id=4853",
+        "https://compsapi.com/terms"
+      ],
+      "history_window": "manual 3y oracle plus vendor 90d/3y candidate",
+      "actual_transaction_price_evidence": "truth-bearing oracle, vendor sale fields accepted only after benchmark",
+      "accepted_best_offer_treatment": "manual verification corrects offered pricing",
+      "identity_shipping_condition_marketplace_fields": "GTIN+model+condition+quantity human adjudication",
+      "page_pagination_refresh": "manual 30-case oracle; daily vendor pipeline only after gates",
+      "entry_requirements": "seller Team Access if eligible; separate vendor approval",
+      "permissions_class": "UPSTREAM_PROVENANCE_UNVERIFIED",
+      "permissions_retention_redistribution": "TERMS_REVIEW_REQUIRED manual storage/index + vendor upstream grant",
+      "cost_and_quotas": "manual cost + provider tier under evaluated plan",
+      "scale_one_request_per_product_per_30_day_month": {
+        "checks_per_day": [
+          100,
+          1000,
+          10000
+        ],
+        "monthly_requests": [
+          3000,
+          30000,
+          300000
+        ],
+        "assumptions": "one successful page per exact product once daily, no retries, no second-site, no backfill; multiply by pages*queries+refresh",
+        "currency": "USD"
+      },
+      "independent_live_benchmark": "NOT_EXECUTED",
+      "evidence_grade": "D_EXPLORATORY_OR_NOT_FIT",
+      "principal_failure_mode": "not yet a real or permitted daily source",
+      "next_verification": "Independent exact-product eBay Product Research oracle; paid-price provenance and licence questions, then authorized scoped live sample if viable",
+      "roadmap_consumer": "ARB-040"
+    }
+  ]
+}

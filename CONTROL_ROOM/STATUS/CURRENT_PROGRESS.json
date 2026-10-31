@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-10-31",
+  "repository": "maidiu/arbiscout",
+  "visibility": "PUBLIC_AT_CHECK",
+  "source_of_truth": "GitHub main + adopted PRs; draft branch facts are qualified proposals",
+  "main_seed_sha": "2c2f3d64ce49edc3073c7feb094bf803ee84d371",
+  "control_room": {
+    "branch": "agent/arbiscout-programma-control-room-r1",
+    "review_status": "DRAFT_UNMERGED",
+    "hq_appointed": false
+  },
+  "implementation": {
+    "draft_pr": "https://github.com/maidiu/arbiscout/pull/1",
+    "prior_observed_head_sha": "799747af35bf154fcf23c994604230c945fe0161",
+    "status": "SOURCE_FREE_PROTO_TESTED_DRAFT__NOT_MERGED",
+    "live_marketplace_integrations": 0,
+    "real_scored_opportunities": 0
+  },
+  "terminal_state": "NO_LIVE_AUTHORIZED_DAILY_SCOUT",
+  "external_blockers": [
+    "Retailer and aggregation product/price data rights and access for resale research",
+    "eBay completed-sales data in a licensed, sufficiently complete machine-readable form",
+    "Seller fee/shipping/region validation for actual prices"
+  ],
+  "done": [
+    "Repository initialized and PR #1 source-free prototype previously executed under CI; remains unmerged",
+    "Public source documentation for major access candidates located",
+    "Control-room/Programma branch prepared for review"
+  ],
+  "remaining": [
+    "Provider-by-provider license and cost audit",
+    "First authorized retail offer and completed-sales observation",
+    "Integrated identity/economic model and human-facing report",
+    "Daily source checks and calibration from real sales"
+  ],
+  "largest_productive_move": "Independently source-audit eBay sold history and one multi-retailer shopping provider; concurrently review source-free PR #1 and test a synthetic source-to-report vertical slice",
+  "flights": [
+    {
+      "id": "FLIGHT-001",
+      "scope": "Data-access reconnaissance",
+      "status": "PROPOSED_NOT_DISPATCHED",
+      "task_ids": [
+        "ARB-010",
+        "ARB-013",
+        "ARB-020",
+        "ARB-022"
+      ]
+    },
+    {
+      "id": "FLIGHT-002",
+      "scope": "Core prototype review",
+      "status": "PROPOSED_NOT_DISPATCHED",
+      "task_ids": [
+        "ARB-082",
+        "ARB-030",
+        "ARB-050",
+        "ARB-060"
+      ]
+    }
+  ],
+  "active_workers": [],
+  "delta": "Initial ArbiScout PROGRAMMA/control plane seeded in independent PR; no authorization or live production advance."
+}

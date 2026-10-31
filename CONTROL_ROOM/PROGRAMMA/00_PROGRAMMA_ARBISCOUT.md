@@ -1,48 +1,48 @@
 # PROGRAMMA ARBISCOUT
-## Retail bargain indexing informed by eBay price patterns
+## Whole purchase-research project: retailer purchase bargains indexed against regular eBay sale patterns
 
-**Authority:** User-issued functional constitution revision, 2026-10-31, captured in [PRODUCT_CONSTITUTION](../PRODUCT_CONSTITUTION.md). This branch and PR #2 remain proposed/unmerged until accepted. No retailer/eBay data rights are conferred by this file.
+**Authority:** [Controlling Product Constitution](../PRODUCT_CONSTITUTION.md), user revision 2026-10-31. This is the proposed control-room branch of draft PR #2; it is not already merged into `main`.
 
-## Terminal product
+### Sole terminal product
 
-**Broadly index internet bargains from major retailers for buying their products under specific conditions informed by eBay historical price patterns.** No named owner, person, beneficiary, storefront, resale business, dropshipping pipeline, or subsequent disposition of purchased goods defines the application.
+**Index current prices at which major retailers will sell goods and identify the largest reliable purchase-price gaps below regular historical eBay completed-sale patterns for the exact same product.** Discover sale and clearance stock broadly (not only a preselected retailer list); confirm identity/condition/quantity, current purchase price and availability; construct robust normal eBay sale-price baselines; evaluate the observed absolute and relative below-eBay gaps; and publish a daily **0–10** purchase-research list with original sources and uncertainties.
 
-The program discovers genuine discounted purchase offers; verifies source, merchant, product variant, condition, stock, region, dates, and costs; compares with genuinely comparable historical eBay sale-price patterns (distinguishing completed sales from asking prices); derives explicit conditions for considering purchase; and produces a traceable daily shortlist **of zero to ten** qualifying bargains.
+`absolute_gap = eBay_regular_historical_sale_price - current_retailer_total_purchase_price`
 
-Optional AliExpress/Alibaba extensions must incorporate delivery cost, time, minimum quantities and uncertainty. A separate financial/economic analyzer may estimate downstream margins or capital risk when configured, but this is an **optional evaluation module**, not the identity or indispensable terminal purpose of the index. Purchases, resales, listing operations and resale-profit tracking are not mandatory for terminal acceptance.
+`relative_gap = absolute_gap / eBay_regular_historical_sale_price` where the historical reference is sufficiently evidenced and positive.
 
-## R — Recognize / Recover / Reconcile
+Historical eBay observations are comparison data, not forecasts or anticipated transactions. No later sale, seller fees, return-on-investment model, inventory operation, or specific user identity is necessary for this product. An optional Alibaba/AliExpress input is another *purchase-offer source* with quantity, freight and lead-time costs.
 
-Recover actual code and previous inquiries, alternative source adapters, open-source predecessor ideas, historical motivating arbitrage request, vendor documentation, implementation and review evidence. Preserve old functional capital without allowing its original business framing to override the **new controlling constitution**. Historical chat intent is historical evidence, not the current product mandate. Branch exists ≠ function accepted; green fixture ≠ live data provenance.
+### R — Recognize, Recover, Reconcile
 
-## O — Organize / Adjudicate the whole
+Track actual existing research, provider/API documentation, old draft PR #1, prior false assumptions, contradictions, source rights, alternative code and real consumers. Legacy draft financial scoring is **NOT** current application functionality; any neutral product-identity code must be independently evaluated before reuse. Preserve historical why-not decisions as history, not active product requirements.
 
-`01_WORK_REGISTRY.json` is the whole capability graph, crosslinked to `02_SOURCE_REGISTRY.json`, the architecture and critical path, `04_ACCEPTANCE_MATRIX.md`, decision history and `STATUS/CURRENT_PROGRESS.json`. Work at nested levels:
+### O — Organize, Adjudicate the whole
 
-- L0: reliable internet bargain index with eBay-pattern-informed purchasing conditions and accurate 0–10 daily report.
-- L1: retailer/index discovery, import extensions, item identity, historical market price signals, condition evaluation, reporting, source rights, optional finance and feedback.
-- L2: concrete price/offer retrieval, timestamps, GTIN and bundles, price-pattern windows, retailer links, currentness, condition filters, ranks, reports.
-- L3: actual source provenance, specific license and approval where relevant, code identity, tested behavior, independent review and first real consumer.
+**Machine sources of truth:**
+- [Work registry](01_WORK_REGISTRY.json): 39 capabilities, explicit ALL-OF technical prerequisites, optional ANY-OF alternative-source gates, nonblocking related work, P0–P3 priority, source and acceptance state.
+- [Question registries](QUESTIONS/): 95 audited investigation/substantiation questions, divided into seven files, each carrying status, priority, question prerequisites, work-task dependencies for operational proof, findings and evidence refs.
+- [Source registry](02_SOURCE_REGISTRY.json): provider documentary/evidential facts separated from API permissions, access, price coverage and cost.
+- [Generated dashboard](DASHBOARD.md): status, high-leverage foundations, task and question tables; [CSV views](TASKS_TABLE.csv) / [questions CSV](QUESTIONS_TABLE.csv) when spreadsheet-style filtering is preferable.
+- [Architecture and dependencies](03_ARCHITECTURE_AND_CRITICAL_PATH.md), [acceptance](04_ACCEPTANCE_MATRIX.md), [why-not](05_DECISION_AND_WHY_NOT_LOG.md), [current checkpoint](../STATUS/CURRENT_PROGRESS.json).
 
-Each task preserves its requirements, dependencies, actual status, source IDs, execution receipt and truthful next step. No source can be called open merely because an API endpoint exists.
+For any item answer: **question → prerequisite → evidence → interpretation → actual status → next action → terminal purchase-index consequence**. Distinguish source existence, lawful usage, synthetics-only code, runnable proof, real observation, independent acceptance, and merged/live consumer.
 
-## I — Implement / Prove / Integrate / Learn
+### I — Implement, Prove, Integrate, Learn
 
-Build the largest coherent authorized slice from actual retailer offers to verified comparable eBay historical signals to evidence-backed purchase conditions and report. Tests must catch stale/local-only offers, wrong model/quantity/condition, asking-price substitution, insufficient observations and unsupported claims. Accept reports with zero qualified opportunities. Review and adopt exact SHAs; preserve negative and uncertain states, histories and alternative approaches.
+Select largest coherent useful index path: one real retailer offer source + eBay same-product historical observations → comparable regular price estimator → robust price-gap calculation → source-linked 0–10 report. An initial provider is sufficient; Best Buy, Walmart, Target, affiliate networks, Google Shopping aggregators and others are **examples to investigate, not universal mandatory prerequisites**. Run negative tests for wrong variants, stale location-based offers, missing completed sales, outliers, unsupported data, negative gaps and wrongly padded shortlists.
 
-## Separate definitions and truth states
+A source-free test supports only that local code claim. A permission ruling is distinct. A returned agent report is not an adopted current branch. No automatic external account access, paid subscription, worker dispatch or production merge.
 
-A **product constitution** defines operations. A real developer API **use case** must truthfully describe those operations, actual operator and access when a contract calls for it. Redefining the project can materially change which contract clauses apply; it neither rewrites external terms nor supplies an approval. Distinguish public price visibility, API availability, accepted license, code implementation, actual execution, independent assessment and live, valid results.
+### Priority logic
 
-## Current critical bottlenecks
+- `dependencies` means ALL must be met for the task's declared hard execution edge.
+- `dependency_groups` `ANY_OF` means pick one qualified source; do NOT require every sample retailer.
+- `related_tasks` means informative but **nonblocking**.
+- `acceptance_dependencies` means live verification needs external permission/data even when source-free code can be developed.
+- Question prerequisites are separate from associated work, and `proof_requires_tasks` means tasks needed for a conclusive operational test, not a ban on starting the research.
+- Dependency reach is a **planning aid**, not an evidence of work completed or a replacement for the terminal-product critical path.
 
-- lawful and reliable retailer-price indexing at useful scale, with contextual stock, location and refresh;
-- suitably accessible and properly usable eBay historical price-pattern data;
-- exact same-product matching, timestamps and evidence freshness;
-- user-reviewable reporting with decision conditions and honest unknowns.
+### One HQ question
 
-Source-free profit/ROI work in draft PR #1 may be adapted as an optional analysis module, not assumed to define the project.
-
-## HQ finish-line question
-
-Which complete, evidence-backed source→comparison→bargain-condition→report capability now works; which parts are merely planned, tested with fixtures, blocked externally or awaiting review; and what is the largest productive next step? Return DONE / REMAINING / BLOCKERS / LARGEST PRODUCTIVE MOVE / FLIGHT / DELTA. No automatic user-account access, paid services, workers, or mergers.
+What has actually advanced toward a **real evidence-backed retailer purchase-gap index**, what is merely researched/proposed/tested with fixtures, which provider and data quality edges remain externally unresolved, and which highest-leverage producer→consumer task should be executed next? Report DONE / REMAINING / BLOCKERS / TOP UPSTREAM PRIORITIES / NEXT PRODUCTIVE FLIGHT / DELTA.

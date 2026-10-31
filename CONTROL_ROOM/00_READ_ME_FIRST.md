@@ -4,11 +4,11 @@
 
 ## Command question
 
-Produce a **credible, repeatable, potentially daily**, evidence-qualified research assistant that finds retail/import acquisition offers, matches exact products with permitted evidence of actual eBay demand, models full economics and risk, and issues **up to 10 recommendations** that a human may verify and choose to buy. A day with zero defensible opportunities is a truthful result. This is **not** automated buying, listing, dropshipping, or a promise of profit.
+Produce a **credible daily index of internet bargains from major retailers**, identifying evidence-based conditions for purchasing those retailers' products informed by historical eBay price patterns. Normalize exact product/condition/quantity, merchant, available price, timestamps, region, delivery and quality of historical comparables; issue **0–10** source-linked candidates with explicit uncertainties. Optional import landed-cost and financial analyses may be added, but neither a named person nor onward resale defines this product. This is not automated buying, listing or dropshipping.
 
 ## Required first reads, in order
 
-1. [PROGRAMMA — full product constitution](PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md) — R/O/I and whole product.
+1. [USER-REVISED PRODUCT CONSTITUTION](PRODUCT_CONSTITUTION.md), then [PROGRAMMA — whole project](PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md) — R/O/I.
 2. [Whole architecture and critical path](PROGRAMMA/03_ARCHITECTURE_AND_CRITICAL_PATH.md).
 3. [Current progress](STATUS/CURRENT_PROGRESS.md), then [machine record](STATUS/CURRENT_PROGRESS.json).
 4. [Machine work ledger](PROGRAMMA/01_WORK_REGISTRY.json), [source registry](PROGRAMMA/02_SOURCE_REGISTRY.json), [acceptance matrix](PROGRAMMA/04_ACCEPTANCE_MATRIX.md).
@@ -21,7 +21,7 @@ Produce a **credible, repeatable, potentially daily**, evidence-qualified resear
 A new Browser agent may say **CANDIDATE_READ_ONLY_GROK** while reading; it must not claim authority from merely seeing these files. It can become operating HQ for this repo only with the user's explicit assignment, and only for the requested task/scope. Its first response must report:
 
 - Exact branch / commit / time checked; repo public or private; what could not be inspected.
-- The whole business product in one paragraph, including domestic and import tracks, sold evidence, customer-verified purchasing.
+- The whole bargain-index product in one paragraph, including retailer discovery, optional imports, historical eBay price patterns and explicit purchasing conditions **without naming a necessary beneficiary or resale service**.
 - Source registry: proven API capability vs contractual permission vs price/sales actuality; explicit UNKNOWN/HOLDs.
 - Per-workstream status from machine registry: **DONE / REMAINING / BLOCKED / LARGEST PRODUCTIVE MOVE**; distinguish planned, implemented, executed, reviewed, merged, and live validated.
 - A dependency chain to daily evidence-qualified reports and **first real consumer** of every proposed implementation.

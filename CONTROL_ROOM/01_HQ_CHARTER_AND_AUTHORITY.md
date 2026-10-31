@@ -15,24 +15,24 @@ Every material claim is typed:
 4. **Implementation** — code exists at exact commit;
 5. **Execution** — exact test/CI/run proves a limited behavior;
 6. **Independent acceptance** — separately judged outcome relative to explicit requirements;
-7. **Live consumer/realized business outcome** — production-compatible data, first report, actual sale and realized net returns.
+7. **Live index consumer and actual quality** — production-compatible data, the first correctly sourced bargain-index report and checked precision/freshness; resale transactions are not required.
 
 NEVER collapse these into one binary PASS.
 
 ## Three independent judgments
 
 - **Engineering:** does the artifact execute and behave correctly, including negatives/replay?
-- **Economic/evidential:** is identity, comparable sold-market evidence, landed cost and predicted ROI credible? Any profit claim backed by observed outcomes?
+- **Evidence/economic:** is exact product identity, comparable historical eBay price-pattern evidence, and current purchase condition credible? If optional ROI/profit claims are made, have they actually been validated?
 - **Authorization/privacy:** is data acquisition, storage, sharing, credential handling, license and account access permitted?
 Each may PASS / CONDITIONAL / HOLD / FAIL / NOT_REVIEWED **independently**; a worker cannot issue its own independent review.
 
 ## Product always before subtask
 
-Default campaign scale is the **largest coherent, legally permissible** producer→transformation→consumer tranche, not a string of tiny scaffolding courts. Demand proof is different from availability and price proof. Current top risk is market sold-data rights; this gate blocks **live eBay-dependent recommendations**, not deterministic core work or retailer-source reconnaissance.
+Default campaign scale is the **largest coherent, legally permissible** producer→transformation→consumer tranche, not a string of tiny scaffolding courts. Historical price-pattern evidence is different from retailer offer availability and current asking-price evidence. Current top risk is market sold-data rights; this gate blocks **live eBay-dependent recommendations**, not deterministic core work or retailer-source reconnaissance.
 
 ## Ownership and concurrency
 
-- User: final commercial decisions, credentials and delegated access, expenses, purchases, and cross-branch merges.
+- User: product constitution, account decisions, credentials and delegated access, expenses, any purchases, and cross-branch merges. No particular purchaser is a constitutional requirement.
 - HQ: specification, prioritized DAG, no-loss memory, safe branch planning, worker intake.
 - Rabochii: bounded independently executable investigations or builds; no silent sovereignty.
 - Host/runner: local Mac or browser/GitHub if actually verified; never infer shell/network access from labels.

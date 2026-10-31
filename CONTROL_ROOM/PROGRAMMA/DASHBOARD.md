@@ -2,12 +2,12 @@
 
 **Generated from canonical JSON.** This is an overview of research and implementation **states**, not a declaration of proven live commercial access. Governing scope: **purchase research only** — find retailer prices maximally below regular eBay completed-sale patterns for the identical product. No future selling model.
 
-**Read:** [Constitution](../PRODUCT_CONSTITUTION.md) · [Full PROGRAMMA](00_PROGRAMMA_ARBISCOUT.md) · [Tasks table](TASKS_TABLE.md) · [95-question table](QUESTIONS_TABLE.md) · [Work JSON](01_WORK_REGISTRY.json) · [Question records](QUESTIONS/) · [Source JSON](02_SOURCE_REGISTRY.json) · [Current HQ](../STATUS/CURRENT_PROGRESS.md).
+**Read:** [Constitution](../PRODUCT_CONSTITUTION.md) · [Full PROGRAMMA](00_PROGRAMMA_ARBISCOUT.md) · [Tasks table](TASKS_TABLE.md) · [question table](QUESTIONS_TABLE.md) · [Work JSON](01_WORK_REGISTRY.json) · [Question records](QUESTIONS/) · [Source JSON](02_SOURCE_REGISTRY.json) · [Current HQ](../STATUS/CURRENT_PROGRESS.md).
 
 ## Scope and counts
 
-- **39** tracked capability tasks: BLOCKED_EXTERNAL: 1, IN_PROGRESS: 3, NOT_STARTED: 26, PROPOSED: 2, PROTOTYPE_DRAFT: 1, REVIEW_PENDING: 1, SCOPED: 1, SOURCE_DOCUMENTED: 4.
-- **95** research/substantiation questions: OPEN: 57, PARTIAL: 32, SETTLED: 4, SUPERSEDED: 2.
+- **40** tracked capability tasks: BLOCKED_EXTERNAL: 1, IN_PROGRESS: 3, NOT_STARTED: 26, PROPOSED: 3, PROTOTYPE_DRAFT: 1, REVIEW_PENDING: 1, SCOPED: 1, SOURCE_DOCUMENTED: 4.
+- **112** research/substantiation questions: OPEN: 74, PARTIAL: 32, SETTLED: 4, SUPERSEDED: 2.
 - **Question dependency** = another conclusion needed first; **task hard prerequisite** = ALL; **source choice** = ANY ONE permitted source; **live evidence gate** = needed for real-world acceptance, not synthetic development.
 - **Downstream reach** counts graph descendants and signals leverage, **not estimated effort, importance by itself, or proof of completion**. All `P0` items require judgment, not automatic worker dispatch.
 
@@ -15,19 +15,21 @@
 
 | Task | What it establishes | State | Potential downstream | Live evidence gates | Alternative source gate |
 | --- | --- | --- | --- | --- | --- |
-| ARB-030 | Exact product identity and variant engine | PROTOTYPE_DRAFT | 14 | — | — |
-| ARB-010 | eBay completed-sale historical price access | IN_PROGRESS | 13 | — | — |
+| ARB-030 | Exact product identity and variant engine | PROTOTYPE_DRAFT | 15 | — | — |
+| ARB-010 | eBay completed-sale historical price access | IN_PROGRESS | 14 | — | — |
 | ARB-031 | Purchase-offer schema and provenance | NOT_STARTED | 12 | — | — |
-| ARB-022 | Google Shopping search aggregators | SOURCE_DOCUMENTED | 5 | — | — |
-| ARB-023 | Best Buy purchase-offer API and price fields | SOURCE_DOCUMENTED | 5 | — | — |
-| ARB-024 | Walmart purchase-offer sources | SOURCE_DOCUMENTED | 5 | — | — |
+| ARB-022 | Google Shopping search aggregators | SOURCE_DOCUMENTED | 6 | — | — |
+| ARB-023 | Best Buy purchase-offer API and price fields | SOURCE_DOCUMENTED | 6 | — | — |
+| ARB-024 | Walmart purchase-offer sources | SOURCE_DOCUMENTED | 6 | — | — |
 | ARB-020 | Retailer bargain-source landscape | IN_PROGRESS | 0 | — | — |
+| ARB-035 | Cross-market buyer culture, turnover, ticket size and discount-attention asymmetry | PROPOSED | 0 | ARB-010, ARB-029 | — |
 
 ## P0 research questions ready for independent investigation
 
 | Question | Question to settle | State | Downstream questions | Associated work |
 | --- | --- | --- | --- | --- |
-| Q025 | Which eBay API responses are active asking prices and which are actual completed-sale prices? | PARTIAL | 11 | ARB-010, ARB-040 |
+| Q025 | Which eBay API responses are active asking prices and which are actual completed-sale prices? | PARTIAL | 16 | ARB-010, ARB-040 |
+| Q060 | Which exact product identifiers and quantity/condition fields are necessary for defensible retailer-to-eBay price comparisons? | PARTIAL | 8 | ARB-030 |
 | Q045 | Which actual price, seller, shipping, product identity and location fields do third-party Google Shopping APIs return? | PARTIAL | 7 | ARB-022 |
 | Q086 | Can a fresh Browser agent reconstruct the entire current purchase-research mission, code, sources and status without relying on chat history? | PARTIAL | 6 | ARB-083, ARB-084 |
 | Q034 | Which Best Buy API product fields expose actual sale prices, discounts, stock, identity, and freshness? | PARTIAL | 4 | ARB-023 |
@@ -35,13 +37,12 @@
 | Q008 | Does Walmart's affiliate API affirmatively permit a broad purchase-oriented bargain index, or require another license? | PARTIAL | 3 | ARB-024 |
 | Q015 | What exact historical windows, regular completed-sale price summaries, accepted offers and count/dispersion metrics does Product Research expose? | PARTIAL | 3 | ARB-011, ARB-051 |
 | Q037 | Which Walmart API/feed families can surface actual consumer purchase prices, rather than only affiliate, seller or advertisement data? | PARTIAL | 3 | ARB-024 |
-| Q060 | Which exact product identifiers and quantity/condition fields are necessary for defensible retailer-to-eBay price comparisons? | PARTIAL | 3 | ARB-030 |
+| Q099 | Which sector×retailer pairs exhibit recurrent genuine price dips, and how long do discounted purchase offers remain available? | OPEN | 3 | ARB-035, ARB-020, ARB-032 |
 | Q011 | Which eBay API/data-use agreement clauses govern accessing historical price patterns for purchases at other retailers? | PARTIAL | 2 | ARB-010 |
 | Q088 | Are source documentation, access permission, implementation, actual execution, independent review and genuine index outputs treated as separate truth states? | PARTIAL | 2 | ARB-083, ARB-084 |
 | Q027 | Do licensed independent suppliers expose dependable eBay historical completed-sale prices, samples, windows and costs? | OPEN | 1 | ARB-013, ARB-040 |
 | Q042 | Can a compliant catalog/affiliate network yield offers from several retailers with stable identities, rather than separate retailer adapters? | OPEN | 1 | ARB-020, ARB-026 |
-| Q079 | What exactly passes in draft PR #1, and which neutral identity code survives a purchase-research-only review? | PARTIAL | 0 | ARB-082, ARB-030 |
-| Q084 | What secret handling, authorized account use, provenance retention, private/public separation and least privilege does the index require? | PARTIAL | 0 | ARB-080 |
+| Q096 | Which sector/subsector hypotheses combine unusually high regular eBay buyer demand with genuine discount-producing retailer sources? | OPEN | 1 | ARB-035, ARB-020 |
 
 ## First terminal proof
 
@@ -67,6 +68,8 @@
 | E-ALIEXPRESS | AliExpress sourcing | PUBLIC_RETAIL_SITE_ONLY | UNVERIFIED_API | Third-party sellers, imported shipping/currency/warranty/stock variability; API rights and data unverified. | Record qualified permitted-use determination and a bounded product/price sample |
 | E-ALIBABA | Alibaba sourcing | PUBLIC_RETAIL_SITE_ONLY | UNVERIFIED_API | Wholesale MOQ, supplier-specific data and landed costs; API/contract status unverified. | Record qualified permitted-use determination and a bounded product/price sample |
 | E-PR1 | ArbiScout source-free PR #1 | REPOSITORY_ARTIFACT | REVIEW_PENDING | Matching, profit and ranking engine on draft branch. CI previously observed passing at a specific SHA, not merged or real-data tested. | Review exact diff and CI at current head |
+| E-EBAY-2025-10K | eBay 2025 Form 10-K (SEC official) | VERIFIED_PUBLIC_DOC | NOT_APPLICABLE_PUBLIC_RESEARCH | Official focus-category growth in motor P&A, collectibles, luxury, refurbished, apparel/sneakers, and demand-side community needs. Aggregate growth does not establish specific SKU regular completed-sales counts, retail markdown frequency or cross-platform customer attention. | Separate category GMV and eBay platform strategy evidence from specific regular SKU sales and retailer-sale overlap |
+| E-EBAY-RECOMMERCE-2026 | eBay 2026 Recommerce Report (company-commissioned survey) | VERIFIED_PUBLIC_DOC | NOT_APPLICABLE_PUBLIC_RESEARCH | 2026 secondhand buyer and seller surveys report broad category interests, purchase cadence, channel patterns and consumer motivations; useful for market-culture hypotheses, not proof an eBay buyer does not monitor retail deals. | Inspect survey methods, country splits and cohort biases before using any attention/channel proxy |
 
 ## Maintenance
 

@@ -20,7 +20,11 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q075",
@@ -38,7 +42,11 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q076",
@@ -56,7 +64,11 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q077",
@@ -78,7 +90,11 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q078",
@@ -97,7 +113,11 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q079",
@@ -116,7 +136,13 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-082"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q080",
@@ -132,7 +158,13 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-070"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q081",
@@ -150,7 +182,11 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q082",
@@ -166,7 +202,13 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-071"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q083",
@@ -187,7 +229,13 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-029"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q084",
@@ -203,7 +251,11 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q085",
@@ -222,7 +274,13 @@
       "evidence_refs": [],
       "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-070"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     }
   ]
 }

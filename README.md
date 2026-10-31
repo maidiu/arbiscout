@@ -8,8 +8,8 @@
 
 - [Governing product constitution](CONTROL_ROOM/PRODUCT_CONSTITUTION.md)
 - [HQ Read First](CONTROL_ROOM/00_READ_ME_FIRST.md) and [standalone HQ bootstrap](CONTROL_ROOM/HQ_BOOTSTRAP_COPY_PASTE.md)
-- [Complete 39-task table with hard dependencies, alternative source gates, priority and status](CONTROL_ROOM/PROGRAMMA/TASKS_TABLE.md)
-- [All 95 question/substantiation items with question prerequisites and operational task dependencies](CONTROL_ROOM/PROGRAMMA/QUESTIONS_TABLE.md)
+- [Complete 40-task table with hard dependencies, alternative source gates, priority and status](CONTROL_ROOM/PROGRAMMA/TASKS_TABLE.md)
+- [All 112 question/substantiation items with question prerequisites and operational task dependencies](CONTROL_ROOM/PROGRAMMA/QUESTIONS_TABLE.md)
 - [Work JSON](CONTROL_ROOM/PROGRAMMA/01_WORK_REGISTRY.json), [seven question JSON registries](CONTROL_ROOM/PROGRAMMA/QUESTIONS/), [source evidence JSON](CONTROL_ROOM/PROGRAMMA/02_SOURCE_REGISTRY.json)
 - [CSV task view](CONTROL_ROOM/PROGRAMMA/TASKS_TABLE.csv) and [CSV question view](CONTROL_ROOM/PROGRAMMA/QUESTIONS_TABLE.csv)
 - [End-to-end architecture](CONTROL_ROOM/PROGRAMMA/03_ARCHITECTURE_AND_CRITICAL_PATH.md), [acceptance](CONTROL_ROOM/PROGRAMMA/04_ACCEPTANCE_MATRIX.md), [current HQ checkpoint](CONTROL_ROOM/STATUS/CURRENT_PROGRESS.md)

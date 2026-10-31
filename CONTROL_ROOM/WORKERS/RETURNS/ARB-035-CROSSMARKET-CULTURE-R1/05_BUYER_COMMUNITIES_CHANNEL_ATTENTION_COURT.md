@@ -28,7 +28,7 @@ For whom and at whose cost? A repair customer may pay for fitment certainty and 
 ## Scholarly structure (interpretation carefully bounded)
 1. **Brynjolfsson & Smith (Management Science 2000)**: comparison of book/CD price observations establishes non-zero Internet price dispersion and the weight of branding/retailer trust; not 2026 eBay/retailer behavior [E12].
 2. **Brynjolfsson, Dick & Smith (MIT 2004)**: shopbot customer search intensity does not mechanically imply higher price sensitivity; service attributes matter [E19].
-3. **Ellison & Ellison (Econometrica 2009)**: IT parts retailer case documents online price search plus obfuscation, not direct proof that networking parts are an ArbiScout winner [E11].
+3. **Ellison & Ellison (Econometrica 2009)**: IT parts retailer case documents online price search plus obfuscation, not direct proof that networking parts are an ArbiScout winner [E14].
 4. **Brown & Goolsbee (JPE 2002)**: comparison-shopping technology changed price dispersion and price levels in insurance; analogical evidence **against guaranteed persistent arbitrage** in transparent sectors [E13].
 
 ## Operationalize attention without ecological fallacy

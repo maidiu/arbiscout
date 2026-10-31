@@ -1217,6 +1217,50 @@
       "last_verified_at": null,
       "acceptance_dependencies": [],
       "completion_evidence": []
+    },
+    {
+      "id": "ARB-035",
+      "title": "Cross-market buyer culture, turnover, ticket size and discount-attention asymmetry",
+      "level": "L1",
+      "stage": "R",
+      "status": "PROPOSED",
+      "owner": "HQ_UNASSIGNED",
+      "priority": "P0",
+      "dependencies": [],
+      "related_tasks": [
+        "ARB-010",
+        "ARB-020",
+        "ARB-029",
+        "ARB-030",
+        "ARB-041",
+        "ARB-051",
+        "ARB-060"
+      ],
+      "dependency_groups": [],
+      "acceptance_dependencies": [
+        "ARB-010",
+        "ARB-029"
+      ],
+      "required_capability": "Identify and independently test sector/subsector x retailer x eBay market intersections combining regular comparable completed-sale demand, large high-ticket purchase-price gaps, recurrent available retail markdowns and empirically evidenced channel-attention asymmetry; no future transaction model",
+      "first_consumer": "ARB-029 sector sampling priorities and ARB-020 retailer/category matrix; documentary research can proceed independently of live price-data access",
+      "acceptance": "One source-grounded I3 scientific/methodological return with 15+ categories, documented competing explanations, channel-overlap falsification, separate data-feasibility and hypothesis rankings, reproducible stratified field experiment and independent reviewer; no winner claimed without actual observed prices and buyer-channel evidence",
+      "blocker": "Comparative cultural hypotheses can be investigated now; empirical sector-leader verdict requires authorized exact-SKU eBay completed-sales observations, recurrent verified retailer offer history, and defensible behavioral-channel evidence",
+      "next_action": "Dispatch fully scoped ARB-035 research worker from prepared issue #7 and commission file; do not invent active agent or empirical results",
+      "implementation_ref": "https://github.com/maidiu/arbiscout/issues/7",
+      "source_ids": [
+        "E-EBAY-RESEARCH",
+        "E-EBAY-2025-10K",
+        "E-EBAY-RECOMMERCE-2026"
+      ],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "finding": "eBay official focus category and consumer survey data show specialist marketplace presence but NOT the specific retailer-to-eBay price gaps, audience discount-site non-overlap or sector profitability; commission prepared, no completed independent return",
+      "finding_refs": [
+        "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/ebay-20251231.htm",
+        "https://www.ebayinc.com/recommerce-report/"
+      ],
+      "last_verified_at": null
     }
   ],
   "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
@@ -1229,7 +1273,8 @@
     "acceptance_dependencies": "Required for claiming live empirical validity, but not for preparing source-free code"
   },
   "legacy_pr1_status": "DRAFT_LEGACY_SCORING_NOT_ADOPTED__IDENTITY_UTILITIES_REVIEW_ONLY",
-  "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS",
+  "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS (Q001-Q112)",
   "source_examples_not_mandatory": true,
-  "data_format": "Canonical JSON registers + generated Markdown dashboards and CSV tables"
+  "data_format": "Canonical JSON registers + generated Markdown dashboards and CSV tables",
+  "task_count": 40
 }

@@ -4,7 +4,7 @@
 Verify repository `maidiu/arbiscout`, its public/private setting, canonical default branch SHA, all open PRs, latest CI, existence of the target path, and which tools/authentication are actually available. If a GitHub call fails say so; distinguish tool failure from absent source. Verify no merge has happened by checking branch tips. If only browser S0 source reads are possible, do not claim runtime execution.
 
 ## PASS A — Terminal user product
-State the revised daily promise: broadly index retailer sale/clearance offers, verify exact SKU/GTIN/condition/quantity and available purchase terms, compare against meaningful historical eBay price patterns, and emit up to ten evidence-qualified purchasing conditions. Imports and downstream sale/profit projections are optional modules. **No necessary beneficiary or resale-business purpose**. Identify the zero-qualifier day, stale-offer and false-comparison hazards.
+State the controlling function: purchase-research only, current retailer prices maximally below regular actual eBay completed-sale patterns for precisely matching items, with robust historical reference price, gap magnitude and strong negative tests; daily 0–10. Import purchase costs may be included. Never introduce future sale/profit logic or a designated beneficiary. Identify the zero-qualifier day, stale-offer and false-comparison hazards.
 
 ## PASS B — Historical inheritance
 Inspect project existing PRs/branches, test/code/docs, prior competitor repo evaluation and source-law register; build a current function-by-function successor map rather than reimplement from the latest conversation. Public `main` may lag draft PRs. Historical source presence ≠ accepted current code. Check `PROGRAMMA/06_RECONCILIATION_INTAKE.md`.
@@ -13,10 +13,10 @@ Inspect project existing PRs/branches, test/code/docs, prior competitor repo eva
 For every claimed source, separate **visible retail webpage** / **official API** / **affiliate feed** / **third-party aggregation** / **human Seller Hub** / **licensed sold-history**. Record specific use permission, restrictions, pricing, query/refresh/retention, and confidence. Resolve whether small individual private resale differs from a commercial API application **without assuming a volume exemption**. Note that "Google Shopping API" can mean Google Merchant API or external Shopping search-result vendors.
 
 ## PASS D — Architecture & actual tests
-Walk each producer, exact inputs, outputs, provenance, method, failure behavior, retention, replay and first actual consumer: offer discovery → retailer verification → identity → historical eBay price-pattern comparison → purchase-condition judgment → rank → daily index report → optional downstream economic analysis. Read code, tests and CI at named SHA; fixtures are not live integrations.
+Walk each producer, exact inputs, outputs, provenance, method, failure behavior, retention, replay and first actual consumer: offer discovery → actual retailer purchase price/stock → identity → robust normal historical eBay completed-sale reference → absolute/relative maximum reliable gap → daily 0–10 purchase-research report → later index accuracy tests. Read code, tests and CI at named SHA; fixtures are not live integrations.
 
 ## PASS E — Whole PROGRAMMA status
-Crosswalk every active task ID, source ID, dependency, owner, acceptance, blocker and next action in work registry. Update false/old states on an authorized branch. Indicate coverage gaps and why-not memory, not only the currently interesting retailer.
+Crosswalk all 39 work IDs and all 95 research IDs, including hard dependencies, alternate-source gates, operational proof tasks, priority, evidence, blocker and next action. Update false/old states on an authorized branch. Indicate coverage gaps and why-not memory, not only the currently interesting retailer.
 
 ## PASS F — Flight/worker disposition
 Read existing worker roster and PRs before new assignments. Determine whether worker is merely proposed, launched, returned, reviewed, accepted, or merged. Prefer reuse/repair over duplicate dispatch. A proposed launch is not an operating agent.

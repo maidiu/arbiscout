@@ -24,7 +24,8 @@
     "UNVERIFIED_PERMISSION",
     "REVIEW_PENDING",
     "APPROVED_SCOPED",
-    "OTHER_USE_REQUIRES_PERMISSION"
+    "OTHER_USE_REQUIRES_PERMISSION",
+    "NOT_APPLICABLE_PUBLIC_RESEARCH"
   ],
   "sources": [
     {
@@ -234,6 +235,32 @@
       "evidence_id": "PUBLIC_URL",
       "next_probe": "Review exact diff and CI at current head",
       "privacy": "Public record; no account credentials or private vendor correspondence."
+    },
+    {
+      "id": "E-EBAY-2025-10K",
+      "title": "eBay 2025 Form 10-K (SEC official)",
+      "url": "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/ebay-20251231.htm",
+      "source_status": "VERIFIED_PUBLIC_DOC",
+      "rights_status": "NOT_APPLICABLE_PUBLIC_RESEARCH",
+      "last_checked": "2026-10-31",
+      "claim": "Official focus-category growth in motor P&A, collectibles, luxury, refurbished, apparel/sneakers, and demand-side community needs. Aggregate growth does not establish specific SKU regular completed-sales counts, retail markdown frequency or cross-platform customer attention.",
+      "limitations": "Corporate financial filing is not product-transaction dataset, retail clearance audit, or direct behavioral buyer overlap evidence.",
+      "evidence_id": "PUBLIC_URL",
+      "next_probe": "Separate category GMV and eBay platform strategy evidence from specific regular SKU sales and retailer-sale overlap",
+      "privacy": "Public only"
+    },
+    {
+      "id": "E-EBAY-RECOMMERCE-2026",
+      "title": "eBay 2026 Recommerce Report (company-commissioned survey)",
+      "url": "https://www.ebayinc.com/recommerce-report/",
+      "source_status": "VERIFIED_PUBLIC_DOC",
+      "rights_status": "NOT_APPLICABLE_PUBLIC_RESEARCH",
+      "last_checked": "2026-10-31",
+      "claim": "2026 secondhand buyer and seller surveys report broad category interests, purchase cadence, channel patterns and consumer motivations; useful for market-culture hypotheses, not proof an eBay buyer does not monitor retail deals.",
+      "limitations": "Company-selected/commissioned survey, self-report, secondhand universe vs same-SKU new retail price comparisons; no individual linked eBay-to-retail feed attention observations.",
+      "evidence_id": "PUBLIC_URL",
+      "next_probe": "Inspect survey methods, country splits and cohort biases before using any attention/channel proxy",
+      "privacy": "Public only"
     }
   ],
   "application_use_case": "Retail bargain indexing from major retailers under purchase conditions informed by historical eBay price patterns; no designated downstream resale operation."

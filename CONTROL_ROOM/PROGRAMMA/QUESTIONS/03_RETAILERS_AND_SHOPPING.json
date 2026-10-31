@@ -21,7 +21,13 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-029"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q032",
@@ -38,7 +44,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q033",
@@ -57,7 +67,13 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-029"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q034",
@@ -75,7 +91,13 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-023"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q035",
@@ -96,7 +118,13 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-023"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q036",
@@ -117,7 +145,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q037",
@@ -135,7 +167,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q038",
@@ -156,7 +192,13 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-033"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q039",
@@ -174,7 +216,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q040",
@@ -194,7 +240,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q041",
@@ -212,7 +262,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q042",
@@ -229,7 +283,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q043",
@@ -247,7 +305,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q044",
@@ -267,7 +329,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q045",
@@ -286,7 +352,13 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-022"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q046",
@@ -308,7 +380,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q047",
@@ -330,7 +406,13 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-022"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q048",
@@ -350,7 +432,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q049",
@@ -372,7 +458,13 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-033"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q050",
@@ -389,7 +481,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q051",
@@ -405,7 +501,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q052",
@@ -427,7 +527,11 @@
       "evidence_refs": [],
       "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     }
   ]
 }

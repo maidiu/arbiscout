@@ -23,7 +23,8 @@
     "UNVERIFIED_API",
     "UNVERIFIED_PERMISSION",
     "REVIEW_PENDING",
-    "APPROVED_SCOPED"
+    "APPROVED_SCOPED",
+    "OTHER_USE_REQUIRES_PERMISSION"
   ],
   "sources": [
     {
@@ -85,10 +86,10 @@
       "source_status": "VERIFIED_PUBLIC_DOC",
       "rights_status": "PERMISSION_UNRESOLVED",
       "last_checked": "2026-10-31",
-      "claim": "Positive permitted application scope; third-party price-analysis restrictions. Small self-use not clearly adjudicated.",
+      "claim": "API grants access for applications in connection with offers to sell/sales of Best Buy goods; an individual buyer-oriented sourcing app may fit this affirmative purpose. Separate third-party-benefit pricing analysis restriction needs application-specific interpretation, especially if developer builds for a separate beneficiary. Do not assert categorical prohibition.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
-      "next_probe": "Record qualified permitted-use determination and a bounded product/price sample",
+      "next_probe": "Document developer/operator/beneficiary identity and ask whether a private purchase-recommendation app sourced to Best Buy is within permitted uses",
       "privacy": "Public record; no account credentials or private vendor correspondence."
     },
     {
@@ -96,9 +97,9 @@
       "title": "Walmart affiliate I/O API terms",
       "url": "https://walmart.io/termsandcondition",
       "source_status": "VERIFIED_PUBLIC_DOC",
-      "rights_status": "NOT_AUTHORIZED_FOR_SCOUT",
+      "rights_status": "OTHER_USE_REQUIRES_PERMISSION",
       "last_checked": "2026-10-31",
-      "claim": "Advertising-only default and separate resale-purchase limitations via API.",
+      "claim": "Affiliate API restricted by stated purpose to advertising Walmart products unless Walmart grants express written permission for another use; this is separate from legality of ordinary retailer purchases for later resale. Terms also prohibit purchases for resale through API.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
       "next_probe": "Record qualified permitted-use determination and a bounded product/price sample",
@@ -109,9 +110,9 @@
       "title": "Walmart affiliate Operating Agreement 2026",
       "url": "https://affiliates.walmart.com/terms",
       "source_status": "VERIFIED_PUBLIC_DOC",
-      "rights_status": "NOT_AUTHORIZED_FOR_SCOUT",
+      "rights_status": "OTHER_USE_REQUIRES_PERMISSION",
       "last_checked": "2026-10-31",
-      "claim": "Affiliate qualification links are not intended as own resale-purchase checkout and content redistribution restrictions apply.",
+      "claim": "2026 affiliate agreement specifically prohibits purchases for resale through qualifying affiliate links; not a blanket prohibition on ordinary Walmart purchases. Separately restricts affiliate-program data feed usage and price tracking on affiliate sites.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
       "next_probe": "Record qualified permitted-use determination and a bounded product/price sample",

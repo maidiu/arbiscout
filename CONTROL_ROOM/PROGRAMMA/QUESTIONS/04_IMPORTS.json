@@ -21,7 +21,11 @@
       "evidence_refs": [],
       "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q054",
@@ -42,7 +46,13 @@
       "evidence_refs": [],
       "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-052"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q055",
@@ -60,7 +70,13 @@
       "evidence_refs": [],
       "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-052"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q056",
@@ -78,7 +94,11 @@
       "evidence_refs": [],
       "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q057",
@@ -96,7 +116,13 @@
       "evidence_refs": [],
       "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-030"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q058",
@@ -116,7 +142,11 @@
       "evidence_refs": [],
       "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q059",
@@ -138,7 +168,14 @@
       "evidence_refs": [],
       "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-052",
+        "ARB-040"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     }
   ]
 }

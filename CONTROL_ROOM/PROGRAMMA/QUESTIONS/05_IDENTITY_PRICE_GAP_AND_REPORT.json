@@ -1,0 +1,272 @@
+{
+  "schema_version": "1.0",
+  "section": "E",
+  "title": "Identity, ordinary eBay price, gap calculation and report",
+  "items": [
+    {
+      "id": "Q060",
+      "question": "Which exact product identifiers and quantity/condition fields are necessary for defensible retailer-to-eBay price comparisons?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-030"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q061",
+      "question": "Which identity contradictions require refusing a price comparison, rather than assuming an approximate match?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q060"
+      ],
+      "related_tasks": [
+        "ARB-030",
+        "ARB-053"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q062",
+      "question": "Which historical completed-sale price statistic best represents a regular eBay price: median, trimmed mean, quantile or recency-weighted estimate?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q025"
+      ],
+      "related_tasks": [
+        "ARB-051"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q063",
+      "question": "What minimum historical sample size, time period, dispersion and actual-sale regularity justify a price-gap comparison?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q062"
+      ],
+      "related_tasks": [
+        "ARB-041",
+        "ARB-051"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q064",
+      "question": "How should accepted offers, sold-price shipping inclusion, outliers, incomplete price samples and incomparable lots be treated?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q062"
+      ],
+      "related_tasks": [
+        "ARB-051"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q065",
+      "question": "What exact purchase criteria constitute a strong gap below normal eBay prices, including minimum absolute and relative gap and uncertainty?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q062",
+        "Q063"
+      ],
+      "related_tasks": [
+        "ARB-050",
+        "ARB-060"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q066",
+      "question": "How should missing data, sparse completed sales, stale prices, contradictory observations and unavailable checkout offers be represented?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q061"
+      ],
+      "related_tasks": [
+        "ARB-060",
+        "ARB-061"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q067",
+      "question": "Must every daily report contain ten products, even when fewer satisfy a defensible gap?",
+      "status": "SETTLED",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q001"
+      ],
+      "related_tasks": [
+        "ARB-060",
+        "ARB-071"
+      ],
+      "source_ids": [],
+      "findings": "0–10 is controlling; never pad weak evidence.",
+      "evidence_refs": [
+        "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+      ],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q068",
+      "question": "Which purchase links, retailer prices, eBay price-pattern statistics, observation dates, regions, confidence and rejection reasons belong in the report?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q065"
+      ],
+      "related_tasks": [
+        "ARB-071"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q069",
+      "question": "What source data may be retained, how long can it remain current, and how is a comparison reconstructed once it expires?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q011"
+      ],
+      "related_tasks": [
+        "ARB-061"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q070",
+      "question": "How do we measure index accuracy using later price, inventory and eBay historical-observation checks without buying anything?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q068"
+      ],
+      "related_tasks": [
+        "ARB-073",
+        "ARB-092"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q071",
+      "question": "What exactly should a first manually verified small-sample experiment record before costly provider integrations?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q060",
+        "Q062"
+      ],
+      "related_tasks": [
+        "ARB-029",
+        "ARB-090"
+      ],
+      "source_ids": [],
+      "findings": "No completed estimator, acceptance proof or live field measurement; the original draft only tested different scoring behavior.",
+      "evidence_refs": [],
+      "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q072",
+      "question": "Former question concerning downstream sale-transaction fee/profit calculations: is it still part of the product? No—removed from active scope.",
+      "status": "SUPERSEDED",
+      "priority": "P3",
+      "hard_dependencies": [
+        "Q003"
+      ],
+      "related_tasks": [],
+      "source_ids": [],
+      "findings": "Closed by governing purchase-research constitution; not an active software deliverable.",
+      "evidence_refs": [
+        "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+      ],
+      "acceptance": "Confirm no successor active code or task dependency silently restores this scope.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q073",
+      "question": "Former question about minimum predicted profit and ROI as index qualification: should those thresholds remain? No—replace with observed retailer-to-eBay historical price-gap thresholds.",
+      "status": "SUPERSEDED",
+      "priority": "P3",
+      "hard_dependencies": [
+        "Q003",
+        "Q065"
+      ],
+      "related_tasks": [
+        "ARB-050",
+        "ARB-060"
+      ],
+      "source_ids": [],
+      "findings": "Closed by governing purchase-research constitution; not an active software deliverable.",
+      "evidence_refs": [
+        "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+      ],
+      "acceptance": "Confirm no successor active code or task dependency silently restores this scope.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 # ArbiScout
 
-**Evidence-first retail arbitrage and import sourcing scout.**
+**Retail bargain index informed by eBay historical price patterns.**
 
-The product goal is a daily automated 0–10-item shortlist of potentially profitable buy-low/sell-high inventory opportunities. It requires exact product matching, verified completed-sales evidence, full landed costs, availability, and a final human purchase decision. No deal or historic sale is invented to fill the report.
+The product indexes bargains offered by major retailers and identifies conditions for purchasing their products by comparing verified retail offers against historical eBay price patterns. It provides 0–10 qualifying items each day, exact product identity, price/stock/region evidence, and source-linked reasons to consider or reject an offer. No designated person, resale business or later use defines the product; financial margins and import costs are optional analysis modules. See [the governing product constitution](CONTROL_ROOM/PRODUCT_CONSTITUTION.md).
 
 ## Control room and full PROGRAMMA
 
@@ -14,7 +14,7 @@ Read those before commissioning, editing or claiming production readiness. Progr
 
 - The first source-free matching/finance prototype is on [draft PR #1](https://github.com/maidiu/arbiscout/pull/1), **not canonical main**.
 - This control room itself is also a separately reviewed proposal until merged.
-- No live provider contract, active eBay sold-data API, deployed daily crawler, real verified shortlist, or profitable backtest is established by these docs.
+- No live provider contract, active eBay sold-data API, deployed daily crawler or real verified bargain shortlist is established by these docs. A resale-profit backtest is optional and is not a constitutional completion requirement.
 - Vendor terms and independent source rights must be verified before using live feeds or retaining source content.
 
 ## Tests

@@ -4,14 +4,14 @@
 
 ## Command question
 
-Produce a **credible daily index of internet bargains from major retailers**, identifying evidence-based conditions for purchasing those retailers' products informed by historical eBay price patterns. Normalize exact product/condition/quantity, merchant, available price, timestamps, region, delivery and quality of historical comparables; issue **0–10** source-linked candidates with explicit uncertainties. Optional import landed-cost and financial analyses may be added, but neither a named person nor onward resale defines this product. This is not automated buying, listing or dropshipping.
+Produce a **credible purchase-research index** of major retailers' actual offered acquisition prices **maximally below normal historical completed-sale prices of identical eBay products**, with quantitatively supported gap magnitudes and evidence. Normalize exact product/condition/quantity, merchant, available price, timestamps, region, delivery and quality of historical comparables; issue **0–10** source-linked candidates with explicit uncertainties. Imported retailer purchase costs can be evaluated when evidenced; no future-transaction economics is part of this software. This is not automated buying, listing or dropshipping.
 
 ## Required first reads, in order
 
-1. [USER-REVISED PRODUCT CONSTITUTION](PRODUCT_CONSTITUTION.md), then [PROGRAMMA — whole project](PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md) — R/O/I.
+1. [CONTROLLING PURCHASE-RESEARCH CONSTITUTION](PRODUCT_CONSTITUTION.md), then [PROGRAMMA](PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md) and its [dashboard](PROGRAMMA/DASHBOARD.md).
 2. [Whole architecture and critical path](PROGRAMMA/03_ARCHITECTURE_AND_CRITICAL_PATH.md).
-3. [Current progress](STATUS/CURRENT_PROGRESS.md), then [machine record](STATUS/CURRENT_PROGRESS.json).
-4. [Machine work ledger](PROGRAMMA/01_WORK_REGISTRY.json), [source registry](PROGRAMMA/02_SOURCE_REGISTRY.json), [acceptance matrix](PROGRAMMA/04_ACCEPTANCE_MATRIX.md).
+3. [Current progress](STATUS/CURRENT_PROGRESS.md), [machine checkpoint](STATUS/CURRENT_PROGRESS.json), [tasks with dependencies](PROGRAMMA/TASKS_TABLE.md), [95 research questions and their dependencies](PROGRAMMA/QUESTIONS_TABLE.md).
+4. [Machine work JSON](PROGRAMMA/01_WORK_REGISTRY.json), [seven question JSON files](PROGRAMMA/QUESTIONS/), [source JSON](PROGRAMMA/02_SOURCE_REGISTRY.json), [acceptance matrix](PROGRAMMA/04_ACCEPTANCE_MATRIX.md).
 5. [HQ charter and boundaries](01_HQ_CHARTER_AND_AUTHORITY.md), [fresh-grok passes](02_FRESH_HQ_GROK_PROTOCOL.md), [worker law](03_RABOCHII_AND_REVIEWS.md).
 6. [Evidence / permission / chronology discipline](04_SOURCE_PROVENANCE_AND_DECISION_LAW.md), [why-not and decisions](PROGRAMMA/05_DECISION_AND_WHY_NOT_LOG.md), [GitHub execution law](06_EXECUTION_AND_GITHUB_LAW.md), [reference map](07_HISTORY_AND_REFERENCE_MAP.md).
 7. Read the actual target branch, PRs and CI. **PR #1 is a draft source-free prototype, not merged production.** Recheck latest branch tips before claiming currentness.

@@ -18,7 +18,8 @@
     "MERGED_MAIN",
     "LIVE_PROVED",
     "DEFERRED",
-    "REJECTED"
+    "REJECTED",
+    "SUPERSEDED_BY_CONSTITUTION"
   ],
   "levels": [
     "L0",
@@ -54,7 +55,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-010",
@@ -82,7 +85,9 @@
       "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-011",
@@ -111,7 +116,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-012",
@@ -138,7 +145,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-013",
@@ -165,7 +174,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-020",
@@ -190,7 +201,9 @@
       "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-021",
@@ -219,7 +232,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-022",
@@ -246,10 +261,12 @@
         "ARB-020"
       ],
       "dependency_groups": [],
-      "priority": "P1",
+      "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-023",
@@ -276,10 +293,12 @@
         "ARB-020"
       ],
       "dependency_groups": [],
-      "priority": "P1",
+      "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-024",
@@ -306,10 +325,12 @@
         "ARB-020"
       ],
       "dependency_groups": [],
-      "priority": "P1",
+      "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-025",
@@ -336,7 +357,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-026",
@@ -363,7 +386,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-027",
@@ -390,7 +415,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-028",
@@ -417,7 +444,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-029",
@@ -433,8 +462,8 @@
       "required_capability": "Use ANY one qualified retailer feed to study discovery volume, exact eBay matches, confirmed discounts and size/quality of below-eBay price gaps",
       "first_consumer": "source selection and index quality",
       "acceptance": "Small statistically modest logged pilot",
-      "blocker": "No real source pair yet; mock source pilot does not need external approval",
-      "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
+      "blocker": "Needs one verified feed and comparable historical eBay price evidence for real assessment",
+      "next_action": "Start with a single qualified source; the listed retailers are examples, not prerequisites",
       "implementation_ref": null,
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
@@ -461,7 +490,11 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [
+        "ARB-010"
+      ],
+      "completion_evidence": []
     },
     {
       "id": "ARB-030",
@@ -486,7 +519,9 @@
       "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-031",
@@ -511,7 +546,9 @@
       "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-032",
@@ -538,7 +575,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-033",
@@ -562,10 +601,12 @@
       "authorization_verdict": "NOT_REVIEWED",
       "related_tasks": [],
       "dependency_groups": [],
-      "priority": "P1",
+      "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-040",
@@ -592,7 +633,11 @@
       "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [
+        "ARB-010"
+      ],
+      "completion_evidence": []
     },
     {
       "id": "ARB-041",
@@ -619,7 +664,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-050",
@@ -634,7 +681,7 @@
       ],
       "required_capability": "Compute absolute, percent and conservative-quantile shortfall of current delivered retailer purchase price beneath regular comparable historical eBay sale-price baseline",
       "first_consumer": "optional downstream purchase economics",
-      "acceptance": "Exact benchmark tests",
+      "acceptance": "Correct positive/zero/negative retailer-to-eBay historical reference gaps with robust baseline and uncertainty; no predicted future transaction",
       "blocker": "Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification",
       "next_action": "Build and independently test new price-gap capability",
       "implementation_ref": null,
@@ -647,7 +694,9 @@
       "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-051",
@@ -661,7 +710,7 @@
       ],
       "required_capability": "Determine defensible median, dispersion, relevant window, minimum samples, exclusion/outlier treatment and uncertainty of historical completed sales",
       "first_consumer": "optional economic module",
-      "acceptance": "Real listing fee sample and calculation tests",
+      "acceptance": "Outlier-resistant, sample-aware regular historical completed-sale reference estimator and negative tests",
       "blocker": "Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification",
       "next_action": "Build and independently test new price-gap capability",
       "implementation_ref": null,
@@ -674,7 +723,9 @@
       "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-052",
@@ -702,7 +753,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-053",
@@ -729,7 +782,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-060",
@@ -744,8 +799,8 @@
         "ARB-050"
       ],
       "required_capability": "Prioritize available, exactly matched retailer products by maximum substantiated shortfall below normal completed eBay sale-price patterns; reject false/stale gaps; 0–10 results",
-      "first_consumer": "daily bargain index",
-      "acceptance": "Negative fixture tests",
+      "first_consumer": "daily purchase-gap index",
+      "acceptance": "Largest well-supported gap ranks ahead of smaller ones; wrong variant, sparse sales, stale price, out-of-stock and negative gap rejected; 0–10 allowed",
       "blocker": "Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification",
       "next_action": "Build and independently test new price-gap capability",
       "implementation_ref": null,
@@ -758,7 +813,9 @@
       "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-061",
@@ -786,7 +843,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-070",
@@ -815,7 +874,11 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [
+        "ARB-010"
+      ],
+      "completion_evidence": []
     },
     {
       "id": "ARB-071",
@@ -839,10 +902,12 @@
       "authorization_verdict": "NOT_REVIEWED",
       "related_tasks": [],
       "dependency_groups": [],
-      "priority": "P1",
+      "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-072",
@@ -856,7 +921,7 @@
       ],
       "required_capability": "Preserve retailer price snapshots and later independent verifications of bargain and availability accuracy",
       "first_consumer": "optional index-performance calibration",
-      "acceptance": "Prediction vs realization pairs",
+      "acceptance": "Saved source snapshot IDs and later offer verification with retention policy",
       "blocker": "No transactions used",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": null,
@@ -869,7 +934,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-073",
@@ -897,7 +964,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-080",
@@ -922,7 +991,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-081",
@@ -934,7 +1005,7 @@
       "dependencies": [],
       "required_capability": "Adversarial tests for valid comparable sale patterns, identity, gap magnitude, stale prices, no-data and empty lists",
       "first_consumer": "linked downstream task or first vertical slice",
-      "acceptance": "CI evidence and adversarial tests",
+      "acceptance": "GitHub CI validates new price-gap calculations, source provenance and negative cases; historical checks not inherited as proof",
       "blocker": "Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification",
       "next_action": "Build and independently test new price-gap capability",
       "implementation_ref": null,
@@ -947,7 +1018,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-082",
@@ -959,7 +1032,7 @@
       "dependencies": [],
       "required_capability": "Audit unmerged earlier prototype: identify reusable exact-product comparison utilities and refuse unrelated price-scoring implementation",
       "first_consumer": "current bargain-index core",
-      "acceptance": "Independent verdict and approved merge",
+      "acceptance": "Review exact earlier PR #1 SHA; keep only source-neutral exact matching; reject prior unrelated scoring",
       "blocker": "Legacy draft PR #1 is not suitable for wholesale merge under new constitution",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": "https://github.com/maidiu/arbiscout/pull/1",
@@ -972,7 +1045,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-083",
@@ -997,7 +1072,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-084",
@@ -1024,7 +1101,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     },
     {
       "id": "ARB-090",
@@ -1045,7 +1124,7 @@
       ],
       "required_capability": "Demonstrate one available retailer purchase offer significantly below regular eBay completed-sale price reference for same item, with exact source links and purchase conditions",
       "first_consumer": "bargain-index report reader",
-      "acceptance": "First genuine permitted source-pair and exact time-bound comparison with human-readable qualified condition; independent checks",
+      "acceptance": "One real retail purchase offer materially below a statistically defended regular same-item eBay completed-sale historical reference, with authentic source links and date/region",
       "blocker": "Retail and eBay historical signal permissions and access still unresolved",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": null,
@@ -1070,7 +1149,11 @@
       "priority": "P0",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [
+        "ARB-010"
+      ],
+      "completion_evidence": []
     },
     {
       "id": "ARB-091",
@@ -1099,7 +1182,11 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [
+        "ARB-010"
+      ],
+      "completion_evidence": []
     },
     {
       "id": "ARB-092",
@@ -1114,7 +1201,7 @@
       ],
       "required_capability": "Measure offer/stock persistence, item match correctness and eBay price-reference stability across multiple days",
       "first_consumer": "index confidence and source prioritization",
-      "acceptance": "Evidence-based index precision/freshness tracking across days, not mandatory sale or resale records",
+      "acceptance": "Verified historical comparison and acquisition-price alerts across days; no downstream transaction required",
       "blocker": "Needs multi-day real price observations",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": null,
@@ -1127,7 +1214,9 @@
       "priority": "P1",
       "finding": "",
       "finding_refs": [],
-      "last_verified_at": null
+      "last_verified_at": null,
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     }
   ],
   "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
@@ -1136,8 +1225,11 @@
   "dependency_semantics": {
     "dependencies": "ALL_OF hard prerequisites",
     "dependency_groups": "ANY_OF qualifying alternate source; one suffices",
-    "related_tasks": "not a hard prerequisite"
+    "related_tasks": "not a hard prerequisite",
+    "acceptance_dependencies": "Required for claiming live empirical validity, but not for preparing source-free code"
   },
   "legacy_pr1_status": "DRAFT_LEGACY_SCORING_NOT_ADOPTED__IDENTITY_UTILITIES_REVIEW_ONLY",
-  "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS"
+  "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS",
+  "source_examples_not_mandatory": true,
+  "data_format": "Canonical JSON registers + generated Markdown dashboards and CSV tables"
 }

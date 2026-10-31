@@ -1,18 +1,18 @@
-# Acceptance thresholds
+# Acceptance matrix — purchase-price-gap index only
 
-| ID | Required positive demonstration | Required negative/adversarial demonstration | Initial status |
+| ID | Evidence needed for PASS | False-positive / rejection test | State |
 |---|---|---|---|
-| A01 | Retail feed expressly permits needed usage and retention | Advertising-only or denied scopes rejected | OPEN |
-| A02 | Current retail purchase price/stock/region/identity confirmed | Expired, local-only, different seller, out-of-stock | OPEN |
-| A03 | Exact GTIN+variant+condition matching and source | Similar-but-different bundle and used/new refused | DRAFT PR #1 |
-| A04 | Actual completed sales, comparable price/time/sample, allowed data rights | Active asking prices, no sales, missing offers refused | BLOCKED |
-| A05 | Current purchase condition accounts for full retailer acquisition terms, historical comparison window and uncertainty; optional fee/ROI analysis is separately validated if enabled | False markdown, incomplete checkout price and unjustified ROI promise | DRAFT optional finance PR #1 |
-| A06 | Optional import track reports real delivered price, MOQ and lead-time uncertainty when enabled | Freight, currency, quality and MOQ surprises concealed | OPTIONAL / OPEN |
-| A07 | Report ranks **no more than** ten verifiable candidates | Zero valid candidates yields truthful empty report | DRAFT |
-| A08 | Scheduled authorized run with timestamp, errors, retries and no duplicate spend | Provider failure, stale state, repeated results | OPEN |
-| A09 | Real retailer offer → historical eBay price-pattern comparison → purchasing-condition judgment → indexed report | Actual false-match and stale-evidence adversarial review | BLOCKED |
-| A10 | Index reliability evaluated against real later product prices, freshness and observed bargain availability; optional sale profitability calibrated only if used | Stale/inaccurate price signals and false-bargain alerts | OPEN |
-| A11 | No public secrets, least-privileged credential and data-retention model | Secret/privacy/access regression | OPEN |
-| A12 | Exact SHA + separate engineering/economic/permission verdicts | Synthetic green masquerading as live access rejected | OPEN |
+| A01 | Relevant retailer offer feed/source and compatible use rights | Unapproved source, expired cache, unsupported retention | OPEN |
+| A02 | Exact current total RETAIL PURCHASE price, link, timestamp, seller, region and actual availability | Expired coupon, local-only, wrong seller, no stock | OPEN |
+| A03 | Product identity proves exact same GTIN/model/bundle/condition/quantity for retailer and eBay history | Similar model, wrong size, refurbished vs new, bundle mismatch | DRAFT IDENTITY UTILITY ONLY |
+| A04 | eBay historical regular completed-sale price data with valid actual-sales window, sample, exclusions and rights | Asking price, zero sales, incomparable offer, outlier-dominated sample | BLOCKED LIVE DATA |
+| A05 | Robust regular historical price estimate, dispersion and conservative quantile with enough valid observations | Median of 1 item, unknown accepted-offer, stale window | NOT_STARTED |
+| A06 | Accurate absolute and relative RETAIL PURCHASE PRICE GAP below eBay historical regular completed-sale reference | Negative gap, arithmetic mistakes, unsupported tax/shipping assumption | NOT_STARTED |
+| A07 | Purchase condition scoring ranks MAXIMUM RELIABLE gap with source strength and refusal behavior; returns 0–10 | Invented sale evidence, price gap justified by wrong variant, padding top 10 | NOT_STARTED |
+| A08 | For imports when supported: actual delivered acquisition price, MOQ, freight, currency, lead-time evidence | Misstated delivered price or noncomparable product | OPTIONAL |
+| A09 | Daily scheduling, idempotence, error state and freshness of permitted sources | No data, quota failure, duplicate, outdated result | NOT_STARTED |
+| A10 | First real retailer price + same-item historical eBay reference → quantified purchase gap → human index report | Independent recheck of offer and original sales observations | BLOCKED LIVE |
+| A11 | Repeated accuracy measurement: observed offer still current, historical baseline credible, false alerts counted | Stale prices, unverifiable stock, repeated false discount | NOT_STARTED |
+| A12 | Security and exact code SHA, tests, source permissions and independently reviewable receipts | Secret leak, fixture presented as live, unmerged PR advertised as accepted | IN_PROGRESS |
 
-Separate **ENGINEERING**, **ECONOMIC_EVIDENCE**, **AUTHORIZATION_PRIVACY** outcomes. All three must be acceptable for a claimed live production integration. A test-only adapter cannot grant access rights. An unmerged PR cannot be claimed as canonical.
+A successful mock does not establish live market evidence. Different statuses for source documented / permitted / executable / tested / independently accepted / deployed must be preserved. No subsequent transaction belongs to acceptance.

@@ -21,7 +21,13 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-083"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q087",
@@ -42,7 +48,13 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-083"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q088",
@@ -62,7 +74,13 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-083"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q089",
@@ -83,7 +101,13 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-084"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q090",
@@ -104,7 +128,13 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-082"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q091",
@@ -125,7 +155,11 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q092",
@@ -146,7 +180,13 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-083"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q093",
@@ -168,7 +208,14 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-010",
+        "ARB-020"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q094",
@@ -189,7 +236,13 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-084"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q095",
@@ -213,7 +266,11 @@
       ],
       "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     }
   ]
 }

@@ -15,14 +15,14 @@ Every material claim is typed:
 4. **Implementation** — code exists at exact commit;
 5. **Execution** — exact test/CI/run proves a limited behavior;
 6. **Independent acceptance** — separately judged outcome relative to explicit requirements;
-7. **Live index consumer and actual quality** — production-compatible data, the first correctly sourced bargain-index report and checked precision/freshness; resale transactions are not required.
+7. **Live index consumer and actual quality** — production-compatible data, the first correctly sourced bargain-index report and checked precision/freshness; the index must not assume any later transaction.
 
 NEVER collapse these into one binary PASS.
 
 ## Three independent judgments
 
 - **Engineering:** does the artifact execute and behave correctly, including negatives/replay?
-- **Evidence/economic:** is exact product identity, comparable historical eBay price-pattern evidence, and current purchase condition credible? If optional ROI/profit claims are made, have they actually been validated?
+- **Evidence/economic:** is exact product identity, comparable historical eBay price-pattern evidence, and current purchase condition credible? Is the observed retailer purchase price below a robust regular eBay completed-sale price baseline, by how much, and with what uncertainty?
 - **Authorization/privacy:** is data acquisition, storage, sharing, credential handling, license and account access permitted?
 Each may PASS / CONDITIONAL / HOLD / FAIL / NOT_REVIEWED **independently**; a worker cannot issue its own independent review.
 

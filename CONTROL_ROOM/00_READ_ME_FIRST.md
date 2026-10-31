@@ -10,7 +10,7 @@ Produce a **credible purchase-research index** of major retailers' actual offere
 
 1. [CONTROLLING PURCHASE-RESEARCH CONSTITUTION](PRODUCT_CONSTITUTION.md), then [PROGRAMMA](PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md) and its [dashboard](PROGRAMMA/DASHBOARD.md).
 2. [Whole architecture and critical path](PROGRAMMA/03_ARCHITECTURE_AND_CRITICAL_PATH.md).
-3. [Current progress](STATUS/CURRENT_PROGRESS.md), [machine checkpoint](STATUS/CURRENT_PROGRESS.json), [tasks with dependencies](PROGRAMMA/TASKS_TABLE.md), [95 research questions and their dependencies](PROGRAMMA/QUESTIONS_TABLE.md).
+3. [Current progress](STATUS/CURRENT_PROGRESS.md), [machine checkpoint](STATUS/CURRENT_PROGRESS.json), [tasks with dependencies](PROGRAMMA/TASKS_TABLE.md), [112 research questions and their dependencies](PROGRAMMA/QUESTIONS_TABLE.md).
 4. [Machine work JSON](PROGRAMMA/01_WORK_REGISTRY.json), [seven question JSON files](PROGRAMMA/QUESTIONS/), [source JSON](PROGRAMMA/02_SOURCE_REGISTRY.json), [acceptance matrix](PROGRAMMA/04_ACCEPTANCE_MATRIX.md).
 5. [HQ charter and boundaries](01_HQ_CHARTER_AND_AUTHORITY.md), [fresh-grok passes](02_FRESH_HQ_GROK_PROTOCOL.md), [worker law](03_RABOCHII_AND_REVIEWS.md).
 6. [Evidence / permission / chronology discipline](04_SOURCE_PROVENANCE_AND_DECISION_LAW.md), [why-not and decisions](PROGRAMMA/05_DECISION_AND_WHY_NOT_LOG.md), [GitHub execution law](06_EXECUTION_AND_GITHUB_LAW.md), [reference map](07_HISTORY_AND_REFERENCE_MAP.md).

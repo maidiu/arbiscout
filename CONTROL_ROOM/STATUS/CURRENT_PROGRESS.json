@@ -52,7 +52,7 @@
     {
       "id": "FLIGHT-002",
       "scope": "P0 retailer discovery: validate one source before broadening candidates",
-      "status": "PROPOSED_NOT_DISPATCHED",
+      "status": "COMMISSION_PREPARED_NOT_DISPATCHED",
       "task_ids": [
         "ARB-020",
         "ARB-022",
@@ -76,7 +76,7 @@
     }
   ],
   "active_workers": [],
-  "delta": "ARB-010 first-party/vendor research seed prepared and exhaustive I3 Rabochii commission registered as GitHub issue #3. No separate agent has been started or any live data/API tested; prior 95-question graph retained.",
+  "delta": "ARB-020 I3 full all-retailer/source commission prepared and registered as issue #5, with direct-API, affiliate/feed, cross-retailer deals, Google Shopping, ShopSavvy and import reconnaissance. No new retailer agent dispatched; existing ARB-010 draft PR #4 observed unadjudicated.",
   "current_mandate": "Purchase research ONLY: find major-retailer acquisition prices maximally below regular comparable eBay historical completed-sale price patterns; calculate and rank observed gaps.",
   "constitution_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
   "programma": {
@@ -105,6 +105,37 @@
       "assigned_model": null,
       "actual_started_at": null,
       "review_status": "NOT_DISPATCHED"
+    },
+    {
+      "id": "ARB-020-RETAILER-SOURCE-UNIVERSE-R1",
+      "status": "PREPARED_NOT_LAUNCHED",
+      "issue": "https://github.com/maidiu/arbiscout/issues/5",
+      "prompt": "CONTROL_ROOM/WORKERS/COMMISSIONS/ARB-020-EXHAUSTIVE-RETAILER-SOURCE-PRIORITIZATION-R1.md",
+      "worker_runtime": null,
+      "assigned_model": null,
+      "actual_started_at": null,
+      "review_status": "NOT_DISPATCHED",
+      "target_task_ids": [
+        "ARB-020",
+        "ARB-021",
+        "ARB-022",
+        "ARB-023",
+        "ARB-024",
+        "ARB-025",
+        "ARB-026",
+        "ARB-027",
+        "ARB-028",
+        "ARB-029"
+      ]
+    }
+  ],
+  "observed_external_return_refs": [
+    {
+      "url": "https://github.com/maidiu/arbiscout/pull/4",
+      "subject": "ARB-010 historical eBay data reconnaissance",
+      "state": "OPEN_DRAFT_UNADJUDICATED",
+      "checked": "2026-10-31",
+      "note": "Observed separate return branch/PR, not assessed or integrated here"
     }
   ]
 }

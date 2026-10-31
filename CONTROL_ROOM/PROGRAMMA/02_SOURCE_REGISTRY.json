@@ -34,7 +34,7 @@
       "source_status": "VERIFIED_PUBLIC_DOC",
       "rights_status": "PERMISSION_UNRESOLVED",
       "last_checked": "2026-10-31",
-      "claim": "Seller arbitrage, third-party price modeling and content-use restrictions. Does not automatically govern ordinary non-API retail purchase.",
+      "claim": "eBay API restricted activities distinguish modeling prices for items listed on eBay from historical price comparisons that inform RETAILER purchases. Actual bargain-index operations must be evaluated clause-by-clause. Seller arbitrage examples should not be presumed to define this project, nor can revised terminology override a provision that actually applies.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
       "next_probe": "Record qualified permitted-use determination and a bounded product/price sample",
@@ -73,7 +73,7 @@
       "source_status": "VERIFIED_PUBLIC_DOC",
       "rights_status": "NO_KEY_OR_USE_GRANT_VERIFIED",
       "last_checked": "2026-10-31",
-      "claim": "Catalog price/availability specifications and open-box options; possible source for exact offer identity.",
+      "claim": "Official product catalog, price, promotional signals and availability may directly support retailer bargain indexing and linking to Best Buy purchase offers; access subject to application-specific terms.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
       "next_probe": "Record qualified permitted-use determination and a bounded product/price sample",
@@ -86,10 +86,10 @@
       "source_status": "VERIFIED_PUBLIC_DOC",
       "rights_status": "PERMISSION_UNRESOLVED",
       "last_checked": "2026-10-31",
-      "claim": "API grants access for applications in connection with offers to sell/sales of Best Buy goods; an individual buyer-oriented sourcing app may fit this affirmative purpose. Separate third-party-benefit pricing analysis restriction needs application-specific interpretation, especially if developer builds for a separate beneficiary. Do not assert categorical prohibition.",
+      "claim": "API is licensed in connection with offers/sales of Best Buy products. A bargain-index app linking to Best Buy purchase offers may fit that positive purpose. Separately, use for pricing analysis on behalf of a third party has a distinct restriction: applicability depends on actual operations and operator, not presumed resale. Terms also set display/attribution and cache limits.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
-      "next_probe": "Document developer/operator/beneficiary identity and ask whether a private purchase-recommendation app sourced to Best Buy is within permitted uses",
+      "next_probe": "Evaluate Best Buy official product API against actual retailer-purchase bargain index use, clause-by-clause (license purpose, third-party pricing-benefit restriction, display/link and 72-hour cache), without assigning a fictitious beneficiary.",
       "privacy": "Public record; no account credentials or private vendor correspondence."
     },
     {
@@ -99,7 +99,7 @@
       "source_status": "VERIFIED_PUBLIC_DOC",
       "rights_status": "OTHER_USE_REQUIRES_PERMISSION",
       "last_checked": "2026-10-31",
-      "claim": "Affiliate API restricted by stated purpose to advertising Walmart products unless Walmart grants express written permission for another use; this is separate from legality of ordinary retailer purchases for later resale. Terms also prohibit purchases for resale through API.",
+      "claim": "Affiliate I/O API terms are primarily advertising-oriented; consumer bargain indexing to aid purchases may need distinct permission. Ordinary retail purchases and affiliate/API qualifying-link purchases are separate activities; no presumption that the latter is used.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
       "next_probe": "Record qualified permitted-use determination and a bounded product/price sample",
@@ -112,7 +112,7 @@
       "source_status": "VERIFIED_PUBLIC_DOC",
       "rights_status": "OTHER_USE_REQUIRES_PERMISSION",
       "last_checked": "2026-10-31",
-      "claim": "2026 affiliate agreement specifically prohibits purchases for resale through qualifying affiliate links; not a blanket prohibition on ordinary Walmart purchases. Separately restricts affiliate-program data feed usage and price tracking on affiliate sites.",
+      "claim": "Affiliate link purchasing for resale is separately restricted; ArbiScout is a retailer bargain purchase index, not an affiliate-link resale purchasing bot. Access to affiliate data for general indexing still needs a compatible positive license.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
       "next_probe": "Record qualified permitted-use determination and a bounded product/price sample",
@@ -141,7 +141,7 @@
       "claim": "Third-party structured Shopping search results; exact commercial contract, quality and unit cost need review.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
-      "next_probe": "Record qualified permitted-use determination and a bounded product/price sample",
+      "next_probe": "Check permitted general-purpose price comparison/index use, retailer and eBay history coverage, freshness/region, retention and actual cost. No subscription without approval.",
       "privacy": "Public record; no account credentials or private vendor correspondence."
     },
     {
@@ -154,7 +154,7 @@
       "claim": "Third-party Google Shopping product/seller/price observations; documented pay-per-use, provider claims commercial applications.",
       "limitations": "Do not infer live access or right to extract, compare, retain or redistribute. Verify written terms and source authenticity before use.",
       "evidence_id": "PUBLIC_URL",
-      "next_probe": "Record qualified permitted-use determination and a bounded product/price sample",
+      "next_probe": "Check permitted general-purpose price comparison/index use, retailer and eBay history coverage, freshness/region, retention and actual cost. No subscription without approval.",
       "privacy": "Public record; no account credentials or private vendor correspondence."
     },
     {
@@ -235,5 +235,6 @@
       "next_probe": "Review exact diff and CI at current head",
       "privacy": "Public record; no account credentials or private vendor correspondence."
     }
-  ]
+  ],
+  "application_use_case": "Retail bargain indexing from major retailers under purchase conditions informed by historical eBay price patterns; no designated downstream resale operation."
 }

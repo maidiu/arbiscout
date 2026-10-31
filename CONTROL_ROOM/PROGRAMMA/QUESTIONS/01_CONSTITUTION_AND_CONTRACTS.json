@@ -1,0 +1,255 @@
+{
+  "schema_version": "1.0",
+  "section": "A",
+  "title": "Constitution and provider agreements",
+  "items": [
+    {
+      "id": "Q001",
+      "question": "What operations constitute ArbiScout, independently of its operator or later uses?",
+      "status": "SETTLED",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-000"
+      ],
+      "source_ids": [],
+      "findings": "Resolved by current user governing product constitution; no external source permission implied.",
+      "evidence_refs": [
+        "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+      ],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q002",
+      "question": "Is the application exclusively retailer purchase research conditioned on regular eBay historical sale-price patterns?",
+      "status": "SETTLED",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q001"
+      ],
+      "related_tasks": [
+        "ARB-000",
+        "ARB-060"
+      ],
+      "source_ids": [],
+      "findings": "Resolved by current user governing product constitution; no external source permission implied.",
+      "evidence_refs": [
+        "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+      ],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q003",
+      "question": "Which functions must be excluded from active scope rather than retained as optional sales-oriented operations?",
+      "status": "SETTLED",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q002"
+      ],
+      "related_tasks": [
+        "ARB-050",
+        "ARB-060"
+      ],
+      "source_ids": [],
+      "findings": "Resolved by current user governing product constitution; no external source permission implied.",
+      "evidence_refs": [
+        "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+      ],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q004",
+      "question": "Are the terms for a small individual's purchase-research application different from those of a large third-party price-intelligence service?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q001"
+      ],
+      "related_tasks": [
+        "ARB-020"
+      ],
+      "source_ids": [
+        "E-BESTBUY-TERMS"
+      ],
+      "findings": "Not yet substantiated at clause/test granularity. Existing notes are preliminary.",
+      "evidence_refs": [],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q005",
+      "question": "Does Best Buy's affirmative permitted-use language include purchase-oriented bargain indexing that links to Best Buy purchase offers?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q001"
+      ],
+      "related_tasks": [
+        "ARB-023"
+      ],
+      "source_ids": [
+        "E-BESTBUY-TERMS"
+      ],
+      "findings": "Not yet substantiated at clause/test granularity. Existing notes are preliminary.",
+      "evidence_refs": [],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q006",
+      "question": "At what actual operations, rather than imagined downstream roles, does Best Buy's third-party price-analysis restriction apply?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q005"
+      ],
+      "related_tasks": [
+        "ARB-023"
+      ],
+      "source_ids": [
+        "E-BESTBUY-TERMS"
+      ],
+      "findings": "Not yet substantiated at clause/test granularity. Existing notes are preliminary.",
+      "evidence_refs": [],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q007",
+      "question": "What Best Buy caching, attribution, product-linking, rate, display, sharing and retention requirements apply?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q005"
+      ],
+      "related_tasks": [
+        "ARB-023",
+        "ARB-061"
+      ],
+      "source_ids": [
+        "E-BESTBUY-TERMS"
+      ],
+      "findings": "Not yet substantiated at clause/test granularity. Existing notes are preliminary.",
+      "evidence_refs": [],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q008",
+      "question": "Does Walmart's affiliate API affirmatively permit a broad purchase-oriented bargain index, or require another license?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q001"
+      ],
+      "related_tasks": [
+        "ARB-024"
+      ],
+      "source_ids": [
+        "E-WALMART-IO"
+      ],
+      "findings": "Not yet substantiated at clause/test granularity. Existing notes are preliminary.",
+      "evidence_refs": [],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q009",
+      "question": "Which Walmart restrictions concern affiliate links or API transactions specifically, and which concern index content generally?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q008"
+      ],
+      "related_tasks": [
+        "ARB-024"
+      ],
+      "source_ids": [
+        "E-WALMART-AFF",
+        "E-WALMART-IO"
+      ],
+      "findings": "Not yet substantiated at clause/test granularity. Existing notes are preliminary.",
+      "evidence_refs": [],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q010",
+      "question": "Can an indexed offer point to an ordinary retailer purchase checkout, and how do referral and affiliate link rules differ?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q009"
+      ],
+      "related_tasks": [
+        "ARB-024",
+        "ARB-071"
+      ],
+      "source_ids": [
+        "E-WALMART-AFF"
+      ],
+      "findings": "Not yet substantiated at clause/test granularity. Existing notes are preliminary.",
+      "evidence_refs": [],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q011",
+      "question": "Which eBay API/data-use agreement clauses govern accessing historical price patterns for purchases at other retailers?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q001"
+      ],
+      "related_tasks": [
+        "ARB-010"
+      ],
+      "source_ids": [
+        "E-EBAY-LICENSE"
+      ],
+      "findings": "Not yet substantiated at clause/test granularity. Existing notes are preliminary.",
+      "evidence_refs": [],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q012",
+      "question": "Which legal findings change because the application's actual operations changed, and what provider-specific evidence confirms the revised interpretation?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q005",
+        "Q008",
+        "Q011"
+      ],
+      "related_tasks": [
+        "ARB-010",
+        "ARB-020"
+      ],
+      "source_ids": [
+        "E-BESTBUY-TERMS",
+        "E-WALMART-IO",
+        "E-EBAY-LICENSE"
+      ],
+      "findings": "Not yet substantiated at clause/test granularity. Existing notes are preliminary.",
+      "evidence_refs": [],
+      "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    }
+  ]
+}

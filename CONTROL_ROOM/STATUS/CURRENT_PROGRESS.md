@@ -8,8 +8,8 @@ Broadly index genuine retailer bargains with offered purchase prices **maximally
 
 ## Programma operational records
 
-- **39 task nodes:** [generated task table](../PROGRAMMA/TASKS_TABLE.md) · [canonical work JSON](../PROGRAMMA/01_WORK_REGISTRY.json).
-- **95 question/substantiation nodes:** [generated question table](../PROGRAMMA/QUESTIONS_TABLE.md) · [seven canonical JSON files](../PROGRAMMA/QUESTIONS/).
+- **40 task nodes:** [generated task table](../PROGRAMMA/TASKS_TABLE.md) · [canonical work JSON](../PROGRAMMA/01_WORK_REGISTRY.json).
+- **112 question/substantiation nodes:** [generated question table](../PROGRAMMA/QUESTIONS_TABLE.md) · [seven canonical JSON files](../PROGRAMMA/QUESTIONS/).
 - **16 source evidence records:** [source registry](../PROGRAMMA/02_SOURCE_REGISTRY.json).
 - [Compact dependency-priority dashboard](../PROGRAMMA/DASHBOARD.md), [task CSV](../PROGRAMMA/TASKS_TABLE.csv), [question CSV](../PROGRAMMA/QUESTIONS_TABLE.csv).
 - All generated views are derived from the JSON records, not manually authoritative tables.
@@ -36,4 +36,4 @@ FLIGHT-001 eBay historical-price research; FLIGHT-002 first retailer source and 
 
 ## DELTA
 
-95-question research/substantiation graph created and linked to 39 corrected development tasks. No live authorization, real price comparison or merge has been claimed. Generated PROGRAMMA checks run in GitHub Actions and must be rechecked at exact current SHA.
+112-question research/substantiation graph covers 40 development tasks, including ARB-035's cultural-market hypotheses. No live authorization, real price comparison or merge has been claimed. Generated PROGRAMMA checks run in GitHub Actions and must be rechecked at exact current SHA.

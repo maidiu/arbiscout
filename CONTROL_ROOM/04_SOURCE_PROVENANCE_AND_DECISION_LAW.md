@@ -17,16 +17,16 @@ Scale can change enforcement/rate-limit risk but does not create a license exemp
 
 ## Data quality
 For retail offer: brand/model, GTIN/MPN, variant, bundle quantity, condition, seller, offer region/ZIP, time seen, checkout price, stock, shipping, coupons and tax. Third-party marketplace offers are not necessarily retailer-owned listings.
-For eBay evidence: exact match, sold/completed—not merely listed—count/window, actual net sold-price distribution where lawful, accepted offers, shipping inclusion, market competition, timestamp, sampling coverage and exclusions. Unknown sold-price evidence cannot be silently substituted by active asking prices.
+For eBay evidence: exact matches, historical price patterns with sold/completed observations distinguished from asking prices, actual price distributions where lawful, windows, timestamps, sample coverage and exclusions. Missing sold-price evidence cannot silently be inferred from active asking prices. Frequency/competition metrics are useful if available, not a substitute for price provenance.
 For imports: MOQ, total landed cost, freight mode, duty/fees, currency, lead-time distribution, supplier/quality/counterfeit risk, returns, regulatory compliance, capital lock-up.
-For financial model: category-dependent fee base, promoted listing, tax (jurisdiction/user basis), returns, damaged/unsellable risk, shipping size/weight, storage and throughput. Distinguish assumptions and observations, use Decimal.
+For purchase-conditions model: retailer offer, comparative historical eBay signal, shipping to acquire, availability, freshness and uncertainty. An OPTIONAL downstream financial model may consider category-dependent fees, returns, shipping, storage and time-to-sale; distinguish assumptions and observations, use Decimal.
 For ranking: permit zero qualified results; never label a heuristic as statistically calibrated demand probability.
 
 ## Status and references
 Each program task references source IDs and exact artifact SHAs, plus claim status. An old positive result does not prevail automatically over newer live evidence; a newer document does not automatically supersede a validated older one. When material result changes, update SOURCE_REGISTRY, task node, decision log and current checkpoint together **on one reviewable branch**.
 
 ## Source rights ceiling
-A commercial price-data vendor may advertise white-label use; still verify contract, sublicensing, retention and whether underlying source terms constrain intended use. Never solve permission problems by stealth automation, CAPTCHA avoidance, rate-limit evasion or hidden cookies.
+A commercial price-data vendor may advertise search or white-label use; still verify the precise bargain-index activity, contract, sublicensing, retention and whether underlying source terms constrain intended use. Reclassify applicability based on *actual* operations, not the user's past resale motivation; no permission is manufactured by mere renaming. Never solve permission problems by stealth automation, CAPTCHA avoidance, rate-limit evasion or hidden cookies.
 
 ## Privacy and public repo
 This repo is PUBLIC. Source registry should contain only publicly safe URLs and excerpts. Keep credentials, permissions grants, private account details, customer data, provider contract correspondence, and research datasets with use restrictions OUTSIDE Git until private authorized storage exists.

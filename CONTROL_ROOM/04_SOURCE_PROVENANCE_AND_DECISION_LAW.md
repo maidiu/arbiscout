@@ -1,32 +1,22 @@
-# Evidence, contracts, identity, and temporal law
+# Source evidence and permission law — retailer purchase research
 
-## Facts vs interpretations
-A claim requires `source_id`, source URL or protected document locator, observation/capture date, verbatim relevant passage or exact parameter names, product/operation scope, claimant, and confidence level. Record a source's *published* vs *last checked* date separately. Do not cite generic developer landing pages as proof of personal approval. Unverified source clauses receive `NEEDS_VERIFICATION`.
+## Claim levels
+Every material finding identifies a source URL and relevant passage/field, observation date and region, claim scope, actual data or code output, contradiction, next check and source license/permission status. Documented API existence ≠ working access ≠ usable prices ≠ legal entitlement ≠ production acceptance.
 
-**Source presence ≠ credential ownership ≠ account eligibility ≠ permission for this use ≠ completeness ≠ operational reliability**. Similarly, candidate price ≠ verified checkout price ≠ GTIN match ≠ sold demand ≠ realized profit.
+## Sole comparison
+Retailer **purchasable** offer: actual current total acquisition price and link, merchant, stock, region, shipping, discounts, source timestamp, exact GTIN/model/condition/quantity.
+Historical eBay **completed-sale pattern**: the exact same product, real past transactions, sample count, relevant window, price distribution/median, variance/outliers, inclusion of historical shipping if applicable, caveats, timestamp and provenance.
+Price gap = defensible regular historical eBay sale reference minus current retailer purchaser price. Relative gap uses the positive historical baseline as denominator. High gap is not enough when either observation is weak; output REFUSE/UNKNOWN.
+Neither future transactions nor anticipated financial returns are modeled.
 
-## Contract analysis
-Always separate:
-1. Normal individual purchases for one's own resale inventory.
-2. Browsing publicly displayed pages and individual research.
-3. API contract for scripted commercial analysis, reuse/retention, combined market comparisons.
-4. Site automation and extraction rights.
-5. Selling-policy compliance after inventory is owned.
+## Provider contract questions
+Each source contract must be analyzed for **this actual purchase-index activity**, not an imagined competing retailer or onward business operation. A changed functional activity may alter clause applicability. The contract still governs any licensed API use; don't infer rights from the ability to load a webpage or a broad developer landing page.
 
-Scale can change enforcement/rate-limit risk but does not create a license exemption. Interpret actual clause rather than labeling all resale "illegal". Where ambiguous, say `NOT_CLEARLY_AUTHORIZED`, list competing readings, and seek written clarification instead of inventing counsel.
+## No false prerequisites
+A feed's contract approval is required to use real observations when such approval is required; source-free schema and test design can proceed without approval. One qualified retailer feed suffices for a vertical pilot. Other potential retailers are examples and related investigations.
 
-## Data quality
-For retail offer: brand/model, GTIN/MPN, variant, bundle quantity, condition, seller, offer region/ZIP, time seen, checkout price, stock, shipping, coupons and tax. Third-party marketplace offers are not necessarily retailer-owned listings.
-For eBay evidence: exact matches, historical price patterns with sold/completed observations distinguished from asking prices, actual price distributions where lawful, windows, timestamps, sample coverage and exclusions. Missing sold-price evidence cannot silently be inferred from active asking prices. Frequency/competition metrics are useful if available, not a substitute for price provenance.
-For imports: MOQ, total landed cost, freight mode, duty/fees, currency, lead-time distribution, supplier/quality/counterfeit risk, returns, regulatory compliance, capital lock-up.
-For purchase-conditions model: retailer offer, comparative historical eBay signal, shipping to acquire, availability, freshness and uncertainty. An OPTIONAL downstream financial model may consider category-dependent fees, returns, shipping, storage and time-to-sale; distinguish assumptions and observations, use Decimal.
-For ranking: permit zero qualified results; never label a heuristic as statistically calibrated demand probability.
+## Data privacy
+Repository is public. Never commit passwords, OAuth tokens, session cookies, sensitive account data, personal buyer information or contract-confidential samples. Use source refs and permitted summaries; preserve data retention/expiry constraints.
 
-## Status and references
-Each program task references source IDs and exact artifact SHAs, plus claim status. An old positive result does not prevail automatically over newer live evidence; a newer document does not automatically supersede a validated older one. When material result changes, update SOURCE_REGISTRY, task node, decision log and current checkpoint together **on one reviewable branch**.
-
-## Source rights ceiling
-A commercial price-data vendor may advertise search or white-label use; still verify the precise bargain-index activity, contract, sublicensing, retention and whether underlying source terms constrain intended use. Reclassify applicability based on *actual* operations, not the user's past resale motivation; no permission is manufactured by mere renaming. Never solve permission problems by stealth automation, CAPTCHA avoidance, rate-limit evasion or hidden cookies.
-
-## Privacy and public repo
-This repo is PUBLIC. Source registry should contain only publicly safe URLs and excerpts. Keep credentials, permissions grants, private account details, customer data, provider contract correspondence, and research datasets with use restrictions OUTSIDE Git until private authorized storage exists.
+## Status updating
+After substantive research update the question JSON, source JSON, work JSON where affected, and dated checkpoint on a controlled branch. Regenerate Markdown/CSV views. An investigator's source report is not independent acceptance or automatic integration.

@@ -1,0 +1,219 @@
+{
+  "schema_version": "1.0",
+  "section": "G",
+  "title": "HQ, evidence custody and whole Programma completeness",
+  "items": [
+    {
+      "id": "Q086",
+      "question": "Can a fresh Browser agent reconstruct the entire current purchase-research mission, code, sources and status without relying on chat history?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-083",
+        "ARB-084"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q087",
+      "question": "Does PROGRAMMA conserve every important purchase-research hypothesis, question, alternative, decision and outstanding evidence need?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q086"
+      ],
+      "related_tasks": [
+        "ARB-083"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q088",
+      "question": "Are source documentation, access permission, implementation, actual execution, independent review and genuine index outputs treated as separate truth states?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-083",
+        "ARB-084"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q089",
+      "question": "Can each independent Rabochii receive a complete executable assignment and return reproducible source/code evidence?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q086"
+      ],
+      "related_tasks": [
+        "ARB-084"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q090",
+      "question": "Are branch SHAs, predecessor recovery, review, genuine accepted changes and fan-in distinguished from unmerged proposals?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-082",
+        "ARB-083",
+        "ARB-084"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q091",
+      "question": "Are contradictory findings, failed source proposals and reasons for ruling alternatives out durably recoverable?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q087"
+      ],
+      "related_tasks": [
+        "ARB-083"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q092",
+      "question": "Does each question have a source-of-truth record with its own status, hard dependencies, related tasks, priority, evidence and verification standard?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q087"
+      ],
+      "related_tasks": [
+        "ARB-083"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q093",
+      "question": "Does each source record preserve exact cited clauses or API field observations, check dates, permission, cost, reproducible tests and contrary evidence?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q088"
+      ],
+      "related_tasks": [
+        "ARB-020",
+        "ARB-010"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q094",
+      "question": "Can HQ distinguish an unlaunched worker plan from launched work, returned code, reviewed findings and merged or live capabilities?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q089"
+      ],
+      "related_tasks": [
+        "ARB-084"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q095",
+      "question": "For each purported blocker, is the missing item genuine external access, missing code, incomplete reconnaissance or a mistaken dependency?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q092",
+        "Q093"
+      ],
+      "related_tasks": [
+        "ARB-010",
+        "ARB-020",
+        "ARB-090"
+      ],
+      "source_ids": [],
+      "findings": "Control discipline documented in draft PR #2. Its substantive coverage and merger remain under review; structural presence alone is insufficient.",
+      "evidence_refs": [
+        "CONTROL_ROOM/00_READ_ME_FIRST.md",
+        "CONTROL_ROOM/PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md"
+      ],
+      "acceptance": "Demonstrate exact live registry, source/evidence/review trace and full fresh-session truthfulness; no self-certified adoption.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    }
+  ]
+}

@@ -108,9 +108,9 @@ def check_registry() -> list[str]:
         section = json.loads(path.read_text(encoding="utf-8"))
         questions.extend(section["items"])
     qids = [q["id"] for q in questions]
-    expected_qids = {f"Q{i:03d}" for i in range(1, 96)}
-    if set(qids) != expected_qids or len(qids) != 95:
-        errors.append("PROGRAMMA must preserve the complete, unique Q001-Q095 audit")
+    expected_qids = {f"Q{i:03d}" for i in range(1, len(qids) + 1)}
+    if set(qids) != expected_qids or len(qids) < 95:
+        errors.append("PROGRAMMA questions must remain contiguous from Q001, unique, and retain the original 95")
     qmap = {q["id"]: q for q in questions}
     allowed_q_states = {"OPEN", "PARTIAL", "SETTLED", "SUPERSEDED", "DEFERRED", "DOCUMENTED"}
     for q in questions:

@@ -19,7 +19,11 @@
       ],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": "2026-10-31",
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q002",
@@ -40,7 +44,11 @@
       ],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": "2026-10-31",
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q003",
@@ -61,7 +69,11 @@
       ],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": "2026-10-31",
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q004",
@@ -81,7 +93,11 @@
       "evidence_refs": [],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q005",
@@ -101,7 +117,11 @@
       "evidence_refs": [],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q006",
@@ -121,7 +141,11 @@
       "evidence_refs": [],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q007",
@@ -142,7 +166,11 @@
       "evidence_refs": [],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q008",
@@ -162,7 +190,11 @@
       "evidence_refs": [],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q009",
@@ -183,7 +215,11 @@
       "evidence_refs": [],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q010",
@@ -204,7 +240,11 @@
       "evidence_refs": [],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q011",
@@ -224,7 +264,11 @@
       "evidence_refs": [],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q012",
@@ -249,7 +293,11 @@
       "evidence_refs": [],
       "acceptance": "Answer this exact question with direct documented evidence, operation-specific scope, contradictions and unresolved limits.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     }
   ]
 }

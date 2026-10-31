@@ -1,0 +1,358 @@
+{
+  "schema_version": "1.0",
+  "section": "B",
+  "title": "eBay price history and account access",
+  "items": [
+    {
+      "id": "Q013",
+      "question": "Which account qualifications and costs govern eBay Seller Hub Product Research access?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-011"
+      ],
+      "source_ids": [
+        "E-EBAY-RESEARCH"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q014",
+      "question": "Which adjacent historical-pricing or sourcing-research features require an eligible paid store subscription?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q013"
+      ],
+      "related_tasks": [
+        "ARB-011"
+      ],
+      "source_ids": [
+        "E-EBAY-RESEARCH"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q015",
+      "question": "What exact historical windows, regular completed-sale price summaries, accepted offers and count/dispersion metrics does Product Research expose?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-011",
+        "ARB-051"
+      ],
+      "source_ids": [
+        "E-EBAY-RESEARCH"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q016",
+      "question": "Does Product Research reliably search product identifiers, variants, model numbers and conditions?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q015"
+      ],
+      "related_tasks": [
+        "ARB-011",
+        "ARB-030"
+      ],
+      "source_ids": [
+        "E-EBAY-RESEARCH"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q017",
+      "question": "Can supported Product Research export, saved search, download or other documented interfaces supply comparable historical-price records?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q015"
+      ],
+      "related_tasks": [
+        "ARB-011",
+        "ARB-040"
+      ],
+      "source_ids": [
+        "E-EBAY-RESEARCH"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q018",
+      "question": "Which Product Research functions are demonstrably enabled on the available eBay account, without exposing credentials?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-011"
+      ],
+      "source_ids": [
+        "E-EBAY-RESEARCH"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q019",
+      "question": "What, if anything, does an established eBay account's standing change about Product Research, API eligibility or historical evidence?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q013"
+      ],
+      "related_tasks": [
+        "ARB-011",
+        "ARB-012"
+      ],
+      "source_ids": [
+        "E-EBAY-RESEARCH"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q020",
+      "question": "Can eBay Seller Hub Research permissions be delegated through Team Access rather than password sharing?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q013"
+      ],
+      "related_tasks": [
+        "ARB-080"
+      ],
+      "source_ids": [
+        "E-EBAY-RESEARCH"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q021",
+      "question": "What does eBay developer membership confer compared with a created and individually approved application?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-012"
+      ],
+      "source_ids": [
+        "E-EBAY-LICENSE"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q022",
+      "question": "What are the actual creation, Production/Sandbox credentials, OAuth scopes and Browse API approval steps, and do they supply historical completed-sale prices?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q021"
+      ],
+      "related_tasks": [
+        "ARB-012",
+        "ARB-010"
+      ],
+      "source_ids": [
+        "E-EBAY-LICENSE"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q023",
+      "question": "What are the current account-deletion event subscription/compliance rules and valid exemption conditions if an eBay app requires them?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q022"
+      ],
+      "related_tasks": [
+        "ARB-012"
+      ],
+      "source_ids": [
+        "E-EBAY-LICENSE"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q024",
+      "question": "If an event callback is required, what protocol does eBay validate and what caused the historical Apps Script challenge-response failure?",
+      "status": "OPEN",
+      "priority": "P3",
+      "hard_dependencies": [
+        "Q023"
+      ],
+      "related_tasks": [
+        "ARB-012"
+      ],
+      "source_ids": [],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q025",
+      "question": "Which eBay API responses are active asking prices and which are actual completed-sale prices?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-010",
+        "ARB-040"
+      ],
+      "source_ids": [
+        "E-EBAY-INSIGHTS"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q026",
+      "question": "Can a new application gain Marketplace Insights historical completed-sale access and on what permissions?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q021"
+      ],
+      "related_tasks": [
+        "ARB-010",
+        "ARB-012"
+      ],
+      "source_ids": [
+        "E-EBAY-INSIGHTS"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q027",
+      "question": "Do licensed independent suppliers expose dependable eBay historical completed-sale prices, samples, windows and costs?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-013",
+        "ARB-040"
+      ],
+      "source_ids": [],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q028",
+      "question": "Which approved programmatic pathways, if any, expose historical eBay price patterns, without undocumented endpoints?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q017",
+        "Q026",
+        "Q027"
+      ],
+      "related_tasks": [
+        "ARB-010",
+        "ARB-040"
+      ],
+      "source_ids": [
+        "E-EBAY-LICENSE"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q029",
+      "question": "What can be learned from existing eBay research browser automation source code without relying on undocumented account endpoints?",
+      "status": "OPEN",
+      "priority": "P3",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-082"
+      ],
+      "source_ids": [],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q030",
+      "question": "Do eBay's modernized REST/GraphQL APIs change historical completed-sale price availability, or primarily other API functions?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q021"
+      ],
+      "related_tasks": [
+        "ARB-012"
+      ],
+      "source_ids": [
+        "E-EBAY-INSIGHTS"
+      ],
+      "findings": "No current qualified production entitlement or API-derived historical data verified; documentary claims are not account access.",
+      "evidence_refs": [],
+      "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    }
+  ]
+}

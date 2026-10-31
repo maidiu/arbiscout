@@ -73,16 +73,24 @@
         "ARB-060",
         "ARB-071"
       ]
+    },
+    {
+      "id": "FLIGHT-004",
+      "scope": "Cross-market eBay buyer culture x retailer discount awareness, high-ticket opportunity density and demand turnover",
+      "status": "COMMISSION_PREPARED_NOT_DISPATCHED",
+      "task_ids": [
+        "ARB-035"
+      ]
     }
   ],
   "active_workers": [],
-  "delta": "ARB-020 I3 full all-retailer/source commission prepared and registered as issue #5, with direct-API, affiliate/feed, cross-retailer deals, Google Shopping, ShopSavvy and import reconnaissance. No new retailer agent dispatched; existing ARB-010 draft PR #4 observed unadjudicated.",
+  "delta": "Added independent ARB-035 scientific reconnaissance commission and issue #7 on market-culture/attention separation, high-ticket demand regularity and retailer markdown cadence. Added Q096-Q112 and two primary eBay source records. Documentary research may proceed despite unavailable ARB-010/020 results; empirical sector winner remains unproved. No new separate agent launched.",
   "current_mandate": "Purchase research ONLY: find major-retailer acquisition prices maximally below regular comparable eBay historical completed-sale price patterns; calculate and rank observed gaps.",
   "constitution_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
   "programma": {
-    "task_count": 39,
-    "question_count": 95,
-    "source_count": 16,
+    "task_count": 40,
+    "question_count": 112,
+    "source_count": 18,
     "json_is_authoritative": true,
     "generated_dashboard": "CONTROL_ROOM/PROGRAMMA/DASHBOARD.md",
     "task_table": "CONTROL_ROOM/PROGRAMMA/TASKS_TABLE.md",
@@ -127,6 +135,20 @@
         "ARB-028",
         "ARB-029"
       ]
+    },
+    {
+      "id": "ARB-035-CROSSMARKET-CULTURE-R1",
+      "status": "PREPARED_NOT_LAUNCHED",
+      "issue": "https://github.com/maidiu/arbiscout/issues/7",
+      "prompt": "CONTROL_ROOM/WORKERS/COMMISSIONS/ARB-035-CROSS-MARKET-CULTURE-AND-DEMAND-ASYMMETRY-R1.md",
+      "target_task_ids": [
+        "ARB-035"
+      ],
+      "target_questions": "Q096-Q112",
+      "worker_runtime": null,
+      "assigned_model": null,
+      "actual_started_at": null,
+      "review_status": "NOT_DISPATCHED"
     }
   ],
   "observed_external_return_refs": [

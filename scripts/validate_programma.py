@@ -6,6 +6,7 @@ verification. A PASS must never be represented as provider authorization.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -79,6 +80,85 @@ def check_registry() -> list[str]:
 
     for tid in tids:
         visit(tid)
+
+    # Technical prerequisites, external live-evidence requirements, and alternative
+    # provider choices are distinct. Do not turn ANY_OF into ALL_OF.
+    for t in tasks:
+        tid = t["id"]
+        for dep in t.get("acceptance_dependencies", []):
+            if dep not in ids or dep == tid:
+                errors.append(f"{tid}: invalid live acceptance dependency {dep}")
+        for dep in t.get("related_tasks", []):
+            if dep not in ids or dep == tid:
+                errors.append(f"{tid}: invalid nonblocking related task {dep}")
+        for group in t.get("dependency_groups", []):
+            if group.get("type") != "ANY_OF" or not group.get("task_ids"):
+                errors.append(f"{tid}: invalid alternative-source group")
+            for dep in group.get("task_ids", []):
+                if dep not in ids or dep == tid:
+                    errors.append(f"{tid}: invalid alternative source {dep}")
+        if t.get("priority") not in {"P0", "P1", "P2", "P3"}:
+            errors.append(f"{tid}: invalid priority")
+        active_text = t["title"] + " " + t["required_capability"]
+        if re.search(r"\\b(?:roi|profit forecast|seller fees|resale profit|expected resale)\\b", active_text, re.I):
+            errors.append(f"{tid}: old sale-focused requirement found in active work graph")
+
+    questions = []
+    for path in sorted((BASE / "PROGRAMMA/QUESTIONS").glob("*.json")):
+        section = json.loads(path.read_text(encoding="utf-8"))
+        questions.extend(section["items"])
+    qids = [q["id"] for q in questions]
+    expected_qids = {f"Q{i:03d}" for i in range(1, 96)}
+    if set(qids) != expected_qids or len(qids) != 95:
+        errors.append("PROGRAMMA must preserve the complete, unique Q001-Q095 audit")
+    qmap = {q["id"]: q for q in questions}
+    allowed_q_states = {"OPEN", "PARTIAL", "SETTLED", "SUPERSEDED", "DEFERRED", "DOCUMENTED"}
+    for q in questions:
+        qid = q["id"]
+        if q["status"] not in allowed_q_states:
+            errors.append(f"{qid}: invalid question status")
+        if q["priority"] not in {"P0", "P1", "P2", "P3"}:
+            errors.append(f"{qid}: invalid question priority")
+        if not q.get("question") or not q.get("acceptance"):
+            errors.append(f"{qid}: missing question or proof standard")
+        for dep in q["hard_dependencies"]:
+            if dep not in qmap or dep == qid:
+                errors.append(f"{qid}: invalid question prerequisite {dep}")
+        for field in ("related_tasks", "proof_requires_tasks"):
+            if field not in q:
+                errors.append(f"{qid}: missing {field}")
+            for dep in q.get(field, []):
+                if dep not in ids:
+                    errors.append(f"{qid}: unknown {field} task {dep}")
+        for sid in q["source_ids"]:
+            if sid not in sid_set:
+                errors.append(f"{qid}: unknown reference {sid}")
+    q_visited: set[str] = set()
+    q_stack: set[str] = set()
+
+    def visit_question(qid: str) -> None:
+        if qid in q_stack:
+            errors.append(f"question dependency cycle at {qid}")
+            return
+        if qid in q_visited:
+            return
+        q_stack.add(qid)
+        for dep in qmap[qid]["hard_dependencies"]:
+            if dep in qmap:
+                visit_question(dep)
+        q_stack.remove(qid)
+        q_visited.add(qid)
+
+    for qid in qids:
+        visit_question(qid)
+
+    if any(source in task_by_id["ARB-029"]["dependencies"] for source in
+           ("ARB-022", "ARB-023", "ARB-024")):
+        errors.append("ARB-029 must not hard-require all example retailers")
+    if task_by_id["ARB-060"]["status"] == "PROTOTYPE_DRAFT":
+        errors.append("old profit-ranked PR #1 cannot count as purchase-gap scoring")
+    if "purchase" not in task_by_id["ARB-060"]["title"].lower() and "gap" not in task_by_id["ARB-060"]["title"].lower():
+        errors.append("ARB-060 lost price-gap purchase-index mission")
 
     for s in source_rows:
         for field in ("title", "url", "claim", "rights_status", "source_status", "last_checked"):

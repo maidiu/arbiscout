@@ -33,17 +33,17 @@
   "tasks": [
     {
       "id": "ARB-000",
-      "title": "Terminal: trustworthy daily shortlist",
+      "title": "Terminal: general retailer bargain index informed by eBay history",
       "level": "L0",
       "stage": "O",
       "status": "SCOPED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Daily 0–10 verified opportunities, human buying choice; eventual realized feedback",
-      "first_consumer": "linked downstream task or first vertical slice",
-      "acceptance": "Evidence-backed report and measured outcome",
-      "blocker": "Not yet built",
-      "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
+      "required_capability": "Broadly index retailer purchase bargains under source-backed conditions informed by comparable historical eBay price patterns; produce a daily 0–10 shortlist, not a resale business service",
+      "first_consumer": "daily bargain index reader; no designated beneficiary",
+      "acceptance": "Reproducible retailer offers + matching eBay price-pattern evidence + explicit purchasing conditions + honest unknown/zero outputs",
+      "blocker": "No authorized and complete end-to-end live evidence yet",
+      "next_action": "Prove first authorized offer-to-historical-price-pattern-to-bargain-condition-to-report vertical slice",
       "implementation_ref": null,
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
@@ -52,14 +52,14 @@
     },
     {
       "id": "ARB-010",
-      "title": "eBay market-data rights",
+      "title": "Historical eBay price-pattern source access",
       "level": "L1",
       "stage": "R",
       "status": "BLOCKED_EXTERNAL",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Determine permitted completed-sales data path for personal business use",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Establish accessible and permitted historical eBay price signals, distinguishing completed sales from active asking prices",
+      "first_consumer": "bargain price-pattern comparison",
       "acceptance": "Contract position and source ID",
       "blocker": "No licensed automated sold-data feed verified",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -82,8 +82,8 @@
       "dependencies": [
         "ARB-010"
       ],
-      "required_capability": "Document supported manual sold history windows and limited export rights",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Inspect available human Seller Hub product-price history tools without inferring a programmatic API grant",
+      "first_consumer": "price-pattern source reconnaissance",
       "acceptance": "No-secret account screenshot/functional matrix",
       "blocker": "Account entitlement not independently checked",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -126,8 +126,8 @@
       "dependencies": [
         "ARB-010"
       ],
-      "required_capability": "Search providers offering valid, commercial, reliable and comparable completed eBay sales",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Evaluate independent licensed price-history/transaction-evidence providers for historical eBay comparison",
+      "first_consumer": "price-pattern adapter",
       "acceptance": "Vendor comparative legal/quality/cost matrix",
       "blocker": "Source unknown",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -139,14 +139,14 @@
     },
     {
       "id": "ARB-020",
-      "title": "Retail-source coverage and permissions",
+      "title": "Major-retailer bargain indexing and source access",
       "level": "L1",
       "stage": "R",
       "status": "IN_PROGRESS",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Market survey of sources by coverage, price fields, licenses and marginal cost",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Catalog retailer bargain-discovery feeds/APIs and evaluate actual purchase-support purpose, fields, access rights, freshness and integration cost",
+      "first_consumer": "broad retailer bargain index",
       "acceptance": "Cross-retailer feasibility matrix",
       "blocker": "Use rights unsettled",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -337,7 +337,7 @@
     },
     {
       "id": "ARB-029",
-      "title": "Source/category opportunity-yield pilot",
+      "title": "Retailer bargain-detection yield pilot",
       "level": "L2",
       "stage": "O",
       "status": "NOT_STARTED",
@@ -347,8 +347,8 @@
         "ARB-023",
         "ARB-024"
       ],
-      "required_capability": "Measure real matching, verified margins and cost per qualifying candidate by category",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Measure source coverage, exact matches, source freshness, false markdowns and genuine price-pattern-qualified bargains by retailer/category",
+      "first_consumer": "source selection and index quality",
       "acceptance": "Small statistically modest logged pilot",
       "blocker": "No legal live data inputs",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -366,8 +366,8 @@
       "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Conservative UPC/GTIN, model, bundle, quantity, condition matching",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Conservatively identify exact brand/GTIN/model/variant/bundle/condition for retail offer and eBay historical comparator",
+      "first_consumer": "price-pattern comparison",
       "acceptance": "Tests and first actual consumer",
       "blocker": "Draft PR #1 only",
       "next_action": "Audit exact PR #1 SHA, execution, adversarial tests, integration",
@@ -442,7 +442,7 @@
     },
     {
       "id": "ARB-040",
-      "title": "Completed-sales evidence adapter",
+      "title": "Historical eBay price-pattern comparator adapter",
       "level": "L1",
       "stage": "I",
       "status": "BLOCKED_EXTERNAL",
@@ -451,8 +451,8 @@
         "ARB-010",
         "ARB-030"
       ],
-      "required_capability": "Ingest legally usable comparable completed-sales observations",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Ingest permissible source-identified historical eBay selling price patterns, exact comparable observations, windows and uncertainty",
+      "first_consumer": "bargain purchase-condition evaluator",
       "acceptance": "Source-backed test plus hold behavior",
       "blocker": "Rights/access missing",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -464,7 +464,7 @@
     },
     {
       "id": "ARB-041",
-      "title": "Demand and competition inference",
+      "title": "Optional historical sales frequency and competition context",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -472,8 +472,8 @@
       "dependencies": [
         "ARB-040"
       ],
-      "required_capability": "Conservatively estimate sales counts, sell-through and competition for same variant",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "When actually supported by evidence, contextualize eBay price patterns with sales frequency and active competition, without substituting asking prices",
+      "first_consumer": "bargain evaluator optional evidence weighting",
       "acceptance": "Quantified uncertainty and negative controls",
       "blocker": "No validated sold data",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -485,14 +485,14 @@
     },
     {
       "id": "ARB-050",
-      "title": "Profit/ROI deterministic core",
+      "title": "Optional fee/profit/ROI evaluation module",
       "level": "L1",
       "stage": "I",
       "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Costs, shipping, fees and reserve under explicit assumptions using decimal arithmetic",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Preserve deterministic fee-aware economic evaluation as an optional downstream module; no mandatory claim about future resale",
+      "first_consumer": "optional downstream purchase economics",
       "acceptance": "Exact benchmark tests",
       "blocker": "Draft PR #1 not merged",
       "next_action": "Audit exact PR #1 SHA, execution, adversarial tests, integration",
@@ -504,7 +504,7 @@
     },
     {
       "id": "ARB-051",
-      "title": "Seller/category-specific fee and taxation model",
+      "title": "Optional seller-specific resale fee/tax calculations",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -512,8 +512,8 @@
       "dependencies": [
         "ARB-050"
       ],
-      "required_capability": "Fees vary by category, buyer tax base, promotions and returns; no default treated universal",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "If a downstream finance analysis is enabled, validate exact category-specific costs rather than universal default fees",
+      "first_consumer": "optional economic module",
       "acceptance": "Real listing fee sample and calculation tests",
       "blocker": "Seller category economics unknown",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -525,7 +525,7 @@
     },
     {
       "id": "ARB-052",
-      "title": "Import landed-cost and turnover model",
+      "title": "Optional import total purchase cost and lead-time model",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -535,8 +535,8 @@
         "ARB-028",
         "ARB-050"
       ],
-      "required_capability": "MOQ freight duty currency lead times financing quality reserve",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "For imports compare actual delivered acquisition costs, MOQ, duties, currency and delivery uncertainty; no requirement to estimate resale ROI",
+      "first_consumer": "optional import bargain index",
       "acceptance": "Worked import cost ledger",
       "blocker": "Suppliers not validated",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -569,17 +569,17 @@
     },
     {
       "id": "ARB-060",
-      "title": "Recommendation qualification and scoring",
+      "title": "Bargain purchase-condition qualification and scoring",
       "level": "L1",
       "stage": "I",
       "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
         "ARB-030",
-        "ARB-050"
+        "ARB-040"
       ],
-      "required_capability": "Up to ten qualified items; never invent sold evidence or confidence",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Score current retailer purchase offers versus documented historical eBay price patterns, with exact matching and freshness; rank 0–10 without invented values",
+      "first_consumer": "daily bargain index",
       "acceptance": "Negative fixture tests",
       "blocker": "Draft PR #1 only",
       "next_action": "Audit exact PR #1 SHA, execution, adversarial tests, integration",
@@ -600,8 +600,8 @@
         "ARB-031",
         "ARB-040"
       ],
-      "required_capability": "Source/ref observation windows, cache rights, replay and stale invalidation",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Maintain source references and time validity of offer and historical comparison observations, subject to permitted retention",
+      "first_consumer": "auditable bargain report",
       "acceptance": "Trace each report number to permitted source",
       "blocker": "Live retention/permission TBD",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -613,7 +613,7 @@
     },
     {
       "id": "ARB-070",
-      "title": "Daily acquisition/scheduling",
+      "title": "Daily retailer bargain indexing schedule",
       "level": "L1",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -623,8 +623,8 @@
         "ARB-040",
         "ARB-060"
       ],
-      "required_capability": "Run authorized sources with rate, error, retries, dedupe, timestamps",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Schedule permitted retailer/market-price observations with retries, rate budgets, timestamps and idempotence",
+      "first_consumer": "daily bargain index",
       "acceptance": "Scheduled reproducible report receipt",
       "blocker": "No live source",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -636,7 +636,7 @@
     },
     {
       "id": "ARB-071",
-      "title": "Human review report UX",
+      "title": "Bargain index report and purchasing conditions",
       "level": "L1",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -644,8 +644,8 @@
       "dependencies": [
         "ARB-060"
       ],
-      "required_capability": "Render source-linked itemized buy/sell economics, nulls and limits",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Render source-linked retailer prices and eBay historical price patterns, comparisons, uncertainties, conditions, and 0–10 candidates; no required downstream resale",
+      "first_consumer": "actual human reader of indexed bargains",
       "acceptance": "Readable first real decision consumer",
       "blocker": "No live pilot",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -657,7 +657,7 @@
     },
     {
       "id": "ARB-072",
-      "title": "Realized purchase-to-sale outcome ledger",
+      "title": "Optional user-entered purchase or outcome ledger",
       "level": "L1",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -665,8 +665,8 @@
       "dependencies": [
         "ARB-050"
       ],
-      "required_capability": "Persist authorized user-supplied purchase/sale fees returns and time",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "If requested, compare subsequent purchases and prices against original index signals without making resale a constitutional necessity",
+      "first_consumer": "optional index-performance calibration",
       "acceptance": "Prediction vs realization pairs",
       "blocker": "No transactions used",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -678,17 +678,17 @@
     },
     {
       "id": "ARB-073",
-      "title": "Profitability calibration and source yield",
+      "title": "Index precision and source-quality calibration",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
-        "ARB-072",
-        "ARB-029"
+        "ARB-029",
+        "ARB-071"
       ],
-      "required_capability": "Learn empirical error, sale time, false positives and retailer/category yield",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Measure indexed offer freshness, price accuracy, match quality and signal reliability; optional later purchase/sale returns can supplement but are not required",
+      "first_consumer": "source quality and bargain-evaluation improvement",
       "acceptance": "Backtested calibration report",
       "blocker": "Needs actual purchases and time",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -749,8 +749,8 @@
         "ARB-060",
         "ARB-081"
       ],
-      "required_capability": "No-loss reuse of prior implementation, inspect current SHA and unit tests",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Independently assess prior fee/ROI and exact-match PR #1; preserve identity components and isolate finance as optional",
+      "first_consumer": "current bargain-index core",
       "acceptance": "Independent verdict and approved merge",
       "blocker": "PR #1 draft/unmerged",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -802,7 +802,7 @@
     },
     {
       "id": "ARB-090",
-      "title": "One end-to-end real evidence-backed report",
+      "title": "First real source-backed bargain-index report",
       "level": "L0",
       "stage": "I",
       "status": "BLOCKED_EXTERNAL",
@@ -811,16 +811,14 @@
         "ARB-031",
         "ARB-033",
         "ARB-040",
-        "ARB-041",
-        "ARB-051",
         "ARB-060",
         "ARB-071",
         "ARB-080"
       ],
-      "required_capability": "First authorized source→identity→sold comparison→economics→report human case",
-      "first_consumer": "human purchase review",
-      "acceptance": "Independent proof of genuine consumer",
-      "blocker": "Retail and sold source rights unresolved",
+      "required_capability": "Show one authorized retailer offer → exact item → real eBay price-pattern evidence → explicit purchase condition → traceable human-readable index record",
+      "first_consumer": "bargain-index report reader",
+      "acceptance": "First genuine permitted source-pair and exact time-bound comparison with human-readable qualified condition; independent checks",
+      "blocker": "Retail and eBay historical signal permissions and access still unresolved",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": null,
       "source_ids": [],
@@ -830,7 +828,7 @@
     },
     {
       "id": "ARB-091",
-      "title": "Daily production scouting launch",
+      "title": "Daily automated bargain-index pilot",
       "level": "L0",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -838,11 +836,10 @@
       "dependencies": [
         "ARB-090",
         "ARB-070",
-        "ARB-061",
-        "ARB-053"
+        "ARB-061"
       ],
-      "required_capability": "Daily correctly qualified 0–10 reports with source uptime and cost control",
-      "first_consumer": "linked downstream task or first vertical slice",
+      "required_capability": "Produce zero-to-ten evidence-qualified retailer bargains from authorized sources daily with data freshness and failure accounting",
+      "first_consumer": "daily reader",
       "acceptance": "30-day observed pilot report",
       "blocker": "Depends on real vertical slice",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
@@ -854,19 +851,18 @@
     },
     {
       "id": "ARB-092",
-      "title": "Validated economic usefulness",
+      "title": "Validated index accuracy and practical utility",
       "level": "L0",
       "stage": "I",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
         "ARB-091",
-        "ARB-072",
         "ARB-073"
       ],
-      "required_capability": "Measure real net profit and time-to-sale, include inventory loss, reject poor-yield categories",
-      "first_consumer": "realized profitability learning",
-      "acceptance": "Observed backtest with error intervals",
+      "required_capability": "Measure observed later price/availability accuracy, false positives and source yield; optional transaction outcomes not constitutive",
+      "first_consumer": "index confidence and source prioritization",
+      "acceptance": "Evidence-based index precision/freshness tracking across days, not mandatory sale or resale records",
       "blocker": "No live purchases",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": null,
@@ -875,5 +871,8 @@
       "economic_evidence_verdict": "NOT_REVIEWED",
       "authorization_verdict": "NOT_REVIEWED"
     }
-  ]
+  ],
+  "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+  "current_mandate": "Generic internet retailer bargain index informed by eBay historical price patterns; no necessary beneficiary or resale-business identity",
+  "history_note": "Source-free PR #1 built in earlier resale-arbitrage framing. Finance/profit functions are optional; exact-product matching is reusable subject to review."
 }

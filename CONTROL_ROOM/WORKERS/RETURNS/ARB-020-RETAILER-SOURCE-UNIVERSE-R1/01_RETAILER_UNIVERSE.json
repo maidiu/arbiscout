@@ -1,0 +1,1995 @@
+{
+  "schema_version": "arb020-retailer-universe-r1",
+  "date": "2026-10-31",
+  "scope": "Documented retailer candidate universe; no live price/yield test",
+  "count": 45,
+  "records": [
+    {
+      "retailer_or_network_id": "RET-001",
+      "name": "Best Buy",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://developer.bestbuy.com/apis",
+      "source_refs": [
+        "https://developer.bestbuy.com/apis"
+      ],
+      "categories_hypothesis": [
+        "Electronics",
+        "computers",
+        "games",
+        "appliances"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "DIRECT_RETAIL_API",
+      "discovery_mode": "CATALOG_PAGINATION",
+      "documented_candidate_capability": "Model/SKU catalog, salePrice vs regularPrice, near-real-time availability; Buying Options open box; developer terms licensing",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "DOCUMENTARY_CANDIDATE_NOT_AUTHORIZED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P0",
+      "anticipated_risk": "Regional pickup and open-box item-specific condition; not universal eBay gap",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Verify exact feed/API access grant, complete fields, stock, cache and commercial index use",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-002",
+      "name": "Walmart",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://walmart.io/docs/dv-volt-api/v1/introduction/",
+      "source_refs": [
+        "https://walmart.io/docs/dv-volt-api/v1/introduction/"
+      ],
+      "categories_hypothesis": [
+        "Electronics",
+        "toys",
+        "household",
+        "tools"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "RETAIL_FEED",
+      "discovery_mode": "CATALOG_PAGINATION",
+      "documented_candidate_capability": "Affiliate catalog and restricted feed; localized subscription pickup/delivery service",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "DOCUMENTARY_CANDIDATE_NOT_AUTHORIZED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P0",
+      "anticipated_risk": "Affiliate advertising-only without written exception; seller vs Walmart direct, zipcode",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Verify exact feed/API access grant, complete fields, stock, cache and commercial index use",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-003",
+      "name": "Target",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://partners.target.com/faqs",
+      "source_refs": [
+        "https://partners.target.com/faqs"
+      ],
+      "categories_hypothesis": [
+        "Toys",
+        "electronics",
+        "home",
+        "collectibles"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "AFFILIATE_NETWORK",
+      "discovery_mode": "UNKNOWN",
+      "documented_candidate_capability": "Affiliate/creator partnership via Impact; feed existence for ArbiScout not proved",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "DOCUMENTARY_CANDIDATE_NOT_AUTHORIZED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "2026 creator transition; no generally open retail price API verified",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": "2026 creator-program transition: legacy affiliate approvals/feeds cannot be presumed current",
+      "next_action": "Verify exact feed/API access grant, complete fields, stock, cache and commercial index use",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-004",
+      "name": "Home Depot",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.homedepot.com/c/SF_MS_Affiliate_Program_FAQs",
+      "source_refs": [
+        "https://www.homedepot.com/c/SF_MS_Affiliate_Program_FAQs"
+      ],
+      "categories_hypothesis": [
+        "Tools",
+        "lighting",
+        "smart home",
+        "home improvement"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "RETAIL_FEED",
+      "discovery_mode": "CATALOG_PAGINATION",
+      "documented_candidate_capability": "Official site explicitly offers daily product data feed to approved affiliates via Impact",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "DOCUMENTARY_CANDIDATE_NOT_AUTHORIZED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P0",
+      "anticipated_risk": "Requires live website, program approval; clearance local pickup inaccessible from national feed",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Verify exact feed/API access grant, complete fields, stock, cache and commercial index use",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-005",
+      "name": "Lowe's",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.lowes.com/l/creator/joinlowescreator",
+      "source_refs": [
+        "https://www.lowes.com/l/creator/joinlowescreator"
+      ],
+      "categories_hypothesis": [
+        "Tools",
+        "appliances",
+        "home",
+        "outdoor"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "AFFILIATE_NETWORK",
+      "discovery_mode": "UNKNOWN",
+      "documented_candidate_capability": "Creator/affiliate program documented; no generic open full product feed established",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "DOCUMENTARY_CANDIDATE_NOT_AUTHORIZED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "Open box, pickup/location and account qualification",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Verify exact feed/API access grant, complete fields, stock, cache and commercial index use",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-006",
+      "name": "Amazon (sold by Amazon)",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/onboarding",
+      "source_refs": [
+        "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/onboarding"
+      ],
+      "categories_hypothesis": [
+        "Electronics",
+        "toys",
+        "appliances",
+        "household"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "AFFILIATE_NETWORK",
+      "discovery_mode": "CATEGORY_BROWSE",
+      "documented_candidate_capability": "Creators API item/browse search; Keepa independent deal discovery distinct",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "DOCUMENTARY_CANDIDATE_NOT_AUTHORIZED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "Creators access qualifying sales requirement; distinguish Amazon as seller",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Verify exact feed/API access grant, complete fields, stock, cache and commercial index use",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-007",
+      "name": "Amazon (third-party marketplace)",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction",
+      "source_refs": [
+        "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/introduction"
+      ],
+      "categories_hypothesis": [
+        "Everything",
+        "marketplace"
+      ],
+      "merchant_type": "THIRD_PARTY_MARKETPLACE",
+      "source_kind": "AFFILIATE_NETWORK",
+      "discovery_mode": "QUERY_ONLY",
+      "documented_candidate_capability": "Search results include marketplace offers, seller attribution must be checked",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "DOCUMENTARY_CANDIDATE_NOT_AUTHORIZED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Third-party sellers, buy box, variable shipping, comparability",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Verify exact feed/API access grant, complete fields, stock, cache and commercial index use",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-008",
+      "name": "Costco",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.costco.com/",
+      "source_refs": [
+        "https://www.costco.com/"
+      ],
+      "categories_hypothesis": [
+        "Electronics",
+        "appliances",
+        "household",
+        "toys"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Membership and online deals require qualifying user terms; third-party API source not verified",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Member prices, region, two-packs, delivery surcharge",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-009",
+      "name": "Sam's Club",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.samsclub.com/",
+      "source_refs": [
+        "https://www.samsclub.com/"
+      ],
+      "categories_hypothesis": [
+        "Electronics",
+        "household",
+        "small appliances"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Warehouse membership retailer; API not documented here",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Club-only/pickup-only offers, member terms, pack sizes",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-010",
+      "name": "BJ's Wholesale",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.bjs.com/",
+      "source_refs": [
+        "https://www.bjs.com/"
+      ],
+      "categories_hypothesis": [
+        "Electronics",
+        "household",
+        "toys"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Warehouse retailer; public web presence only",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Membership, coupons, bundled product sizes",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-011",
+      "name": "B&H Photo",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.bhphotovideo.com/",
+      "source_refs": [
+        "https://www.bhphotovideo.com/"
+      ],
+      "categories_hypothesis": [
+        "Cameras",
+        "audio",
+        "computing",
+        "storage"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "High brand/model specificity; open retailer feed not verified",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "B&H-specific kits vs bare SKU, new/used distinction",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-012",
+      "name": "Newegg",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.newegg.com/",
+      "source_refs": [
+        "https://www.newegg.com/"
+      ],
+      "categories_hypothesis": [
+        "Computer parts",
+        "storage",
+        "peripherals"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Product exact MPN often available in retail listings; API feed unverified",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "Marketplace sellers, rebates, combos, condition",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-013",
+      "name": "Micro Center",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.microcenter.com/",
+      "source_refs": [
+        "https://www.microcenter.com/"
+      ],
+      "categories_hypothesis": [
+        "Processors",
+        "components",
+        "PC peripherals"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Potential pickup discount discovery via verified feed absent",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "Store-only stock and bundled PC component promotions",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-014",
+      "name": "GameStop",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.gamestop.com/",
+      "source_refs": [
+        "https://www.gamestop.com/"
+      ],
+      "categories_hypothesis": [
+        "Consoles",
+        "controllers",
+        "toys",
+        "games"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Branded consoles/game editions, public clearance and deal pages",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "Pre-owned/refurbished vs new, reward-member prices",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-015",
+      "name": "Staples",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.staples.com/",
+      "source_refs": [
+        "https://www.staples.com/"
+      ],
+      "categories_hypothesis": [
+        "Printers",
+        "office electronics",
+        "supplies"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Brand/model catalog, no verified open API",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Membership, pickup, business account prices",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-016",
+      "name": "Office Depot",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.officedepot.com/",
+      "source_refs": [
+        "https://www.officedepot.com/"
+      ],
+      "categories_hypothesis": [
+        "Printers",
+        "office tech",
+        "supplies"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Brand/model catalog, API not established",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Coupons, quantity tiers, location stock",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-017",
+      "name": "Kohl's",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.kohls.com/",
+      "source_refs": [
+        "https://www.kohls.com/"
+      ],
+      "categories_hypothesis": [
+        "Small appliances",
+        "toys",
+        "home"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Sale/promo inventory; no general authorized machine feed established",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Kohl's Cash not cash price; coupons and exclusions",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-018",
+      "name": "Macy's",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.macys.com/",
+      "source_refs": [
+        "https://www.macys.com/"
+      ],
+      "categories_hypothesis": [
+        "Home appliances",
+        "electronics accessories",
+        "fashion"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Clearance pages, broad model exactness variable",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Fashion identity poor, promo restrictions",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-019",
+      "name": "Nordstrom Rack",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.nordstromrack.com/",
+      "source_refs": [
+        "https://www.nordstromrack.com/"
+      ],
+      "categories_hypothesis": [
+        "Fashion",
+        "beauty",
+        "home"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Clearance often deep vs MSRP; reliable eBay UPC density hypothesis weak",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P3",
+      "anticipated_risk": "Brand variants, fashion sizes, and insufficient comparable completed sales",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-020",
+      "name": "REI",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.rei.com/",
+      "source_refs": [
+        "https://www.rei.com/"
+      ],
+      "categories_hypothesis": [
+        "Outdoor devices",
+        "gear",
+        "wearables"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Branded outdoor gear and seasonal clearance",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Membership/member-only and used/Re/Supply condition",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-021",
+      "name": "Dick's Sporting Goods",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.dickssportinggoods.com/",
+      "source_refs": [
+        "https://www.dickssportinggoods.com/"
+      ],
+      "categories_hypothesis": [
+        "Sports equipment",
+        "fitness",
+        "electronics"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Brand model matches possible in equipment",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Oversize shipping and regional store pickup",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-022",
+      "name": "Academy Sports + Outdoors",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.academy.com/",
+      "source_refs": [
+        "https://www.academy.com/"
+      ],
+      "categories_hypothesis": [
+        "Sporting goods",
+        "outdoor",
+        "games"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Seasonal sporting goods categories",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Regulated products excluded; store geography and shipping",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-023",
+      "name": "Bass Pro Shops",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.basspro.com/",
+      "source_refs": [
+        "https://www.basspro.com/"
+      ],
+      "categories_hypothesis": [
+        "Fishing",
+        "camping",
+        "outdoor electronics"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Branded electronics/fishing reels; avoid restricted categories",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Membership/promos, brand variants, outdoor stock",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-024",
+      "name": "Cabela's",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.cabelas.com/",
+      "source_refs": [
+        "https://www.cabelas.com/"
+      ],
+      "categories_hypothesis": [
+        "Fishing",
+        "camping",
+        "outdoor gadgets"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Branded gear; overlaps Bass Pro parent ecosystem",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Deduplicate shared offers/brands and exclude restricted goods",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-025",
+      "name": "Tractor Supply",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.tractorsupply.com/",
+      "source_refs": [
+        "https://www.tractorsupply.com/"
+      ],
+      "categories_hypothesis": [
+        "Tools",
+        "pet",
+        "farm household"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Branded tools and hardware potentially matchable",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Oversize pickup-only goods, regional stock",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-026",
+      "name": "Harbor Freight",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.harborfreight.com/",
+      "source_refs": [
+        "https://www.harborfreight.com/"
+      ],
+      "categories_hypothesis": [
+        "Tools",
+        "workshop",
+        "automotive"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Clearance/coupons; branded/proprietary model eBay sample likely variable",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Members-only coupons, private-label model low eBay comps",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-027",
+      "name": "Michaels",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.michaels.com/",
+      "source_refs": [
+        "https://www.michaels.com/"
+      ],
+      "categories_hypothesis": [
+        "Craft tools",
+        "hobby kits",
+        "collectibles"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Hobby craft kits, branded cutting systems, clearances",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Limited eBay comps for store-exclusive SKUs",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-028",
+      "name": "Barnes & Noble",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.barnesandnoble.com/",
+      "source_refs": [
+        "https://www.barnesandnoble.com/"
+      ],
+      "categories_hypothesis": [
+        "Books",
+        "LEGO",
+        "collectibles",
+        "board games"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "ISBN and model identifiers for special editions",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Edition/printing/signatures essential; books generally small gaps",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-029",
+      "name": "LEGO Store",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.lego.com/en-us",
+      "source_refs": [
+        "https://www.lego.com/en-us"
+      ],
+      "categories_hypothesis": [
+        "LEGO sets",
+        "toys"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Set numbers enable exact matching; brand clearance/retirement",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "Retirement drives time shift; damaged/open boxes",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-030",
+      "name": "Disney Store",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.disneystore.com/",
+      "source_refs": [
+        "https://www.disneystore.com/"
+      ],
+      "categories_hypothesis": [
+        "Collectibles",
+        "toys",
+        "limited editions"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Edition identifier potential high but sparse comparable sales",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Limited editions, exclusives, demand spikes",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-031",
+      "name": "Walgreens",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.walgreens.com/",
+      "source_refs": [
+        "https://www.walgreens.com/"
+      ],
+      "categories_hypothesis": [
+        "Toys",
+        "small electronics",
+        "health/beauty"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Coupons/clearance sometimes, brand UPC",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Rewards/promo stacking, per-store price, consumables",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-032",
+      "name": "CVS",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.cvs.com/",
+      "source_refs": [
+        "https://www.cvs.com/"
+      ],
+      "categories_hypothesis": [
+        "Health",
+        "beauty",
+        "toys",
+        "electronics accessories"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Branded UPC but discount price often loyalty/coupons",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Health privacy unnecessary; care about loyalty and expiration",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-033",
+      "name": "Chewy",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.chewy.com/",
+      "source_refs": [
+        "https://www.chewy.com/"
+      ],
+      "categories_hypothesis": [
+        "Pet accessories",
+        "small electronics",
+        "supplies"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Pet tech and equipment GTIN possible",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Autoship discounts not general one-off purchase",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-034",
+      "name": "Petco",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.petco.com/",
+      "source_refs": [
+        "https://www.petco.com/"
+      ],
+      "categories_hypothesis": [
+        "Pet accessories",
+        "aquarium electronics"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Sale/pickup offers in accessories",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Autoship and loyalty discount restrictions",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-035",
+      "name": "PetSmart",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.petsmart.com/",
+      "source_refs": [
+        "https://www.petsmart.com/"
+      ],
+      "categories_hypothesis": [
+        "Pet equipment",
+        "grooming",
+        "accessories"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Brand devices matching possible",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Member rewards and bundle restrictions",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-036",
+      "name": "Wayfair",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.wayfair.com/",
+      "source_refs": [
+        "https://www.wayfair.com/"
+      ],
+      "categories_hypothesis": [
+        "Home furniture",
+        "lighting",
+        "appliances"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Wide catalog, low stable GTIN and exact eBay comps for furniture",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P3",
+      "anticipated_risk": "White-label SKU aliases, shipping and oversize delivery",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-037",
+      "name": "Adorama",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.adorama.com/",
+      "source_refs": [
+        "https://www.adorama.com/"
+      ],
+      "categories_hypothesis": [
+        "Camera",
+        "AV",
+        "computing"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Strong brand/model identification opportunities",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "Bundles and manufacture warranty distinctions",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-038",
+      "name": "Monoprice",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.monoprice.com/",
+      "source_refs": [
+        "https://www.monoprice.com/"
+      ],
+      "categories_hypothesis": [
+        "Electronics accessories",
+        "cables",
+        "audio"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Private label exact-model historic eBay liquidity unclear",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P3",
+      "anticipated_risk": "Small absolute gap and eBay scarcity",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-039",
+      "name": "Samsung US",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.samsung.com/us/",
+      "source_refs": [
+        "https://www.samsung.com/us/"
+      ],
+      "categories_hypothesis": [
+        "Electronics",
+        "storage",
+        "appliances"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Manufacturer-direct exact identifiers and special offers",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "Trade-in and education/gov/financing prices invalid as open purchase",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-040",
+      "name": "Dell Outlet",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.dell.com/en-us/dfh/lp/outlet",
+      "source_refs": [
+        "https://www.dell.com/en-us/dfh/lp/outlet"
+      ],
+      "categories_hypothesis": [
+        "Laptops",
+        "desktops",
+        "monitors"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Manufacturer refurbished/open-box product identifiers",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Service tag/configuration individualized, warranty",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-041",
+      "name": "Lenovo US",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.lenovo.com/us/en/",
+      "source_refs": [
+        "https://www.lenovo.com/us/en/"
+      ],
+      "categories_hypothesis": [
+        "Laptops",
+        "PCs",
+        "monitors"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Configurable hardware SKUs exactness challenging",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "Stacked coupon and different RAM/SSD configurations",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-042",
+      "name": "HP US",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.hp.com/us-en/shop",
+      "source_refs": [
+        "https://www.hp.com/us-en/shop"
+      ],
+      "categories_hypothesis": [
+        "Printers",
+        "PCs",
+        "accessories"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Manufacturer part numbers and outlet devices",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P2",
+      "anticipated_risk": "SKU configurations, ink subscription promotions",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-043",
+      "name": "Nintendo Store",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.nintendo.com/us/store/",
+      "source_refs": [
+        "https://www.nintendo.com/us/store/"
+      ],
+      "categories_hypothesis": [
+        "Consoles",
+        "games",
+        "accessories"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "PUBLIC_MANUAL_ONLY",
+      "discovery_mode": "MANUAL_ONLY",
+      "documented_candidate_capability": "Edition identities and console bundles relatively matchable",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "RETAILER_EXISTS_API_NOT_ESTABLISHED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P1",
+      "anticipated_risk": "No implied discounts, region hardware variations",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Seek merchant-supplied licensed feed or eligible network inventory; independently verify checkout price",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-044",
+      "name": "AliExpress",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.aliexpress.com/",
+      "source_refs": [
+        "https://www.aliexpress.com/"
+      ],
+      "categories_hypothesis": [
+        "Imported consumer goods",
+        "electronics"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "IMPORT_SOURCE",
+      "discovery_mode": "QUERY_ONLY",
+      "documented_candidate_capability": "Affiliate or supplier feed may exist; no authorized live API asserted",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "DOCUMENTARY_CANDIDATE_NOT_AUTHORIZED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P3",
+      "anticipated_risk": "OEM identity/counterfeit risk, freight/duty, delayed delivery",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Verify exact feed/API access grant, complete fields, stock, cache and commercial index use",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    },
+    {
+      "retailer_or_network_id": "RET-045",
+      "name": "Alibaba",
+      "marketplaces": [
+        "US"
+      ],
+      "source_url": "https://www.alibaba.com/",
+      "source_refs": [
+        "https://www.alibaba.com/"
+      ],
+      "categories_hypothesis": [
+        "Wholesale",
+        "MOQ",
+        "industrial accessories"
+      ],
+      "merchant_type": "MIXED_OR_VERIFY_DIRECT_SELLER",
+      "source_kind": "IMPORT_SOURCE",
+      "discovery_mode": "QUERY_ONLY",
+      "documented_candidate_capability": "Supplier-dependent quotes, tiered MOQ, lead time",
+      "primary_detailed_fields": "NOT_VERIFIED_FOR_LIVE_API_EXCEPT_SPECIFIC_DOCUMENTED_SOURCE",
+      "gtin_mpn_revision_condition": "REQUIRES_FIELD_LEVEL_EVIDENCE",
+      "price_stock_region_shipping_coupon_expiry": "REQUIRES_LIVE_CHECKOUT_OR_APPROVED_FEED_VERIFICATION",
+      "source_status": "DOCUMENTARY_CANDIDATE_NOT_AUTHORIZED",
+      "access_eligibility": "NOT_CHECKED_FOR_THIS_APPLICATION",
+      "permission_status": "HOLD_FOR_RETAIL_PURCHASE_INDEXING",
+      "license_retention_status": "UNVERIFIED",
+      "current_live_discount_inventory": "NOT_OBSERVED",
+      "last_checked": "2026-10-31",
+      "observed_feed_refresh": null,
+      "observed_catalog_count": null,
+      "observed_api_cost": null,
+      "historical_ebay_gap_yield": "HYPOTHESIS_ONLY",
+      "feasibility_priority": "P3",
+      "anticipated_risk": "Cannot compare unit to eBay without full landed cost & authenticity",
+      "benchmark_performed": false,
+      "integration_difficulty": "UNKNOWN_UNTIL_FEED_GRANTED",
+      "source_age_warning": null,
+      "next_action": "Verify exact feed/API access grant, complete fields, stock, cache and commercial index use",
+      "reviewer_flags": [
+        "No observed sale-price gap; not a retailer league table",
+        "No assumed feed completeness; eBay source remains ARB-010",
+        "Check current location and exact quantity/condition"
+      ]
+    }
+  ]
+}

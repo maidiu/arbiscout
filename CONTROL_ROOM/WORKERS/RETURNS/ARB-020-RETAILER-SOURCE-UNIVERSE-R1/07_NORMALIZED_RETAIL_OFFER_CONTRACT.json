@@ -1,0 +1,863 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARB-020/031/033 proposed normalized retailer purchase offer R1",
+  "schema_version": "arb031-retail-offer.v1",
+  "status": "PROPOSED_SOURCEFREE_NOT_IMPLEMENTED_OR_LIVE_TESTED",
+  "observed_at": "2026-10-31",
+  "product_scope": "Only retailer purchase price compared against past genuine eBay completed-sale patterns. No future sales/profit/ROI/fees",
+  "producer_roles": [
+    "authorized ENUMERABLE_UNKNOWN_DEALS discovery",
+    "retailer DIRECT_API/RETAIL_FEED",
+    "approved AFFILIATE_NETWORK catalog",
+    "SHOPPING_SEARCH enrichment",
+    "permitted human purchase-price verification"
+  ],
+  "consumer_roles": [
+    "ARB-031 source-normalized offer",
+    "ARB-033 actual purchasability and current-price verifier",
+    "ARB-030 exact identity equivalence",
+    "ARB-040/051 independent eBay actual completed-sale reference",
+    "ARB-050/060/071 gap/rank/report"
+  ],
+  "json_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "schema_version",
+      "offer_id",
+      "discovery",
+      "merchant",
+      "identity",
+      "price",
+      "availability",
+      "conditions",
+      "verification",
+      "permission",
+      "timestamps",
+      "status",
+      "rejection_reasons"
+    ],
+    "properties": {
+      "schema_version": {
+        "const": "arb031-retail-offer.v1"
+      },
+      "offer_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "discovery": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "source_kind",
+          "discovery_mode",
+          "source_url",
+          "query_or_feed_id",
+          "fetched_at",
+          "record_hash",
+          "observed_rank",
+          "catalog_total_known"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string"
+          },
+          "source_kind": {
+            "enum": [
+              "DIRECT_RETAIL_API",
+              "RETAIL_FEED",
+              "AFFILIATE_NETWORK",
+              "DEALS_FEED",
+              "SHOPPING_SEARCH",
+              "PUBLIC_MANUAL_ONLY",
+              "VENDOR_AGGREGATION",
+              "IMPORT_SOURCE"
+            ]
+          },
+          "discovery_mode": {
+            "enum": [
+              "ENUMERABLE_UNKNOWN_DEALS",
+              "CATALOG_PAGINATION",
+              "CATEGORY_BROWSE",
+              "QUERY_ONLY",
+              "KNOWN_IDS_ONLY",
+              "MANUAL_ONLY",
+              "UNKNOWN"
+            ]
+          },
+          "source_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "query_or_feed_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fetched_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "record_hash": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "observed_rank": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "catalog_total_known": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "source_discount_grade": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "provider_updated_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "provider_pagination_complete": {
+            "enum": [
+              "YES_WITHIN_SCOPE",
+              "NO",
+              "UNKNOWN"
+            ]
+          },
+          "billable_credits": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          }
+        }
+      },
+      "merchant": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "retailer",
+          "sold_by",
+          "retailer_direct",
+          "seller_type",
+          "product_url",
+          "marketplace",
+          "merchant_country"
+        ],
+        "properties": {
+          "retailer": {
+            "type": "string"
+          },
+          "sold_by": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "retailer_direct": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "seller_type": {
+            "enum": [
+              "RETAILER_DIRECT",
+              "MARKETPLACE_THIRD_PARTY",
+              "UNKNOWN"
+            ]
+          },
+          "product_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "marketplace": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "merchant_country": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "merchant_location": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "affiliate_link_present": {
+            "type": "boolean"
+          },
+          "link_attribution_rule": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "identity": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "brand",
+          "model",
+          "gtin",
+          "mpn",
+          "condition",
+          "pack_quantity",
+          "bundle_parts",
+          "identity_confidence"
+        ],
+        "properties": {
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "brand": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "model": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "gtin": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mpn": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "retailer_sku": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "revision": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "color_size_capacity": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "condition": {
+            "enum": [
+              "NEW",
+              "OPEN_BOX",
+              "USED",
+              "REFURBISHED",
+              "UNKNOWN"
+            ]
+          },
+          "pack_quantity": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "bundle_parts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "identity_confidence": {
+            "enum": [
+              "EXACT_DOCUMENTED",
+              "PROVISIONAL",
+              "AMBIGUOUS",
+              "WRONG_PRODUCT",
+              "UNREVIEWED"
+            ]
+          },
+          "identity_proof_urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "price": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "currency",
+          "advertised_item_price",
+          "verified_item_price",
+          "retailer_regular_price",
+          "shipping_cost",
+          "tax_amount",
+          "total_purchaser_amount",
+          "total_amount_status",
+          "price_type"
+        ],
+        "properties": {
+          "currency": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 3
+          },
+          "advertised_item_price": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,4})?$"
+          },
+          "verified_item_price": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,4})?$"
+          },
+          "retailer_regular_price": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,4})?$"
+          },
+          "shipping_cost": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,4})?$"
+          },
+          "tax_amount": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,4})?$"
+          },
+          "total_purchaser_amount": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,4})?$"
+          },
+          "total_amount_status": {
+            "enum": [
+              "FULLY_CONFIRMED",
+              "PARTIAL_UNCERTAIN_TAX",
+              "PARTIAL_UNCERTAIN_SHIPPING",
+              "UNKNOWN",
+              "NOT_OBTAINABLE"
+            ]
+          },
+          "price_type": {
+            "enum": [
+              "RETAILER_VERIFIED_PURCHASE",
+              "VENDOR_ADVERTISED",
+              "MSRP_REFERENCE_ONLY",
+              "MEMBERSHIP_CONDITIONAL",
+              "REBATE_DEFERRED",
+              "NOT_KNOWN"
+            ]
+          },
+          "discount_vs_retailer_regular_percent": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "historical_retailer_offer_price": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "claim_flags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "historic_fx_source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "availability": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "state",
+          "observed_at",
+          "zip_or_region",
+          "fulfillment"
+        ],
+        "properties": {
+          "state": {
+            "enum": [
+              "IN_STOCK_VERIFIED",
+              "REPORTED_IN_STOCK_UNVERIFIED",
+              "OUT_OF_STOCK",
+              "PICKUP_ONLY",
+              "PREORDER",
+              "UNKNOWN"
+            ]
+          },
+          "observed_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "zip_or_region": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "online_stock_quantity": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "store_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fulfillment": {
+            "enum": [
+              "SHIP",
+              "PICKUP",
+              "SHIP_OR_PICKUP",
+              "UNKNOWN"
+            ]
+          },
+          "seller_stock_proof_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "shipping_destination_country": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "shipping_eta": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "conditions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "membership",
+          "coupon",
+          "loyalty",
+          "trade_in",
+          "minimum_order_qty",
+          "coupon_status",
+          "restriction_flags"
+        ],
+        "properties": {
+          "membership": {
+            "enum": [
+              "NOT_REQUIRED",
+              "REQUIRED",
+              "UNKNOWN"
+            ]
+          },
+          "coupon": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "coupon_status": {
+            "enum": [
+              "NOT_APPLICABLE",
+              "PUBLIC_ELIGIBLE",
+              "ACCOUNT_TARGETED",
+              "UNKNOWN"
+            ]
+          },
+          "loyalty": {
+            "enum": [
+              "NONE",
+              "REQUIRED",
+              "DEFERRED_CREDIT",
+              "UNKNOWN"
+            ]
+          },
+          "trade_in": {
+            "type": "boolean"
+          },
+          "minimum_order_qty": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "max_order_qty": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "restriction_flags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "promo_expires_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "landed_duties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "import_lead_time_days": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          }
+        }
+      },
+      "verification": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_price_status",
+          "merchant_direct_check",
+          "identity_check",
+          "availability_check",
+          "independent_reviewer",
+          "verified_at"
+        ],
+        "properties": {
+          "source_price_status": {
+            "enum": [
+              "SOURCE_CLAIM_ONLY",
+              "DIRECT_MERCHANT_CONFIRMED",
+              "AFFILIATE_FEED_AGREES_MERCHANT",
+              "DISAGREEMENT",
+              "UNKNOWN"
+            ]
+          },
+          "merchant_direct_check": {
+            "type": "boolean"
+          },
+          "identity_check": {
+            "type": "boolean"
+          },
+          "availability_check": {
+            "type": "boolean"
+          },
+          "independent_reviewer": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "verified_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "evidence_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "freshness_seconds": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "raw_response_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "permission": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_use_status",
+          "upstream_rights_status",
+          "retention_status",
+          "public_derivative_use_status",
+          "grant_refs"
+        ],
+        "properties": {
+          "source_use_status": {
+            "enum": [
+              "WRITTEN_USE_GRANT_SCOPED",
+              "VENDOR_TERMS_CLAIM_ONLY",
+              "NOT_PERMITTED",
+              "UNKNOWN"
+            ]
+          },
+          "upstream_rights_status": {
+            "enum": [
+              "VERIFIED",
+              "VENDOR_CLAIM_ONLY",
+              "UNKNOWN",
+              "PROHIBITED"
+            ]
+          },
+          "retention_status": {
+            "enum": [
+              "PERMITTED_WITH_EXPIRY",
+              "PERMITTED",
+              "UNKNOWN",
+              "PROHIBITED"
+            ]
+          },
+          "public_derivative_use_status": {
+            "enum": [
+              "PERMITTED_SCOPED",
+              "UNKNOWN",
+              "NOT_PERMITTED"
+            ]
+          },
+          "grant_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expires_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "personal_data_present": {
+            "type": "boolean"
+          }
+        }
+      },
+      "timestamps": {
+        "type": "object",
+        "required": [
+          "observed_at",
+          "ingested_at"
+        ],
+        "properties": {
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ingested_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "merchant_verified_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "source_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "status": {
+        "enum": [
+          "RAW_DISCOVERED",
+          "NEEDS_IDENTITY",
+          "NEEDS_PRICE_STOCK",
+          "VERIFIED_PURCHASABLE",
+          "REJECTED",
+          "AUTHORIZED_DATA_HOLD",
+          "EBAY_REFERENCE_HOLD",
+          "QUALIFIED_EBAY_GAP"
+        ]
+      },
+      "rejection_reasons": {
+        "type": "array",
+        "items": {
+          "enum": [
+            "WRONG_PRODUCT",
+            "WRONG_REVISION",
+            "WRONG_CONDITION",
+            "WRONG_BUNDLE",
+            "WRONG_QUANTITY",
+            "NO_GTIN_OR_MODEL_PROOF",
+            "THIRD_PARTY_SELLER_EXCLUDED",
+            "OUT_OF_STOCK",
+            "OUTSIDE_REGION",
+            "STORE_ONLY_UNAVAILABLE",
+            "MEMBERSHIP_UNAVAILABLE",
+            "TARGETED_COUPON",
+            "TRADE_IN_DEPENDENT",
+            "REBATE_FUTURE_ONLY",
+            "SHIPPING_UNKNOWN",
+            "TAX_UNCERTAIN",
+            "CHECKOUT_PRICE_MISMATCH",
+            "PRICE_EXPIRED",
+            "SOURCE_UNLICENSED",
+            "UPSTREAM_PROVENANCE_UNVERIFIED",
+            "STORAGE_RIGHTS_UNVERIFIED",
+            "DATA_STALE",
+            "CAPPED_TOP_K",
+            "PROVIDER_ERROR",
+            "INSUFFICIENT_EBAY_COMPS",
+            "NO_POSITIVE_GAP",
+            "OTHER"
+          ]
+        }
+      }
+    }
+  },
+  "semantic_invariants": [
+    {
+      "id": "O01",
+      "rule": "MSRP or percent-off never serves as actual verified purchaser price or eBay normal historic price"
+    },
+    {
+      "id": "O02",
+      "rule": "seller_type MARKETPLACE_THIRD_PARTY is never rewritten to retailer direct; store separately"
+    },
+    {
+      "id": "O03",
+      "rule": "price.total_purchaser_amount null if shipping/tax known required but missing; no arithmetic with partial totals unless labeled limited basis"
+    },
+    {
+      "id": "O04",
+      "rule": "identity EXACT_DOCUMENTED must match GTIN or robust MPN+revision, quantity, bundle and condition; no LLM guess upgrades"
+    },
+    {
+      "id": "O05",
+      "rule": "availability IN_STOCK_VERIFIED must be same region/fulfillment/checkout time; unknown remains unknown"
+    },
+    {
+      "id": "O06",
+      "rule": "coupon account-targeted/loyalty, membership, trade-in and future rebate cannot be counted as generally obtainable price"
+    },
+    {
+      "id": "O07",
+      "rule": "vendor discount grade and retailer regular/MSRP comparison never qualify eBay gap; ARB-010 must supply actual completed-sale observations"
+    },
+    {
+      "id": "O08",
+      "rule": "license/retention or upstream data rights UNKNOWN => hold for prohibited operation; do not infer from HTTP 200"
+    },
+    {
+      "id": "O09",
+      "rule": "source may provide candidate discovery without validating retailer checkout; preserve both source/corroboration events"
+    },
+    {
+      "id": "O10",
+      "rule": "refresh/cache/expiry and retractions obey source terms; do not persist merchant content beyond agreed period"
+    },
+    {
+      "id": "O11",
+      "rule": "public repo cannot contain private API keys/session cookies/individual shopper data or account-specific offer snapshots without grant"
+    },
+    {
+      "id": "O12",
+      "rule": "not enough historical eBay exact completed sales => no baseline or gap, output REFUSE not imputation"
+    }
+  ],
+  "integration_policy": {
+    "first_real_consumer": "ARB-031/033 retailer purchase offer",
+    "qualifying_pipeline": [
+      "DISCOVER",
+      "IDENTIFY",
+      "VERIFY_PURCHASE_PRICE_AND_STOCK",
+      "QUALIFY_SOURCE_USE",
+      "JOIN_90D_EBAY_COMPLETED_SALES",
+      "ESTIMATE_NORMAL_PRICE",
+      "COMPUTE_CONSERVATIVE_GAP",
+      "RANK_0_TO_10"
+    ],
+    "all_future_sale_fields_prohibited": true,
+    "production_status": "NOT_IMPLEMENTED",
+    "validation": "JSON syntax only; structural schema not executed with fixture runner or independent reviewer"
+  },
+  "security": "Public repo: synthetic fixtures and nonconfidential source citations only. Provider key and customer-specific prices held only in approved secure store; no live source account access performed."
+}

@@ -17,28 +17,30 @@
     "live_marketplace_integrations": 0,
     "real_scored_opportunities": 0
   },
-  "terminal_state": "NO_LIVE_AUTHORIZED_DAILY_SCOUT",
+  "terminal_state": "NO_LIVE_AUTHORIZED_RETAIL_BARGAIN_INDEX",
   "external_blockers": [
-    "Retailer and aggregation product/price data rights and access for resale research",
-    "eBay completed-sales data in a licensed, sufficiently complete machine-readable form",
-    "Seller fee/shipping/region validation for actual prices"
+    "Sufficiently broad and licensed retailer offer feeds (price, stock, region, timestamps)",
+    "Reliable and appropriately usable historical eBay price-pattern evidence for the same product",
+    "First real time-bounded retailer offer/history comparison and clear human-facing purchase condition"
   ],
   "done": [
     "Repository initialized and PR #1 source-free prototype previously executed under CI; remains unmerged",
     "Public source documentation for major access candidates located",
-    "Control-room/Programma branch prepared for review"
+    "Control-room/Programma branch prepared for review",
+    "User-directed revised neutral product constitution written and Programma terminal map revised (proposed on draft PR #2)"
   ],
   "remaining": [
-    "Provider-by-provider license and cost audit",
-    "First authorized retail offer and completed-sales observation",
-    "Integrated identity/economic model and human-facing report",
-    "Daily source checks and calibration from real sales"
+    "Independent review of constitution/control-room branch and reconciliation into main",
+    "Provider-by-provider access/coverage audit for broad retailer bargains and historical eBay price signals",
+    "First verified retailer offer + price-pattern comparison + purchase-condition report",
+    "Daily index and quality verification across days",
+    "Optional economic/import extensions where valuable"
   ],
-  "largest_productive_move": "Independently source-audit eBay sold history and one multi-retailer shopping provider; concurrently review source-free PR #1 and test a synthetic source-to-report vertical slice",
+  "largest_productive_move": "Build a source-backed retailer bargain→comparable eBay historical price pattern→purchase condition→index report pipeline; parallel access audits. Retain source-free finance PR #1 as optional code.",
   "flights": [
     {
       "id": "FLIGHT-001",
-      "scope": "Data-access reconnaissance",
+      "scope": "Retail price/history source rights and coverage reconnaissance",
       "status": "PROPOSED_NOT_DISPATCHED",
       "task_ids": [
         "ARB-010",
@@ -49,7 +51,7 @@
     },
     {
       "id": "FLIGHT-002",
-      "scope": "Core prototype review",
+      "scope": "Review exact-match components and optional economics from existing draft",
       "status": "PROPOSED_NOT_DISPATCHED",
       "task_ids": [
         "ARB-082",
@@ -60,5 +62,7 @@
     }
   ],
   "active_workers": [],
-  "delta": "Initial ArbiScout PROGRAMMA/control plane seeded in independent PR; no authorization or live production advance."
+  "delta": "User revised actual functional constitution; product defined by bargain indexing and eBay historical patterns, not an assigned beneficiary or compulsory resale. Schema and HQ records adjusted on draft PR #2. No live API/source access or merged product yet.",
+  "current_mandate": "Retailer bargain indexing for purchase conditions informed by eBay historical price patterns; no designated beneficiary, resale-business identity, or mandatory downstream resale.",
+  "constitution_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
 }

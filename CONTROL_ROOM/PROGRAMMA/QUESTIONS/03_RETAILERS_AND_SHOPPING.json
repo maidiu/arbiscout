@@ -1,0 +1,433 @@
+{
+  "schema_version": "1.0",
+  "section": "C",
+  "title": "Retailers, Shopping aggregators and feed discovery",
+  "items": [
+    {
+      "id": "Q031",
+      "question": "Which retailers actually yield the greatest number of qualifying purchase-price gaps per source cost?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q052",
+        "Q063"
+      ],
+      "related_tasks": [
+        "ARB-020",
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q032",
+      "question": "Which product categories should a representative bargain-indexing pilot sample first, and why?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-020",
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q033",
+      "question": "What are the best yield metrics: qualified gaps per thousand offers, per API dollar, and per unit time?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q032"
+      ],
+      "related_tasks": [
+        "ARB-029",
+        "ARB-073"
+      ],
+      "source_ids": [],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q034",
+      "question": "Which Best Buy API product fields expose actual sale prices, discounts, stock, identity, and freshness?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-023"
+      ],
+      "source_ids": [
+        "E-BESTBUY-API"
+      ],
+      "findings": "Relevant vendor capability described publicly; no directly tested price feed or full coverage audit.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q035",
+      "question": "Can Best Buy's open-box item data support exact condition-matched retailer purchase offers?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q034"
+      ],
+      "related_tasks": [
+        "ARB-023",
+        "ARB-030"
+      ],
+      "source_ids": [
+        "E-BESTBUY-API"
+      ],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q036",
+      "question": "What are Best Buy API access steps, request quotas, costs, availability scopes, and refresh limitations?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q034"
+      ],
+      "related_tasks": [
+        "ARB-023"
+      ],
+      "source_ids": [
+        "E-BESTBUY-API",
+        "E-BESTBUY-TERMS"
+      ],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q037",
+      "question": "Which Walmart API/feed families can surface actual consumer purchase prices, rather than only affiliate, seller or advertisement data?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-024"
+      ],
+      "source_ids": [
+        "E-WALMART-IO"
+      ],
+      "findings": "Relevant vendor capability described publicly; no directly tested price feed or full coverage audit.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q038",
+      "question": "How are Walmart store-specific clearance, ZIP codes, online fulfillment, stock and pickup prices represented?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q037"
+      ],
+      "related_tasks": [
+        "ARB-024",
+        "ARB-033"
+      ],
+      "source_ids": [
+        "E-WALMART-IO"
+      ],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q039",
+      "question": "Does Target provide any approved catalog, clearance, price and stock API or licensed alternative?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-025"
+      ],
+      "source_ids": [
+        "E-TARGET"
+      ],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q040",
+      "question": "Are Target product/offer feeds available through Impact or other licensed retail partner networks?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q039"
+      ],
+      "related_tasks": [
+        "ARB-025"
+      ],
+      "source_ids": [
+        "E-TARGET"
+      ],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q041",
+      "question": "What Home Depot/Impact product-feed access, refresh, price and inventory fields are available?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-026"
+      ],
+      "source_ids": [
+        "E-HOMEDEPOT"
+      ],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q042",
+      "question": "Can a compliant catalog/affiliate network yield offers from several retailers with stable identities, rather than separate retailer adapters?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-020",
+        "ARB-026"
+      ],
+      "source_ids": [],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q043",
+      "question": "Is any official Google API an unrestricted general consumer Google Shopping search/catalog feed?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-021"
+      ],
+      "source_ids": [
+        "E-GOOGLE-MERCHANT"
+      ],
+      "findings": "Relevant vendor capability described publicly; no directly tested price feed or full coverage audit.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q044",
+      "question": "How exactly do Google Merchant's merchant-facing competitive reports differ from Google Shopping consumer search-result feeds?",
+      "status": "PARTIAL",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q043"
+      ],
+      "related_tasks": [
+        "ARB-021"
+      ],
+      "source_ids": [
+        "E-GOOGLE-MERCHANT"
+      ],
+      "findings": "Relevant vendor capability described publicly; no directly tested price feed or full coverage audit.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q045",
+      "question": "Which actual price, seller, shipping, product identity and location fields do third-party Google Shopping APIs return?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-022"
+      ],
+      "source_ids": [
+        "E-SERPAPI",
+        "E-DATAFORSEO"
+      ],
+      "findings": "Relevant vendor capability described publicly; no directly tested price feed or full coverage audit.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q046",
+      "question": "What are the current per-query prices, trial credits, licenses, caching terms, quotas and update behavior for Shopping aggregators?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q045"
+      ],
+      "related_tasks": [
+        "ARB-022"
+      ],
+      "source_ids": [
+        "E-SERPAPI",
+        "E-DATAFORSEO",
+        "E-DATAFORSEO-PRICE"
+      ],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q047",
+      "question": "Can a Google Shopping query API discover a retailer's previously unknown sale items across broad catalogs, rather than only answer known search queries?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q045"
+      ],
+      "related_tasks": [
+        "ARB-022",
+        "ARB-020"
+      ],
+      "source_ids": [
+        "E-SERPAPI",
+        "E-DATAFORSEO"
+      ],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q048",
+      "question": "What discovery strategy finds unanticipated deals at scale without a manually preselected product/search list?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q047",
+        "Q042"
+      ],
+      "related_tasks": [
+        "ARB-020",
+        "ARB-031"
+      ],
+      "source_ids": [],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q049",
+      "question": "Are aggregator offer prices and shipping current, region-correct and verifiable at actual retailer checkout?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q045"
+      ],
+      "related_tasks": [
+        "ARB-022",
+        "ARB-033"
+      ],
+      "source_ids": [
+        "E-SERPAPI",
+        "E-DATAFORSEO"
+      ],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q050",
+      "question": "How do membership promotions, coupon eligibility, third-party marketplace sellers and checkout restrictions affect apparent bargains?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-033",
+        "ARB-031"
+      ],
+      "source_ids": [],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q051",
+      "question": "How do we verify real historical retailer markdowns instead of trusting reference MSRP or sale badges?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-032"
+      ],
+      "source_ids": [],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    },
+    {
+      "id": "Q052",
+      "question": "Should the first useful index use a direct retailer API, affiliate/feed aggregation, Google Shopping results, or a composable hybrid?",
+      "status": "OPEN",
+      "priority": "P0",
+      "hard_dependencies": [
+        "Q034",
+        "Q037",
+        "Q045",
+        "Q047"
+      ],
+      "related_tasks": [
+        "ARB-020",
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "Not yet verified with provider samples, contract and dated source.",
+      "evidence_refs": [],
+      "acceptance": "Provider or reproducible data proof, relevant terms, measured coverage/freshness and honest negative cases.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null
+    }
+  ]
+}

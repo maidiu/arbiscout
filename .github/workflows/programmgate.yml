@@ -14,5 +14,7 @@ jobs:
           python-version: '3.11'
       - name: Verify work graph and source references
         run: python scripts/validate_programma.py
+      - name: Verify generated question/task dashboards and CSV are current
+        run: python scripts/render_programma.py --check
       - name: Run control-room unit tests
         run: python -m unittest discover -s tests -v

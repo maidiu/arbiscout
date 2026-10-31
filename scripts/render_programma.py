@@ -126,7 +126,7 @@ def build():
     source_rows = [[s["id"], s["title"], s["source_status"], s["rights_status"], s["claim"], s["next_probe"]] for s in sources["sources"]]
 
     task_title = "# PROGRAMMA — task dependencies and status\n\n**GENERATED** from `01_WORK_REGISTRY.json`. Do not edit this table directly. `ALL` means every hard prerequisite. `ANY` means one qualifying provider, not every named retailer. Live gates concern real-source acceptance, not whether source-free engineering can start. Related work is never a prerequisite.\n\n"
-    question_title = "# PROGRAMMA — 95 substantiation questions\n\n**GENERATED** from the seven `QUESTIONS/*.json` records. Hard question prerequisites govern what must be established to conclude a finding. `Work needed for operational proof` is not a requirement to delay documentary reconnaissance. Associated tasks are pointers, not dependencies.\n\n"
+    question_title = f"# PROGRAMMA — {len(questions)} substantiation questions\n\n**GENERATED** from the seven `QUESTIONS/*.json` records. Hard question prerequisites govern what must be established to conclude a finding. `Work needed for operational proof` is not a requirement to delay documentary reconnaissance. Associated tasks are pointers, not dependencies.\n\n"
     task_md = task_title + table(task_headers, task_rows)
     q_md = question_title
     for section in sections:
@@ -155,7 +155,7 @@ def build():
 
 **Generated from canonical JSON.** This is an overview of research and implementation **states**, not a declaration of proven live commercial access. Governing scope: **purchase research only** — find retailer prices maximally below regular eBay completed-sale patterns for the identical product. No future selling model.
 
-**Read:** [Constitution](../PRODUCT_CONSTITUTION.md) · [Full PROGRAMMA](00_PROGRAMMA_ARBISCOUT.md) · [Tasks table](TASKS_TABLE.md) · [95-question table](QUESTIONS_TABLE.md) · [Work JSON](01_WORK_REGISTRY.json) · [Question records](QUESTIONS/) · [Source JSON](02_SOURCE_REGISTRY.json) · [Current HQ](../STATUS/CURRENT_PROGRESS.md).
+**Read:** [Constitution](../PRODUCT_CONSTITUTION.md) · [Full PROGRAMMA](00_PROGRAMMA_ARBISCOUT.md) · [Tasks table](TASKS_TABLE.md) · [question table](QUESTIONS_TABLE.md) · [Work JSON](01_WORK_REGISTRY.json) · [Question records](QUESTIONS/) · [Source JSON](02_SOURCE_REGISTRY.json) · [Current HQ](../STATUS/CURRENT_PROGRESS.md).
 
 ## Scope and counts
 

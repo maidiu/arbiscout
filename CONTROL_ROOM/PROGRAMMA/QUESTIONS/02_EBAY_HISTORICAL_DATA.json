@@ -19,7 +19,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q014",
@@ -39,7 +43,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q015",
@@ -58,7 +66,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q016",
@@ -79,7 +91,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q017",
@@ -100,7 +116,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q018",
@@ -118,7 +138,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q019",
@@ -139,7 +163,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q020",
@@ -159,7 +187,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q021",
@@ -177,7 +209,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q022",
@@ -198,7 +234,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q023",
@@ -218,7 +258,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q024",
@@ -236,7 +280,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q025",
@@ -255,7 +303,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q026",
@@ -276,7 +328,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q027",
@@ -293,7 +349,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q028",
@@ -316,7 +376,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q029",
@@ -332,7 +396,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q030",
@@ -352,7 +420,11 @@
       "evidence_refs": [],
       "acceptance": "Reproducible official documentation or verified permitted workflow, exact inputs and limitations, data use rights, and source evidence.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     }
   ]
 }

@@ -42,7 +42,7 @@
     {
       "id": "FLIGHT-001",
       "scope": "P0 external evidence: eBay regular completed-sale price feed, coverage, terms",
-      "status": "PROPOSED_NOT_DISPATCHED",
+      "status": "COMMISSION_PREPARED_NOT_DISPATCHED",
       "task_ids": [
         "ARB-010",
         "ARB-011",
@@ -76,7 +76,7 @@
     }
   ],
   "active_workers": [],
-  "delta": "User mandated exclusive price-gap purchase research. Active 39-task registry was corrected, every one of 95 research questions has explicit prerequisites/proof-task mappings, and readable Markdown/CSV views are generated from JSON; drafted on PR #2, not merged or live.",
+  "delta": "ARB-010 first-party/vendor research seed prepared and exhaustive I3 Rabochii commission registered as GitHub issue #3. No separate agent has been started or any live data/API tested; prior 95-question graph retained.",
   "current_mandate": "Purchase research ONLY: find major-retailer acquisition prices maximally below regular comparable eBay historical completed-sale price patterns; calculate and rank observed gaps.",
   "constitution_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
   "programma": {
@@ -93,5 +93,18 @@
     ],
     "render_command": "python scripts/render_programma.py --write",
     "validation_command": "python scripts/render_programma.py --check"
-  }
+  },
+  "issued_commissions": [
+    {
+      "id": "ARB-010-EBAY-SOLD-HISTORY-RECON-R1",
+      "status": "PREPARED_NOT_LAUNCHED",
+      "issue": "https://github.com/maidiu/arbiscout/issues/3",
+      "prompt": "CONTROL_ROOM/WORKERS/COMMISSIONS/ARB-010-EXHAUSTIVE-EBAY-SOLD-HISTORY-RECON-R1.md",
+      "evidence_seed": "CONTROL_ROOM/PROGRAMMA/ARB010_FIRST_PASS_PUBLIC_EVIDENCE_SEED.md",
+      "worker_runtime": null,
+      "assigned_model": null,
+      "actual_started_at": null,
+      "review_status": "NOT_DISPATCHED"
+    }
+  ]
 }

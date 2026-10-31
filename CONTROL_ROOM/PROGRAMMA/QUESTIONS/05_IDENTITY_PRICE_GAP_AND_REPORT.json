@@ -17,7 +17,13 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-030"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q061",
@@ -36,7 +42,13 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-030"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q062",
@@ -54,7 +66,13 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-051"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q063",
@@ -73,7 +91,14 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-051",
+        "ARB-041"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q064",
@@ -91,7 +116,13 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-051"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q065",
@@ -111,7 +142,14 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-050",
+        "ARB-060"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q066",
@@ -130,7 +168,13 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-060"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q067",
@@ -151,7 +195,11 @@
       ],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": "2026-10-31",
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q068",
@@ -169,7 +217,13 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-071"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q069",
@@ -187,7 +241,13 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-061"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q070",
@@ -206,7 +266,14 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-072",
+        "ARB-073"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q071",
@@ -226,7 +293,13 @@
       "evidence_refs": [],
       "acceptance": "Define defensible quantitative behavior, source provenance, confidence bounds and adverse examples.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-029"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q072",
@@ -238,13 +311,17 @@
       ],
       "related_tasks": [],
       "source_ids": [],
-      "findings": "Closed by governing purchase-research constitution; not an active software deliverable.",
+      "findings": "Closed: downstream transaction outcome calculations do not form part of this application.",
       "evidence_refs": [
         "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
       ],
       "acceptance": "Confirm no successor active code or task dependency silently restores this scope.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": "2026-10-31",
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     },
     {
       "id": "Q073",
@@ -260,13 +337,17 @@
         "ARB-060"
       ],
       "source_ids": [],
-      "findings": "Closed by governing purchase-research constitution; not an active software deliverable.",
+      "findings": "Closed: seller financial threshold metrics do not define purchase research. Use a robust regular-price gap threshold.",
       "evidence_refs": [
         "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
       ],
       "acceptance": "Confirm no successor active code or task dependency silently restores this scope.",
       "owner": "UNASSIGNED",
-      "last_verified_at": null
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": "2026-10-31",
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
     }
   ]
 }

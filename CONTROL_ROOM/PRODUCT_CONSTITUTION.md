@@ -1,38 +1,33 @@
-# ArbiScout — Governing Product Constitution (revision 2026-10-31)
+# ARBISCOUT — CONTROLLING PRODUCT CONSTITUTION
+**User directive: 2026-10-31. Proposed control-room PR #2, not yet canonical main.**
 
-**Authority:** user-directed functional definition. Proposed on the ArbiScout control-room branch until reviewed and merged to canonical main. This supersedes earlier project descriptions wherever they define ArbiScout as an application *for a named person, seller, resale business, competing retailer, or dropshipping operation*.
+## Exactly what the software does
 
-## The product, exactly
+**ArbiScout is a purchase-research application.** It broadly indexes bargains from major internet retailers and identifies **current purchase prices maximally below the regular historical sale-price patterns for the identical product on eBay**.
 
-> **ArbiScout broadly indexes bargains offered on the internet by major retailers, identifying opportunities to purchase those retailers' products under specified conditions informed by historical eBay price patterns.**
+No external individual, retailer, sale operation, or presumed later use defines the application. A comparative eBay historical sale is an **observed reference price**, not a forecast, promise or intended transaction. The positive purchase opportunity is the **documented price gap**.
 
-That is the system's constitutive function. It is not defined by the identity of a user, the legal form of an operator, an assumed onward sale, or a particular downstream use of a purchased item. Do not reintroduce an invented beneficiary in requirements, architecture or agent instructions.
+## In-scope producer-to-consumer chain
 
-## Operational capabilities
+1. Discover current offers, sales and clearance across major retailers; retailer discovery must not depend on a fixed initial shortlist.
+2. Validate exact product identity, condition, variant, size, bundle and quantity for the retailer offer and historical eBay comparable.
+3. Record true retailer **total purchaser price** (item plus applicable acquisition-side shipping/discounts/tax where reliably known), stock, location, seller, date and link.
+4. Construct a defensible **regular eBay historical completed-sale price baseline** for the identical product (distribution, observation count, time window, outliers and confidence); never confuse asking prices with actual completed-sale patterns.
+5. Compute and rank price gaps: `absolute_gap = historical_reference_price - actual_retail_purchase_price`; `relative_gap = absolute_gap / historical_reference_price` (only with positive, adequately evidenced reference). A conservative historical quantile and source uncertainty should check false bargains. Ranking favors **large substantiated below-eBay purchase gaps**, not an imagined future sale or financial return.
+6. Report zero to ten qualified purchasable bargains daily, with original retailer links, eBay historical evidence, last-checked timestamps, gap magnitude, uncertainty, exclusions and reasons. Return zero rather than invent.
+7. Verify later price/availability observations and improve the **accuracy of the index**, independent of whether anyone purchases an item.
+8. Optional import-source coverage may add wholesale quantity, delivered purchase cost, duties, currency and shipping-time conditions. These remain purely purchase-side comparisons.
 
-1. Discover deals, promotions, sale and clearance offers across multiple participating retail sources; optionally include import marketplaces when offer and freight conditions can be compared accurately.
-2. Normalize product identity (brand, exact model, UPC/GTIN, variant, bundle quantity, condition) and merchant, price, availability, geography, timestamp, shipping, coupons and taxes where relevant.
-3. Examine eBay historical price **patterns**, emphasizing genuinely comparable completed sales and frequency when available, separating these from active asking prices and missing data.
-4. Define transparent purchase conditions: acquisition price versus historical eBay price distribution, evidence age, frequency, supply, full delivered cost, shipping time, availability, and uncertainty.
-5. Rank and report up to ten sufficiently supported purchase candidates daily, retaining source references and explicit refusals. Zero qualifies when evidence is inadequate.
-6. Measure whether the index remains accurate and useful against later price observations; optional user-provided purchase/outcome data may calibrate financial metrics but does not redefine the product as a resale service.
+## Out of scope
 
-Financial modeling (fees, possible future selling price, margins, capital risk) is an **optional evaluative module**, useful for particular decisions but not the governing identity of the index.
+No future-sale simulation, eventual resale assumptions, seller marketplace fees, expected profit, ROI, inventory liquidation, automated purchasing, listing, dropshipping or account-specific selling behavior forms any part of the purchase-research application. Legacy code for these concerns in draft PR #1 is **not an approved component**; only neutral exact-product utilities can be considered for separate reuse.
 
-## Negative definition
+Historical conversations that motivated an earlier design may remain in a clearly marked history/why-not record, but must not generate active requirements, tests, scoring criteria or downstream consumers.
 
-ArbiScout is not constituted as a service *for* a designated seller, retailer, beneficiary or resale platform. It need not run a storefront, buy goods, resell goods, create listings, reprice inventory, train on eBay material, or place orders. Future optional modules require separate decisions and source permission.
+## Data-access law
 
-## Separate factual and legal assessments
+The project's **actual operations** determine which third-party API restrictions are applicable. Do not interpret terms against an invented resale service or third-party retailer. Conversely, neither a new description nor this document itself grants permission to access a restricted provider. Evaluate each source's terms honestly against bargain indexing and eBay historical price comparison, including operator/recipient facts where genuinely requested by a contract.
 
-This constitution specifies **what the software does**; it does not make a factual claim about who ultimately operates it or what they do with its recommendations. Any actual provider application, API request, agreement or approval must accurately describe the intended use and operator in that context. Rewording a project's constitution does **not** override third-party API agreements, transform affiliate advertising APIs into general shopping research feeds, or confer eBay sold-data rights.
+## Acceptance
 
-Treat source access as a distinct research problem with outcomes ALLOWED_SCOPED / NOT_CLEARLY_AUTHORIZED / REQUIRES_PERMISSION / PROHIBITED / UNKNOWN, tied to exact clauses and use. Preserve the strongest reasonable interpretation for purchase-oriented use without pretending unanswered licensing questions are settled.
-
-## Inheritance and migration
-
-Earlier materials use retail arbitrage, resale-profit, seller, and human purchase/realized profit as the primary project's purpose. Preserve those as the **historical motivating request** and optional application/use cases, while correcting current terminal-function language to the neutral bargain index above.
-
-The PROGRAMMA must register this revision as the effective user instruction, update its terminal map, checkpoint and worker/HQ grok, and distinguish unreconciled historical terms from current requirements. This is not an authorization to erase evidence, change a provider's terms, acquire credentials, subscribe to paid sources, or merge drafts.
-
-**Terminal acceptance:** A reproducible, well-evidenced current-bargain index relating accurate retail purchase offers to usable eBay price-pattern evidence and clearly identified conditions for purchasing; daily 0–10 output and truthful unknowns. Actual purchases or resales are *not* prerequisites for constitutive product completion.
+A real current retailer purchase offer, matched to reliable regular historical eBay completed-sale prices for the same item, with an accurately calculated and substantial gap, reproducible purchase conditions and a truthful user-facing index entry. A daily 0–10 pipeline with reliable source update behavior is the terminal product. No subsequent economic transaction or realized income is necessary.

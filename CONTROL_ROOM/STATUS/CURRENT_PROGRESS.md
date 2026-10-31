@@ -1,20 +1,39 @@
-# CURRENT — ArbiScout HQ snapshot
-**As of 2026-10-31 · control branch, pending review.** Revalidate GitHub before reuse.
+# CURRENT — ArbiScout HQ checkpoint
 
-**Product (user revision 2026-10-31):** broad internet-retailer bargain index → exact current purchase offer → historical eBay price-pattern comparison → explicit conditional purchase signals → daily **0–10** source-backed candidates. Optional import landed-cost analysis and optional downstream resale economics do **not** define the product.
+**2026-10-31 · proposed control-room draft PR #2. Verify current GitHub refs before reusing this snapshot.**
 
-**DONE:** initialized repository; source-free core PR #1 drafted with earlier passing CI; initial vendor/legal research; whole-program control room, 39-node work registry, 16-source evidence registry proposed.
+## Exact sole function
 
-**NOT DONE:** any live authorized retailer adapter, eBay completed-sales feed, supplier shipping system, real report, scheduled run, optional outcome calibration, independently accepted merged core.
+Broadly index genuine retailer bargains with offered purchase prices **maximally below regular historical eBay completed-sale prices of the identical goods**, with statistically defensible reference price, gap magnitude, purchase conditions, stock/region and observation dates. Publish 0–10 evidence-backed candidates. No future sale transaction or seller financial modeling.
 
-**BLOCKERS:** rights/completeness of completed-sales history; permitted retailer/search provider use; authentic fee/tax/stock examples; seller account permissions not independently checked.
+## Programma operational records
 
-**LARGEST PRODUCTIVE MOVE:** source/right reconnaissance for eBay historical price patterns and Google Shopping aggregation, in parallel with review of PR #1 as an **optional financial-analysis component** and an end-to-end synthetic bargain-index report consumer. Don't block productive code solely because real permissions remain open.
+- **39 task nodes:** [generated task table](../PROGRAMMA/TASKS_TABLE.md) · [canonical work JSON](../PROGRAMMA/01_WORK_REGISTRY.json).
+- **95 question/substantiation nodes:** [generated question table](../PROGRAMMA/QUESTIONS_TABLE.md) · [seven canonical JSON files](../PROGRAMMA/QUESTIONS/).
+- **16 source evidence records:** [source registry](../PROGRAMMA/02_SOURCE_REGISTRY.json).
+- [Compact dependency-priority dashboard](../PROGRAMMA/DASHBOARD.md), [task CSV](../PROGRAMMA/TASKS_TABLE.csv), [question CSV](../PROGRAMMA/QUESTIONS_TABLE.csv).
+- All generated views are derived from the JSON records, not manually authoritative tables.
 
-**FLIGHT:** FLIGHT-001 data source evidence; FLIGHT-002 draft source-free core adoption. Both **PROPOSED_NOT_DISPATCHED**. No known active workers.
+## DONE
 
-**DELTA:** user-specified purpose revision: no designated beneficiary, seller operation or resale-business identity. Programma and source/work ledgers being reconciled accordingly; no branch merged and no live market-data acquisition performed.
+Governing purpose clarified; entire research-question inventory captured with dependencies, priority, status and proof-task links; task graph distinguishes ALL-OF hard prerequisites, ANY-OF retailer sources, related work and live evidence gates; Markdown/CSV dashboards and structural validation implemented on proposal branch.
 
-**Reference:** [PROGRAMMA](../PROGRAMMA/00_PROGRAMMA_ARBISCOUT.md) · [work graph](../PROGRAMMA/01_WORK_REGISTRY.json) · [source register](../PROGRAMMA/02_SOURCE_REGISTRY.json) · [CI](https://github.com/maidiu/arbiscout/actions) · [PR #1](https://github.com/maidiu/arbiscout/pull/1).
+## NOT DONE
 
-This is a dated projection, not a substitute for checking exact latest GitHub SHAs.
+No current real eBay history feed, no independently verified live retailer offer+historical-eBay pair, no working price-gap calculator/ranker, no daily real purchase-research index. Earlier [PR #1](https://github.com/maidiu/arbiscout/pull/1) is a separate historical source-free draft: **its former scoring is nonconforming and not adopted**. Only neutral exact identity utilities merit review.
+
+## BLOCKERS / ROOTS
+
+`ARB-010` historic eBay actual completed-sale price access and samples; `ARB-020` retailer bargain-feed landscape, with **any one suitable retailer sufficient** for a pilot; `ARB-030` exact identity; `ARB-031` total retailer purchase offer schema; `ARB-040/051` actual-sales historical reference and robust normal-price estimator; `ARB-050/060` observed price-gap computation/rank; `ARB-071` source-linked report.
+
+## LARGEST PRODUCTIVE MOVE
+
+Parallel evidence reconnaissance for historical eBay prices and one retailer offer feed, plus source-free exact-item/robust-reference/gap-calculator and report development. Never block independent research on a parent task merely because an umbrella workstream is incomplete.
+
+## FLIGHTS (all prepared, **none dispatched**)
+
+FLIGHT-001 eBay historical-price research; FLIGHT-002 first retailer source and broad discovery; FLIGHT-003 producer→gap→report implementation.
+
+## DELTA
+
+95-question research/substantiation graph created and linked to 39 corrected development tasks. No live authorization, real price comparison or merge has been claimed. Generated PROGRAMMA checks run in GitHub Actions and must be rechecked at exact current SHA.

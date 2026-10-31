@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "snapshot_date": "2026-10-31",
   "repository": "maidiu/arbiscout",
   "branch": "agent/arbiscout-programma-control-room-r1",
@@ -33,32 +33,38 @@
   "tasks": [
     {
       "id": "ARB-000",
-      "title": "Terminal: general retailer bargain index informed by eBay history",
+      "title": "Retailer purchase-research index",
       "level": "L0",
       "stage": "O",
       "status": "SCOPED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Broadly index retailer purchase bargains under source-backed conditions informed by comparable historical eBay price patterns; produce a daily 0–10 shortlist, not a resale business service",
-      "first_consumer": "daily bargain index reader; no designated beneficiary",
-      "acceptance": "Reproducible retailer offers + matching eBay price-pattern evidence + explicit purchasing conditions + honest unknown/zero outputs",
+      "required_capability": "Index retailer offers purchased at prices maximally below regular comparable eBay historical completed-sale price patterns; publish 0–10 reliable gap opportunities",
+      "first_consumer": "Daily purchase-research index",
+      "acceptance": "Verified retailer price + exact-product comparable eBay regular-sale baseline + maximized gap + 0–10 qualifying reports",
       "blocker": "No authorized and complete end-to-end live evidence yet",
       "next_action": "Prove first authorized offer-to-historical-price-pattern-to-bargain-condition-to-report vertical slice",
       "implementation_ref": null,
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-010",
-      "title": "Historical eBay price-pattern source access",
+      "title": "eBay completed-sale historical price access",
       "level": "L1",
       "stage": "R",
-      "status": "BLOCKED_EXTERNAL",
+      "status": "IN_PROGRESS",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Establish accessible and permitted historical eBay price signals, distinguishing completed sales from active asking prices",
+      "required_capability": "Determine available, legitimate, complete historical eBay completed-sale prices for regular same-item sale patterns",
       "first_consumer": "bargain price-pattern comparison",
       "acceptance": "Contract position and source ID",
       "blocker": "No licensed automated sold-data feed verified",
@@ -70,7 +76,13 @@
       ],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P0",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-011",
@@ -79,9 +91,7 @@
       "stage": "R",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-010"
-      ],
+      "dependencies": [],
       "required_capability": "Inspect available human Seller Hub product-price history tools without inferring a programmatic API grant",
       "first_consumer": "price-pattern source reconnaissance",
       "acceptance": "No-secret account screenshot/functional matrix",
@@ -93,19 +103,25 @@
       ],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-010"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-012",
-      "title": "Developer production/app eligibility audit",
+      "title": "eBay Developer capabilities and approvals",
       "level": "L2",
       "stage": "R",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-010"
-      ],
-      "required_capability": "Determine actual application and current production approvals, not generic developer banner",
+      "dependencies": [],
+      "required_capability": "Explore relevant developer APIs, scopes, approval processes and access; no existing app assumed",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Account audit with redacted status",
       "blocker": "No application verified",
@@ -114,19 +130,25 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-010"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-013",
-      "title": "Licensed alternate sold data providers",
+      "title": "Alternative eBay historical-price data sources",
       "level": "L2",
       "stage": "R",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-010"
-      ],
-      "required_capability": "Evaluate independent licensed price-history/transaction-evidence providers for historical eBay comparison",
+      "dependencies": [],
+      "required_capability": "Review independent providers of eBay historical completed-sale prices, coverage, terms and costs",
       "first_consumer": "price-pattern adapter",
       "acceptance": "Vendor comparative legal/quality/cost matrix",
       "blocker": "Source unknown",
@@ -135,17 +157,25 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-010"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-020",
-      "title": "Major-retailer bargain indexing and source access",
+      "title": "Retailer bargain-source landscape",
       "level": "L1",
       "stage": "R",
       "status": "IN_PROGRESS",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Catalog retailer bargain-discovery feeds/APIs and evaluate actual purchase-support purpose, fields, access rights, freshness and integration cost",
+      "required_capability": "Find major retailers and price/discount feeds that support actual purchase-offer discovery, including stock, region and refresh",
       "first_consumer": "broad retailer bargain index",
       "acceptance": "Cross-retailer feasibility matrix",
       "blocker": "Use rights unsettled",
@@ -154,7 +184,13 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P0",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-021",
@@ -163,9 +199,7 @@
       "stage": "R",
       "status": "SOURCE_DOCUMENTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-020"
-      ],
+      "dependencies": [],
       "required_capability": "Distinguish merchant-account competition reports from open Shopping discovery",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Public documentation verdict",
@@ -177,7 +211,15 @@
       ],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-022",
@@ -186,9 +228,7 @@
       "stage": "R",
       "status": "SOURCE_DOCUMENTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-020"
-      ],
+      "dependencies": [],
       "required_capability": "Compare SerpApi and DataForSEO data fields, terms, unit price, geographic accuracy",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Procurement and contract decision",
@@ -201,19 +241,25 @@
       ],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-023",
-      "title": "Best Buy direct catalog and legal scope",
+      "title": "Best Buy purchase-offer API and price fields",
       "level": "L2",
       "stage": "R",
       "status": "SOURCE_DOCUMENTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-020"
-      ],
-      "required_capability": "Check rich Product/Buying Options APIs and license application to self-resale research",
+      "dependencies": [],
+      "required_capability": "Test Best Buy product catalog, on-sale/open-box price, availability, checkout and developer-data suitability for purchase research",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Permitted-use decision and example schema",
       "blocker": "Permission not established",
@@ -225,19 +271,25 @@
       ],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-024",
-      "title": "Walmart affiliate/deal feeds",
+      "title": "Walmart purchase-offer sources",
       "level": "L2",
       "stage": "R",
       "status": "SOURCE_DOCUMENTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-020"
-      ],
-      "required_capability": "Separate advertising-only I/O rights from individual physical resale",
+      "dependencies": [],
+      "required_capability": "Discover Walmart current sale/clearance prices, store region and feed types; distinguish ordinary purchase links from affiliate feeds",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Approved-use and feed eligibility decision",
       "blocker": "Affiliate-only default",
@@ -249,19 +301,25 @@
       ],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-025",
-      "title": "Target product data availability",
+      "title": "Target purchase-offer sources",
       "level": "L2",
       "stage": "R",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-020"
-      ],
-      "required_capability": "Find sanctioned Target feed/API or licensed aggregator",
+      "dependencies": [],
+      "required_capability": "Identify Target price/discount and stock feed access, including affiliate/aggregator alternatives",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Documentation and permitted-use audit",
       "blocker": "No general public price API verified",
@@ -270,19 +328,25 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-026",
-      "title": "Home Depot / Impact product feeds",
+      "title": "Home Depot and cross-retailer feeds",
       "level": "L2",
       "stage": "R",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-020"
-      ],
-      "required_capability": "Evaluate affiliate feed, updated price, resale-research permission",
+      "dependencies": [],
+      "required_capability": "Inspect Home Depot/Impact or other authorized feeds, product/sale fields, currency, availability and rights",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Source/contract and sample availability",
       "blocker": "No grant verified",
@@ -291,19 +355,25 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-027",
-      "title": "AliExpress import-source APIs",
+      "title": "AliExpress import purchase offers",
       "level": "L2",
       "stage": "R",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-020"
-      ],
-      "required_capability": "Assess product and shipping feeds, seller reliability and authorized commercial use",
+      "dependencies": [],
+      "required_capability": "Assess direct purchase price, freight, delivery time, item specifications and permitted source APIs",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Supplier-source feasibility report",
       "blocker": "No usable live grant verified",
@@ -312,19 +382,25 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-028",
-      "title": "Alibaba wholesale procurement feeds",
+      "title": "Alibaba bulk purchase offers",
       "level": "L2",
       "stage": "R",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-020"
-      ],
-      "required_capability": "Evaluate supplier catalogs, MOQ, lead times, price tiers and access conditions",
+      "dependencies": [],
+      "required_capability": "Assess available price tiers, MOQ, shipping, delivery time and product-comparison identity",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Wholesale adapter feasibility",
       "blocker": "No qualified supplier/permit",
@@ -333,40 +409,69 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-029",
-      "title": "Retailer bargain-detection yield pilot",
+      "title": "One-source-first price-gap yield pilot",
       "level": "L2",
       "stage": "O",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
-        "ARB-022",
-        "ARB-023",
-        "ARB-024"
+        "ARB-030",
+        "ARB-040"
       ],
-      "required_capability": "Measure source coverage, exact matches, source freshness, false markdowns and genuine price-pattern-qualified bargains by retailer/category",
+      "required_capability": "Use ANY one qualified retailer feed to study discovery volume, exact eBay matches, confirmed discounts and size/quality of below-eBay price gaps",
       "first_consumer": "source selection and index quality",
       "acceptance": "Small statistically modest logged pilot",
-      "blocker": "No legal live data inputs",
+      "blocker": "No real source pair yet; mock source pilot does not need external approval",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": null,
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "dependency_groups": [
+        {
+          "type": "ANY_OF",
+          "task_ids": [
+            "ARB-022",
+            "ARB-023",
+            "ARB-024",
+            "ARB-025",
+            "ARB-026"
+          ],
+          "reason": "Retailers are exploratory examples. One verified route is sufficient; other sources may be added."
+        }
+      ],
+      "related_tasks": [
+        "ARB-020",
+        "ARB-032",
+        "ARB-033"
+      ],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-030",
-      "title": "Exact product identity/variant engine",
+      "title": "Exact product identity and variant engine",
       "level": "L1",
       "stage": "I",
       "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Conservatively identify exact brand/GTIN/model/variant/bundle/condition for retail offer and eBay historical comparator",
+      "required_capability": "Conservatively match identical GTIN, model, condition, size, color, quantity and bundle for retailer and eBay history",
       "first_consumer": "price-pattern comparison",
       "acceptance": "Tests and first actual consumer",
       "blocker": "Draft PR #1 only",
@@ -375,19 +480,23 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P0",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-031",
-      "title": "Retail offer normalization and provenance",
+      "title": "Purchase-offer schema and provenance",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-020"
-      ],
-      "required_capability": "Provider-neutral price, vendor, location, stock, condition and timestamp schema",
+      "dependencies": [],
+      "required_capability": "Represent retailer merchant, purchase price, delivery cost, item identity, location, stock, timestamp and URL",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Validated adapter contract",
       "blocker": "No feed selected",
@@ -396,11 +505,17 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P0",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-032",
-      "title": "Actual markdown and price-history logic",
+      "title": "True markdown detection",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -408,7 +523,7 @@
       "dependencies": [
         "ARB-031"
       ],
-      "required_capability": "Verify historic offer baselines rather than trusting advertising badge",
+      "required_capability": "Verify genuine retailer discounts against prior observed retailer purchase prices, not badges",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Historical price guardrails",
       "blocker": "Permitted retention undecided",
@@ -417,11 +532,17 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-033",
-      "title": "Region/stock/checkout verification",
+      "title": "Actual purchasability and checkout price",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -429,7 +550,7 @@
       "dependencies": [
         "ARB-031"
       ],
-      "required_capability": "Check local vs online, source seller, inventory and final checkout prices",
+      "required_capability": "Verify inventory, retailer identity, region, total purchase price, coupons, delivery and offer expiry",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Negative examples and verified offer",
       "blocker": "Live authorized source missing",
@@ -438,20 +559,25 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-040",
-      "title": "Historical eBay price-pattern comparator adapter",
+      "title": "Historical completed-sale price adapter",
       "level": "L1",
       "stage": "I",
-      "status": "BLOCKED_EXTERNAL",
+      "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
-        "ARB-010",
         "ARB-030"
       ],
-      "required_capability": "Ingest permissible source-identified historical eBay selling price patterns, exact comparable observations, windows and uncertainty",
+      "required_capability": "Build source-neutral historical comparable eBay sale-price observations with identity, dates, sample size, coverage, price and provenance",
       "first_consumer": "bargain purchase-condition evaluator",
       "acceptance": "Source-backed test plus hold behavior",
       "blocker": "Rights/access missing",
@@ -460,11 +586,17 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P0",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-041",
-      "title": "Optional historical sales frequency and competition context",
+      "title": "Historical sale frequency and price dispersion",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -472,7 +604,7 @@
       "dependencies": [
         "ARB-040"
       ],
-      "required_capability": "When actually supported by evidence, contextualize eBay price patterns with sales frequency and active competition, without substituting asking prices",
+      "required_capability": "Estimate actual-sale frequency, price distribution regularity, outliers and confidence when source data supports it",
       "first_consumer": "bargain evaluator optional evidence weighting",
       "acceptance": "Quantified uncertainty and negative controls",
       "blocker": "No validated sold data",
@@ -481,61 +613,78 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-050",
-      "title": "Optional fee/profit/ROI evaluation module",
+      "title": "Current retailer versus eBay regular-price gap math",
       "level": "L1",
-      "stage": "I",
-      "status": "PROTOTYPE_DRAFT",
-      "owner": "HQ_UNASSIGNED",
-      "dependencies": [],
-      "required_capability": "Preserve deterministic fee-aware economic evaluation as an optional downstream module; no mandatory claim about future resale",
-      "first_consumer": "optional downstream purchase economics",
-      "acceptance": "Exact benchmark tests",
-      "blocker": "Draft PR #1 not merged",
-      "next_action": "Audit exact PR #1 SHA, execution, adversarial tests, integration",
-      "implementation_ref": "https://github.com/maidiu/arbiscout/pull/1",
-      "source_ids": [],
-      "engineering_verdict": "NOT_REVIEWED",
-      "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
-    },
-    {
-      "id": "ARB-051",
-      "title": "Optional seller-specific resale fee/tax calculations",
-      "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
-        "ARB-050"
+        "ARB-031",
+        "ARB-051"
       ],
-      "required_capability": "If a downstream finance analysis is enabled, validate exact category-specific costs rather than universal default fees",
-      "first_consumer": "optional economic module",
-      "acceptance": "Real listing fee sample and calculation tests",
-      "blocker": "Seller category economics unknown",
-      "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
+      "required_capability": "Compute absolute, percent and conservative-quantile shortfall of current delivered retailer purchase price beneath regular comparable historical eBay sale-price baseline",
+      "first_consumer": "optional downstream purchase economics",
+      "acceptance": "Exact benchmark tests",
+      "blocker": "Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification",
+      "next_action": "Build and independently test new price-gap capability",
       "implementation_ref": null,
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P0",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
-      "id": "ARB-052",
-      "title": "Optional import total purchase cost and lead-time model",
+      "id": "ARB-051",
+      "title": "Robust normal eBay sale-price baseline",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
-        "ARB-027",
-        "ARB-028",
-        "ARB-050"
+        "ARB-040"
       ],
-      "required_capability": "For imports compare actual delivered acquisition costs, MOQ, duties, currency and delivery uncertainty; no requirement to estimate resale ROI",
+      "required_capability": "Determine defensible median, dispersion, relevant window, minimum samples, exclusion/outlier treatment and uncertainty of historical completed sales",
+      "first_consumer": "optional economic module",
+      "acceptance": "Real listing fee sample and calculation tests",
+      "blocker": "Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification",
+      "next_action": "Build and independently test new price-gap capability",
+      "implementation_ref": null,
+      "source_ids": [],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P0",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
+    },
+    {
+      "id": "ARB-052",
+      "title": "Import total purchase cost and delivery",
+      "level": "L2",
+      "stage": "I",
+      "status": "NOT_STARTED",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [],
+      "required_capability": "Calculate total acquisition cost, shipping, currency, minimum order, import charges and delivery-time uncertainty",
       "first_consumer": "optional import bargain index",
       "acceptance": "Worked import cost ledger",
       "blocker": "Suppliers not validated",
@@ -544,11 +693,20 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-027",
+        "ARB-028"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-053",
-      "title": "Restricted goods, counterfeits and sourcing risks",
+      "title": "Item legitimacy, quality and condition exclusions",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -556,7 +714,7 @@
       "dependencies": [
         "ARB-030"
       ],
-      "required_capability": "Exclude prohibited/unsafe goods, uncertain warranties and resale restrictions",
+      "required_capability": "Reject counterfeits, restricted goods, misdescribed or noncomparable condition/quantity",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "Machine-readable negative gates",
       "blocker": "Categories unselected",
@@ -565,33 +723,46 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-060",
-      "title": "Bargain purchase-condition qualification and scoring",
+      "title": "Rank maximum reliable below-eBay purchase-price gaps",
       "level": "L1",
       "stage": "I",
-      "status": "PROTOTYPE_DRAFT",
+      "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
         "ARB-030",
-        "ARB-040"
+        "ARB-033",
+        "ARB-050"
       ],
-      "required_capability": "Score current retailer purchase offers versus documented historical eBay price patterns, with exact matching and freshness; rank 0–10 without invented values",
+      "required_capability": "Prioritize available, exactly matched retailer products by maximum substantiated shortfall below normal completed eBay sale-price patterns; reject false/stale gaps; 0–10 results",
       "first_consumer": "daily bargain index",
       "acceptance": "Negative fixture tests",
-      "blocker": "Draft PR #1 only",
-      "next_action": "Audit exact PR #1 SHA, execution, adversarial tests, integration",
-      "implementation_ref": "https://github.com/maidiu/arbiscout/pull/1",
+      "blocker": "Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification",
+      "next_action": "Build and independently test new price-gap capability",
+      "implementation_ref": null,
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P0",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-061",
-      "title": "Evidence provenance and lifecycle",
+      "title": "Price/stock source lineage and expiry",
       "level": "L2",
       "stage": "O",
       "status": "NOT_STARTED",
@@ -600,7 +771,7 @@
         "ARB-031",
         "ARB-040"
       ],
-      "required_capability": "Maintain source references and time validity of offer and historical comparison observations, subject to permitted retention",
+      "required_capability": "Trace full retailer offer and eBay comparison sources, dates, historical windows and legal retention",
       "first_consumer": "auditable bargain report",
       "acceptance": "Trace each report number to permitted source",
       "blocker": "Live retention/permission TBD",
@@ -609,11 +780,17 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-070",
-      "title": "Daily retailer bargain indexing schedule",
+      "title": "Daily retailer purchase-price-gap indexing",
       "level": "L1",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -623,7 +800,7 @@
         "ARB-040",
         "ARB-060"
       ],
-      "required_capability": "Schedule permitted retailer/market-price observations with retries, rate budgets, timestamps and idempotence",
+      "required_capability": "Refresh permitted retail offers and eBay historical patterns and output deduplicated current gap ranking",
       "first_consumer": "daily bargain index",
       "acceptance": "Scheduled reproducible report receipt",
       "blocker": "No live source",
@@ -632,11 +809,17 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-071",
-      "title": "Bargain index report and purchasing conditions",
+      "title": "Source-linked purchase research report",
       "level": "L1",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -644,7 +827,7 @@
       "dependencies": [
         "ARB-060"
       ],
-      "required_capability": "Render source-linked retailer prices and eBay historical price patterns, comparisons, uncertainties, conditions, and 0–10 candidates; no required downstream resale",
+      "required_capability": "Show retailer link and price, ordinary eBay completed-sale price distribution, absolute and percentage gap, comparison confidence, terms, region and timestamp",
       "first_consumer": "actual human reader of indexed bargains",
       "acceptance": "Readable first real decision consumer",
       "blocker": "No live pilot",
@@ -653,19 +836,25 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-072",
-      "title": "Optional user-entered purchase or outcome ledger",
+      "title": "Observed price and verification log",
       "level": "L1",
       "stage": "I",
       "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
-        "ARB-050"
+        "ARB-031"
       ],
-      "required_capability": "If requested, compare subsequent purchases and prices against original index signals without making resale a constitutional necessity",
+      "required_capability": "Preserve retailer price snapshots and later independent verifications of bargain and availability accuracy",
       "first_consumer": "optional index-performance calibration",
       "acceptance": "Prediction vs realization pairs",
       "blocker": "No transactions used",
@@ -674,11 +863,17 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-073",
-      "title": "Index precision and source-quality calibration",
+      "title": "Purchase-price-gap accuracy calibration",
       "level": "L2",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -687,16 +882,22 @@
         "ARB-029",
         "ARB-071"
       ],
-      "required_capability": "Measure indexed offer freshness, price accuracy, match quality and signal reliability; optional later purchase/sale returns can supplement but are not required",
+      "required_capability": "Compare offer prices, eBay reference stability and match accuracy over time; quantify false alerts",
       "first_consumer": "source quality and bargain-evaluation improvement",
       "acceptance": "Backtested calibration report",
-      "blocker": "Needs actual purchases and time",
+      "blocker": "Actual repeated observations not yet available",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": null,
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-080",
@@ -715,50 +916,63 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-081",
-      "title": "Source-free CI and regression gates",
+      "title": "Purchase-gap tests and CI",
       "level": "L2",
       "stage": "I",
-      "status": "PROTOTYPE_DRAFT",
+      "status": "NOT_STARTED",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
-      "required_capability": "Run independent tests at exact source SHA; no synthetic-to-live promotion",
+      "required_capability": "Adversarial tests for valid comparable sale patterns, identity, gap magnitude, stale prices, no-data and empty lists",
       "first_consumer": "linked downstream task or first vertical slice",
       "acceptance": "CI evidence and adversarial tests",
-      "blocker": "PR #1 checks passed at prior SHA only",
-      "next_action": "Audit exact PR #1 SHA, execution, adversarial tests, integration",
-      "implementation_ref": "https://github.com/maidiu/arbiscout/pull/1",
+      "blocker": "Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification",
+      "next_action": "Build and independently test new price-gap capability",
+      "implementation_ref": null,
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-082",
-      "title": "Review/reconcile existing PR #1",
+      "title": "Review legacy PR #1; salvage neutral matching only",
       "level": "L2",
       "stage": "R",
       "status": "REVIEW_PENDING",
       "owner": "HQ_UNASSIGNED",
-      "dependencies": [
-        "ARB-030",
-        "ARB-050",
-        "ARB-060",
-        "ARB-081"
-      ],
-      "required_capability": "Independently assess prior fee/ROI and exact-match PR #1; preserve identity components and isolate finance as optional",
+      "dependencies": [],
+      "required_capability": "Audit unmerged earlier prototype: identify reusable exact-product comparison utilities and refuse unrelated price-scoring implementation",
       "first_consumer": "current bargain-index core",
       "acceptance": "Independent verdict and approved merge",
-      "blocker": "PR #1 draft/unmerged",
+      "blocker": "Legacy draft PR #1 is not suitable for wholesale merge under new constitution",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": "https://github.com/maidiu/arbiscout/pull/1",
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-083",
@@ -777,7 +991,13 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-084",
@@ -798,24 +1018,32 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-090",
-      "title": "First real source-backed bargain-index report",
+      "title": "First real purchase-gap report",
       "level": "L0",
       "stage": "I",
       "status": "BLOCKED_EXTERNAL",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
+        "ARB-030",
         "ARB-031",
         "ARB-033",
         "ARB-040",
+        "ARB-050",
+        "ARB-051",
         "ARB-060",
-        "ARB-071",
-        "ARB-080"
+        "ARB-071"
       ],
-      "required_capability": "Show one authorized retailer offer → exact item → real eBay price-pattern evidence → explicit purchase condition → traceable human-readable index record",
+      "required_capability": "Demonstrate one available retailer purchase offer significantly below regular eBay completed-sale price reference for same item, with exact source links and purchase conditions",
       "first_consumer": "bargain-index report reader",
       "acceptance": "First genuine permitted source-pair and exact time-bound comparison with human-readable qualified condition; independent checks",
       "blocker": "Retail and eBay historical signal permissions and access still unresolved",
@@ -824,11 +1052,29 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "dependency_groups": [
+        {
+          "type": "ANY_OF",
+          "task_ids": [
+            "ARB-022",
+            "ARB-023",
+            "ARB-024",
+            "ARB-025",
+            "ARB-026"
+          ],
+          "reason": "Any one suitable retailer route; examples not exhaustive"
+        }
+      ],
+      "related_tasks": [],
+      "priority": "P0",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-091",
-      "title": "Daily automated bargain-index pilot",
+      "title": "Daily 0–10 current purchase-gap index",
       "level": "L0",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -838,7 +1084,7 @@
         "ARB-070",
         "ARB-061"
       ],
-      "required_capability": "Produce zero-to-ten evidence-qualified retailer bargains from authorized sources daily with data freshness and failure accounting",
+      "required_capability": "Publish daily qualified retailer bargains ranked by largest credible retailer-versus-eBay historical regular-price gap",
       "first_consumer": "daily reader",
       "acceptance": "30-day observed pilot report",
       "blocker": "Depends on real vertical slice",
@@ -847,11 +1093,17 @@
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     },
     {
       "id": "ARB-092",
-      "title": "Validated index accuracy and practical utility",
+      "title": "Measured bargain-index reliability",
       "level": "L0",
       "stage": "I",
       "status": "NOT_STARTED",
@@ -860,19 +1112,32 @@
         "ARB-091",
         "ARB-073"
       ],
-      "required_capability": "Measure observed later price/availability accuracy, false positives and source yield; optional transaction outcomes not constitutive",
+      "required_capability": "Measure offer/stock persistence, item match correctness and eBay price-reference stability across multiple days",
       "first_consumer": "index confidence and source prioritization",
       "acceptance": "Evidence-based index precision/freshness tracking across days, not mandatory sale or resale records",
-      "blocker": "No live purchases",
+      "blocker": "Needs multi-day real price observations",
       "next_action": "Select coherent qualified worker or resolve source/authorization boundary",
       "implementation_ref": null,
       "source_ids": [],
       "engineering_verdict": "NOT_REVIEWED",
       "economic_evidence_verdict": "NOT_REVIEWED",
-      "authorization_verdict": "NOT_REVIEWED"
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "",
+      "finding_refs": [],
+      "last_verified_at": null
     }
   ],
   "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
-  "current_mandate": "Generic internet retailer bargain index informed by eBay historical price patterns; no necessary beneficiary or resale-business identity",
-  "history_note": "Source-free PR #1 built in earlier resale-arbitrage framing. Finance/profit functions are optional; exact-product matching is reusable subject to review."
+  "current_mandate": "Sole product: retailer purchase research by maximally reliable observed gap under regular comparable completed eBay sale-price patterns.",
+  "history_note": "Source-free PR #1 built in earlier resale-arbitrage framing. Finance/profit functions are optional; exact-product matching is reusable subject to review.",
+  "dependency_semantics": {
+    "dependencies": "ALL_OF hard prerequisites",
+    "dependency_groups": "ANY_OF qualifying alternate source; one suffices",
+    "related_tasks": "not a hard prerequisite"
+  },
+  "legacy_pr1_status": "DRAFT_LEGACY_SCORING_NOT_ADOPTED__IDENTITY_UTILITIES_REVIEW_ONLY",
+  "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS"
 }

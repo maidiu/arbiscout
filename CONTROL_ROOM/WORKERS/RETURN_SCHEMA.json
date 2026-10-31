@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "description": "Template only; do not mistake a commission proposal or worker self-report for independent acceptance",
+  "worker_id": "ARB-WORK-PLACEHOLDER",
+  "task_ids": [
+    "ARB-000"
+  ],
+  "status": "PREPARED_NOT_LAUNCHED",
+  "agent_type": "UNSET",
+  "intelligence_level": "I2",
+  "execution_surface": "S0",
+  "user_selected_editor_model_pair": "UNSET",
+  "host_quota": "UNKNOWN",
+  "repository": "maidiu/arbiscout",
+  "startup_branch": "UNSET",
+  "startup_sha": "UNSET",
+  "final_branch": "UNSET",
+  "final_sha": "UNSET",
+  "objective": "UNSET",
+  "claimed_changes": [],
+  "source_references": [],
+  "reproducible_commands": [],
+  "test_results": [],
+  "consumer_proof": {
+    "status": "NOT_TESTED",
+    "reference": null
+  },
+  "permission_findings": {
+    "status": "UNREVIEWED",
+    "references": []
+  },
+  "economic_evidence": {
+    "status": "UNREVIEWED",
+    "references": []
+  },
+  "engineering": {
+    "status": "UNREVIEWED",
+    "references": []
+  },
+  "known_failures": [],
+  "remaining": [],
+  "why_not": [],
+  "post_return_independent_reviewer": "NOT_ASSIGNED",
+  "acceptance": {
+    "engineering": "NOT_REVIEWED",
+    "economic_evidence": "NOT_REVIEWED",
+    "authorization_privacy": "NOT_REVIEWED"
+  },
+  "integration_status": "NOT_INTEGRATED",
+  "user_dispatch_confirmed": false
+}

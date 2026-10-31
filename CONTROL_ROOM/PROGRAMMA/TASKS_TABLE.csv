@@ -1,0 +1,41 @@
+Task,Priority,State,Actual capability,Hard prerequisites (ALL),Alternative source (ANY),Live evidence gates,"Related, nonblocking",Downstream reach,Finding / blocker,References
+ARB-000,P1,SCOPED,Retailer purchase-research index,—,—,—,—,0,No authorized and complete end-to-end live evidence yet,—
+ARB-010,P0,IN_PROGRESS,eBay completed-sale historical price access,—,—,—,—,14,No licensed automated sold-data feed verified,"[E-EBAY-LICENSE](https://developer.ebay.com/join/api-license-agreement), [E-EBAY-INSIGHTS](https://developer.ebay.com/api-docs/buy/marketplace-insights/static/overview.html)"
+ARB-011,P1,NOT_STARTED,Seller Hub Product Research functional audit,—,—,—,ARB-010,0,Account entitlement not independently checked,[E-EBAY-RESEARCH](https://www.ebay.com/sh/research)
+ARB-012,P1,NOT_STARTED,eBay Developer capabilities and approvals,—,—,—,ARB-010,0,No application verified,—
+ARB-013,P1,NOT_STARTED,Alternative eBay historical-price data sources,—,—,—,ARB-010,0,Source unknown,—
+ARB-020,P0,IN_PROGRESS,Retailer bargain-source landscape,—,—,—,—,0,Use rights unsettled,—
+ARB-021,P1,SOURCE_DOCUMENTED,Google Merchant API fit,—,—,—,ARB-020,0,Merchant eligibility varies,[E-GOOGLE-MERCHANT](https://developers.google.com/merchant/api/guides/reports/understand-the-market)
+ARB-022,P0,SOURCE_DOCUMENTED,Google Shopping search aggregators,—,—,—,ARB-020,6,No vendor subscribed or tested,"[E-SERPAPI](https://serpapi.com/google-shopping-api), [E-DATAFORSEO](https://docs.dataforseo.com/v3/merchant-google-overview/)"
+ARB-023,P0,SOURCE_DOCUMENTED,Best Buy purchase-offer API and price fields,—,—,—,ARB-020,6,Permission not established,"[E-BESTBUY-API](https://developer.bestbuy.com/apis), [E-BESTBUY-TERMS](https://developer.bestbuy.com/legal)"
+ARB-024,P0,SOURCE_DOCUMENTED,Walmart purchase-offer sources,—,—,—,ARB-020,6,Affiliate-only default,"[E-WALMART-IO](https://walmart.io/termsandcondition), [E-WALMART-AFF](https://affiliates.walmart.com/terms)"
+ARB-025,P1,NOT_STARTED,Target purchase-offer sources,—,—,—,ARB-020,6,No general public price API verified,—
+ARB-026,P1,NOT_STARTED,Home Depot and cross-retailer feeds,—,—,—,ARB-020,6,No grant verified,—
+ARB-027,P1,NOT_STARTED,AliExpress import purchase offers,—,—,—,ARB-020,0,No usable live grant verified,—
+ARB-028,P1,NOT_STARTED,Alibaba bulk purchase offers,—,—,—,ARB-020,0,No qualified supplier/permit,—
+ARB-029,P1,NOT_STARTED,One-source-first price-gap yield pilot,"ARB-030, ARB-040","ANY_OF(ARB-022, ARB-023, ARB-024, ARB-025, ARB-026)",ARB-010,"ARB-020, ARB-032, ARB-033",3,Needs one verified feed and comparable historical eBay price evidence for real assessment,—
+ARB-030,P0,PROTOTYPE_DRAFT,Exact product identity and variant engine,—,—,—,—,15,Draft PR #1 only,—
+ARB-031,P0,NOT_STARTED,Purchase-offer schema and provenance,—,—,—,—,12,No feed selected,—
+ARB-032,P1,NOT_STARTED,True markdown detection,ARB-031,—,—,—,0,Permitted retention undecided,—
+ARB-033,P0,NOT_STARTED,Actual purchasability and checkout price,ARB-031,—,—,—,7,Live authorized source missing,—
+ARB-040,P0,NOT_STARTED,Historical completed-sale price adapter,ARB-030,—,ARB-010,—,13,Rights/access missing,—
+ARB-041,P1,NOT_STARTED,Historical sale frequency and price dispersion,ARB-040,—,—,—,0,No validated sold data,—
+ARB-050,P0,NOT_STARTED,Current retailer versus eBay regular-price gap math,"ARB-031, ARB-051",—,—,—,7,Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification,—
+ARB-051,P0,NOT_STARTED,Robust normal eBay sale-price baseline,ARB-040,—,—,—,8,Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification,—
+ARB-052,P1,NOT_STARTED,Import total purchase cost and delivery,—,—,—,"ARB-027, ARB-028",0,Suppliers not validated,—
+ARB-053,P1,NOT_STARTED,"Item legitimacy, quality and condition exclusions",ARB-030,—,—,—,0,Categories unselected,—
+ARB-060,P0,NOT_STARTED,Rank maximum reliable below-eBay purchase-price gaps,"ARB-030, ARB-033, ARB-050",—,—,—,6,Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification,—
+ARB-061,P1,NOT_STARTED,Price/stock source lineage and expiry,"ARB-031, ARB-040",—,—,—,2,Live retention/permission TBD,—
+ARB-070,P1,NOT_STARTED,Daily retailer purchase-price-gap indexing,"ARB-031, ARB-040, ARB-060",—,ARB-010,—,2,No live source,—
+ARB-071,P0,NOT_STARTED,Source-linked purchase research report,ARB-060,—,—,—,4,No live pilot,—
+ARB-072,P1,NOT_STARTED,Observed price and verification log,ARB-031,—,—,—,0,No transactions used,—
+ARB-073,P1,NOT_STARTED,Purchase-price-gap accuracy calibration,"ARB-029, ARB-071",—,—,—,1,Actual repeated observations not yet available,—
+ARB-080,P1,IN_PROGRESS,Security/privacy/vendor access design,—,—,—,—,0,Repository currently public,—
+ARB-081,P1,NOT_STARTED,Purchase-gap tests and CI,—,—,—,—,0,Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification,—
+ARB-082,P1,REVIEW_PENDING,Review legacy PR #1; salvage neutral matching only,—,—,—,—,0,Legacy draft PR #1 is not suitable for wholesale merge under new constitution,—
+ARB-083,P1,PROPOSED,Adopt control room on main,—,—,—,—,1,This branch is draft,—
+ARB-084,P1,PROPOSED,Rabochii and HQ return lifecycle,ARB-083,—,—,—,0,No worker launched,—
+ARB-090,P0,BLOCKED_EXTERNAL,First real purchase-gap report,"ARB-030, ARB-031, ARB-033, ARB-040, ARB-050, ARB-051, ARB-060, ARB-071","ANY_OF(ARB-022, ARB-023, ARB-024, ARB-025, ARB-026)",ARB-010,—,2,Retail and eBay historical signal permissions and access still unresolved,—
+ARB-091,P1,NOT_STARTED,Daily 0–10 current purchase-gap index,"ARB-090, ARB-070, ARB-061",—,ARB-010,—,1,Depends on real vertical slice,—
+ARB-092,P1,NOT_STARTED,Measured bargain-index reliability,"ARB-091, ARB-073",—,—,—,0,Needs multi-day real price observations,—
+ARB-035,P0,PROPOSED,"Cross-market buyer culture, turnover, ticket size and discount-attention asymmetry",—,—,"ARB-010, ARB-029","ARB-010, ARB-020, ARB-029, ARB-030, ARB-041, ARB-051, ARB-060",0,"eBay official focus category and consumer survey data show specialist marketplace presence but NOT the specific retailer-to-eBay price gaps, audience discount-site non-overlap or sector profitability; commission prepared, no completed independent return","[E-EBAY-RESEARCH](https://www.ebay.com/sh/research), [E-EBAY-2025-10K](https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/ebay-20251231.htm), [E-EBAY-RECOMMERCE-2026](https://www.ebayinc.com/recommerce-report/)"

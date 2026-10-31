@@ -1,0 +1,286 @@
+{
+  "schema_version": "1.0",
+  "section": "F",
+  "title": "Existing code and operational engineering",
+  "items": [
+    {
+      "id": "Q074",
+      "question": "Which existing GitHub repositories already implement useful retailer discovery, exact item matching, historical eBay price comparison, or indexing?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-082",
+        "ARB-020"
+      ],
+      "source_ids": [
+        "E-PR1"
+      ],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q075",
+      "question": "Which identified codepaths actually execute, which are fixtures, and which claims depend on unavailable or deprecated APIs?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q074"
+      ],
+      "related_tasks": [
+        "ARB-082"
+      ],
+      "source_ids": [],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q076",
+      "question": "Which public repositories have genuine reuse licenses and which are merely source-visible without a license?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q074"
+      ],
+      "related_tasks": [
+        "ARB-082"
+      ],
+      "source_ids": [],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q077",
+      "question": "Which apparent eBay historical-price integrations invoke discontinued Finding API or restricted Marketplace Insights functionality?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q074",
+        "Q025"
+      ],
+      "related_tasks": [
+        "ARB-082",
+        "ARB-013"
+      ],
+      "source_ids": [
+        "E-EBAY-INSIGHTS"
+      ],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q078",
+      "question": "Which upstream source-neutral functions can be reused, adapted or rejected for a purchase-price-gap index?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q075",
+        "Q076"
+      ],
+      "related_tasks": [
+        "ARB-082"
+      ],
+      "source_ids": [],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q079",
+      "question": "What exactly passes in draft PR #1, and which neutral identity code survives a purchase-research-only review?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-082",
+        "ARB-030"
+      ],
+      "source_ids": [
+        "E-PR1"
+      ],
+      "findings": "Source-free PR #1 and control-room governance are known, but no independently adopted purchase-gap implementation exists.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-082"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q080",
+      "question": "Should daily indexing run via GitHub Actions, a private runner, scheduled cloud job or another service; at what cost and with what reliability?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-070"
+      ],
+      "source_ids": [],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-070"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q081",
+      "question": "Are any push webhooks actually necessary for the purchase-research index, or is scheduled polling sufficient?",
+      "status": "OPEN",
+      "priority": "P3",
+      "hard_dependencies": [
+        "Q080"
+      ],
+      "related_tasks": [
+        "ARB-070"
+      ],
+      "source_ids": [],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q082",
+      "question": "What output mode is simplest and most useful: email, Google Sheet, GitHub artifact, dashboard, notification or combination?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-071"
+      ],
+      "source_ids": [],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-071"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q083",
+      "question": "What is the full per-day/provider/compute cost per verified worthwhile price gap and acceptable budget for discovery?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q046",
+        "Q033"
+      ],
+      "related_tasks": [
+        "ARB-020",
+        "ARB-029",
+        "ARB-070"
+      ],
+      "source_ids": [],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-029"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q084",
+      "question": "What secret handling, authorized account use, provenance retention, private/public separation and least privilege does the index require?",
+      "status": "PARTIAL",
+      "priority": "P0",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-080"
+      ],
+      "source_ids": [],
+      "findings": "Source-free PR #1 and control-room governance are known, but no independently adopted purchase-gap implementation exists.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q085",
+      "question": "How should indexing survive source outages, quotas, duplicate offers, API failures, stale prices and partial daily runs?",
+      "status": "OPEN",
+      "priority": "P1",
+      "hard_dependencies": [
+        "Q080"
+      ],
+      "related_tasks": [
+        "ARB-070",
+        "ARB-081"
+      ],
+      "source_ids": [],
+      "findings": "Code, hosting, licensing or reliability decision not substantiated with source-level tests and costs.",
+      "evidence_refs": [],
+      "acceptance": "Record actual source/licensing/runtime/CI proof, limitations, consumer fit and explicit decision.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-070"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    }
+  ]
+}

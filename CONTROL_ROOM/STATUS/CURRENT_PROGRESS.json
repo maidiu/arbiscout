@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-10-31",
+  "repository": "maidiu/arbiscout",
+  "visibility": "PUBLIC_AT_CHECK",
+  "source_of_truth": "GitHub main + adopted PRs; draft branch facts are qualified proposals",
+  "main_seed_sha": "2c2f3d64ce49edc3073c7feb094bf803ee84d371",
+  "control_room": {
+    "branch": "agent/arbiscout-programma-control-room-r1",
+    "review_status": "DRAFT_UNMERGED",
+    "hq_appointed": false
+  },
+  "implementation": {
+    "draft_pr": "https://github.com/maidiu/arbiscout/pull/1",
+    "prior_observed_head_sha": "799747af35bf154fcf23c994604230c945fe0161",
+    "status": "DRAFT_PR1_IS_LEGACY_INCOMPATIBLE_SCORING; NO ADOPTED_CURRENT_PURCHASE_GAP_ENGINE",
+    "live_marketplace_integrations": 0,
+    "real_scored_opportunities": 0
+  },
+  "terminal_state": "SOURCEFREE_PROGRAMMA_READY__NO_LIVE_PURCHASE_GAP_INDEX",
+  "external_blockers": [
+    "No verified permitted live source of actual regular same-item eBay completed-sale price observations",
+    "No checked full live retailer purchase offer and eBay price historical pair",
+    "No end-to-end actual acquired data → price-gap index report"
+  ],
+  "done": [
+    "User product constitution corrected to exclusive purchase-price-gap research (draft PR #2)",
+    "39 tasks linked by ALL-OF prerequisites, ANY-OF retailer-source gates, nonblocking related work and separate live evidence gates",
+    "95 audited questions in seven canonical JSON registers, each with priority, question prerequisites, related tasks, proof-task requirements, findings and references",
+    "Generated Markdown dashboard, task and question tables, and CSV exports, with a deterministic renderer and CI check",
+    "Source-free tests/CI pass at latest checked head (recheck current exact SHA)"
+  ],
+  "remaining": [
+    "Review and merge PROGRAMMA branch with exact current CI and independent source checks",
+    "Qualify regular completed eBay price observation source and any one retailer purchase offer source",
+    "Build normal historical-price estimator, numeric purchase-price gap and reliable maximum-gap ranker",
+    "Produce first real eBay-pattern-conditioned retailer bargain and daily 0–10 index",
+    "Measure later observation accuracy and update provider/evidence findings"
+  ],
+  "largest_productive_move": "Parallel: (1) historical eBay completed-sale source/rights feasibility; (2) any one real retailer discount feed and full purchase price; (3) sourcefree comparable-price estimator and purchase-gap evaluator; (4) source-linked 0–10 report.",
+  "flights": [
+    {
+      "id": "FLIGHT-001",
+      "scope": "P0 external evidence: eBay regular completed-sale price feed, coverage, terms",
+      "status": "COMMISSION_PREPARED_NOT_DISPATCHED",
+      "task_ids": [
+        "ARB-010",
+        "ARB-011",
+        "ARB-013"
+      ]
+    },
+    {
+      "id": "FLIGHT-002",
+      "scope": "P0 retailer discovery: validate one source before broadening candidates",
+      "status": "COMMISSION_PREPARED_NOT_DISPATCHED",
+      "task_ids": [
+        "ARB-020",
+        "ARB-022",
+        "ARB-023",
+        "ARB-029"
+      ]
+    },
+    {
+      "id": "FLIGHT-003",
+      "scope": "P0 sourcefree gap-comparison pipeline and report, without later-sale code",
+      "status": "PROPOSED_NOT_DISPATCHED",
+      "task_ids": [
+        "ARB-030",
+        "ARB-031",
+        "ARB-040",
+        "ARB-051",
+        "ARB-050",
+        "ARB-060",
+        "ARB-071"
+      ]
+    },
+    {
+      "id": "FLIGHT-004",
+      "scope": "Cross-market eBay buyer culture x retailer discount awareness, high-ticket opportunity density and demand turnover",
+      "status": "COMMISSION_PREPARED_NOT_DISPATCHED",
+      "task_ids": [
+        "ARB-035"
+      ]
+    }
+  ],
+  "active_workers": [],
+  "delta": "Added independent ARB-035 scientific reconnaissance commission and issue #7 on market-culture/attention separation, high-ticket demand regularity and retailer markdown cadence. Added Q096-Q112 and two primary eBay source records. Documentary research may proceed despite unavailable ARB-010/020 results; empirical sector winner remains unproved. No new separate agent launched.",
+  "current_mandate": "Purchase research ONLY: find major-retailer acquisition prices maximally below regular comparable eBay historical completed-sale price patterns; calculate and rank observed gaps.",
+  "constitution_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
+  "programma": {
+    "task_count": 40,
+    "question_count": 112,
+    "source_count": 18,
+    "json_is_authoritative": true,
+    "generated_dashboard": "CONTROL_ROOM/PROGRAMMA/DASHBOARD.md",
+    "task_table": "CONTROL_ROOM/PROGRAMMA/TASKS_TABLE.md",
+    "question_table": "CONTROL_ROOM/PROGRAMMA/QUESTIONS_TABLE.md",
+    "generated_csv": [
+      "CONTROL_ROOM/PROGRAMMA/TASKS_TABLE.csv",
+      "CONTROL_ROOM/PROGRAMMA/QUESTIONS_TABLE.csv"
+    ],
+    "render_command": "python scripts/render_programma.py --write",
+    "validation_command": "python scripts/render_programma.py --check"
+  },
+  "issued_commissions": [
+    {
+      "id": "ARB-010-EBAY-SOLD-HISTORY-RECON-R1",
+      "status": "PREPARED_NOT_LAUNCHED",
+      "issue": "https://github.com/maidiu/arbiscout/issues/3",
+      "prompt": "CONTROL_ROOM/WORKERS/COMMISSIONS/ARB-010-EXHAUSTIVE-EBAY-SOLD-HISTORY-RECON-R1.md",
+      "evidence_seed": "CONTROL_ROOM/PROGRAMMA/ARB010_FIRST_PASS_PUBLIC_EVIDENCE_SEED.md",
+      "worker_runtime": null,
+      "assigned_model": null,
+      "actual_started_at": null,
+      "review_status": "NOT_DISPATCHED"
+    },
+    {
+      "id": "ARB-020-RETAILER-SOURCE-UNIVERSE-R1",
+      "status": "PREPARED_NOT_LAUNCHED",
+      "issue": "https://github.com/maidiu/arbiscout/issues/5",
+      "prompt": "CONTROL_ROOM/WORKERS/COMMISSIONS/ARB-020-EXHAUSTIVE-RETAILER-SOURCE-PRIORITIZATION-R1.md",
+      "worker_runtime": null,
+      "assigned_model": null,
+      "actual_started_at": null,
+      "review_status": "NOT_DISPATCHED",
+      "target_task_ids": [
+        "ARB-020",
+        "ARB-021",
+        "ARB-022",
+        "ARB-023",
+        "ARB-024",
+        "ARB-025",
+        "ARB-026",
+        "ARB-027",
+        "ARB-028",
+        "ARB-029"
+      ]
+    },
+    {
+      "id": "ARB-035-CROSSMARKET-CULTURE-R1",
+      "status": "PREPARED_NOT_LAUNCHED",
+      "issue": "https://github.com/maidiu/arbiscout/issues/7",
+      "prompt": "CONTROL_ROOM/WORKERS/COMMISSIONS/ARB-035-CROSS-MARKET-CULTURE-AND-DEMAND-ASYMMETRY-R1.md",
+      "target_task_ids": [
+        "ARB-035"
+      ],
+      "target_questions": "Q096-Q112",
+      "worker_runtime": null,
+      "assigned_model": null,
+      "actual_started_at": null,
+      "review_status": "NOT_DISPATCHED"
+    }
+  ],
+  "observed_external_return_refs": [
+    {
+      "url": "https://github.com/maidiu/arbiscout/pull/4",
+      "subject": "ARB-010 historical eBay data reconnaissance",
+      "state": "OPEN_DRAFT_UNADJUDICATED",
+      "checked": "2026-10-31",
+      "note": "Observed separate return branch/PR, not assessed or integrated here"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.0",
+  "section": "D",
+  "title": "Import purchase-offer discovery",
+  "items": [
+    {
+      "id": "Q053",
+      "question": "What actual AliExpress/Alibaba APIs and catalog/shipping fields are accessible under their product-data terms?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [],
+      "related_tasks": [
+        "ARB-027",
+        "ARB-028"
+      ],
+      "source_ids": [
+        "E-ALIEXPRESS",
+        "E-ALIBABA"
+      ],
+      "findings": "Import expansion unverified; no live supplier offer, source permit or shipping-time sample is established.",
+      "evidence_refs": [],
+      "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q054",
+      "question": "How are import purchase prices, quantity tiers, MOQ, freight, currency and import charges reflected in the real acquisition cost?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q053"
+      ],
+      "related_tasks": [
+        "ARB-052"
+      ],
+      "source_ids": [
+        "E-ALIEXPRESS",
+        "E-ALIBABA"
+      ],
+      "findings": "Import expansion unverified; no live supplier offer, source permit or shipping-time sample is established.",
+      "evidence_refs": [],
+      "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-052"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q055",
+      "question": "How can an import offer's delivery time and uncertainty be verified independently of a seller's advertised estimate?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q053"
+      ],
+      "related_tasks": [
+        "ARB-052"
+      ],
+      "source_ids": [],
+      "findings": "Import expansion unverified; no live supplier offer, source permit or shipping-time sample is established.",
+      "evidence_refs": [],
+      "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-052"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q056",
+      "question": "How do imported goods vary in quality, supplier authenticity, counterfeiting and product/regulatory compliance?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q053"
+      ],
+      "related_tasks": [
+        "ARB-053"
+      ],
+      "source_ids": [],
+      "findings": "Import expansion unverified; no live supplier offer, source permit or shipping-time sample is established.",
+      "evidence_refs": [],
+      "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q057",
+      "question": "What evidence identifies the exact same import product as an eBay historical item when UPC and branded models are unavailable?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q053"
+      ],
+      "related_tasks": [
+        "ARB-030"
+      ],
+      "source_ids": [],
+      "findings": "Import expansion unverified; no live supplier offer, source permit or shipping-time sample is established.",
+      "evidence_refs": [],
+      "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-030"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q058",
+      "question": "How should optional imports be compared by actual purchase cost, delivered quantity and time, without presuming later sale operations?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q054",
+        "Q055"
+      ],
+      "related_tasks": [
+        "ARB-052",
+        "ARB-060"
+      ],
+      "source_ids": [],
+      "findings": "Import expansion unverified; no live supplier offer, source permit or shipping-time sample is established.",
+      "evidence_refs": [],
+      "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    },
+    {
+      "id": "Q059",
+      "question": "Which import purchase offers have a genuinely large, provable price gap to regular same-item eBay completed-sale patterns?",
+      "status": "OPEN",
+      "priority": "P2",
+      "hard_dependencies": [
+        "Q054",
+        "Q057",
+        "Q062"
+      ],
+      "related_tasks": [
+        "ARB-027",
+        "ARB-028",
+        "ARB-029"
+      ],
+      "source_ids": [],
+      "findings": "Import expansion unverified; no live supplier offer, source permit or shipping-time sample is established.",
+      "evidence_refs": [],
+      "acceptance": "Identified import offer, delivery/quantity evidence, exact comparable identity and source-linked acquisition price.",
+      "owner": "UNASSIGNED",
+      "last_verified_at": null,
+      "proof_requires_tasks": [
+        "ARB-052",
+        "ARB-040"
+      ],
+      "proof_dependency_meaning": "Operational evidence gate, not a prerequisite for doing documentary research",
+      "finding_updated_at": null,
+      "criterion_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md"
+    }
+  ]
+}

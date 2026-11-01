@@ -1,0 +1,176 @@
+{
+  "schema_version": "arbiscout-hq-return-intake-v1",
+  "as_of": "2026-10-31",
+  "status": "DRAFT_HQ_INTAKE_NOT_CANONICAL_ADOPTION",
+  "repo": "maidiu/arbiscout",
+  "receiving_control": {
+    "branch": "agent/arbiscout-programma-control-room-r1",
+    "head_at_intake": "92478568744bffcdd1061447f5d4027d4a0da735",
+    "main": "2c2f3d64ce49edc3073c7feb094bf803ee84d371",
+    "merged": false
+  },
+  "returns": [
+    {
+      "id": "ARB-010-R1",
+      "task": "ARB-010",
+      "pr": 4,
+      "url": "https://github.com/maidiu/arbiscout/pull/4",
+      "branch": "agent/arb010-ebay-history-exhaustive-r1",
+      "frozen_sha": "d27d18e4cae518ebca07e1b2f722ff4b8204047c",
+      "type": "ORIGINAL_RESEARCH",
+      "files": 8,
+      "status": "RETURNED_UNADJUDICATED",
+      "documentary_claims": [
+        "29 access routes examined",
+        "Product Research official 3-year human reference",
+        "CompsAPI and CompSniper conditional API trial candidates",
+        "Typed actual-paid vs asking-price source contract"
+      ],
+      "executed_live_calls": 0,
+      "benchmarks": {
+        "planned": 30,
+        "executed": 0
+      },
+      "accepted_live_ebay_source": false,
+      "authorizations": false,
+      "hostile_review": "NOT_COMPLETED",
+      "blocking": [
+        "No demonstrated actual paid Best Offer data fidelity from new provider",
+        "No clear eBay upstream permission/use grant",
+        "No tested dataset coverage/completeness",
+        "No manual Product Research oracle comparison"
+      ],
+      "proposed_disposition": "HOLD_SOURCE_ADOPTION_REVIEW_DOCUMENTARY"
+    },
+    {
+      "id": "ARB-020-R1",
+      "task": "ARB-020",
+      "pr": 6,
+      "url": "https://github.com/maidiu/arbiscout/pull/6",
+      "branch": "agent/arb020-retailer-source-universe-r1",
+      "frozen_sha": "ee2a82a71dbf20ab3f46255fab5a1989796c70bb",
+      "type": "ORIGINAL_RESEARCH",
+      "files": 10,
+      "status": "RETURNED_UNADJUDICATED",
+      "documentary_claims": [
+        "45 retailer candidates",
+        "32 feed/network/source candidates",
+        "22 category x source hypotheses",
+        "Unknown-deal enumeration distinct from keyword-only comparison",
+        "ShopSavvy/Best Buy/merchant feeds first experiments conditional"
+      ],
+      "executed_live_calls": 0,
+      "benchmarks": {
+        "planned": 100,
+        "executed": 0
+      },
+      "accepted_live_retail_source": false,
+      "authorizations": false,
+      "hostile_review": "NOT_COMPLETED",
+      "blocking": [
+        "No actual provider signup/key/contract",
+        "No direct retailer checkout and stock confirmation",
+        "No measured feed completeness or actual SKU coverage",
+        "No observed eBay-qualified bargain yield"
+      ],
+      "proposed_disposition": "HOLD_SOURCE_ADOPTION_REVIEW_DOCUMENTARY"
+    },
+    {
+      "id": "ARB-035-R1",
+      "task": "ARB-035",
+      "pr": 8,
+      "url": "https://github.com/maidiu/arbiscout/pull/8",
+      "branch": "agent/arb035-crossmarket-demand-asymmetry-r1",
+      "frozen_sha": "af342308e26b886a838dbd474cb1442a0ad943ae",
+      "type": "ORIGINAL_SCIENTIFIC_RESEARCH",
+      "files": 10,
+      "status": "RETURNED_UNADJUDICATED",
+      "documentary_claims": [
+        "26 sector hypotheses, 38 generic strata, 26 unmeasured cells",
+        "H1-H10 competing mechanisms of observed price gaps",
+        "Sample design and preliminary price reference metrics"
+      ],
+      "actual_verified_skus": 0,
+      "actual_joint_market_observations": 0,
+      "actual_attention_measurements": 0,
+      "hostile_review": "RETURNED_HOLD_PR10",
+      "blocking": [
+        "Mixed purposive sampling lacks a common population denominator",
+        "38 generic item strata do not identify specific SKUs",
+        "26 invalid source-status enum values",
+        "No real paid completed eBay sales, retailer checkout or sector difference",
+        "Small n and unproven p25 quantile coverage",
+        "Some source-date and legal-jurisdiction errors"
+      ],
+      "proposed_disposition": "HOLD_EMPIRICAL_ADOPTION_CONDITIONAL_DOCUMENTARY_REPAIR"
+    },
+    {
+      "id": "ARB-035-R-HOSTILE-R1",
+      "task": "ARB-035",
+      "pr": 10,
+      "url": "https://github.com/maidiu/arbiscout/pull/10",
+      "branch": "review/arb035-crossmarket-hostile-i3-r1",
+      "frozen_sha": "ca2194f79e0f535f059c35b74e34a890730a397b",
+      "type": "INDEPENDENT_HOSTILE_REVIEW",
+      "files": 7,
+      "status": "REVIEW_RETURNED_UNADJUDICATED",
+      "target_original_sha": "af342308e26b886a838dbd474cb1442a0ad943ae",
+      "verdicts": {
+        "engineering": "CONDITIONAL_DOCUMENTARY_NOT_S2_TESTED",
+        "economic_science": "HOLD",
+        "authorization_privacy": "HOLD"
+      },
+      "p0_findings": [
+        "Mixed 40 curated 20 catalog 20 ebay_reverse 20 deliberate discount sampling invalid pooled 100-offer denominator",
+        "38/38 sku candidate strata lack SKU/GTIN/MPN",
+        "26/26 retail_evidence_status values outside declared vocabulary"
+      ],
+      "p1_findings": [
+        "Wrong eBay agreement jurisdiction",
+        "NBER working paper versus journal year and citation tag",
+        "Mutable example price page timestamps",
+        "Unvalidated small sample p25 CI",
+        "Historical 90-day median lag not proof buyer inattention"
+      ],
+      "proposed_disposition": "USE_AS_HOSTILE_REPAIR_GUIDANCE_NOT_AUTOMATIC_ADOPTION"
+    }
+  ],
+  "recommended_flights": [
+    {
+      "priority": "P0",
+      "role": "INDEPENDENT_ARBITER_ARB010",
+      "target_pr": 4,
+      "action": "Review paid-price/source rights/cost/eBay oracle/29-route matrix",
+      "status": "PROPOSED_NOT_DISPATCHED"
+    },
+    {
+      "priority": "P0",
+      "role": "INDEPENDENT_ARBITER_ARB020",
+      "target_pr": 6,
+      "action": "Review 45/32 source rights, unknown-deal recall, data fields and costs",
+      "status": "PROPOSED_NOT_DISPATCHED"
+    },
+    {
+      "priority": "P0",
+      "role": "BOUNDED_REPAIR_ARB035",
+      "target_pr": 8,
+      "action": "Apply PR10's P0 defects plus P1 primary source corrections; subsequent independent verification",
+      "status": "PROPOSED_NOT_DISPATCHED"
+    },
+    {
+      "priority": "P0_PARALLEL",
+      "role": "SOURCEFREE_PURCHASE_INDEX_ENGINEER",
+      "action": "Develop ARB-030/031/040/051/050/060/071 typed pipelines on synthetic data",
+      "status": "PROPOSED_NOT_DISPATCHED"
+    },
+    {
+      "priority": "EXTERNAL",
+      "role": "USER_AUTHORIZED_VENDOR_ACCESS_OWNER",
+      "action": "Seek permission, official human oracle and bounded paid/vendor samples, no spending before approval",
+      "status": "UNAUTHORIZED"
+    }
+  ],
+  "scope_note": "The only app function is retailer purchase price vs regular past same-SKU eBay actual completed-sale price gap; buyer cultural hypotheses are not required index acceptance. The project is not a future transaction or seller fees model.",
+  "questions_effect": "Q096-Q112 empirically OPEN; Q013-Q030 and Q031-Q052 documentary research progress only. No canonical JSON statuses promoted by this intake.",
+  "no_merge_claim": true
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "arb020-f2-ten-routes-evidence-v2",
+  "observed_date": "2026-11-01",
+  "parent_f2_sha": "fd5f41af8633c73fe54fdc1519657ba793a20212",
+  "source_claims": "Named merchant-first-party or named CJ advertiser only; not equivalent to signed publisher license",
+  "total": 10,
+  "live_authorized_sources": 0,
+  "actual_live_feed_files_tested": 0,
+  "retailer_to_ebay_paid_sales_comparisons": 0,
+  "notes": [
+    "Adorama excluded from ten due official affiliate agreement Section 7 price-display prohibition and Section 8 licensed materials caching restriction pending binding-term version clarification",
+    "evo excluded pending US-specific clarification of software-promotion prohibition in affiliate terms",
+    "Ten documented investigative paths, not ten certified $0 providers; eBay historical sales source not resolved"
+  ],
+  "rows": [
+    {
+      "rank": 1,
+      "retailer": "Woot",
+      "documented_source_class": "DIRECT_KEYED_API",
+      "primary_url": "https://developer.woot.com/",
+      "enumeration_proof": "CATEGORY_LIVE_DEALS_CLEARANCE",
+      "access_state": "KEY_REQUIRED_NOT_GRANTED",
+      "recurring_fee_evidence": "NO_RECURRING_FEE_ADVERTISED_NOT_CONTRACT_CONFIRMED",
+      "right_to_index": "PRICE_INDEX_RETENTION_RIGHTS_HOLD",
+      "quality_and_coverage_limit": "FULL_FEED_FIELDS_GTIN_AND_CHECKOUT_UNTESTED",
+      "test_priority": "P0"
+    },
+    {
+      "rank": 2,
+      "retailer": "REI / REI Outlet",
+      "documented_source_class": "IMPACT_PUBLISHER_FEED",
+      "primary_url": "https://www.rei.com/help/articles?a=Become-an-REI-Co-op-Affiliate---id--SnToxfZRRI-o6A7lkasoWA&ctgry=troubleUsingCoupon&hc=couponsPromotions",
+      "enumeration_proof": "DAILY_IN_STOCK_PRODUCT_FEED",
+      "access_state": "BRAND_APPROVAL_NOT_GRANTED",
+      "recurring_fee_evidence": "NO_PUBLISHED_PUBLISHER_DATA_SUBSCRIPTION_FEE",
+      "right_to_index": "PURPOSE_AND_RETENTION_RIGHTS_HOLD",
+      "quality_and_coverage_limit": "OUTLET_ROWS_UNPROVED_IDENTIFIERS_UNTESTED",
+      "test_priority": "P0"
+    },
+    {
+      "rank": 3,
+      "retailer": "Backcountry",
+      "documented_source_class": "MERCHANT_PUBLISHER_PRODUCT_FEED",
+      "primary_url": "https://www.backcountry.com/info/affiliate-program",
+      "enumeration_proof": "ADVERTISED_PRODUCT_FEED_35000_PLUS_GEAR_APPAREL_SKUS",
+      "access_state": "MANUAL_EDITORIAL_PARTNER_APPROVAL",
+      "recurring_fee_evidence": "NO_RECURRING_FEE_ADVERTISED_NOT_SIGNED",
+      "right_to_index": "PURPOSE_AND_RETENTION_RIGHTS_HOLD",
+      "quality_and_coverage_limit": "ACTUAL_SALE_CLEARANCE_FEED_AND_IDS_UNTESTED",
+      "test_priority": "P0"
+    },
+    {
+      "rank": 4,
+      "retailer": "DICK'S Sporting Goods",
+      "documented_source_class": "CJ_ADVERTISER_FEED",
+      "primary_url": "https://public.cj.com/signup/publisher?advertiserId=7345657",
+      "enumeration_proof": "NAMED_DATAFEED_CJ",
+      "access_state": "CJ_ACCOUNT_AND_ADVERTISER_APPROVAL_NOT_GRANTED",
+      "recurring_fee_evidence": "CJ_PUBLISHER_FREE_TO_JOIN",
+      "right_to_index": "PRICE_INDEX_RETENTION_RIGHTS_HOLD",
+      "quality_and_coverage_limit": "CLEARANCE_FEED_GTIN_ZIP_STOCK_UNVERIFIED",
+      "test_priority": "P0"
+    },
+    {
+      "rank": 5,
+      "retailer": "Acme Tools",
+      "documented_source_class": "IMPACT_FED_DEV_DOC",
+      "primary_url": "https://dev.acmetools.com/affiliates.html",
+      "enumeration_proof": "FULL_CATALOG_FEED_PROMISED_ON_OLDER_DEV_PAGE",
+      "access_state": "CURRENT_MERCHANT_APPROVAL_NOT_VERIFIED",
+      "recurring_fee_evidence": "NO_RECURRING_FEE_ADVERTISED",
+      "right_to_index": "PURPOSE_AND_RETENTION_RIGHTS_HOLD",
+      "quality_and_coverage_limit": "CURRENT_ACTIVE_FEED_AND_TOOL_BUNDLE_IDS_UNVERIFIED",
+      "test_priority": "P1"
+    },
+    {
+      "rank": 6,
+      "retailer": "Advance Auto Parts",
+      "documented_source_class": "IMPACT_PRODUCT_CATALOG",
+      "primary_url": "https://shop.advanceautoparts.com/o/affiliates",
+      "enumeration_proof": "MERCHANT_CATALOG_FOR_CUSTOM_FUNCTIONALITY",
+      "access_state": "BRAND_APPROVAL_NOT_GRANTED",
+      "recurring_fee_evidence": "FREE_AFFILIATE_APPLICATION_NOT_LICENSE",
+      "right_to_index": "PURPOSE_AND_RETENTION_RIGHTS_HOLD",
+      "quality_and_coverage_limit": "REGIONAL_CLEARANCE_FITMENT_PRICE_UNTESTED",
+      "test_priority": "P1"
+    },
+    {
+      "rank": 7,
+      "retailer": "Fanatics",
+      "documented_source_class": "IMPACT_PRODUCT_FEEDS",
+      "primary_url": "https://www.fanatics.com/affiliates/x-51",
+      "enumeration_proof": "NAMED_MERCHANT_PRODUCT_FEEDS",
+      "access_state": "BRAND_APPROVAL_NOT_GRANTED",
+      "recurring_fee_evidence": "NO_RECURRING_FEE_ADVERTISED",
+      "right_to_index": "PURPOSE_AND_RETENTION_RIGHTS_HOLD",
+      "quality_and_coverage_limit": "SPORT_EDITION_SIZE_CLEARANCE_FEED_UNTESTED",
+      "test_priority": "P1"
+    },
+    {
+      "rank": 8,
+      "retailer": "Disney Store",
+      "documented_source_class": "CJ_ADVERTISER_FEED",
+      "primary_url": "https://public.cj.com/signup/publisher?advertiserId=2609575",
+      "enumeration_proof": "NAMED_PRODUCT_FEED_AVAILABLE",
+      "access_state": "CJ_AND_BRAND_APPROVAL_NOT_GRANTED",
+      "recurring_fee_evidence": "CJ_PUBLISHER_FREE_TO_JOIN",
+      "right_to_index": "PURPOSE_AND_RETENTION_RIGHTS_HOLD",
+      "quality_and_coverage_limit": "COLLECTIBLE_EDITION_STOCK_CLEARANCE_UNTESTED",
+      "test_priority": "P2"
+    },
+    {
+      "rank": 9,
+      "retailer": "PUMA US",
+      "documented_source_class": "CJ_DAILY_FEED",
+      "primary_url": "https://public.cj.com/signup/publisher?advertiserId=5881002",
+      "enumeration_proof": "DAILY_PRODUCT_FEED_AVAILABLE",
+      "access_state": "CJ_AND_BRAND_APPROVAL_NOT_GRANTED",
+      "recurring_fee_evidence": "CJ_PUBLISHER_FREE_TO_JOIN",
+      "right_to_index": "PURPOSE_AND_RETENTION_RIGHTS_HOLD",
+      "quality_and_coverage_limit": "VARIANT_GTIN_PROMOTION_FEED_UNTESTED",
+      "test_priority": "P2"
+    },
+    {
+      "rank": 10,
+      "retailer": "Meh",
+      "documented_source_class": "PUBLIC_NO_KEY_JSON_RSS",
+      "primary_url": "https://meh.com/support",
+      "enumeration_proof": "ONE_DAILY_DEAL_PUBLIC_JSON_AND_RSS",
+      "access_state": "NO_KEY_FOR_PUBLIC_FEED",
+      "recurring_fee_evidence": "NO_PROVIDER_FEE_ON_PUBLIC_FEED",
+      "right_to_index": "INDEPENDENT_COMMERCIAL_STORAGE_INDEX_USE_NOT_VERIFIED",
+      "quality_and_coverage_limit": "ONLY_DAILY_DEAL_NOT_WIDE_CATALOG_CONDITION_UNTESTED",
+      "test_priority": "P2_TECH_CANARY"
+    }
+  ]
+}

@@ -1,0 +1,713 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARB-010/040 eBay completed-sale observation intake contract R1",
+  "version": "1.0.0-proposed",
+  "status": "SOURCEFREE_SPEC_NOT_LIVE_VALIDATED",
+  "observed_at": "2026-10-31",
+  "governing_product": "Exact-retailer-purchase-price comparison with past completed eBay transaction prices; no future-sale/fees/ROI model",
+  "interface": {
+    "producer": "authorized provider adapter or explicitly permitted human Product Research oracle",
+    "first_consumers": [
+      "ARB-040 verified historical sale store",
+      "ARB-051 normal historical sale price baseline"
+    ],
+    "serialization": "JSON records with separate observation, query, provenance and coverage envelope",
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "observation_type",
+        "observation_id",
+        "source",
+        "query",
+        "sale",
+        "product",
+        "price",
+        "coverage",
+        "permission",
+        "recorded_at"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "arb040.sale-observation.v1"
+        },
+        "observation_type": {
+          "enum": [
+            "ATOMIC_SALE",
+            "LISTING_SALES_AGGREGATE",
+            "OFFICIAL_AGGREGATE_SUMMARY",
+            "UNRESOLVED_LISTING"
+          ]
+        },
+        "observation_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "source-specific stable record ID or namespaced synthetic opaque reference for manually observed summary"
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "provider_id",
+            "data_url",
+            "retrieved_at",
+            "source_system",
+            "raw_record_hash",
+            "api_or_ui_version"
+          ],
+          "properties": {
+            "provider_id": {
+              "type": "string"
+            },
+            "data_url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "retrieved_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "source_system": {
+              "enum": [
+                "OFFICIAL_UI",
+                "OFFICIAL_API",
+                "THIRD_PARTY_API",
+                "LICENSED_ARCHIVE",
+                "MANUAL_ORACLE"
+              ]
+            },
+            "raw_record_hash": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "api_or_ui_version": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "license_reference": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "response_status": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "response_cache_age_seconds": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            }
+          }
+        },
+        "query": {
+          "type": "object",
+          "required": [
+            "query_text",
+            "date_window_start",
+            "date_window_end",
+            "marketplace_id",
+            "currency"
+          ],
+          "properties": {
+            "query_text": {
+              "type": "string"
+            },
+            "gtin_query": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "condition_query": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "date_window_start": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "date_window_end": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "marketplace_id": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            },
+            "page": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "cursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "query_hash": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "filter_flags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "sale": {
+          "type": "object",
+          "required": [
+            "sold_at",
+            "sale_event_id",
+            "listing_id",
+            "completed_status",
+            "quantity_sold",
+            "item_location"
+          ],
+          "properties": {
+            "sold_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time",
+              "description": "null where aggregate/undisclosed, never synthesize listing date"
+            },
+            "sale_event_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "optional source transaction ID; cannot assume listing id uniquely identifies sale"
+            },
+            "listing_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "completed_status": {
+              "enum": [
+                "COMPLETED_SOLD_VERIFIED",
+                "VENDOR_SOLD_UNVERIFIED",
+                "ENDED_UNSOLD",
+                "ACTIVE_LISTING",
+                "UNKNOWN"
+              ]
+            },
+            "quantity_sold": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "item_location": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "transaction_quantity_basis": {
+              "enum": [
+                "ONE_UNIT",
+                "LOT_AS_LISTED",
+                "MULTI_UNIT_UNRESOLVED",
+                "UNKNOWN"
+              ]
+            }
+          }
+        },
+        "product": {
+          "type": "object",
+          "required": [
+            "brand",
+            "model",
+            "gtin",
+            "condition",
+            "lot_quantity",
+            "identity_status"
+          ],
+          "properties": {
+            "brand": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "model": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "revision": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "gtin": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "mpn": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "epid": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "variant_attributes": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "condition": {
+              "enum": [
+                "NEW",
+                "OPEN_BOX",
+                "USED",
+                "REFURBISHED",
+                "PARTS_NOT_WORKING",
+                "OTHER",
+                "UNKNOWN"
+              ]
+            },
+            "lot_quantity": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "bundle_contents": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "identity_status": {
+              "enum": [
+                "EXACT_MATCH",
+                "MISMATCH",
+                "AMBIGUOUS",
+                "UNREVIEWED"
+              ]
+            },
+            "identity_evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "price": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "actual_paid_item_amount",
+            "actual_paid_evidence",
+            "displayed_asking_amount",
+            "listing_upper_bound_amount",
+            "currency",
+            "shipping_amount",
+            "shipping_status",
+            "amount_basis"
+          ],
+          "properties": {
+            "actual_paid_item_amount": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "description": "must be null unless actual paid is corroborated under gate; neither ask nor aggregate may fill"
+            },
+            "actual_paid_evidence": {
+              "enum": [
+                "OFFICIAL_FIRST_PARTY_PAID",
+                "INDEPENDENTLY_CORROBORATED_PAID",
+                "VENDOR_CLAIM_UNVERIFIED",
+                "NOT_PAID_ASK_OR_UPPER_BOUND",
+                "UNKNOWN"
+              ]
+            },
+            "displayed_asking_amount": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "listing_upper_bound_amount": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "best_offer_status": {
+              "enum": [
+                "NONE_CONFIRMED",
+                "ACCEPTED_PAID_KNOWN",
+                "ACCEPTED_PAID_UNKNOWN",
+                "PENDING_LOOKUP",
+                "UNKNOWN"
+              ]
+            },
+            "vendor_claimed_paid_amount": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            },
+            "shipping_amount": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "shipping_status": {
+              "enum": [
+                "FREE_CONFIRMED",
+                "CHARGED_KNOWN",
+                "UNKNOWN",
+                "PICKUP_ONLY",
+                "VARIABLE_BY_REGION",
+                "EXCLUDED_FROM_SOURCE"
+              ]
+            },
+            "tax_inclusion": {
+              "enum": [
+                "EXCLUDED",
+                "INCLUDED",
+                "UNKNOWN"
+              ]
+            },
+            "amount_basis": {
+              "enum": [
+                "PER_UNIT",
+                "PER_LOT",
+                "AGGREGATED_PER_LISTING",
+                "UNKNOWN"
+              ]
+            },
+            "historic_fx_reference": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "coverage": {
+          "type": "object",
+          "required": [
+            "window_start",
+            "window_end",
+            "provider_reported_count",
+            "retrieved_rows_count",
+            "exhaustive_status",
+            "pagination_status"
+          ],
+          "properties": {
+            "window_start": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "window_end": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "provider_reported_count": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "retrieved_rows_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "comparable_rows_count": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "exhaustive_status": {
+              "enum": [
+                "PROVED_COMPLETE_WITHIN_DECLARED_SCOPE",
+                "PROVIDER_CLAIM_COMPLETE_UNVERIFIED",
+                "KNOWN_SAMPLED",
+                "UNKNOWN"
+              ]
+            },
+            "pagination_status": {
+              "enum": [
+                "EXHAUSTED",
+                "PAGE_LIMIT_REACHED",
+                "CURSOR_INTERRUPTED",
+                "ONE_PAGE_ONLY",
+                "NOT_APPLICABLE",
+                "UNKNOWN"
+              ]
+            },
+            "freshness_seconds": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "accepted_offer_known_count": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "accepted_offer_unknown_count": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "missing_price_count": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "sampling_caveats": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "permission": {
+          "type": "object",
+          "required": [
+            "vendor_use_status",
+            "upstream_ebay_status",
+            "retention_status",
+            "derivative_publication_status"
+          ],
+          "properties": {
+            "vendor_use_status": {
+              "enum": [
+                "SCOPED_WRITTEN_GRANT",
+                "VENDOR_TERMS_CLAIM_ONLY",
+                "UNKNOWN",
+                "PROHIBITED"
+              ]
+            },
+            "upstream_ebay_status": {
+              "enum": [
+                "WRITTEN_SOURCE_GRANT_VERIFIED",
+                "PROVENANCE_CLAIM_ONLY",
+                "UNKNOWN",
+                "PROHIBITED"
+              ]
+            },
+            "retention_status": {
+              "enum": [
+                "PERMITTED_SCOPED",
+                "UNKNOWN",
+                "NOT_PERMITTED"
+              ]
+            },
+            "derivative_publication_status": {
+              "enum": [
+                "PERMITTED_SCOPED",
+                "UNKNOWN",
+                "NOT_PERMITTED"
+              ]
+            },
+            "grant_refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expires_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "personal_data_scrubbed": {
+              "type": "boolean"
+            }
+          }
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "exclusion_reasons": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "ACTIVE_NOT_SOLD",
+              "ENDED_UNSOLD",
+              "IDENTITY_UNKNOWN",
+              "WRONG_VARIANT",
+              "WRONG_CONDITION",
+              "WRONG_QUANTITY",
+              "CURRENCY_UNKNOWN",
+              "SHIPPING_INCOMPARABLE",
+              "NO_PAID_PRICE",
+              "PRICE_UNVERIFIED",
+              "LISTING_AGGREGATE",
+              "SINGLETON_INSUFFICIENT",
+              "SPARSE",
+              "WINDOW_UNKNOWN",
+              "PAGE_TRUNCATED",
+              "SOURCE_STALE",
+              "UPSTREAM_RIGHTS_UNVERIFIED",
+              "VENDOR_RIGHTS_UNVERIFIED",
+              "UNKNOWN_COMPLETENESS"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "semantic_invariants": [
+    {
+      "id": "I01",
+      "condition": "observation_type != ATOMIC_SALE",
+      "rule": "not eligible as an individual sale for empirical median; keep aggregate only in distinct summary stream"
+    },
+    {
+      "id": "I02",
+      "condition": "actual_paid_evidence not OFFICIAL_FIRST_PARTY_PAID or INDEPENDENTLY_CORROBORATED_PAID",
+      "rule": "actual_paid_item_amount MUST be null, even when vendor_claimed_paid_amount or displayed_asking_amount is nonnull"
+    },
+    {
+      "id": "I03",
+      "condition": "best_offer_status ACCEPTED_PAID_UNKNOWN or PENDING_LOOKUP",
+      "rule": "cannot populate actual_paid_item_amount; preserve upper bound separate"
+    },
+    {
+      "id": "I04",
+      "condition": "completed_status != COMPLETED_SOLD_VERIFIED",
+      "rule": "fail production historical sale observation acceptance"
+    },
+    {
+      "id": "I05",
+      "condition": "identity_status != EXACT_MATCH or lot/condition unverified",
+      "rule": "exclude from same-product ARB-051 baseline"
+    },
+    {
+      "id": "I06",
+      "condition": "sold_at null or quantitySold is unresolved for multiunit listing",
+      "rule": "exclude from atomic sale time window or unit-price comparison"
+    },
+    {
+      "id": "I07",
+      "condition": "permission not scoped, upstream not verified, or derivative publication/retention unknown",
+      "rule": "HOLD for LIVE_PRODUCTION_USE, even if source syntactically validates"
+    },
+    {
+      "id": "I08",
+      "condition": "pagination truncated or observed count completeness unknown",
+      "rule": "mark partial and do not assert market-wide median; confidence/outlier threshold must account for sampling"
+    },
+    {
+      "id": "I09",
+      "condition": "currency or historic shipping basis inconsistent",
+      "rule": "do not silently mix USD/GBP or price paid+shipping with paid-only"
+    },
+    {
+      "id": "I10",
+      "condition": "source status changed, removal request, rights expiry",
+      "rule": "invalidate cached/reused rows per license, preserve non-sensitive audit trail permitted by terms"
+    }
+  ],
+  "estimator_input_gate": {
+    "must_pass": [
+      "I01",
+      "I02",
+      "I03",
+      "I04",
+      "I05",
+      "I06",
+      "I07",
+      "I09"
+    ],
+    "minimum_sample_size": "policy to be justified in ARB-051; a single completed sale never establishes ordinary price",
+    "robustness": "median, p25, p75, conservative p20, n, last_sold_at, trim/outlier and complete-window caveats",
+    "reason_codes": "Return REFUSE_UNKNOWN rather than a computed reference when evidence insufficient",
+    "baseline_consumer": "ARB-051",
+    "product_gap_consumer": "ARB-050/060 after real retailer price is separately qualified"
+  },
+  "data_minimization": {
+    "never_store": [
+      "buyer identity",
+      "seller personal identity when not needed",
+      "session cookies",
+      "API secrets",
+      "account credentials"
+    ],
+    "public_repository": "store contract, synthetic tests, nonconfidential source citations; no raw confidential eBay/provider account responses"
+  },
+  "test_state": {
+    "schema_json_constructed": true,
+    "live_endpoints_tested": false,
+    "real_records_validated": false,
+    "licensed_feed_proven": false,
+    "independent_review": "NOT_DONE"
+  },
+  "note": "This proposal is not a grant of legal rights, and structural JSON validation cannot independently prove price paid, completeness or transaction identity."
+}

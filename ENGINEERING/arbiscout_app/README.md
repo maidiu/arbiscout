@@ -104,3 +104,8 @@ By default this produces an **honest unranked eBay comparison**, since it has no
 ```bash
 python3 -m unittest discover -s tests -v
 ```
+
+
+## Complete executable 20-to-10 test operator (Nov 7)
+
+See [TEST_VERSION.md](TEST_VERSION.md). Use `python3 run_test.py --demo --as-of 2026-11-07 --output demo_out --open` for an offline **fictional** 20-item demonstration that exercises the same actual extraction, 30-day date filtering, median, and top-ten ranking code. Or pass your saved Best Buy HTML with saved eBay sold pages or an explicitly authorized robots-checked live eBay request. Output is provisional displayed-price comparison, not proven actual paid historical prices. The earlier Nov 7 source bank is a permanent historical archive, not the current active version.

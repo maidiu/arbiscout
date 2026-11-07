@@ -15,7 +15,7 @@ class SourceBankReceiptTest(unittest.TestCase):
         self.assertEqual(len(paths), manifest["bank_source_file_count"])
         for name, expected in manifest["reference_git_blobs"].items():
             payload = (BANK / name).read_bytes()
-            sha = hashlib.sha1(b"blob " + str(len(payload)).encode() + b"\\0" + payload).hexdigest()
+            sha = hashlib.sha1(b"blob " + str(len(payload)).encode() + bytes([0]) + payload).hexdigest()
             self.assertEqual(sha, expected, name)
         for name in ("arbiscout.py", "ebay_comparison.py", "run_compare.py", "README.md", "requirements.txt"):
             self.assertEqual((BANK / "active" / name).read_bytes(), (ACTIVE / name).read_bytes(), name)

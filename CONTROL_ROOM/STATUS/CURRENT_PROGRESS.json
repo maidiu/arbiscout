@@ -16,8 +16,29 @@
     "status": "DRAFT_PR1_IS_LEGACY_INCOMPATIBLE_SCORING; NO ADOPTED_CURRENT_PURCHASE_GAP_ENGINE",
     "live_marketplace_integrations": 0,
     "real_scored_opportunities": 0,
-    "sourcefree_current_candidate": "ENGINEERING/arbiscout_app at source bank commit f98f11e220d038650f36be52cdfe49e49aa05111",
-    "local_sourcefree_tests_passed": 16
+    "sourcefree_current_candidate": "ENGINEERING/arbiscout_app/run_test.py plus existing arbiscout.py and ebay_comparison.py (draft PR #16)",
+    "local_sourcefree_tests_passed": 16,
+    "github_app_tests": {
+      "run_url": "https://github.com/maidiu/arbiscout/actions/runs/42412720168",
+      "head": "7c486130958a69d213f3098106f790ce93435b7d",
+      "executed": 20,
+      "passed": 19,
+      "skipped": 1,
+      "failed": 0
+    },
+    "github_control_tests": {
+      "executed": 4,
+      "passed": 4,
+      "failed": 0
+    },
+    "twenty_to_ten_demo": {
+      "source": "SYNTHETIC_ONLY",
+      "retail_offers": 20,
+      "provisional_positive_gaps": 20,
+      "displayed_top_ten": 10,
+      "verified_actual_paid_prices": 0,
+      "artifact_id": 13590102124
+    }
   },
   "terminal_state": "SOURCEFREE_CODE_BANKED_CANDIDATE__NO_LIVE_ACTUAL_PAID_EBAY_FIRST_CONSUMER",
   "external_blockers": [
@@ -34,7 +55,9 @@
     "Generated Markdown dashboard, task and question tables, and CSV exports, with a deterministic renderer and CI check",
     "Source-free tests/CI pass at latest checked head (recheck current exact SHA)",
     "Nov 7 current runnable deterministic crawler/dashboard and dated eBay-comparison module banked on isolated source branch (full prior source no-drop); 16/16 local sourcefree tests, no live sale evidence.",
-    "Nov 7 receiving and first-consumer negative court added without revising historical canonical work registry or generated table without proper independent receiving."
+    "Nov 7 receiving and first-consumer negative court added without revising historical canonical work registry or generated table without proper independent receiving.",
+    "Nov 7 active-app test operator committed to PR #16: twenty retailer offers to locally dated 30-day eBay displayed-price comparisons to provisional top-ten dashboard, CSV/JSON, truthfully separated from actual-paid evidence.",
+    "GitHub Actions now runs active app tests (20 executed, 19 pass/1 skipped) and produces inspectable fully synthetic 20-to-10 demo artifact; root archive and PROGRAMMA checks remain green."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",
@@ -43,7 +66,8 @@
     "Produce first real eBay-pattern-conditioned retailer bargain and daily 0–10 index",
     "Measure later observation accuracy and update provider/evidence findings",
     "Independent exact-head sourcefree code-bank review and protected receiving, without upgrading external rights or actual-price accuracy.",
-    "Qualify retailer access and historical eBay actual-paid data; prove real dated matched sales, total retail purchaser price and 30-day conservative observed gap."
+    "Qualify retailer access and historical eBay actual-paid data; prove real dated matched sales, total retail purchaser price and 30-day conservative observed gap.",
+    "Independently review the actual full test version and verify a permitted live pair before claiming a real transaction-true price-gap recommendation."
   ],
   "largest_productive_move": "Review/receive exact sourcefree candidate, then prove a narrow authorized Woot/Meh/Kroger retailer offer + dated actual-paid eBay historical comparator with conservative gap and truthful zero-to-ten report; no more generic affiliate onboarding.",
   "flights": [
@@ -92,7 +116,7 @@
     }
   ],
   "active_workers": [],
-  "delta": "2026-11-07: exact candidate code bank + 16 local offline unit tests + 30-day date filtering and provisional dashboard; all external actual-paid, authorization, independent reviewer and protected merge gates remain HOLD. Prior October 31 planning source cut preserved.",
+  "delta": "2026-11-07: exact candidate code bank + 16 local offline unit tests + 30-day date filtering and provisional dashboard; all external actual-paid, authorization, independent reviewer and protected merge gates remain HOLD. Prior October 31 planning source cut preserved. / SAME DAY TEST EXTENSION: PR16 active run_test.py, CI app test 20 (19 PASS/1 user-snapshot SKIP), 20 synthetic offers -> 20 provisional positive matches -> 10 displayed top rows, 0 real actual-paid; status court CONTROL_ROOM/PROGRAMMA/10_TWENTY_TO_TEN_TEST_RECEIPT_20261107_R1.md; immutable source bank retained.",
   "current_mandate": "Purchase research ONLY: find major-retailer acquisition prices maximally below regular comparable eBay historical completed-sale price patterns; calculate and rank observed gaps.",
   "constitution_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
   "programma": {
@@ -168,7 +192,7 @@
       "note": "Observed separate return branch/PR, not assessed or integrated here"
     }
   ],
-  "progress_revision": 2,
+  "progress_revision": 3,
   "code_bank": {
     "branch": "agent/programma-arbiscout-codebank-ebay30d-20261107-r1",
     "initial_commit_sha": "f98f11e220d038650f36be52cdfe49e49aa05111",
@@ -185,6 +209,10 @@
     "live_ebay_requests": "NOT_PROVED",
     "paid_best_offer_accuracy": "NOT_PROVED",
     "first_actual_purchase_gap": "NOT_PROVED",
-    "main_merge": "NO"
+    "main_merge": "NO",
+    "active_app_test_extension": "ENGINEERING/arbiscout_app/run_test.py",
+    "test_extension_receipt": "CONTROL_ROOM/PROGRAMMA/10_TWENTY_TO_TEN_TEST_RECEIPT_20261107_R1.md",
+    "active_sourcefree_ci": "https://github.com/maidiu/arbiscout/actions/runs/42412720168",
+    "historical_bank_remains_immutable": true
   }
 }

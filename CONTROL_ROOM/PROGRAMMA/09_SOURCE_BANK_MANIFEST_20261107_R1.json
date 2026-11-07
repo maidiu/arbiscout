@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-11-07",
+  "repository": "maidiu/arbiscout",
+  "branch": "agent/programma-arbiscout-codebank-ebay30d-20261107-r1",
+  "source_base_sha": "92478568744bffcdd1061447f5d4027d4a0da735",
+  "initial_bank_commit": "f98f11e220d038650f36be52cdfe49e49aa05111",
+  "source_bank_root": "ENGINEERING/SOURCE_BANK_20261107_R1",
+  "runnable_root": "ENGINEERING/arbiscout_app",
+  "bank_source_file_count": 22,
+  "git_tree_entries_created": 32,
+  "reference_git_blobs": {
+    "active/arbiscout.py": "09e73d2fbc57a6284a33612924ea891ca81aabca",
+    "active/ebay_comparison.py": "680d5cd8b6e200c8eecfab768efa4d2284fadbf2",
+    "active/tests/test_app.py": "5d8e2064aacb5447efd705bae0b75048fd31e8e9",
+    "active/tests/test_ebay_comparison.py": "3d99ce758a15e37f60122a9bd5c154421cbedca2",
+    "legacy/pilot/discovery.py": "ff3bbf9f5459af3061139afeb6ce9cb76f9d6c75"
+  },
+  "proof": {
+    "sourcefree_unit_tests_passed": 16,
+    "live_ebay_requests_proved": 0,
+    "independent_acceptance": false,
+    "merged_main": false,
+    "sold_reliability": "UNVERIFIED",
+    "retailer_use_scope": "UNVERIFIED"
+  },
+  "historical_bestbuy_snapshot": {
+    "observed_product_cards": 152,
+    "unique_extracted": 131,
+    "current_and_regular_prices": 37,
+    "prices_missing": 94,
+    "original_html_committed": false
+  },
+  "proposed_review": "Independent review at exact codebank PR head before any protected integration"
+}

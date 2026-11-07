@@ -1,3 +1,5 @@
+> **CURRENTNESS CANDIDATE — 2026-11-07** · Banked code on isolated branch `agent/programma-arbiscout-codebank-ebay30d-20261107-r1` (initial exact source commit `f98f11e220d038650f36be52cdfe49e49aa05111`). **16 sourcefree local tests PASS** on retail crawler, saved Best Buy fixture/snapshot and 30-day eBay parsing/selection/comparison. **No successful live eBay request, actual paid Best Offer verification, eligible source grant, independent receiving, or canonical merge.** See [code-bank receipt](../PROGRAMMA/07_CODE_BANK_SOURCE_AND_RECEIVING_COURT_20261107_R1.md) and [first-consumer court](../PROGRAMMA/08_TERMINAL_EBAY30D_FIRST_CONSUMER_AND_NEGATIVE_COURT_R1.md). Preexisting October 31 summary below is historical for its source cut.
+
 # CURRENT — ArbiScout HQ checkpoint
 
 **2026-10-31 · proposed control-room draft PR #2. Verify current GitHub refs before reusing this snapshot.**

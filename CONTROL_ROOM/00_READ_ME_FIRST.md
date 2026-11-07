@@ -1,3 +1,5 @@
+> **2026-11-07 sourcefree candidate:** a full runnable crawler and dated 30-day eBay comparison code bank now exists on `agent/programma-arbiscout-codebank-ebay30d-20261107-r1`; **NOT MERGED** into main or the original control-room branch. Read [current paired progress](STATUS/CURRENT_PROGRESS.md), [code-bank source court](PROGRAMMA/07_CODE_BANK_SOURCE_AND_RECEIVING_COURT_20261107_R1.md), and [no-false-acceptance first consumer court](PROGRAMMA/08_TERMINAL_EBAY30D_FIRST_CONSUMER_AND_NEGATIVE_COURT_R1.md). **Local 16/16 PASS only; live paid eBay and retailer authorization remain open.** This is one ArbiScout product, not a new PROGRAMMA or unreviewed adoption.
+
 # ArbiScout Control Room — READ FIRST
 
 **Status:** PROPOSED CONTROL PLANE / DRAFT PR, not an appointed autonomous HQ. Canonical project remains `maidiu/arbiscout` `main` until reviewed and merged. **Read this on every fresh or resumed HQ session.**

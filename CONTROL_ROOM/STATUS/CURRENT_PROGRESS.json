@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "as_of": "2026-10-31",
+  "as_of": "2026-11-07",
   "repository": "maidiu/arbiscout",
   "visibility": "PUBLIC_AT_CHECK",
   "source_of_truth": "GitHub main + adopted PRs; draft branch facts are qualified proposals",
@@ -15,34 +15,66 @@
     "prior_observed_head_sha": "799747af35bf154fcf23c994604230c945fe0161",
     "status": "DRAFT_PR1_IS_LEGACY_INCOMPATIBLE_SCORING; NO ADOPTED_CURRENT_PURCHASE_GAP_ENGINE",
     "live_marketplace_integrations": 0,
-    "real_scored_opportunities": 0
+    "real_scored_opportunities": 0,
+    "sourcefree_current_candidate": "ENGINEERING/arbiscout_app/run_test.py plus existing arbiscout.py and ebay_comparison.py (draft PR #16)",
+    "local_sourcefree_tests_passed": 16,
+    "github_app_tests": {
+      "run_url": "https://github.com/maidiu/arbiscout/actions/runs/42412720168",
+      "head": "7c486130958a69d213f3098106f790ce93435b7d",
+      "executed": 20,
+      "passed": 19,
+      "skipped": 1,
+      "failed": 0
+    },
+    "github_control_tests": {
+      "executed": 4,
+      "passed": 4,
+      "failed": 0
+    },
+    "twenty_to_ten_demo": {
+      "source": "SYNTHETIC_ONLY",
+      "retail_offers": 20,
+      "provisional_positive_gaps": 20,
+      "displayed_top_ten": 10,
+      "verified_actual_paid_prices": 0,
+      "artifact_id": 13590102124
+    }
   },
-  "terminal_state": "SOURCEFREE_PROGRAMMA_READY__NO_LIVE_PURCHASE_GAP_INDEX",
+  "terminal_state": "SOURCEFREE_CODE_BANKED_CANDIDATE__NO_LIVE_ACTUAL_PAID_EBAY_FIRST_CONSUMER",
   "external_blockers": [
     "No verified permitted live source of actual regular same-item eBay completed-sale price observations",
     "No checked full live retailer purchase offer and eBay price historical pair",
-    "No end-to-end actual acquired data → price-gap index report"
+    "No end-to-end actual acquired data → price-gap index report",
+    "Unknown retailer access-use permissions for automated web collection, despite user-reported Woot/Meh/Kroger access.",
+    "Live eBay HTML retrieval/coverage and paid Best Offer fidelity are unproved; actual paid-price API benchmark remains necessary."
   ],
   "done": [
     "User product constitution corrected to exclusive purchase-price-gap research (draft PR #2)",
     "39 tasks linked by ALL-OF prerequisites, ANY-OF retailer-source gates, nonblocking related work and separate live evidence gates",
     "95 audited questions in seven canonical JSON registers, each with priority, question prerequisites, related tasks, proof-task requirements, findings and references",
     "Generated Markdown dashboard, task and question tables, and CSV exports, with a deterministic renderer and CI check",
-    "Source-free tests/CI pass at latest checked head (recheck current exact SHA)"
+    "Source-free tests/CI pass at latest checked head (recheck current exact SHA)",
+    "Nov 7 current runnable deterministic crawler/dashboard and dated eBay-comparison module banked on isolated source branch (full prior source no-drop); 16/16 local sourcefree tests, no live sale evidence.",
+    "Nov 7 receiving and first-consumer negative court added without revising historical canonical work registry or generated table without proper independent receiving.",
+    "Nov 7 active-app test operator committed to PR #16: twenty retailer offers to locally dated 30-day eBay displayed-price comparisons to provisional top-ten dashboard, CSV/JSON, truthfully separated from actual-paid evidence.",
+    "GitHub Actions now runs active app tests (20 executed, 19 pass/1 skipped) and produces inspectable fully synthetic 20-to-10 demo artifact; root archive and PROGRAMMA checks remain green."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",
     "Qualify regular completed eBay price observation source and any one retailer purchase offer source",
     "Build normal historical-price estimator, numeric purchase-price gap and reliable maximum-gap ranker",
     "Produce first real eBay-pattern-conditioned retailer bargain and daily 0–10 index",
-    "Measure later observation accuracy and update provider/evidence findings"
+    "Measure later observation accuracy and update provider/evidence findings",
+    "Independent exact-head sourcefree code-bank review and protected receiving, without upgrading external rights or actual-price accuracy.",
+    "Qualify retailer access and historical eBay actual-paid data; prove real dated matched sales, total retail purchaser price and 30-day conservative observed gap.",
+    "Independently review the actual full test version and verify a permitted live pair before claiming a real transaction-true price-gap recommendation."
   ],
-  "largest_productive_move": "Parallel: (1) historical eBay completed-sale source/rights feasibility; (2) any one real retailer discount feed and full purchase price; (3) sourcefree comparable-price estimator and purchase-gap evaluator; (4) source-linked 0–10 report.",
+  "largest_productive_move": "Review/receive exact sourcefree candidate, then prove a narrow authorized Woot/Meh/Kroger retailer offer + dated actual-paid eBay historical comparator with conservative gap and truthful zero-to-ten report; no more generic affiliate onboarding.",
   "flights": [
     {
       "id": "FLIGHT-001",
       "scope": "P0 external evidence: eBay regular completed-sale price feed, coverage, terms",
-      "status": "COMMISSION_PREPARED_NOT_DISPATCHED",
+      "status": "RESEARCH_RETURNED_IN_OTHER_DRAFT_PR__NOT_INTEGRATED",
       "task_ids": [
         "ARB-010",
         "ARB-011",
@@ -52,7 +84,7 @@
     {
       "id": "FLIGHT-002",
       "scope": "P0 retailer discovery: validate one source before broadening candidates",
-      "status": "COMMISSION_PREPARED_NOT_DISPATCHED",
+      "status": "RESEARCH_RETURNED_IN_OTHER_DRAFT_PR__NOT_INTEGRATED",
       "task_ids": [
         "ARB-020",
         "ARB-022",
@@ -63,7 +95,7 @@
     {
       "id": "FLIGHT-003",
       "scope": "P0 sourcefree gap-comparison pipeline and report, without later-sale code",
-      "status": "PROPOSED_NOT_DISPATCHED",
+      "status": "SOURCEFREE_CANDIDATE_CODE_BANKED__NOT_INDEPENDENTLY_ACCEPTED",
       "task_ids": [
         "ARB-030",
         "ARB-031",
@@ -77,14 +109,14 @@
     {
       "id": "FLIGHT-004",
       "scope": "Cross-market eBay buyer culture x retailer discount awareness, high-ticket opportunity density and demand turnover",
-      "status": "COMMISSION_PREPARED_NOT_DISPATCHED",
+      "status": "RESEARCH_RETURNED_IN_OTHER_DRAFT_PR__NOT_INTEGRATED",
       "task_ids": [
         "ARB-035"
       ]
     }
   ],
   "active_workers": [],
-  "delta": "Added independent ARB-035 scientific reconnaissance commission and issue #7 on market-culture/attention separation, high-ticket demand regularity and retailer markdown cadence. Added Q096-Q112 and two primary eBay source records. Documentary research may proceed despite unavailable ARB-010/020 results; empirical sector winner remains unproved. No new separate agent launched.",
+  "delta": "2026-11-07: exact candidate code bank + 16 local offline unit tests + 30-day date filtering and provisional dashboard; all external actual-paid, authorization, independent reviewer and protected merge gates remain HOLD. Prior October 31 planning source cut preserved. / SAME DAY TEST EXTENSION: PR16 active run_test.py, CI app test 20 (19 PASS/1 user-snapshot SKIP), 20 synthetic offers -> 20 provisional positive matches -> 10 displayed top rows, 0 real actual-paid; status court CONTROL_ROOM/PROGRAMMA/10_TWENTY_TO_TEN_TEST_RECEIPT_20261107_R1.md; immutable source bank retained.",
   "current_mandate": "Purchase research ONLY: find major-retailer acquisition prices maximally below regular comparable eBay historical completed-sale price patterns; calculate and rank observed gaps.",
   "constitution_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
   "programma": {
@@ -159,5 +191,28 @@
       "checked": "2026-10-31",
       "note": "Observed separate return branch/PR, not assessed or integrated here"
     }
-  ]
+  ],
+  "progress_revision": 3,
+  "code_bank": {
+    "branch": "agent/programma-arbiscout-codebank-ebay30d-20261107-r1",
+    "initial_commit_sha": "f98f11e220d038650f36be52cdfe49e49aa05111",
+    "bank_root": "ENGINEERING/SOURCE_BANK_20261107_R1",
+    "active_app_root": "ENGINEERING/arbiscout_app",
+    "source_files_banked": 22,
+    "sourcefree_local_tests": {
+      "pass": 16,
+      "fail": 0,
+      "environment": "local container, synthetic / offline"
+    },
+    "source_provenance": "candidate unmerged",
+    "independent_review": "NOT_PERFORMED",
+    "live_ebay_requests": "NOT_PROVED",
+    "paid_best_offer_accuracy": "NOT_PROVED",
+    "first_actual_purchase_gap": "NOT_PROVED",
+    "main_merge": "NO",
+    "active_app_test_extension": "ENGINEERING/arbiscout_app/run_test.py",
+    "test_extension_receipt": "CONTROL_ROOM/PROGRAMMA/10_TWENTY_TO_TEN_TEST_RECEIPT_20261107_R1.md",
+    "active_sourcefree_ci": "https://github.com/maidiu/arbiscout/actions/runs/42412720168",
+    "historical_bank_remains_immutable": true
+  }
 }

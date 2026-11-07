@@ -1,4 +1,7 @@
 # PROGRAMMA ARBISCOUT
+
+> **CURRENT CANDIDATE ENGINEERING / SOURCE CAPITAL (2026-11-07, isolated draft — NOT ADOPTED ON MAIN).** Exact code banking commit `f98f11e220d038650f36be52cdfe49e49aa05111` on `agent/programma-arbiscout-codebank-ebay30d-20261107-r1` preserves the full local crawler, dashboard, eBay 30-day *fixture-tested* comparison and legacy experiments. Read [source custody and scoped receiving](07_CODE_BANK_SOURCE_AND_RECEIVING_COURT_20261107_R1.md), [terminal first-consumer and negative court](08_TERMINAL_EBAY30D_FIRST_CONSUMER_AND_NEGATIVE_COURT_R1.md), and [exact manifest](09_SOURCE_BANK_MANIFEST_20261107_R1.json). **16/16 local sourcefree tests; 0 live eBay data proofs; 0 authorized source-to-source actual paid-price comparisons; no independent review; no protected merge.** The October 31 text below is retained as historical source-cut planning, not a denial that new candidate code exists.
+
 ## Whole purchase-research project: retailer purchase bargains indexed against regular eBay sale patterns
 
 **Authority:** [Controlling Product Constitution](../PRODUCT_CONSTITUTION.md), user revision 2026-10-31. This is the proposed control-room branch of draft PR #2; it is not already merged into `main`.

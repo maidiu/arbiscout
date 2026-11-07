@@ -20,5 +20,13 @@ jobs:
         run: python -m pip install -r ENGINEERING/arbiscout_app/requirements.txt
       - name: Run end-to-end application source-free tests
         run: python -m unittest discover -s ENGINEERING/arbiscout_app/tests -v
+      - name: Build complete fictional 20-to-10 dashboard
+        run: python ENGINEERING/arbiscout_app/run_test.py --demo --as-of 2026-11-07 --output arbiscout_demo_20_to_10
+      - name: Publish demo dashboard and intermediate JSON/CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: arbiscout-demo-20-to-10
+          path: arbiscout_demo_20_to_10/
+          if-no-files-found: error
       - name: Run control-room unit tests
         run: python -m unittest discover -s tests -v

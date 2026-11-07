@@ -1,0 +1,12 @@
+{
+  "card_selector": "article.product",
+  "title_selector": "h3",
+  "link_selector": "a.product-link",
+  "sale_price_selector": ".sale-price",
+  "regular_price_selector": ".regular-price",
+  "mpn_selector": "[data-mpn]",
+  "mpn_attribute": "data-mpn",
+  "gtin_selector": "[data-gtin]",
+  "gtin_attribute": "data-gtin",
+  "next_selector": "a.next"
+}

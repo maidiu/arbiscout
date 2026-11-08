@@ -27,6 +27,17 @@ class EBayEvidenceTests(unittest.TestCase):
         self.assertEqual(r['sample_count'],3)
         self.assertAlmostEqual(r['gap'],115.01)
         self.assertEqual(r['diagnostics']['unknown_best_offer'],1)
+    def test_sold_range_and_typical_band(self):
+        prices=['300.00','310.00','320.00','330.00']
+        page=''.join(sold_card(str(100000000000+i),RETAIL['title'],'Nov 06, 2026',p)
+                     for i,p in enumerate(prices))
+        obs,_=e.parse_ebay_sold_html(page,e.search_url('Sony'))
+        r=e.qualify(RETAIL,obs,datetime(2026,11,7,tzinfo=timezone.utc))
+        self.assertEqual((r['sold_low'],r['sold_high'],r['sold_mean'],r['historical_median']),
+                         (300.0,330.0,315.0,315.0))
+        self.assertEqual((r['typical_low'],r['typical_high']),(307.5,322.5))
+        self.assertTrue(r['retail_below_low'])
+        self.assertTrue(r['retail_below_median'])
     def test_no_dates_is_not_thirty_day_evidence(self):
         obs,status=e.parse_ebay_sold_html(sold_card('111111111111',RETAIL['title'],'','350.00'),'https://www.ebay.com/sch/i.html')
         self.assertEqual(e.qualify(RETAIL,obs,datetime(2026,11,7,tzinfo=timezone.utc))['status'],'INSUFFICIENT_VERIFIED_SALES')

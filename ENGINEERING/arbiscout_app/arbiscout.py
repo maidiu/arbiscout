@@ -16,6 +16,7 @@ import json
 from pathlib import Path
 import re
 import socket
+import ssl
 import sys
 import time
 from urllib.error import HTTPError, URLError
@@ -29,6 +30,12 @@ try:
 except ImportError:
     print('Missing BeautifulSoup. Run: python3 -m pip install beautifulsoup4', file=sys.stderr)
     raise SystemExit(2)
+
+try:
+    import certifi
+    SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+except ImportError:
+    SSL_CONTEXT = ssl.create_default_context()
 
 USER_AGENT = 'ArbiScoutPersonal/0.2 (bounded read-only research crawler)'
 MONEY = re.compile(r'\$\s*([\d,]+(?:\.\d{1,2})?)')
@@ -188,6 +195,25 @@ def extract_bestbuy_cards(soup,source,depth):
     return out
 
 
+def extract_bestbuy_offers(soup,source,depth):
+    out=[]
+    for card in soup.select('.wf-offer'):
+        a=card.select_one('h3.product-title a[href]') or card.select_one('a.wf-offer-link[href]')
+        if not a:continue
+        url=urljoin(source,a['href'])
+        if not BESTBUY_ID.search(urlsplit(url).path):continue
+        title=a.get_text(' ',strip=True)
+        cur=node_price(card,['[data-testid="price-block-customer-price"]'])
+        reg=node_price(card,['[data-testid="price-block-regular-price"]'])
+        percent=card.select_one('[data-testid="price-block-percent-off"]')
+        m=PERCENT.search(percent.get_text(' ',strip=True)) if percent else None
+        match=BESTBUY_SKU.search(urlsplit(url).path)
+        rec=_make_record(url,title,source,depth,'bestbuy_offer_card',cur,reg,
+                         float(m.group(1)) if m else None,sku=match.group(1) if match else None)
+        if rec:out.append(rec)
+    return out
+
+
 def _schema_product(data):
     if not isinstance(data,dict):return []
     results=[]
@@ -278,10 +304,13 @@ def extract_product_page(soup,source,depth):
 
 def extract(soup,source,depth):
     rows=extract_bestbuy_cards(soup,source,depth)
-    if not rows:rows=extract_generic_cards(soup,source,depth)
+    rows+=extract_bestbuy_offers(soup,source,depth)
+    # Also read grid/list cards; current Best Buy pages often render prices only there.
+    rows+=extract_generic_cards(soup,source,depth)
     # JSON-LD adds product-page information where available, and helps generic stores.
     rows+=extract_schema(soup,source,depth)
-    if not rows:rows=extract_product_page(soup,source,depth)
+    # Always supplement a real product URL, even when JSON-LD or sidebar cards already matched.
+    rows+=extract_product_page(soup,source,depth)
     # Avoid extracting generic Product JSON-LD unrelated to listing current product when name is blank.
     return rows
 
@@ -335,16 +364,24 @@ class Store:
 
 
 class Fetcher:
-    def __init__(self,root,delay=1.3,mode='http',timeout=20):
-        self.root=root;self.delay=max(delay,0.7);self.mode=mode;self.timeout=timeout
+    def __init__(self,root,delay=1.3,mode='http',timeout=20,visible=False):
+        self.root=root;self.delay=max(delay,0.7);self.mode=mode;self.timeout=timeout;self.visible=visible
         self.robots={};self.last=0;self.browser=None;self.pw=None;self.page=None
     def __enter__(self):
         if self.mode=='browser':
             try:from playwright.sync_api import sync_playwright
-            except ImportError:raise RuntimeError('Browser mode needs: python3 -m pip install playwright && python3 -m playwright install chromium')
+            except ImportError:raise RuntimeError('Browser mode needs: python3 -m pip install playwright (then install Chromium, or use an installed Chrome)')
             self.pw=sync_playwright().start()
-            self.browser=self.pw.chromium.launch(headless=True)
-            self.page=self.browser.new_page(user_agent=USER_AGENT)
+            try:
+                # Prefer an already-installed Chrome so no extra browser download is needed.
+                self.browser=self.pw.chromium.launch(headless=not self.visible,channel='chrome')
+            except Exception:
+                try:self.browser=self.pw.chromium.launch(headless=not self.visible)
+                except Exception as exc:
+                    self.pw.stop();self.pw=None
+                    raise RuntimeError('No usable Chrome/Chromium for browser mode ('+str(exc)[:160]+'). Install Chromium with: python3 -m playwright install chromium')
+            # Keep the real browser identity here; some retailers reject custom agent strings on product pages.
+            self.page=self.browser.new_page()
         return self
     def __exit__(self,*_):
         if self.page:self.page.close()
@@ -352,7 +389,7 @@ class Fetcher:
         if self.pw:self.pw.stop()
     def _http(self,url,limit=MAX_BYTES):
         req=Request(url,headers={'User-Agent':USER_AGENT,'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.5'})
-        with urlopen(req,timeout=self.timeout) as r:
+        with urlopen(req,timeout=self.timeout,context=SSL_CONTEXT) as r:
             if not is_safe_http(r.geturl()) or not same_site(r.geturl(),self.root):
                 raise RuntimeError('Redirected off selected retailer; refusing')
             status=r.status
@@ -368,18 +405,33 @@ class Fetcher:
         if key not in self.robots:
             robots=robotparser.RobotFileParser()
             robots.set_url(key+'/robots.txt')
-            try:
-                # Use standard parser; network errors must fail closed.
-                req=Request(key+'/robots.txt',headers={'User-Agent':USER_AGENT})
-                with urlopen(req,timeout=self.timeout) as r:
-                    data=r.read(1_000_000).decode('utf-8',errors='replace')
-                robots.parse(data.splitlines())
-                self.robots[key]=robots
-            except HTTPError as exc:
-                if exc.code==404:
-                    robots.parse([]);self.robots[key]=robots
-                else:raise RuntimeError(f'robots.txt unavailable (HTTP {exc.code}); stopping')
-            except Exception as exc:raise RuntimeError(f'robots.txt unavailable ({exc}); stopping')
+            if self.mode=='browser':
+                # Fetch robots.txt through the same real browser; some retailers drop plain HTTP clients.
+                try:
+                    resp=self.page.goto(key+'/robots.txt',wait_until='domcontentloaded',timeout=self.timeout*1000)
+                    if resp and resp.status==404:
+                        robots.parse([]);self.robots[key]=robots
+                        return
+                    if not resp or resp.status!=200:
+                        raise RuntimeError('HTTP '+str(resp.status if resp else '?'))
+                    data=self.page.inner_text('body')
+                    robots.parse(data.splitlines())
+                    self.robots[key]=robots
+                except Exception as exc:
+                    raise RuntimeError(f'robots.txt unavailable ({exc}); stopping')
+            else:
+                try:
+                    # Use standard parser; network errors must fail closed.
+                    req=Request(key+'/robots.txt',headers={'User-Agent':USER_AGENT})
+                    with urlopen(req,timeout=self.timeout,context=SSL_CONTEXT) as r:
+                        data=r.read(1_000_000).decode('utf-8',errors='replace')
+                    robots.parse(data.splitlines())
+                    self.robots[key]=robots
+                except HTTPError as exc:
+                    if exc.code==404:
+                        robots.parse([]);self.robots[key]=robots
+                    else:raise RuntimeError(f'robots.txt unavailable (HTTP {exc.code}); stopping')
+                except Exception as exc:raise RuntimeError(f'robots.txt unavailable ({exc}); stopping')
         if not self.robots[key].can_fetch(USER_AGENT,url):
             raise RuntimeError('robots.txt disallows this URL for the crawler')
     def get(self,url):
@@ -392,8 +444,38 @@ class Fetcher:
             resp=self.page.goto(url,wait_until='domcontentloaded',timeout=self.timeout*1000)
             if not resp or resp.status>=400:raise RuntimeError('Browser HTTP '+str(resp.status if resp else '?'))
             if not same_site(self.page.url,self.root):raise RuntimeError('Browser redirected off selected retailer')
-            # Allow ordinary client rendering without CAPTCHA or stealth tools.
-            self.page.wait_for_timeout(1600)
+            # Let ordinary client-side price/product rendering finish; scroll to trigger lazy loading.
+            try:self.page.wait_for_load_state('load',timeout=min(8000,self.timeout*1000))
+            except Exception:pass
+            try:
+                stable=0
+                for _ in range(40):
+                    before=self.page.evaluate('document.body.scrollHeight')
+                    self.page.evaluate('window.scrollBy(0,1200)')
+                    self.page.wait_for_timeout(800)
+                    after=self.page.evaluate('document.body.scrollHeight')
+                    at_bottom=self.page.evaluate('window.scrollY+window.innerHeight>=document.body.scrollHeight-5')
+                    if after==before and at_bottom:
+                        stable+=1
+                        if stable>=2:break
+                    else:stable=0
+            except Exception:pass
+            # Price widgets hydrate after entering the viewport; wait until the count stops changing.
+            try:
+                last=-1;stable=0
+                deadline=time.monotonic()+min(30,self.timeout)
+                while time.monotonic()<deadline:
+                    count=self.page.evaluate(
+                        "() => document.querySelectorAll('[data-testid=\"price-block-customer-price\"],"
+                        "[data-testid*=\"customer-price\"],.product-list-item [class*=price]').length")
+                    if count==last:
+                        stable+=1
+                        if stable>=3:break
+                    else:
+                        stable=0;last=count
+                    self.page.wait_for_timeout(1000)
+            except Exception:pass
+            self.page.wait_for_timeout(500)
             return self.page.content()
         return self._http(url)
 
@@ -427,7 +509,7 @@ def crawl(args):
     failed=[]
     saved_dir=Path(args.outdir)/'raw_pages'
     if args.save_html:saved_dir.mkdir(parents=True,exist_ok=True)
-    with Fetcher(root,args.delay,args.mode,args.timeout) as fetcher:
+    with Fetcher(root,args.delay,args.mode,args.timeout,getattr(args,'browser_visible',False)) as fetcher:
         while queue:
             queue.sort(key=lambda x:(x[1],-x[3]))
             url,depth,kind,score=queue.pop(0)
@@ -542,6 +624,7 @@ def main(argv=None):
     p.add_argument('--delay',type=float,default=1.5,help='Minimum seconds between fetches, >=0.7 (default 1.5)')
     p.add_argument('--timeout',type=int,default=20,help='Per-request timeout in seconds')
     p.add_argument('--mode',choices=['http','browser'],default='http',help='HTTP or optional Playwright-rendered browser')
+    p.add_argument('--browser-visible',action='store_true',help='Show the browser window (some retailers serve product pages only to visible browsers)')
     p.add_argument('--outdir',default='arbiscout_output',help='Output directory')
     args=p.parse_args(argv)
     args.url=args.url or args.url_pos or args.snapshot_url

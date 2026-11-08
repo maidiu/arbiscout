@@ -6,7 +6,7 @@
 
 ## Scope and counts
 
-- **40** tracked capability tasks: BLOCKED_EXTERNAL: 1, IN_PROGRESS: 3, NOT_STARTED: 26, PROPOSED: 3, PROTOTYPE_DRAFT: 1, REVIEW_PENDING: 1, SCOPED: 1, SOURCE_DOCUMENTED: 4.
+- **47** tracked capability tasks: BLOCKED_EXTERNAL: 1, IN_PROGRESS: 3, NOT_STARTED: 19, PROPOSED: 3, PROTOTYPE_DRAFT: 15, REVIEW_PENDING: 1, SCOPED: 1, SOURCE_DOCUMENTED: 4.
 - **112** research/substantiation questions: OPEN: 74, PARTIAL: 32, SETTLED: 4, SUPERSEDED: 2.
 - **Question dependency** = another conclusion needed first; **task hard prerequisite** = ALL; **source choice** = ANY ONE permitted source; **live evidence gate** = needed for real-world acceptance, not synthetic development.
 - **Downstream reach** counts graph descendants and signals leverage, **not estimated effort, importance by itself, or proof of completion**. All `P0` items require judgment, not automatic worker dispatch.
@@ -15,13 +15,13 @@
 
 | Task | What it establishes | State | Potential downstream | Live evidence gates | Alternative source gate |
 | --- | --- | --- | --- | --- | --- |
-| ARB-030 | Exact product identity and variant engine | PROTOTYPE_DRAFT | 15 | — | — |
-| ARB-010 | eBay completed-sale historical price access | IN_PROGRESS | 14 | — | — |
-| ARB-031 | Purchase-offer schema and provenance | NOT_STARTED | 12 | — | — |
+| ARB-030 | Exact product identity and variant engine | PROTOTYPE_DRAFT | 17 | — | — |
+| ARB-010 | eBay completed-sale historical price access | IN_PROGRESS | 16 | — | — |
+| ARB-031 | Purchase-offer schema and provenance | PROTOTYPE_DRAFT | 15 | — | — |
 | ARB-022 | Google Shopping search aggregators | SOURCE_DOCUMENTED | 6 | — | — |
 | ARB-023 | Best Buy purchase-offer API and price fields | SOURCE_DOCUMENTED | 6 | — | — |
 | ARB-024 | Walmart purchase-offer sources | SOURCE_DOCUMENTED | 6 | — | — |
-| ARB-020 | Retailer bargain-source landscape | IN_PROGRESS | 0 | — | — |
+| ARB-020 | Retailer bargain-source landscape | PROTOTYPE_DRAFT | 0 | — | — |
 | ARB-035 | Cross-market buyer culture, turnover, ticket size and discount-attention asymmetry | PROPOSED | 0 | ARB-010, ARB-029 | — |
 
 ## P0 research questions ready for independent investigation
@@ -70,6 +70,10 @@
 | E-PR1 | ArbiScout source-free PR #1 | REPOSITORY_ARTIFACT | REVIEW_PENDING | Matching, profit and ranking engine on draft branch. CI previously observed passing at a specific SHA, not merged or real-data tested. | Review exact diff and CI at current head |
 | E-EBAY-2025-10K | eBay 2025 Form 10-K (SEC official) | VERIFIED_PUBLIC_DOC | NOT_APPLICABLE_PUBLIC_RESEARCH | Official focus-category growth in motor P&A, collectibles, luxury, refurbished, apparel/sneakers, and demand-side community needs. Aggregate growth does not establish specific SKU regular completed-sales counts, retail markdown frequency or cross-platform customer attention. | Separate category GMV and eBay platform strategy evidence from specific regular SKU sales and retailer-sale overlap |
 | E-EBAY-RECOMMERCE-2026 | eBay 2026 Recommerce Report (company-commissioned survey) | VERIFIED_PUBLIC_DOC | NOT_APPLICABLE_PUBLIC_RESEARCH | 2026 secondhand buyer and seller surveys report broad category interests, purchase cadence, channel patterns and consumer motivations; useful for market-culture hypotheses, not proof an eBay buyer does not monitor retail deals. | Inspect survey methods, country splits and cohort biases before using any attention/channel proxy |
+| E-MEH-API | Meh API current deal | VERIFIED_PUBLIC_DOC | REVIEW_PENDING | Official current-deal JSON endpoint; user-supplied API key used locally; one request per minute guidance; deal, item and price fields parsed. | Record provider terms and permitted-use review; verify reference-price availability. |
+| E-WOOT-API | Woot Developer API | VERIFIED_PUBLIC_DOC | REVIEW_PENDING | Official x-api-key feed and offer endpoints; user-supplied key used locally; rate limits 1 request per second and 1000 per day; list and sale prices observed. | Record provider terms, feed coverage and permitted-use review. |
+| E-KROGER-API | Kroger Products and Locations API | VERIFIED_PUBLIC_DOC | REVIEW_PENDING | Official OAuth2 client-credentials products and locations API; user-supplied credentials used locally; price requires locationId; regular and promo prices observed. | Record provider terms, location coverage and permitted-use review. |
+| E-EBAY-SAVED-SOLD | User-saved eBay sold-search HTML | PUBLIC_RETAIL_SITE_ONLY | OTHER_USE_REQUIRES_PERMISSION | Manual user-saved sold-search HTML parsed locally; no automated eBay retrieval; eBay robots.txt disallows /sch/ for automated agents. | Use a licensed completed-sales provider or eBay API entitlement before claiming live automated evidence. |
 
 ## Maintenance
 

@@ -1,8 +1,8 @@
 {
   "schema_version": "2.0",
-  "snapshot_date": "2026-10-31",
+  "snapshot_date": "2026-11-07",
   "repository": "maidiu/arbiscout",
-  "branch": "agent/arbiscout-programma-control-room-r1",
+  "branch": "work/arbiscout-local-build",
   "canonical_main_seed_sha": "2c2f3d64ce49edc3073c7feb094bf803ee84d371",
   "disclaimer": "PLANNING / SOURCE GRAIN IS NOT VERIFIED LIVE PRODUCTION. Reverify current refs.",
   "status_vocabulary": [
@@ -183,7 +183,7 @@
       "title": "Retailer bargain-source landscape",
       "level": "L1",
       "stage": "R",
-      "status": "IN_PROGRESS",
+      "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
       "required_capability": "Find major retailers and price/discount feeds that support actual purchase-offer discovery, including stock, region and refresh",
@@ -199,9 +199,9 @@
       "related_tasks": [],
       "dependency_groups": [],
       "priority": "P0",
-      "finding": "",
+      "finding": "Local Meh/Woot/Kroger API adapters and browser-mode retailer fetch now execute; one retailer route is runnable. Provider terms, coverage and independent review remain open.",
       "finding_refs": [],
-      "last_verified_at": null,
+      "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
     },
@@ -528,7 +528,7 @@
       "title": "Purchase-offer schema and provenance",
       "level": "L2",
       "stage": "I",
-      "status": "NOT_STARTED",
+      "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
       "required_capability": "Represent retailer merchant, purchase price, delivery cost, item identity, location, stock, timestamp and URL",
@@ -544,9 +544,9 @@
       "related_tasks": [],
       "dependency_groups": [],
       "priority": "P0",
-      "finding": "",
+      "finding": "Provider adapters normalize Meh/Woot/Kroger records into the purchase-offer schema with title, current/reference price, URL, SKU, brand, condition and observation timestamp.",
       "finding_refs": [],
-      "last_verified_at": null,
+      "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
     },
@@ -613,7 +613,7 @@
       "title": "Historical completed-sale price adapter",
       "level": "L1",
       "stage": "I",
-      "status": "NOT_STARTED",
+      "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
         "ARB-030"
@@ -631,9 +631,9 @@
       "related_tasks": [],
       "dependency_groups": [],
       "priority": "P0",
-      "finding": "",
+      "finding": "Saved-page parser and watcher produce source-neutral sold observations from user-saved eBay HTML. No automated eBay retrieval and no licensed live sold-data feed.",
       "finding_refs": [],
-      "last_verified_at": null,
+      "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [
         "ARB-010"
       ],
@@ -673,7 +673,7 @@
       "title": "Current retailer versus eBay regular-price gap math",
       "level": "L1",
       "stage": "I",
-      "status": "NOT_STARTED",
+      "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
         "ARB-031",
@@ -692,9 +692,9 @@
       "related_tasks": [],
       "dependency_groups": [],
       "priority": "P0",
-      "finding": "",
+      "finding": "Gross absolute and percent gap computed from provisional displayed sold median versus current retailer price. Fees, shipping, tax and actual paid price are not included.",
       "finding_refs": [],
-      "last_verified_at": null,
+      "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
     },
@@ -703,7 +703,7 @@
       "title": "Robust normal eBay sale-price baseline",
       "level": "L2",
       "stage": "I",
-      "status": "NOT_STARTED",
+      "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
         "ARB-040"
@@ -721,9 +721,9 @@
       "related_tasks": [],
       "dependency_groups": [],
       "priority": "P0",
-      "finding": "",
+      "finding": "Median plus sold low/high/mean and middle-50% range computed when at least three usable observations exist. Provisional only; accepted Best Offers excluded.",
       "finding_refs": [],
-      "last_verified_at": null,
+      "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
     },
@@ -791,7 +791,7 @@
       "title": "Rank maximum reliable below-eBay purchase-price gaps",
       "level": "L1",
       "stage": "I",
-      "status": "NOT_STARTED",
+      "status": "IN_PROGRESS",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
         "ARB-030",
@@ -811,9 +811,9 @@
       "related_tasks": [],
       "dependency_groups": [],
       "priority": "P0",
-      "finding": "",
+      "finding": "Provisional top-ten ranking implemented for positive displayed-price gaps; no actual-paid verification; zero results allowed.",
       "finding_refs": [],
-      "last_verified_at": null,
+      "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
     },
@@ -885,7 +885,7 @@
       "title": "Source-linked purchase research report",
       "level": "L1",
       "stage": "I",
-      "status": "NOT_STARTED",
+      "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [
         "ARB-060"
@@ -903,9 +903,9 @@
       "related_tasks": [],
       "dependency_groups": [],
       "priority": "P0",
-      "finding": "",
+      "finding": "HTML dashboards show retailer link/price, sold low/high/mean/median/typical range, gap, sample count and below-low/below-median flags.",
       "finding_refs": [],
-      "last_verified_at": null,
+      "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
     },
@@ -989,9 +989,9 @@
       "related_tasks": [],
       "dependency_groups": [],
       "priority": "P1",
-      "finding": "",
+      "finding": "Provider keys load from local .env; .env is gitignored; .env.example lists names only; keys are not printed or committed. No independent security review.",
       "finding_refs": [],
-      "last_verified_at": null,
+      "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
     },
@@ -1000,7 +1000,7 @@
       "title": "Purchase-gap tests and CI",
       "level": "L2",
       "stage": "I",
-      "status": "NOT_STARTED",
+      "status": "PROTOTYPE_DRAFT",
       "owner": "HQ_UNASSIGNED",
       "dependencies": [],
       "required_capability": "Adversarial tests for valid comparable sale patterns, identity, gap magnitude, stale prices, no-data and empty lists",
@@ -1016,9 +1016,9 @@
       "related_tasks": [],
       "dependency_groups": [],
       "priority": "P1",
-      "finding": "",
+      "finding": "21 app tests executed locally: 20 passed, 1 skipped (private Best Buy snapshot). CI has not yet run this exact branch.",
       "finding_refs": [],
-      "last_verified_at": null,
+      "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
     },
@@ -1261,6 +1261,262 @@
         "https://www.ebayinc.com/recommerce-report/"
       ],
       "last_verified_at": null
+    },
+    {
+      "id": "ARB-100",
+      "title": "Meh, Woot and Kroger API provider adapters",
+      "level": "L1",
+      "stage": "I",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-031"
+      ],
+      "required_capability": "Normalize authorized provider API deal records into the source-neutral retailer purchase-offer schema with current price, reference price when present, URL, SKU, condition and source timestamp",
+      "first_consumer": "ARB-020 retailer-source matrix and ARB-029 one-source pilot",
+      "acceptance": "Provider adapters execute with user-supplied keys and produce inspectable products.json, crawl_log.json and dashboard without committing credentials",
+      "blocker": "No independent review of provider terms, coverage or price fidelity; Meh may lack a reference price",
+      "next_action": "Add fixture tests for provider payloads and obtain independent provider-terms review",
+      "implementation_ref": "ENGINEERING/arbiscout_app/providers.py",
+      "source_ids": [
+        "E-MEH-API",
+        "E-WOOT-API",
+        "E-KROGER-API"
+      ],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020",
+        "ARB-029",
+        "ARB-104"
+      ],
+      "dependency_groups": [],
+      "priority": "P0",
+      "finding": "Local adapters executed 2026-11-07 with user-supplied keys: Meh current deal 1 item; Woot feed All about 5000 live offers capped to 500; Kroger 6 promoted products for milk/eggs/bread at ZIP 29072. No independent review; no secrets committed.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/providers.py"
+      ],
+      "last_verified_at": "2026-11-07",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
+    },
+    {
+      "id": "ARB-101",
+      "title": "Browser-mode retailer fetch and lazy-price settling",
+      "level": "L2",
+      "stage": "I",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [],
+      "required_capability": "Fetch retailer listing pages through an ordinary installed browser, wait for client-rendered prices to settle, and extract listing cards without opening individual product pages",
+      "first_consumer": "ARB-020 retailer-source discovery",
+      "acceptance": "Bounded live listing run yields complete observed price pairs and saved raw pages without product-page fallback",
+      "blocker": "Retailer bot protection and page structure vary; no independent review of access rights",
+      "next_action": "Record the exact live-run receipt and review access terms for each retailer",
+      "implementation_ref": "ENGINEERING/arbiscout_app/arbiscout.py",
+      "source_ids": [
+        "E-BESTBUY-TERMS"
+      ],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020",
+        "ARB-023"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "Live bounded Best Buy run 2026-11-07: 137 unique products, 74 complete price pairs, 12 listing pages, 0 failed; no individual product pages. Plain HTTP clients were dropped by the retailer edge; browser mode used installed Chrome. Not independently verified.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/arbiscout.py"
+      ],
+      "last_verified_at": "2026-11-07",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
+    },
+    {
+      "id": "ARB-102",
+      "title": "User-saved eBay sold-page capture watcher",
+      "level": "L2",
+      "stage": "I",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-040"
+      ],
+      "required_capability": "Watch user-chosen folders for manually saved eBay sold-search HTML, match pages to retailer candidates by search query, parse them and regenerate reports without automated eBay retrieval",
+      "first_consumer": "ARB-040 historical observation intake",
+      "acceptance": "New saved page is detected, matched, parsed and reflected in reports; no automated eBay request is made",
+      "blocker": "Requires manual user save; live automated eBay sold-search remains disallowed by robots",
+      "next_action": "Add fixture tests for watcher matching and a recorded manual-capture receipt",
+      "implementation_ref": "ENGINEERING/arbiscout_app/ebay_watcher.py",
+      "source_ids": [
+        "E-EBAY-SAVED-SOLD"
+      ],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-040",
+        "ARB-103"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "Local console watches ebay_saved/ and ~/Downloads, matches saved pages by eBay query, parses only user-saved HTML and regenerates reports. Tested with 25 user-saved pages: 20 matched, 8 positive provisional gaps. No automated eBay fetch.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/ebay_watcher.py"
+      ],
+      "last_verified_at": "2026-11-07",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
+    },
+    {
+      "id": "ARB-103",
+      "title": "Sold-price distribution and retailer-below-eBay flags",
+      "level": "L2",
+      "stage": "I",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-051"
+      ],
+      "required_capability": "Compute usable sold-price low, high, mean, median and middle-50% range and flag whether the current retailer price is below the sold low or median",
+      "first_consumer": "ARB-071 report readability and ARB-060 provisional ranking",
+      "acceptance": "Fixture tests cover range, median, below-low and below-median behavior",
+      "blocker": "Displayed sold prices remain provisional; fees, shipping and actual paid amounts are not included",
+      "next_action": "Add net-cost and fee-aware columns only after independently accepted data",
+      "implementation_ref": "ENGINEERING/arbiscout_app/ebay_comparison.py",
+      "source_ids": [],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-051",
+        "ARB-060",
+        "ARB-071"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "Implemented and tested; 21 app tests executed, 20 passed, 1 skipped (private Best Buy snapshot). Gross gap only.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/ebay_comparison.py"
+      ],
+      "last_verified_at": "2026-11-07",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
+    },
+    {
+      "id": "ARB-104",
+      "title": "Provider credential handling and no-secret guard",
+      "level": "L2",
+      "stage": "O",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [],
+      "required_capability": "Load provider credentials from a local ignored environment file, keep keys out of source and logs, and document required variable names",
+      "first_consumer": "ARB-080 security and privacy design",
+      "acceptance": "No credential appears in tracked files, test output or dashboards; .env is ignored and .env.example lists names only",
+      "blocker": "No independent security review; repository is public",
+      "next_action": "Run a secret scan on the exact pushed commit",
+      "implementation_ref": "ENGINEERING/arbiscout_app/.env.example",
+      "source_ids": [],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-080",
+        "ARB-100"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": ".env loader and .env.example added; .env gitignored; keys not printed or committed. No independent security review.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/.env.example"
+      ],
+      "last_verified_at": "2026-11-07",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
+    },
+    {
+      "id": "ARB-105",
+      "title": "Non-food Kroger term and category probe",
+      "level": "L2",
+      "stage": "R",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-100"
+      ],
+      "required_capability": "Probe authorized Kroger product search terms for non-food household and general-merchandise offers and record observed promoted-price coverage",
+      "first_consumer": "ARB-020 retailer/category matrix and ARB-035 sector sampling",
+      "acceptance": "Bounded term list tested with location-specific prices and negative results recorded",
+      "blocker": "Kroger search is term-based, store-specific and general merchandise is thin at some locations",
+      "next_action": "Repeat across multiple stores and seasons; do not infer national availability",
+      "implementation_ref": "ENGINEERING/arbiscout_app/providers.py",
+      "source_ids": [
+        "E-KROGER-API"
+      ],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020",
+        "ARB-035",
+        "ARB-100"
+      ],
+      "dependency_groups": [],
+      "priority": "P2",
+      "finding": "Probe at ZIP 29072 on 2026-11-07: batteries and LED bulbs returned promoted prices; air fryer, headphones, vacuum, storage bins, cookware, LEGO, printer and power bank returned no promoted products. Location-specific only.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/providers.py"
+      ],
+      "last_verified_at": "2026-11-07",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
+    },
+    {
+      "id": "ARB-106",
+      "title": "Unified multi-source catalog and top-N selection",
+      "level": "L1",
+      "stage": "I",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-100",
+        "ARB-101"
+      ],
+      "required_capability": "Merge scraped and API source outputs into one normalized catalog with source and category labels, filter and sort across sources, and write a top-N selection for eBay comparison",
+      "first_consumer": "ARB-029 one-source pilot and ARB-060 provisional ranking",
+      "acceptance": "Catalog dashboard filters by source and category and sorts by discount, savings or price; selection writes selected products and runs the comparison pipeline",
+      "blocker": "Category inference is heuristic; source coverage depends on which adapters were run; no independent review",
+      "next_action": "Record a selection receipt and add category-quality checks",
+      "implementation_ref": "ENGINEERING/arbiscout_app/catalog_server.py",
+      "source_ids": [
+        "E-MEH-API",
+        "E-WOOT-API",
+        "E-KROGER-API",
+        "E-BESTBUY-TERMS"
+      ],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020",
+        "ARB-029",
+        "ARB-060",
+        "ARB-100",
+        "ARB-101"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "Local merge test: 2,225 products across Best Buy, Meh, Woot and Kroger; source/category filters and top-N selection worked; Woot-only 20 and all-except-Woot 20 selected. No independent review.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/catalog_server.py"
+      ],
+      "last_verified_at": "2026-11-07",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     }
   ],
   "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
@@ -1276,5 +1532,5 @@
   "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS (Q001-Q112)",
   "source_examples_not_mandatory": true,
   "data_format": "Canonical JSON registers + generated Markdown dashboards and CSV tables",
-  "task_count": 40
+  "task_count": 47
 }

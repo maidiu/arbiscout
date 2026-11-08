@@ -1,10 +1,10 @@
 Task,Priority,State,Actual capability,Hard prerequisites (ALL),Alternative source (ANY),Live evidence gates,"Related, nonblocking",Downstream reach,Finding / blocker,References
 ARB-000,P1,SCOPED,Retailer purchase-research index,—,—,—,—,0,No authorized and complete end-to-end live evidence yet,—
-ARB-010,P0,IN_PROGRESS,eBay completed-sale historical price access,—,—,—,—,14,No licensed automated sold-data feed verified,"[E-EBAY-LICENSE](https://developer.ebay.com/join/api-license-agreement), [E-EBAY-INSIGHTS](https://developer.ebay.com/api-docs/buy/marketplace-insights/static/overview.html)"
+ARB-010,P0,IN_PROGRESS,eBay completed-sale historical price access,—,—,—,—,16,No licensed automated sold-data feed verified,"[E-EBAY-LICENSE](https://developer.ebay.com/join/api-license-agreement), [E-EBAY-INSIGHTS](https://developer.ebay.com/api-docs/buy/marketplace-insights/static/overview.html)"
 ARB-011,P1,NOT_STARTED,Seller Hub Product Research functional audit,—,—,—,ARB-010,0,Account entitlement not independently checked,[E-EBAY-RESEARCH](https://www.ebay.com/sh/research)
 ARB-012,P1,NOT_STARTED,eBay Developer capabilities and approvals,—,—,—,ARB-010,0,No application verified,—
 ARB-013,P1,NOT_STARTED,Alternative eBay historical-price data sources,—,—,—,ARB-010,0,Source unknown,—
-ARB-020,P0,IN_PROGRESS,Retailer bargain-source landscape,—,—,—,—,0,Use rights unsettled,—
+ARB-020,P0,PROTOTYPE_DRAFT,Retailer bargain-source landscape,—,—,—,—,0,"Local Meh/Woot/Kroger API adapters and browser-mode retailer fetch now execute; one retailer route is runnable. Provider terms, coverage and independent review remain open.",—
 ARB-021,P1,SOURCE_DOCUMENTED,Google Merchant API fit,—,—,—,ARB-020,0,Merchant eligibility varies,[E-GOOGLE-MERCHANT](https://developers.google.com/merchant/api/guides/reports/understand-the-market)
 ARB-022,P0,SOURCE_DOCUMENTED,Google Shopping search aggregators,—,—,—,ARB-020,6,No vendor subscribed or tested,"[E-SERPAPI](https://serpapi.com/google-shopping-api), [E-DATAFORSEO](https://docs.dataforseo.com/v3/merchant-google-overview/)"
 ARB-023,P0,SOURCE_DOCUMENTED,Best Buy purchase-offer API and price fields,—,—,—,ARB-020,6,Permission not established,"[E-BESTBUY-API](https://developer.bestbuy.com/apis), [E-BESTBUY-TERMS](https://developer.bestbuy.com/legal)"
@@ -14,24 +14,24 @@ ARB-026,P1,NOT_STARTED,Home Depot and cross-retailer feeds,—,—,—,ARB-020,6
 ARB-027,P1,NOT_STARTED,AliExpress import purchase offers,—,—,—,ARB-020,0,No usable live grant verified,—
 ARB-028,P1,NOT_STARTED,Alibaba bulk purchase offers,—,—,—,ARB-020,0,No qualified supplier/permit,—
 ARB-029,P1,NOT_STARTED,One-source-first price-gap yield pilot,"ARB-030, ARB-040","ANY_OF(ARB-022, ARB-023, ARB-024, ARB-025, ARB-026)",ARB-010,"ARB-020, ARB-032, ARB-033",3,Needs one verified feed and comparable historical eBay price evidence for real assessment,—
-ARB-030,P0,PROTOTYPE_DRAFT,Exact product identity and variant engine,—,—,—,—,15,Draft PR #1 only,—
-ARB-031,P0,NOT_STARTED,Purchase-offer schema and provenance,—,—,—,—,12,No feed selected,—
+ARB-030,P0,PROTOTYPE_DRAFT,Exact product identity and variant engine,—,—,—,—,17,Draft PR #1 only,—
+ARB-031,P0,PROTOTYPE_DRAFT,Purchase-offer schema and provenance,—,—,—,—,15,"Provider adapters normalize Meh/Woot/Kroger records into the purchase-offer schema with title, current/reference price, URL, SKU, brand, condition and observation timestamp.",—
 ARB-032,P1,NOT_STARTED,True markdown detection,ARB-031,—,—,—,0,Permitted retention undecided,—
 ARB-033,P0,NOT_STARTED,Actual purchasability and checkout price,ARB-031,—,—,—,7,Live authorized source missing,—
-ARB-040,P0,NOT_STARTED,Historical completed-sale price adapter,ARB-030,—,ARB-010,—,13,Rights/access missing,—
+ARB-040,P0,PROTOTYPE_DRAFT,Historical completed-sale price adapter,ARB-030,—,ARB-010,—,15,Saved-page parser and watcher produce source-neutral sold observations from user-saved eBay HTML. No automated eBay retrieval and no licensed live sold-data feed.,—
 ARB-041,P1,NOT_STARTED,Historical sale frequency and price dispersion,ARB-040,—,—,—,0,No validated sold data,—
-ARB-050,P0,NOT_STARTED,Current retailer versus eBay regular-price gap math,"ARB-031, ARB-051",—,—,—,7,Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification,—
-ARB-051,P0,NOT_STARTED,Robust normal eBay sale-price baseline,ARB-040,—,—,—,8,Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification,—
+ARB-050,P0,PROTOTYPE_DRAFT,Current retailer versus eBay regular-price gap math,"ARB-031, ARB-051",—,—,—,7,"Gross absolute and percent gap computed from provisional displayed sold median versus current retailer price. Fees, shipping, tax and actual paid price are not included.",—
+ARB-051,P0,PROTOTYPE_DRAFT,Robust normal eBay sale-price baseline,ARB-040,—,—,—,9,Median plus sold low/high/mean and middle-50% range computed when at least three usable observations exist. Provisional only; accepted Best Offers excluded.,—
 ARB-052,P1,NOT_STARTED,Import total purchase cost and delivery,—,—,—,"ARB-027, ARB-028",0,Suppliers not validated,—
 ARB-053,P1,NOT_STARTED,"Item legitimacy, quality and condition exclusions",ARB-030,—,—,—,0,Categories unselected,—
-ARB-060,P0,NOT_STARTED,Rank maximum reliable below-eBay purchase-price gaps,"ARB-030, ARB-033, ARB-050",—,—,—,6,Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification,—
+ARB-060,P0,IN_PROGRESS,Rank maximum reliable below-eBay purchase-price gaps,"ARB-030, ARB-033, ARB-050",—,—,—,6,Provisional top-ten ranking implemented for positive displayed-price gaps; no actual-paid verification; zero results allowed.,—
 ARB-061,P1,NOT_STARTED,Price/stock source lineage and expiry,"ARB-031, ARB-040",—,—,—,2,Live retention/permission TBD,—
 ARB-070,P1,NOT_STARTED,Daily retailer purchase-price-gap indexing,"ARB-031, ARB-040, ARB-060",—,ARB-010,—,2,No live source,—
-ARB-071,P0,NOT_STARTED,Source-linked purchase research report,ARB-060,—,—,—,4,No live pilot,—
+ARB-071,P0,PROTOTYPE_DRAFT,Source-linked purchase research report,ARB-060,—,—,—,4,"HTML dashboards show retailer link/price, sold low/high/mean/median/typical range, gap, sample count and below-low/below-median flags.",—
 ARB-072,P1,NOT_STARTED,Observed price and verification log,ARB-031,—,—,—,0,No transactions used,—
 ARB-073,P1,NOT_STARTED,Purchase-price-gap accuracy calibration,"ARB-029, ARB-071",—,—,—,1,Actual repeated observations not yet available,—
-ARB-080,P1,IN_PROGRESS,Security/privacy/vendor access design,—,—,—,—,0,Repository currently public,—
-ARB-081,P1,NOT_STARTED,Purchase-gap tests and CI,—,—,—,—,0,Purchase-price-gap implementation remains unbuilt; old prototype does not fulfill current specification,—
+ARB-080,P1,IN_PROGRESS,Security/privacy/vendor access design,—,—,—,—,0,Provider keys load from local .env; .env is gitignored; .env.example lists names only; keys are not printed or committed. No independent security review.,—
+ARB-081,P1,PROTOTYPE_DRAFT,Purchase-gap tests and CI,—,—,—,—,0,"21 app tests executed locally: 20 passed, 1 skipped (private Best Buy snapshot). CI has not yet run this exact branch.",—
 ARB-082,P1,REVIEW_PENDING,Review legacy PR #1; salvage neutral matching only,—,—,—,—,0,Legacy draft PR #1 is not suitable for wholesale merge under new constitution,—
 ARB-083,P1,PROPOSED,Adopt control room on main,—,—,—,—,1,This branch is draft,—
 ARB-084,P1,PROPOSED,Rabochii and HQ return lifecycle,ARB-083,—,—,—,0,No worker launched,—
@@ -39,3 +39,10 @@ ARB-090,P0,BLOCKED_EXTERNAL,First real purchase-gap report,"ARB-030, ARB-031, AR
 ARB-091,P1,NOT_STARTED,Daily 0–10 current purchase-gap index,"ARB-090, ARB-070, ARB-061",—,ARB-010,—,1,Depends on real vertical slice,—
 ARB-092,P1,NOT_STARTED,Measured bargain-index reliability,"ARB-091, ARB-073",—,—,—,0,Needs multi-day real price observations,—
 ARB-035,P0,PROPOSED,"Cross-market buyer culture, turnover, ticket size and discount-attention asymmetry",—,—,"ARB-010, ARB-029","ARB-010, ARB-020, ARB-029, ARB-030, ARB-041, ARB-051, ARB-060",0,"eBay official focus category and consumer survey data show specialist marketplace presence but NOT the specific retailer-to-eBay price gaps, audience discount-site non-overlap or sector profitability; commission prepared, no completed independent return","[E-EBAY-RESEARCH](https://www.ebay.com/sh/research), [E-EBAY-2025-10K](https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/ebay-20251231.htm), [E-EBAY-RECOMMERCE-2026](https://www.ebayinc.com/recommerce-report/)"
+ARB-100,P0,PROTOTYPE_DRAFT,"Meh, Woot and Kroger API provider adapters",ARB-031,—,—,"ARB-020, ARB-029, ARB-104",2,Local adapters executed 2026-11-07 with user-supplied keys: Meh current deal 1 item; Woot feed All about 5000 live offers capped to 500; Kroger 6 promoted products for milk/eggs/bread at ZIP 29072. No independent review; no secrets committed.,"[E-MEH-API](https://meh.com/api), [E-WOOT-API](https://developer.woot.com/), [E-KROGER-API](https://developer.kroger.com/reference/api/product-api-partner)"
+ARB-101,P1,PROTOTYPE_DRAFT,Browser-mode retailer fetch and lazy-price settling,—,—,—,"ARB-020, ARB-023",1,"Live bounded Best Buy run 2026-11-07: 137 unique products, 74 complete price pairs, 12 listing pages, 0 failed; no individual product pages. Plain HTTP clients were dropped by the retailer edge; browser mode used installed Chrome. Not independently verified.",[E-BESTBUY-TERMS](https://developer.bestbuy.com/legal)
+ARB-102,P1,PROTOTYPE_DRAFT,User-saved eBay sold-page capture watcher,ARB-040,—,—,"ARB-040, ARB-103",0,"Local console watches ebay_saved/ and ~/Downloads, matches saved pages by eBay query, parses only user-saved HTML and regenerates reports. Tested with 25 user-saved pages: 20 matched, 8 positive provisional gaps. No automated eBay fetch.",[E-EBAY-SAVED-SOLD](https://www.ebay.com/sch/i.html)
+ARB-103,P1,PROTOTYPE_DRAFT,Sold-price distribution and retailer-below-eBay flags,ARB-051,—,—,"ARB-051, ARB-060, ARB-071",0,"Implemented and tested; 21 app tests executed, 20 passed, 1 skipped (private Best Buy snapshot). Gross gap only.",—
+ARB-104,P1,PROTOTYPE_DRAFT,Provider credential handling and no-secret guard,—,—,—,"ARB-080, ARB-100",0,.env loader and .env.example added; .env gitignored; keys not printed or committed. No independent security review.,—
+ARB-105,P2,PROTOTYPE_DRAFT,Non-food Kroger term and category probe,ARB-100,—,—,"ARB-020, ARB-035, ARB-100",0,"Probe at ZIP 29072 on 2026-11-07: batteries and LED bulbs returned promoted prices; air fryer, headphones, vacuum, storage bins, cookware, LEGO, printer and power bank returned no promoted products. Location-specific only.",[E-KROGER-API](https://developer.kroger.com/reference/api/product-api-partner)
+ARB-106,P1,PROTOTYPE_DRAFT,Unified multi-source catalog and top-N selection,"ARB-100, ARB-101",—,—,"ARB-020, ARB-029, ARB-060, ARB-100, ARB-101",0,"Local merge test: 2,225 products across Best Buy, Meh, Woot and Kroger; source/category filters and top-N selection worked; Woot-only 20 and all-except-Woot 20 selected. No independent review.","[E-MEH-API](https://meh.com/api), [E-WOOT-API](https://developer.woot.com/), [E-KROGER-API](https://developer.kroger.com/reference/api/product-api-partner), [E-BESTBUY-TERMS](https://developer.bestbuy.com/legal)"

@@ -6,18 +6,18 @@
   "source_of_truth": "GitHub main + adopted PRs; draft branch facts are qualified proposals",
   "main_seed_sha": "2c2f3d64ce49edc3073c7feb094bf803ee84d371",
   "control_room": {
-    "branch": "agent/arbiscout-programma-control-room-r1",
+    "branch": "work/arbiscout-local-build",
     "review_status": "DRAFT_UNMERGED",
     "hq_appointed": false
   },
   "implementation": {
     "draft_pr": "https://github.com/maidiu/arbiscout/pull/1",
     "prior_observed_head_sha": "799747af35bf154fcf23c994604230c945fe0161",
-    "status": "DRAFT_PR1_IS_LEGACY_INCOMPATIBLE_SCORING; NO ADOPTED_CURRENT_PURCHASE_GAP_ENGINE",
+    "status": "ACTIVE_LOCAL_PROTOTYPE_WITH_PROVIDER_ADAPTERS; NO LIVE ACTUAL-PAID EBAY EVIDENCE",
     "live_marketplace_integrations": 0,
     "real_scored_opportunities": 0,
-    "sourcefree_current_candidate": "ENGINEERING/arbiscout_app/run_test.py plus existing arbiscout.py and ebay_comparison.py (draft PR #16)",
-    "local_sourcefree_tests_passed": 16,
+    "sourcefree_current_candidate": "ENGINEERING/arbiscout_app: browser-mode retailer fetch, saved eBay sold-page watcher, sold-price distribution stats and Meh/Woot/Kroger API adapters (local prototype, not independently reviewed)",
+    "local_sourcefree_tests_passed": 20,
     "github_app_tests": {
       "run_url": "https://github.com/maidiu/arbiscout/actions/runs/42412720168",
       "head": "7c486130958a69d213f3098106f790ce93435b7d",
@@ -38,6 +38,48 @@
       "displayed_top_ten": 10,
       "verified_actual_paid_prices": 0,
       "artifact_id": 13590102124
+    },
+    "local_sourcefree_tests_executed": 21,
+    "local_sourcefree_tests_skipped": 1,
+    "active_build": {
+      "status": "LOCAL_PROTOTYPE_DRAFT_NOT_INDEPENDENTLY_REVIEWED",
+      "bestbuy_live_listing_run": {
+        "products": 137,
+        "complete_pairs": 74,
+        "listing_pages": 12,
+        "failed_pages": 0,
+        "product_pages_opened": 0
+      },
+      "saved_ebay_probe": {
+        "files": 25,
+        "matched": 20,
+        "positive_provisional_gaps": 8
+      },
+      "provider_probe": {
+        "meh_items": 1,
+        "woot_feed_all_offers": 5000,
+        "woot_cap": 500,
+        "kroger_promoted_products": 6,
+        "kroger_zip": "29072"
+      },
+      "non_food_kroger_probe": {
+        "promoted_categories": [
+          "batteries",
+          "LED bulbs"
+        ],
+        "no_promoted_terms": [
+          "air fryer",
+          "headphones",
+          "vacuum",
+          "storage bins",
+          "cookware",
+          "LEGO",
+          "printer",
+          "power bank"
+        ]
+      },
+      "no_automated_ebay_sold_fetch": true,
+      "secrets_committed": false
     }
   },
   "terminal_state": "SOURCEFREE_CODE_BANKED_CANDIDATE__NO_LIVE_ACTUAL_PAID_EBAY_FIRST_CONSUMER",
@@ -45,8 +87,9 @@
     "No verified permitted live source of actual regular same-item eBay completed-sale price observations",
     "No checked full live retailer purchase offer and eBay price historical pair",
     "No end-to-end actual acquired data → price-gap index report",
-    "Unknown retailer access-use permissions for automated web collection, despite user-reported Woot/Meh/Kroger access.",
-    "Live eBay HTML retrieval/coverage and paid Best Offer fidelity are unproved; actual paid-price API benchmark remains necessary."
+    "Provider API keys were used locally for Meh/Woot/Kroger; independent provider-terms and coverage review remains open.",
+    "Live eBay HTML retrieval/coverage and paid Best Offer fidelity are unproved; actual paid-price API benchmark remains necessary.",
+    "Displayed eBay sold prices are provisional; no licensed actual-paid completed-sales feed is integrated."
   ],
   "done": [
     "User product constitution corrected to exclusive purchase-price-gap research (draft PR #2)",
@@ -57,7 +100,12 @@
     "Nov 7 current runnable deterministic crawler/dashboard and dated eBay-comparison module banked on isolated source branch (full prior source no-drop); 16/16 local sourcefree tests, no live sale evidence.",
     "Nov 7 receiving and first-consumer negative court added without revising historical canonical work registry or generated table without proper independent receiving.",
     "Nov 7 active-app test operator committed to PR #16: twenty retailer offers to locally dated 30-day eBay displayed-price comparisons to provisional top-ten dashboard, CSV/JSON, truthfully separated from actual-paid evidence.",
-    "GitHub Actions now runs active app tests (20 executed, 19 pass/1 skipped) and produces inspectable fully synthetic 20-to-10 demo artifact; root archive and PROGRAMMA checks remain green."
+    "GitHub Actions now runs active app tests (20 executed, 19 pass/1 skipped) and produces inspectable fully synthetic 20-to-10 demo artifact; root archive and PROGRAMMA checks remain green.",
+    "Nov 7 active local build: browser-mode retailer fetch with lazy-price settling; bounded Best Buy listing run produced 137 products and 74 complete price pairs without opening product pages.",
+    "Nov 7 active local build: user-saved eBay sold-page watcher with query-based matching and optional cleanup; tested with 25 saved pages, 20 matched, 8 positive provisional gaps.",
+    "Nov 7 active local build: sold low/high/mean/median and middle-50% range plus below-low/below-median flags; 21 app tests, 20 pass, 1 skip.",
+    "Nov 7 active local build: Meh/Woot/Kroger API adapters executed with user-supplied keys; no secrets committed; provider terms review remains open.",
+    "Nov 7 active local build: unified catalog merges Best Buy, Meh, Woot and Kroger outputs with source/category filters, sorting and top-N selection feeding the eBay comparison and watcher."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",
@@ -67,9 +115,13 @@
     "Measure later observation accuracy and update provider/evidence findings",
     "Independent exact-head sourcefree code-bank review and protected receiving, without upgrading external rights or actual-price accuracy.",
     "Qualify retailer access and historical eBay actual-paid data; prove real dated matched sales, total retail purchaser price and 30-day conservative observed gap.",
-    "Independently review the actual full test version and verify a permitted live pair before claiming a real transaction-true price-gap recommendation."
+    "Independently review the actual full test version and verify a permitted live pair before claiming a real transaction-true price-gap recommendation.",
+    "Independently review provider terms, feed coverage and non-food category availability before treating API output as an authorized source.",
+    "Add fee, shipping, tax and actual-paid adjustments before describing any gap as a margin; current output is gross only.",
+    "Run the exact pushed commit through CI and a secret scan.",
+    "Record a catalog selection receipt and add category-quality checks for provider and inferred categories."
   ],
-  "largest_productive_move": "Review/receive exact sourcefree candidate, then prove a narrow authorized Woot/Meh/Kroger retailer offer + dated actual-paid eBay historical comparator with conservative gap and truthful zero-to-ten report; no more generic affiliate onboarding.",
+  "largest_productive_move": "Review/receive this exact local build, then prove one authorized Woot/Meh/Kroger offer plus dated actual-paid eBay history with conservative gross-to-net gap math and a truthful zero-to-ten report; no more generic onboarding.",
   "flights": [
     {
       "id": "FLIGHT-001",

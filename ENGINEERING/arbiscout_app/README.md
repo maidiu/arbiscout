@@ -106,6 +106,21 @@ python3 -m unittest discover -s tests -v
 ```
 
 
+## Unified catalog and source filtering (Nov 7)
+
+`build_catalog.py` merges `bestbuy_live`, `meh_live`, `woot_live`, and `kroger_live` into one `catalog/catalog.json` plus a filterable dashboard. `run_catalog.command` builds the catalog and serves the live selection UI at `127.0.0.1:8770`.
+
+- Filter by **source** (Best Buy / Meh / Woot / Kroger; include or exclude any combination), by **category**, and by text.
+- Sort by **highest % off**, **dollar savings**, **lowest/highest current price**, **name**, **source**, or **category**.
+- Set **Top N** (default 20) and click **Build top N selection**. The selection is written to `catalog/selected/`.
+- Capture eBay evidence for that selection with:
+  ```bash
+  ./watch_ebay.command ebay_saved --output catalog/selected --keep-selection
+  ```
+- A downloaded `selected.json` from the static dashboard can be processed with `./run_selected.command selected.json`.
+
+Categories come from provider data where available (Woot categories, Kroger categories) and are inferred from the Best Buy source page/title otherwise. The catalog caps each source at 2,000 products by default (`--max-per-source`) so a large Woot feed remains manageable; the Woot adapter itself caps at 500. The selection is gross retailer discount only; eBay comparison and the below-eBay flags happen after the capture step.
+
 ## Complete executable 20-to-10 test operator (Nov 7)
 
 See [TEST_VERSION.md](TEST_VERSION.md). Use `python3 run_test.py --demo --as-of 2026-11-07 --output demo_out --open` for an offline **fictional** 20-item demonstration that exercises the same actual extraction, 30-day date filtering, median, and top-ten ranking code. Or pass your saved Best Buy HTML with saved eBay sold pages or an explicitly authorized robots-checked live eBay request. Output is provisional displayed-price comparison, not proven actual paid historical prices. The earlier Nov 7 source bank is a permanent historical archive, not the current active version.

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "checked_date": "2026-10-31",
+  "checked_date": "2026-11-07",
   "note": "Source documents and vendor statements have been publicly located; permissions, live API grants, coverage and code execution are separate claims. Entries must be updated with date, scope, exact clauses and approval proof. No credentials.",
   "status_vocab": [
     "VERIFIED_PUBLIC_DOC",
@@ -261,6 +261,58 @@
       "evidence_id": "PUBLIC_URL",
       "next_probe": "Inspect survey methods, country splits and cohort biases before using any attention/channel proxy",
       "privacy": "Public only"
+    },
+    {
+      "id": "E-MEH-API",
+      "title": "Meh API current deal",
+      "url": "https://meh.com/api",
+      "source_status": "VERIFIED_PUBLIC_DOC",
+      "rights_status": "REVIEW_PENDING",
+      "last_checked": "2026-11-07",
+      "claim": "Official current-deal JSON endpoint; user-supplied API key used locally; one request per minute guidance; deal, item and price fields parsed.",
+      "limitations": "API key access is not an independent permission review for research use; no redistribution; current deal only.",
+      "evidence_id": "PUBLIC_URL",
+      "next_probe": "Record provider terms and permitted-use review; verify reference-price availability.",
+      "privacy": "Public record; key stored only in local ignored .env."
+    },
+    {
+      "id": "E-WOOT-API",
+      "title": "Woot Developer API",
+      "url": "https://developer.woot.com/",
+      "source_status": "VERIFIED_PUBLIC_DOC",
+      "rights_status": "REVIEW_PENDING",
+      "last_checked": "2026-11-07",
+      "claim": "Official x-api-key feed and offer endpoints; user-supplied key used locally; rate limits 1 request per second and 1000 per day; list and sale prices observed.",
+      "limitations": "Access is not independent permission review; feed data is minified; offer terms and research use unverified.",
+      "evidence_id": "PUBLIC_URL",
+      "next_probe": "Record provider terms, feed coverage and permitted-use review.",
+      "privacy": "Public record; key stored only in local ignored .env."
+    },
+    {
+      "id": "E-KROGER-API",
+      "title": "Kroger Products and Locations API",
+      "url": "https://developer.kroger.com/reference/api/product-api-partner",
+      "source_status": "VERIFIED_PUBLIC_DOC",
+      "rights_status": "REVIEW_PENDING",
+      "last_checked": "2026-11-07",
+      "claim": "Official OAuth2 client-credentials products and locations API; user-supplied credentials used locally; price requires locationId; regular and promo prices observed.",
+      "limitations": "Access is not independent permission review; prices and availability are store-specific; no automated checkout.",
+      "evidence_id": "PUBLIC_URL",
+      "next_probe": "Record provider terms, location coverage and permitted-use review.",
+      "privacy": "Public record; credentials stored only in local ignored .env."
+    },
+    {
+      "id": "E-EBAY-SAVED-SOLD",
+      "title": "User-saved eBay sold-search HTML",
+      "url": "https://www.ebay.com/sch/i.html",
+      "source_status": "PUBLIC_RETAIL_SITE_ONLY",
+      "rights_status": "OTHER_USE_REQUIRES_PERMISSION",
+      "last_checked": "2026-11-07",
+      "claim": "Manual user-saved sold-search HTML parsed locally; no automated eBay retrieval; eBay robots.txt disallows /sch/ for automated agents.",
+      "limitations": "Displayed sold prices may differ from actual paid amounts; no live automated access; user must verify rights.",
+      "evidence_id": "LOCAL_USER_FILE",
+      "next_probe": "Use a licensed completed-sales provider or eBay API entitlement before claiming live automated evidence.",
+      "privacy": "User-saved local files; not committed."
     }
   ],
   "application_use_case": "Retail bargain indexing from major retailers under purchase conditions informed by historical eBay price patterns; no designated downstream resale operation."

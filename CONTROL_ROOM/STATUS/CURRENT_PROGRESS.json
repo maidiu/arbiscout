@@ -60,7 +60,9 @@
         "woot_feed_all_offers": 5000,
         "woot_cap": 500,
         "kroger_promoted_products": 6,
-        "kroger_zip": "29072"
+        "kroger_zip": "29072",
+        "woot_enriched_complete": 500,
+        "woot_detail_enrichment": "/getoffers batches of 25"
       },
       "non_food_kroger_probe": {
         "promoted_categories": [
@@ -106,7 +108,8 @@
     "Nov 7 active local build: sold low/high/mean/median and middle-50% range plus below-low/below-median flags; 21 app tests, 20 pass, 1 skip.",
     "Nov 7 active local build: Meh/Woot/Kroger API adapters executed with user-supplied keys; no secrets committed; provider terms review remains open.",
     "Nov 7 active local build: unified catalog merges Best Buy, Meh, Woot and Kroger outputs with source/category filters, sorting and top-N selection feeding the eBay comparison and watcher.",
-    "Nov 7 active local build: catalog saved list with per-row Save/Remove, Saved-only filter and hand-picked eBay run; saved.json persists across server restarts."
+    "Nov 7 active local build: catalog saved list with per-row Save/Remove, Saved-only filter and hand-picked eBay run; saved.json persists across server restarts.",
+    "Nov 7 active local build: Woot detail enrichment via /getoffers; All feed capped to 500, collections expanded, variants deduped, 500/500 complete price pairs in the local test."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",

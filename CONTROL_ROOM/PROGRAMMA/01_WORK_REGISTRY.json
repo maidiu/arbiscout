@@ -1293,7 +1293,7 @@
       ],
       "dependency_groups": [],
       "priority": "P0",
-      "finding": "Local adapters executed 2026-11-07 with user-supplied keys: Meh current deal 1 item; Woot feed All about 5000 live offers capped to 500; Kroger 6 promoted products for milk/eggs/bread at ZIP 29072. No independent review; no secrets committed.",
+      "finding": "Local adapters executed 2026-11-07 with user-supplied keys: Meh current deal 1 item; Woot feed All about 5000 live offers, capped to 500 and enriched through /getoffers; local test returned 500/500 complete price pairs after expanding collections and deduping variants; Kroger 6 promoted products for milk/eggs/bread at ZIP 29072. No independent review; no secrets committed.",
       "finding_refs": [
         "ENGINEERING/arbiscout_app/providers.py"
       ],

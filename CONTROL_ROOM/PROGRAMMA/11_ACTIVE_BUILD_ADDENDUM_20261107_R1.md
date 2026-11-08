@@ -11,6 +11,7 @@ This addendum records the active local build on `work/arbiscout-local-build`. It
 - **Distribution output:** sold low, high, mean, median and middle-50% range, plus whether the current retailer price is below the sold low or median.
 - **Saved list:** per-row Save/Remove, Saved-only filtering and a hand-picked eBay run persisted in `catalog/saved.json`.
 - **Unified catalog:** merges Best Buy, Meh, Woot and Kroger outputs with source and category filters, discount/savings/price sorting and a top-N selection written to `catalog/selected/`.
+- **Woot detail enrichment:** the adapter now calls /getoffers in batches of 25, expands collection offers, dedupes variants and prioritizes complete price pairs.
 - **Provider adapters:** `providers.py` supports Meh, Woot and Kroger with user-supplied keys. Local execution produced: Meh **1 current item**; Woot feed `All` **~5000 live offers** (capped to 500); Kroger **6 promoted products** for milk/eggs/bread at ZIP 29072.
 - **Non-food Kroger probe:** at ZIP 29072, batteries and LED bulbs returned promoted prices; air fryer, headphones, vacuum, storage bins, cookware, LEGO, printer and power bank returned no promoted products. This is one location, not a national category claim.
 - **Tests:** 21 executed, 20 passed, 1 skipped (private Best Buy snapshot).

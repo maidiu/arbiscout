@@ -111,25 +111,44 @@ def build_records(raw):
 
 WOOT_CATEGORIES = {
     "computers": "Computers & Tablets",
+    "pc": "Computers & Tablets",
+    "tech": "Electronics",
     "electronics": "Electronics",
     "home": "Home & Outdoor",
     "tools": "Home & Outdoor",
     "sports": "Sports & Outdoors",
     "sport": "Sports & Outdoors",
     "shirts": "Apparel",
+    "shirt": "Apparel",
     "gourmet": "Grocery & Household",
     "clearance": "Clearance",
     "featured": "Featured",
     "wootoff": "Woot Off",
     "all": "",
+    "woot": "",
 }
 
 
 def woot_category(categories):
     if not categories:
-        return "Woot"
+        return None
     top = str(categories[0]).split("/")[0].strip().lower()
-    return WOOT_CATEGORIES.get(top, top.title() or "Woot")
+    return WOOT_CATEGORIES.get(top) or None
+
+
+def woot_price(value):
+    if isinstance(value, dict):
+        return number(value.get("Minimum"), value.get("Maximum"))
+    return number(value)
+
+
+def woot_condition(variant, feed_item, detail):
+    attributes = variant.get("Attributes") or []
+    if isinstance(attributes, list):
+        for attribute in attributes:
+            if isinstance(attribute, dict) and str(attribute.get("Key", "")).lower() == "condition":
+                return attribute.get("Value")
+    return feed_item.get("Condition") or detail.get("Condition")
 
 
 def fetch_meh():
@@ -176,33 +195,98 @@ def fetch_meh():
     return raw, url.split("?")[0], f"Meh current deal: {len(raw)} item(s)"
 
 
-def fetch_woot(feed="All"):
+def fetch_woot(feed="All", limit=500):
     key = env("WOOT_API_KEY", "WOOT_KEY")
     if not key:
         raise SystemExit("Missing WOOT_API_KEY in .env or the environment.")
     feed = feed or "All"
     url = f"https://developer.woot.com/feed/{quote(feed)}"
     data = http_json(url, headers={"x-api-key": key})
+    feed_items = [item for item in (data.get("Items") or [])
+                  if isinstance(item, dict) and not item.get("IsSoldOut")]
+    if limit and len(feed_items) > limit:
+        def feed_score(item):
+            sale = woot_price(item.get("SalePrice"))
+            listing = woot_price(item.get("ListPrice"))
+            discount = ((listing - sale) / listing * 100) if sale and listing and listing > sale else None
+            savings = (listing - sale) if sale and listing and listing > sale else None
+            return (-(discount if discount is not None else -1),
+                    -(savings if savings is not None else 0))
+        feed_items.sort(key=feed_score)
+        feed_items = feed_items[:limit]
+    details = {}
+    offer_ids = [item.get("OfferId") for item in feed_items if item.get("OfferId")]
+    for start in range(0, len(offer_ids), 25):
+        batch = offer_ids[start:start + 25]
+        try:
+            offers = http_json("https://developer.woot.com/getoffers",
+                               headers={"x-api-key": key,
+                                        "Content-Type": "application/json"},
+                               method="POST", body=json.dumps(batch))
+            for offer in offers or []:
+                if isinstance(offer, dict) and offer.get("Id"):
+                    details[offer["Id"]] = offer
+        except Exception as exc:
+            print(f"Woot detail enrichment failed for {len(batch)} offers: {exc}",
+                  file=sys.stderr)
+        if start + 25 < len(offer_ids):
+            time.sleep(1.1)
     raw = []
-    for item in data.get("Items") or []:
-        if not isinstance(item, dict) or item.get("IsSoldOut"):
+    for item in feed_items:
+        offer_id = item.get("OfferId")
+        detail = details.get(offer_id) or {}
+        category = woot_category(item.get("Categories"))
+        base_url = item.get("Url") or detail.get("Url")
+        variants = [variant for variant in (detail.get("Items") or [])
+                    if isinstance(variant, dict)]
+        if variants:
+            groups = {}
+            for variant in variants:
+                current = woot_price(variant.get("SalePrice"))
+                regular = woot_price(variant.get("ListPrice"))
+                if current is None:
+                    continue
+                if regular is not None and regular <= current:
+                    regular = None
+                if len(variants) == 1:
+                    base_title = (item.get("Title") or detail.get("FullTitle")
+                                  or variant.get("Title") or "Woot offer")
+                else:
+                    base_title = (variant.get("Title") or detail.get("FullTitle")
+                                  or item.get("Title") or "Woot offer")
+                groups.setdefault((base_title, current, regular), []).append(variant)
+            title_counts = {}
+            for base_title, _current, _regular in groups:
+                title_counts[base_title] = title_counts.get(base_title, 0) + 1
+            for (base_title, current, regular), group in groups.items():
+                variant = group[0]
+                title = base_title
+                suffix = variant_text(variant)
+                if title_counts.get(base_title, 0) > 1 and suffix and suffix.lower() not in title.lower():
+                    title = f"{title} - {suffix}"
+                sku = variant.get("Id") or offer_id
+                variant_url = base_url + (("&" if "?" in base_url else "?")
+                                          + "variant=" + quote(str(sku)) if sku else "")
+                raw.append({"url": variant_url, "title": title,
+                            "current": current, "regular": regular, "sku": sku,
+                            "condition": woot_condition(variant, item, detail),
+                            "source": "https://woot.com", "kind": "woot_api",
+                            "brand": None, "model": None, "category": category})
             continue
         sale = item.get("SalePrice")
         listing = item.get("ListPrice")
-        current = number(sale.get("Minimum") if isinstance(sale, dict) else sale,
-                         sale.get("Maximum") if isinstance(sale, dict) else None)
-        regular = number(listing.get("Minimum") if isinstance(listing, dict) else listing,
-                         listing.get("Maximum") if isinstance(listing, dict) else None)
+        current = woot_price(sale)
+        regular = woot_price(listing)
         if current is None:
             continue
         if regular is not None and regular <= current:
             regular = None
-        raw.append({"url": item.get("Url"), "title": item.get("Title") or "Woot offer",
-                    "current": current, "regular": regular, "sku": item.get("OfferId"),
+        raw.append({"url": base_url, "title": item.get("Title") or "Woot offer",
+                    "current": current, "regular": regular, "sku": offer_id,
                     "condition": item.get("Condition"), "source": "https://woot.com",
                     "kind": "woot_api", "brand": None, "model": None,
-                    "category": woot_category(item.get("Categories"))})
-    return raw, url, f"Woot feed {feed}: {len(raw)} live offer(s)"
+                    "category": category})
+    return raw, url, f"Woot feed {feed}: {len(raw)} live item(s) from {len(feed_items)} offer(s)"
 
 
 def kroger_token(client_id, client_secret):
@@ -320,7 +404,7 @@ def main(argv=None):
     if args.source == "meh":
         raw, source_url, message = fetch_meh()
     elif args.source == "woot":
-        raw, source_url, message = fetch_woot(args.feed)
+        raw, source_url, message = fetch_woot(args.feed, args.max_products)
     else:
         terms = [t.strip() for t in (args.terms or env("KROGER_TERMS")).split(",") if t.strip()]
         raw, source_url, message = fetch_kroger(terms, args.location_id, args.zip, args.limit)

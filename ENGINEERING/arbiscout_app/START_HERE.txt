@@ -50,6 +50,12 @@ ARBISCOUT — COMPLETE TEST VERSION
    catalog/selected/ and the command to capture eBay evidence is shown:
    ./watch_ebay.command ebay_saved --output catalog/selected --keep-selection
 
+   You can also hand-pick individual deals: click Save on any row, use the
+   "Woot only" / "Except Woot" quick filters, tick "Saved only" to browse your
+   saved list, and click "Build eBay run from saved" to send exactly those items
+   to the eBay capture step. The saved list persists in catalog/saved.json while
+   the catalog server is running and across restarts.
+
    If you downloaded a selected.json from the static catalog instead:
    ./run_selected.command selected.json
 

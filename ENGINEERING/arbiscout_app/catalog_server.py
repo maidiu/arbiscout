@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local server for the unified catalog and top-N selection."""
+"""Local server for the unified catalog, saved items and top-N selection."""
 from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
@@ -13,8 +13,48 @@ import catalog_ui
 import run_test
 
 PAYLOAD = {}
+SAVED_ITEMS = []
 LOCK = threading.Lock()
 OUTPUT = Path("catalog")
+
+
+def save_key(product):
+    return product.get("key") or product.get("url") or product.get("title")
+
+
+def load_saved():
+    global SAVED_ITEMS
+    path = OUTPUT / "saved.json"
+    if not path.is_file():
+        return
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        SAVED_ITEMS = data.get("items", []) if isinstance(data, dict) else data
+    except Exception:
+        SAVED_ITEMS = []
+
+
+def write_saved():
+    path = OUTPUT / "saved.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"items": SAVED_ITEMS}, indent=2, ensure_ascii=False) + "\n",
+                    encoding="utf-8")
+
+
+def build_selection(products, meta):
+    selected_dir = OUTPUT / "selected"
+    retailer = selected_dir / "retailer"
+    retailer.mkdir(parents=True, exist_ok=True)
+    (selected_dir / "selection.json").write_text(
+        json.dumps({**meta, "selected": len(products), "products": products},
+                   indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (retailer / "products.json").write_text(
+        json.dumps(products, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    run_test.execute(ebay_pages=None, reuse_retailer=True, keep_selection=True,
+                     output=str(selected_dir), as_of=datetime.now(timezone.utc))
+    return {"selected": len(products), "output": str(selected_dir.resolve()),
+            "top10": "/selected/", "comparisons": "/selected/comparisons/",
+            "capture": "./watch_ebay.command ebay_saved --output catalog/selected --keep-selection"}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -39,6 +79,11 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/api/catalog":
             return self._send(200, json.dumps(PAYLOAD, ensure_ascii=False),
                               "application/json; charset=utf-8")
+        if self.path == "/api/saved":
+            with LOCK:
+                items = list(SAVED_ITEMS)
+            return self._send(200, json.dumps({"items": items}, ensure_ascii=False),
+                              "application/json; charset=utf-8")
         if self.path == "/selected/":
             return self._file(OUTPUT / "selected" / "index.html")
         if self.path == "/selected/comparisons/":
@@ -50,35 +95,47 @@ class Handler(BaseHTTPRequestHandler):
         return self._send(404, "Not found.")
 
     def do_POST(self):
-        if self.path != "/api/select":
-            return self._send(404, "Not found.")
         try:
             length = int(self.headers.get("Content-Length") or 0)
             body = json.loads(self.rfile.read(length) or b"{}")
-            sources = body.get("sources") or None
-            categories = [body["category"]] if body.get("category") else None
-            rows = catalog_ui.filter_sort(
-                PAYLOAD.get("products", []), sources=sources, categories=categories,
-                query=body.get("query", ""), both_prices=bool(body.get("both_prices")),
-                sort=body.get("sort", "discount"), top=body.get("top", 20))
-            if not rows:
-                return self._send(400, json.dumps({"error": "No products match those filters."}),
+            if self.path == "/api/save":
+                product = body.get("product") or {}
+                key = body.get("key") or save_key(product)
+                with LOCK:
+                    if body.get("saved"):
+                        if not any(save_key(item) == key for item in SAVED_ITEMS):
+                            SAVED_ITEMS.append(product)
+                    else:
+                        SAVED_ITEMS[:] = [item for item in SAVED_ITEMS
+                                          if save_key(item) != key]
+                    write_saved()
+                    items = list(SAVED_ITEMS)
+                return self._send(200, json.dumps({"items": items, "saved": len(items)},
+                                                  ensure_ascii=False),
                                   "application/json; charset=utf-8")
-            selected_dir = OUTPUT / "selected"
-            retailer = selected_dir / "retailer"
-            retailer.mkdir(parents=True, exist_ok=True)
-            (selected_dir / "selection.json").write_text(
-                json.dumps({"filters": body, "selected": len(rows), "products": rows},
-                           indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-            (retailer / "products.json").write_text(
-                json.dumps(rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-            run_test.execute(ebay_pages=None, reuse_retailer=True, keep_selection=True,
-                             output=str(selected_dir), as_of=datetime.now(timezone.utc))
-            result = {"selected": len(rows), "output": str(selected_dir.resolve()),
-                      "top10": "/selected/", "comparisons": "/selected/comparisons/",
-                      "capture": "./watch_ebay.command ebay_saved --output catalog/selected --keep-selection"}
-            return self._send(200, json.dumps(result, ensure_ascii=False),
-                              "application/json; charset=utf-8")
+            if self.path == "/api/use-saved":
+                with LOCK:
+                    items = list(SAVED_ITEMS)
+                if not items:
+                    return self._send(400, json.dumps({"error": "No saved items yet."}),
+                                      "application/json; charset=utf-8")
+                result = build_selection(items, {"source": "saved"})
+                return self._send(200, json.dumps(result, ensure_ascii=False),
+                                  "application/json; charset=utf-8")
+            if self.path == "/api/select":
+                sources = body.get("sources") or None
+                categories = [body["category"]] if body.get("category") else None
+                rows = catalog_ui.filter_sort(
+                    PAYLOAD.get("products", []), sources=sources, categories=categories,
+                    query=body.get("query", ""), both_prices=bool(body.get("both_prices")),
+                    sort=body.get("sort", "discount"), top=body.get("top", 20))
+                if not rows:
+                    return self._send(400, json.dumps({"error": "No products match those filters."}),
+                                      "application/json; charset=utf-8")
+                result = build_selection(rows, {"filters": body})
+                return self._send(200, json.dumps(result, ensure_ascii=False),
+                                  "application/json; charset=utf-8")
+            return self._send(404, "Not found.")
         except Exception as exc:
             return self._send(500, json.dumps({"error": str(exc)[:300]}),
                               "application/json; charset=utf-8")
@@ -89,7 +146,7 @@ class Handler(BaseHTTPRequestHandler):
 
 def main(argv=None):
     global PAYLOAD, OUTPUT
-    parser = argparse.ArgumentParser(description="Serve the unified catalog and selection API")
+    parser = argparse.ArgumentParser(description="Serve the unified catalog, saved items and selection API")
     parser.add_argument("--catalog", default="catalog", help="Catalog folder")
     parser.add_argument("--output", default="catalog", help="Selection output folder")
     parser.add_argument("--port", type=int, default=8770)
@@ -100,6 +157,7 @@ def main(argv=None):
         raise SystemExit("No catalog.json. Run ./run_catalog.command or build_catalog.py first.")
     PAYLOAD = json.loads(catalog_file.read_text(encoding="utf-8"))
     OUTPUT = Path(args.output)
+    load_saved()
     port = args.port
     server = None
     for candidate in range(args.port, args.port + 15):
@@ -114,6 +172,7 @@ def main(argv=None):
     threading.Thread(target=server.serve_forever, daemon=True).start()
     url = f"http://127.0.0.1:{port}/"
     print("Unified catalog:", url)
+    print("Saved items:", len(SAVED_ITEMS), "|", (OUTPUT / "saved.json").resolve())
     print("Selection output:", (OUTPUT / "selected").resolve())
     print("Press Ctrl+C to stop.")
     if not args.no_open:

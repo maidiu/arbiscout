@@ -105,7 +105,8 @@
     "Nov 7 active local build: user-saved eBay sold-page watcher with query-based matching and optional cleanup; tested with 25 saved pages, 20 matched, 8 positive provisional gaps.",
     "Nov 7 active local build: sold low/high/mean/median and middle-50% range plus below-low/below-median flags; 21 app tests, 20 pass, 1 skip.",
     "Nov 7 active local build: Meh/Woot/Kroger API adapters executed with user-supplied keys; no secrets committed; provider terms review remains open.",
-    "Nov 7 active local build: unified catalog merges Best Buy, Meh, Woot and Kroger outputs with source/category filters, sorting and top-N selection feeding the eBay comparison and watcher."
+    "Nov 7 active local build: unified catalog merges Best Buy, Meh, Woot and Kroger outputs with source/category filters, sorting and top-N selection feeding the eBay comparison and watcher.",
+    "Nov 7 active local build: catalog saved list with per-row Save/Remove, Saved-only filter and hand-picked eBay run; saved.json persists across server restarts."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",

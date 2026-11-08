@@ -113,6 +113,7 @@ python3 -m unittest discover -s tests -v
 - Filter by **source** (Best Buy / Meh / Woot / Kroger; include or exclude any combination), by **category**, and by text.
 - Sort by **highest % off**, **dollar savings**, **lowest/highest current price**, **name**, **source**, or **category**.
 - Set **Top N** (default 20) and click **Build top N selection**. The selection is written to `catalog/selected/`.
+- Or hand-pick individual deals with **Save** on each row, browse **Saved only**, and click **Build eBay run from saved**. The saved list persists in `catalog/saved.json` while the catalog server runs and across restarts.
 - Capture eBay evidence for that selection with:
   ```bash
   ./watch_ebay.command ebay_saved --output catalog/selected --keep-selection

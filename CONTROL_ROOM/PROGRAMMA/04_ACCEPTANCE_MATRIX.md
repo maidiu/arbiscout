@@ -17,5 +17,6 @@
 | A13 | Provider API credentials scoped, local-only and absent from tracked files | Key leak, committed `.env`, broad OAuth scope | PROTOTYPE_DRAFT (local ignored `.env`; names-only example; no independent security review) |
 | A14 | Category and source capacity assessed beyond food, with gross versus net distinction | Food-only assumption, gross gap presented as margin | PROTOTYPE_DRAFT (non-food probe; gross gap only; fees/shipping excluded) |
 | A15 | Unified catalog filters by source/category and selects a reproducible top-N set | Source filter ignored, category mismatch, selection not preserved | PROTOTYPE_DRAFT (local merge test; no independent review) |
+| A16 | Personal saved list persists and feeds exactly those items into the eBay run | Saved items lost, order changed, saved-only filter broken | PROTOTYPE_DRAFT (local saved.json test; no independent review) |
 
 A successful mock does not establish live market evidence. Different statuses for source documented / permitted / executable / tested / independently accepted / deployed must be preserved. No subsequent transaction belongs to acceptance.

@@ -23,7 +23,7 @@ Track actual existing research, provider/API documentation, old draft PR #1, pri
 ### O — Organize, Adjudicate the whole
 
 **Machine sources of truth:**
-- [Work registry](01_WORK_REGISTRY.json): 47 capabilities, explicit ALL-OF technical prerequisites, optional ANY-OF alternative-source gates, nonblocking related work, P0–P3 priority, source and acceptance state.
+- [Work registry](01_WORK_REGISTRY.json): 48 capabilities, explicit ALL-OF technical prerequisites, optional ANY-OF alternative-source gates, nonblocking related work, P0–P3 priority, source and acceptance state.
 - [Question registries](QUESTIONS/): 112 audited investigation/substantiation questions, divided into eight files, each carrying status, priority, question prerequisites, work-task dependencies for operational proof, findings and evidence refs.
 - [Source registry](02_SOURCE_REGISTRY.json): provider documentary/evidential facts separated from API permissions, access, price coverage and cost.
 - [Generated dashboard](DASHBOARD.md): status, high-leverage foundations, task and question tables; [CSV views](TASKS_TABLE.csv) / [questions CSV](QUESTIONS_TABLE.csv) when spreadsheet-style filtering is preferable.

@@ -1517,6 +1517,40 @@
       "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
+    },
+    {
+      "id": "ARB-107",
+      "title": "Personal saved list and hand-picked eBay run",
+      "level": "L2",
+      "stage": "I",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-106"
+      ],
+      "required_capability": "Persist a user-selected subset of catalog products and send exactly that subset to the eBay comparison and capture pipeline",
+      "first_consumer": "ARB-106 catalog and ARB-071 report",
+      "acceptance": "Per-row save and remove persists across server restarts; saved-only filter works; build run writes selected products and preserves order",
+      "blocker": "Saved list is local-only and not independently reviewed",
+      "next_action": "Add a saved-selection receipt test and an export format",
+      "implementation_ref": "ENGINEERING/arbiscout_app/catalog_server.py",
+      "source_ids": [],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-106",
+        "ARB-071"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "Local test: saved 2 Woot products, use-saved wrote 2 selected products and ran the comparison pipeline; remove persisted 1 item in catalog/saved.json. No independent review.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/catalog_server.py"
+      ],
+      "last_verified_at": "2026-11-07",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     }
   ],
   "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
@@ -1532,5 +1566,5 @@
   "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS (Q001-Q112)",
   "source_examples_not_mandatory": true,
   "data_format": "Canonical JSON registers + generated Markdown dashboards and CSV tables",
-  "task_count": 47
+  "task_count": 48
 }

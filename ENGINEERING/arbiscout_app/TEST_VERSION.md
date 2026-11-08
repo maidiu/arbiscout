@@ -85,7 +85,7 @@ After running `./run_live.command` and any of `./run_api.command meh|woot|kroger
 
     ./run_catalog.command
 
-This merges the available source folders into `catalog/catalog.json` and opens a local catalog at `127.0.0.1:8770`. Filter by source and category, sort by % off / savings / price / name, set Top N, and click **Build top N selection**. The selection is written to `catalog/selected/`; capture eBay pages with:
+This merges the available source folders into `catalog/catalog.json` and opens a local catalog at `127.0.0.1:8770`. Filter by source and category, sort by % off / savings / price / name, set Top N, and click **Build top N selection**. You can also click **Save** on individual rows, browse **Saved only**, and click **Build eBay run from saved**; the saved list persists in `catalog/saved.json`. The selection is written to `catalog/selected/`; capture eBay pages with:
 
     ./watch_ebay.command ebay_saved --output catalog/selected --keep-selection
 

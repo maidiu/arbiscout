@@ -142,6 +142,10 @@ table{border-collapse:collapse;width:100%;min-width:1050px}th{background:#eaf0f8
 td{border-top:1px solid #e9edf3;padding:10px;vertical-align:top;font-size:12px}tbody tr:hover{background:#f8fbff}
 td.n{white-space:nowrap;font-variant-numeric:tabular-nums}.item{min-width:300px}.good{color:#08734a;font-weight:750}.bad{color:#8b4626}
 small{color:#738197}.badge{display:inline-block;padding:2px 7px;border-radius:999px;background:#eaf0f8;color:#31506f;font-size:11px;font-weight:650}
+.savedpanel{background:#fff;border:1px solid #e2e8f0;border-radius:11px;padding:12px 14px;margin:12px 0}
+.savedpanel h3{margin:0 0 8px;font-size:15px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.saveditem{display:flex;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid #eef2f6;padding:7px 0;font-size:12px}
+.saveditem small{display:block}.savebtn{padding:6px 9px;font-size:11px}
 .count{color:#6b798c;font-size:13px}@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
 <header><h1>ArbiScout <span style="font-weight:400;color:#97bce7">/ unified catalog</span></h1>
@@ -152,6 +156,7 @@ small{color:#738197}.badge{display:inline-block;padding:2px 7px;border-radius:99
 <div class="kpi"><strong id="kSources">0</strong><span>Sources present</span></div>
 <div class="kpi"><strong id="kTop">20</strong><span>Selection size</span></div></div>
 <div class="sources" id="sources"></div>
+<div class="savedpanel" id="savedPanel"></div>
 <div class="controls">
   <input id="q" type="search" placeholder="Search product, category or source…">
   <select id="category"><option value="">All categories</option></select>
@@ -165,12 +170,14 @@ small{color:#738197}.badge{display:inline-block;padding:2px 7px;border-radius:99
     <option value="category">Category A–Z</option>
   </select>
   <label><input type="checkbox" id="complete"> Both prices only</label>
+  <label><input type="checkbox" id="savedOnly"> Saved only</label>
   <label>Top <input id="top" type="number" min="1" max="500" value="20"></label>
   <button id="build">Build top N selection</button>
+  <button id="buildSaved" class="btn alt">Build eBay run from saved</button>
   <span id="msg" class="count"></span>
 </div>
 <div class="note" id="modeNote"></div>
-<div class="tablewrap"><table><thead><tr><th>Source</th><th>Category</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th><th>Open</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="tablewrap"><table><thead><tr><th>Source</th><th>Category</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th><th>Save</th><th>Open</th></tr></thead><tbody id="rows"></tbody></table></div>
 </main>
 <script>
 const DATA=__DATA__;const $=id=>document.getElementById(id);
@@ -178,11 +185,52 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&
 const usd=v=>v==null?'—':('$'+Number(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}));
 const SOURCES=[...new Set(DATA.products.map(p=>p.source))].sort();
 const CATEGORIES=[...new Set(DATA.products.map(p=>p.category))].sort();
+let SAVED_ITEMS=[];
+const saveKey=p=>p.key||p.url||p.title;
+const isSaved=p=>SAVED_ITEMS.some(s=>saveKey(s)===saveKey(p));
+async function loadSaved(){
+  if(DATA.live){try{const r=await fetch('/api/saved');const j=await r.json();SAVED_ITEMS=j.items||[];}catch(e){SAVED_ITEMS=[];}}
+  else{try{SAVED_ITEMS=JSON.parse(localStorage.getItem('arbiscout_saved_items')||'[]');}catch(e){SAVED_ITEMS=[];}}
+  renderSaved();
+}
+function persistSaved(){if(!DATA.live)localStorage.setItem('arbiscout_saved_items',JSON.stringify(SAVED_ITEMS));}
+async function toggleSave(p){
+  const key=saveKey(p),saved=!isSaved(p);
+  if(DATA.live){
+    const r=await fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,product:p,saved})});
+    const j=await r.json();SAVED_ITEMS=j.items||[];
+  }else{
+    if(saved)SAVED_ITEMS.push(p);else SAVED_ITEMS=SAVED_ITEMS.filter(s=>saveKey(s)!==key);
+    persistSaved();
+  }
+  renderSaved();render();
+}
+function renderSaved(){
+  const n=SAVED_ITEMS.length;
+  $('savedPanel').innerHTML=`<h3>Saved (${n}) <button class="btn alt" id="buildSaved2">Build eBay run from saved</button></h3>`+
+    (n?SAVED_ITEMS.map(p=>`<div class="saveditem"><span><b>${esc(p.title)}</b><small>${esc(p.source)} · ${esc(p.category)} · ${usd(p.current_price)} · ${p.discount_percent==null?'—':p.discount_percent+'% off'}</small></span><button class="btn alt savebtn" data-remove="${esc(saveKey(p))}">Remove</button></div>`).join(''):'<small>No saved items yet. Use Save on any row.</small>');
+  const b=$('buildSaved2');if(b)b.onclick=buildSaved;
+}
+async function buildSaved(){
+  if(!SAVED_ITEMS.length){alert('Save at least one product first.');return;}
+  if(DATA.live){
+    $('msg').textContent='Building from saved…';
+    try{const r=await fetch('/api/use-saved',{method:'POST'});const j=await r.json();
+      $('msg').innerHTML=`Saved run: ${j.selected} products. <a href="/selected/" target="_blank">Top-10 report</a> · <a href="/selected/comparisons/" target="_blank">All comparisons</a><br><small>${j.capture}</small>`;
+    }catch(e){$('msg').textContent='Saved run failed: '+e;}
+  }else{
+    const blob=new Blob([JSON.stringify({products:SAVED_ITEMS},null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='saved.json';a.click();
+    $('msg').textContent='Downloaded saved.json. Run ./run_selected.command saved.json';
+  }
+}
 function sourceBoxes(){
   $('sources').innerHTML='<strong>Sources</strong>'+SOURCES.map((s,i)=>`<label><input type="checkbox" value="${esc(s)}" checked> ${esc(s)}</label>`).join('')+
-    `<button class="btn alt" id="all">All</button><button class="btn alt" id="none">Clear</button>`;
+    `<button class="btn alt" id="all">All</button><button class="btn alt" id="woot">Woot only</button><button class="btn alt" id="notwoot">Except Woot</button><button class="btn alt" id="none">Clear</button>`;
   $('all').onclick=()=>document.querySelectorAll('#sources input').forEach(x=>x.checked=true),render();
   $('none').onclick=()=>document.querySelectorAll('#sources input').forEach(x=>x.checked=false),render();
+  $('woot').onclick=()=>{document.querySelectorAll('#sources input').forEach(x=>x.checked=x.value==='Woot');render();};
+  $('notwoot').onclick=()=>{document.querySelectorAll('#sources input').forEach(x=>x.checked=x.value!=='Woot');render();};
 }
 function activeSources(){return [...document.querySelectorAll('#sources input:checked')].map(x=>x.value);}
 function filtered(applyTop){
@@ -190,6 +238,7 @@ function filtered(applyTop){
   const cat=$('category').value;if(cat)rows=rows.filter(p=>p.category===cat);
   const q=$('q').value.toLowerCase().trim();if(q)rows=rows.filter(p=>((p.title||'')+' '+(p.category||'')+' '+(p.source||'')).toLowerCase().includes(q));
   if($('complete').checked)rows=rows.filter(p=>p.current_price!=null&&p.regular_price!=null);
+  if($('savedOnly').checked)rows=rows.filter(isSaved);
   const s=$('sort').value;
   const num=(v,d)=>v==null?d:v;
   rows.sort((a,b)=>{
@@ -212,7 +261,8 @@ function render(){
     <td class="item"><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(p.title)}</b></a></td>
     <td class="n">${usd(p.current_price)}</td><td class="n">${usd(p.regular_price)}</td>
     <td class="n">${p.discount_percent==null?'—':p.discount_percent+'%'}</td><td class="n">${usd(p.savings)}</td>
-    <td><a class="btn" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">Open</a></td></tr>`).join('')||'<tr><td colspan="8">No products match the current filters.</td></tr>';
+    <td><button class="btn alt savebtn" data-key="${esc(saveKey(p))}">${isSaved(p)?'Saved':'Save'}</button></td>
+    <td><a class="btn" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">Open</a></td></tr>`).join('')||'<tr><td colspan="9">No products match the current filters.</td></tr>';
 }
 async function build(){
   const body={sources:activeSources(),category:$('category').value,query:$('q').value,both_prices:$('complete').checked,sort:$('sort').value,top:Math.max(1,parseInt($('top').value)||20)};
@@ -227,9 +277,11 @@ async function build(){
     $('msg').textContent='Downloaded selected.json. Save it and run ./run_selected.command selected.json';
   }
 }
-$('q').oninput=render;$('sort').onchange=render;$('category').onchange=render;$('complete').onchange=render;$('top').oninput=render;$('build').onclick=build;
+$('q').oninput=render;$('sort').onchange=render;$('category').onchange=render;$('complete').onchange=render;$('savedOnly').onchange=render;$('top').oninput=render;$('build').onclick=build;$('buildSaved').onclick=buildSaved;
+$('rows').addEventListener('click',e=>{const b=e.target.closest('.savebtn');if(!b)return;const p=DATA.products.find(x=>saveKey(x)===b.dataset.key);if(p)toggleSave(p);});
+$('savedPanel').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b)return;const p=SAVED_ITEMS.find(x=>saveKey(x)===b.dataset.remove);if(p)toggleSave(p);});
 sourceBoxes();
 $('category').innerHTML='<option value="">All categories</option>'+CATEGORIES.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
-$('modeNote').textContent=DATA.live?'Selection runs locally and writes catalog/selected.':'Static view: Build downloads selected.json. Start ./run_catalog.command for one-click selection.';
-render();
+$('modeNote').textContent=DATA.live?'Selection runs locally and writes catalog/selected. Use Save on individual rows for a hand-picked eBay run.':'Static view: Build downloads selected.json. Start ./run_catalog.command for one-click selection and a persistent saved list.';
+loadSaved();render();
 </script></body></html>""".replace("__DATA__", data)

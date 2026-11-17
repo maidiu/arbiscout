@@ -79,6 +79,10 @@ Source limitation is binding: eBay's ordinary Sold Items results may display an 
 
 The immutable historical Nov 7 source bank remains under ENGINEERING/SOURCE_BANK_20261107_R1. The new test runner is an additive, active development component, not a replacement for or silent mutation of those archived bytes. No merge into main, payments, live marketplace claim or independent reviewer approval is implied.
 
+## One-click control room
+
+Mac: `start_arbiscout.command`. Windows: `start_arbiscout.bat`. Both open `http://127.0.0.1:8800` with buttons for every source, Settings, the catalog, the eBay capture console, and reports. No terminal is needed after launch. The control room runs the existing scripts as background jobs and shows status/logs. Settings writes the local `.env`; keys are never shown after saving.
+
 ## Unified multi-source catalog
 
 After running `./run_live.command` and any of `./run_api.command meh|woot|kroger`:

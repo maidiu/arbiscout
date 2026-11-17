@@ -106,6 +106,12 @@ python3 -m unittest discover -s tests -v
 ```
 
 
+## One-click control room (Mac and Windows)
+
+Mac: double-click `start_arbiscout.command`. Windows: double-click `start_arbiscout.bat`. Both start the same local control room at `http://127.0.0.1:8800`.
+
+The control room has buttons for **Update everything**, each source (Best Buy, Meh, Woot, Kroger), **Build catalog**, **Open catalog**, **Capture eBay**, and reports. Settings stores API keys, Best Buy URL, Woot feed, and Kroger terms/ZIP in a local `.env`; keys are never displayed again. The catalog and capture consoles open as browser pages, so the person never needs a terminal after launch. Windows uses installed Chrome or Edge; Mac uses Chrome.
+
 ## Unified catalog and source filtering (Nov 7)
 
 `build_catalog.py` merges `bestbuy_live`, `meh_live`, `woot_live`, and `kroger_live` into one `catalog/catalog.json` plus a filterable dashboard. `run_catalog.command` builds the catalog and serves the live selection UI at `127.0.0.1:8770`.

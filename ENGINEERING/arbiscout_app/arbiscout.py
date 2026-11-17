@@ -376,10 +376,14 @@ class Fetcher:
                 # Prefer an already-installed Chrome so no extra browser download is needed.
                 self.browser=self.pw.chromium.launch(headless=not self.visible,channel='chrome')
             except Exception:
-                try:self.browser=self.pw.chromium.launch(headless=not self.visible)
-                except Exception as exc:
-                    self.pw.stop();self.pw=None
-                    raise RuntimeError('No usable Chrome/Chromium for browser mode ('+str(exc)[:160]+'). Install Chromium with: python3 -m playwright install chromium')
+                try:
+                    # Windows machines always have Edge; use it before downloading Chromium.
+                    self.browser=self.pw.chromium.launch(headless=not self.visible,channel='msedge')
+                except Exception:
+                    try:self.browser=self.pw.chromium.launch(headless=not self.visible)
+                    except Exception as exc:
+                        self.pw.stop();self.pw=None
+                        raise RuntimeError('No usable Chrome/Edge/Chromium for browser mode ('+str(exc)[:160]+'). Install Chromium with: python3 -m playwright install chromium')
             # Keep the real browser identity here; some retailers reject custom agent strings on product pages.
             self.page=self.browser.new_page()
         return self

@@ -1551,6 +1551,42 @@
       "last_verified_at": "2026-11-07",
       "acceptance_dependencies": [],
       "completion_evidence": []
+    },
+    {
+      "id": "ARB-108",
+      "title": "One-click browser control room and platform launchers",
+      "level": "L1",
+      "stage": "I",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-106",
+        "ARB-107"
+      ],
+      "required_capability": "Provide one local browser control room that runs source jobs, stores settings, and opens the catalog, capture console and reports without a terminal",
+      "first_consumer": "ARB-106 catalog, ARB-107 saved list and ARB-071 report",
+      "acceptance": "Mac and Windows launchers open the same local control room; source jobs run with status and logs; settings persist locally; catalog and capture links work",
+      "blocker": "Local-only prototype; Windows and Mac launchers are not packaged installers; no independent review",
+      "next_action": "Add a packaged Windows installer and a first-run smoke test on a clean machine",
+      "implementation_ref": "ENGINEERING/arbiscout_app/control_room.py",
+      "source_ids": [],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-080",
+        "ARB-106",
+        "ARB-107"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "Local control room tested: home, settings, job status, catalog redirect and capture redirect all returned 200/302; catalog job completed successfully. Mac .command and Windows .bat launchers use the same control_room.py. No independent review.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/control_room.py"
+      ],
+      "last_verified_at": "2026-11-07",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     }
   ],
   "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
@@ -1566,5 +1602,5 @@
   "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS (Q001-Q112)",
   "source_examples_not_mandatory": true,
   "data_format": "Canonical JSON registers + generated Markdown dashboards and CSV tables",
-  "task_count": 48
+  "task_count": 49
 }

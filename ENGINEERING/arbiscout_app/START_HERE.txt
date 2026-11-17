@@ -1,5 +1,11 @@
 ARBISCOUT — COMPLETE TEST VERSION
 ================================
+0. Easiest — one browser control room, same interface on Mac and Windows:
+   Mac:     double-click start_arbiscout.command
+   Windows: double-click start_arbiscout.bat
+   The browser opens http://127.0.0.1:8800. Use Settings for keys, then
+   "Update everything", "Open catalog", and "Capture eBay". No terminal needed.
+
 1. Open Terminal in this folder.
 2. Install: python3 -m pip install -r requirements.txt
 3. Run the 20-item fictional demo:

@@ -171,7 +171,7 @@ def main(argv=None):
         raise SystemExit("Could not find a free local port.")
     threading.Thread(target=server.serve_forever, daemon=True).start()
     url = f"http://127.0.0.1:{port}/"
-    print("Unified catalog:", url)
+    print("Unified catalog:", url, flush=True)
     print("Saved items:", len(SAVED_ITEMS), "|", (OUTPUT / "saved.json").resolve())
     print("Selection output:", (OUTPUT / "selected").resolve())
     print("Press Ctrl+C to stop.")

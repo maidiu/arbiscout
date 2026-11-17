@@ -288,7 +288,7 @@ def main(argv=None):
     update_state(folder, downloads, staging, output, [], "Watching for saved files...")
 
     url = f"http://127.0.0.1:{port}/"
-    print("eBay capture console:", url)
+    print("eBay capture console:", url, flush=True)
     print("Watching:", folder.resolve(), "and", downloads.resolve() if downloads else "(Downloads off)")
     print("Press Ctrl+C to stop.")
     if not a.no_open:

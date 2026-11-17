@@ -250,7 +250,7 @@ async function toggleSave(p){
 function renderSaved(){
   const n=SAVED_ITEMS.length;
   $('savedPanel').innerHTML=`<h3>Saved (${n}) <button class="btn alt" id="buildSaved2">Build eBay run from saved</button></h3>`+
-    (n?SAVED_ITEMS.map(p=>`<div class="saveditem"><span><b>${esc(p.title)}</b><small>${esc(p.source)} · ${esc(p.category)} · ${usd(p.current_price)} · ${p.discount_percent==null?'—':p.discount_percent+'% off'}</small></span><button class="btn alt savebtn" data-remove="${esc(saveKey(p))}">Remove</button></div>`).join(''):'<small>No saved items yet. Use Save on any row.</small>');
+    (n?SAVED_ITEMS.map(p=>`<div class="saveditem"><span><b>${esc(p.title)}</b><small>${esc(p.source)}${p.kroger_zip?' · ZIP '+esc(p.kroger_zip):''} · ${esc(p.category)} · ${usd(p.current_price)} · ${p.discount_percent==null?'—':p.discount_percent+'% off'}</small></span><button class="btn alt savebtn" data-remove="${esc(saveKey(p))}">Remove</button></div>`).join(''):'<small>No saved items yet. Use Save on any row.</small>');
   const b=$('buildSaved2');if(b)b.onclick=buildSaved;
 }
 async function buildSaved(){
@@ -314,9 +314,9 @@ function filteredRows(){
 }
 function topRows(){const n=Math.max(1,parseInt($('top').value)||20);return filteredRows().slice(0,n);}
 function renderAges(){
-  const latest={},counts={};
-  DATA.products.forEach(p=>{counts[p.source]=(counts[p.source]||0)+1;if((p.observed_at||'')>(latest[p.source]||''))latest[p.source]=p.observed_at;});
-  $('sourceAges').textContent='Last observed: '+Object.entries(latest).map(([s,d])=>`${s} ${new Date(d).toLocaleString()} (${counts[s]})`).join(' · ');
+  const latest={},counts={},zips={};
+  DATA.products.forEach(p=>{counts[p.source]=(counts[p.source]||0)+1;if((p.observed_at||'')>(latest[p.source]||''))latest[p.source]=p.observed_at;if(p.kroger_zip&&!zips[p.source])zips[p.source]=p.kroger_zip;});
+  $('sourceAges').textContent='Last observed: '+Object.entries(latest).map(([s,d])=>`${s==='Kroger'&&zips[s]?`Kroger (ZIP ${zips[s]})`:s} ${new Date(d).toLocaleString()} (${counts[s]})`).join(' · ');
 }
 function render(){
   const all=filteredRows();
@@ -328,7 +328,7 @@ function render(){
   $('kSources').textContent=SOURCES.length;$('kTop').textContent=$('top').value||20;
   $('pageInfo').textContent=`Page ${page} of ${pages} · ${all.length} matching`;
   $('prev').disabled=page<=1;$('next').disabled=page>=pages;
-  $('rows').innerHTML=rows.map(p=>{const obs=p.observed_at?new Date(p.observed_at).toLocaleString():'—';return `<tr><td><span class="badge">${esc(p.source)}</span></td><td>${esc(p.category)}</td>
+  $('rows').innerHTML=rows.map(p=>{const obs=p.observed_at?new Date(p.observed_at).toLocaleString():'—';return `<tr><td><span class="badge">${esc(p.source)}</span>${p.kroger_zip?'<br><small>ZIP '+esc(p.kroger_zip)+'</small>':''}</td><td>${esc(p.category)}</td>
     <td class="item"><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(p.title)}</b></a></td>
     <td class="n">${usd(p.current_price)}</td><td class="n">${usd(p.regular_price)}</td>
     <td class="n">${p.discount_percent==null?'—':p.discount_percent+'%'}</td><td class="n">${usd(p.savings)}</td>

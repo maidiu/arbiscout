@@ -6,8 +6,9 @@ ARBISCOUT — COMPLETE TEST VERSION
    The browser opens http://127.0.0.1:8800. Use Settings for keys, then
    "Update everything", "Open catalog", and "Capture eBay". No terminal needed.
    Long jobs show a progress bar and a Stop button. The catalog defaults to
-   Today's observations; use the date filter for older stored results, and set
-   a Kroger ZIP or location in Settings before running Kroger.
+   Today's observations; use the date filter for older stored results. Enter a
+   Kroger ZIP on the control room home page before each Kroger run; it is used
+   for that run only and is not saved.
 
 1. Open Terminal in this folder.
 2. Install: python3 -m pip install -r requirements.txt

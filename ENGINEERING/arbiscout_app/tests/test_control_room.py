@@ -24,6 +24,12 @@ class ControlRoomTests(unittest.TestCase):
             self.assertIsInstance(command, list)
             self.assertGreater(len(command), 1)
 
+    def test_kroger_command_uses_per_run_zip(self):
+        command = control_room.command_for("kroger", "29072")
+        self.assertIn("--zip", command)
+        self.assertIn("29072", command)
+        self.assertNotIn("--zip", control_room.command_for("kroger"))
+
 
 if __name__ == "__main__":
     unittest.main()

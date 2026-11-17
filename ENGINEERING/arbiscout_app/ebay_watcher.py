@@ -40,6 +40,8 @@ def load_state(output):
             "fixture_file": row.get("fixture_file"),
             "title": p.get("title"),
             "retail_url": p.get("url"),
+            "kroger_zip": p.get("kroger_zip"),
+            "kroger_location_id": p.get("kroger_location_id"),
             "retail_current": p.get("current_price"),
             "retail_regular": p.get("regular_price"),
             "retail_discount": p.get("discount_percent"),
@@ -166,7 +168,7 @@ function render(){
     const vs=x.below_low===true?'<span class="good">Below eBay low</span>':x.below_median===true?'<span class="good">Below eBay median</span>':x.below_median===false?'<span class="bad">At/above eBay median</span>':'—';
     const file=waiting?'<span class="wait">Waiting for file</span>':esc(x.fixture_file||'');
     return `<tr><td class="n">${x.fixture_index??''}</td>
-      <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a></td>
+      <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
       <td class="n">${usd(x.retail_current)}</td><td class="n">${usd(x.retail_regular)}</td>
       <td class="n">${x.retail_discount==null?'—':x.retail_discount+'%'}</td><td class="n">${usd(x.retail_savings)}</td>
       <td class="n">${usd(x.sold_low)}</td><td class="n">${usd(x.sold_high)}</td><td class="n">${usd(x.sold_mean)}</td><td class="n">${usd(x.median)}</td>

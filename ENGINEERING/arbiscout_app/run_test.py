@@ -30,6 +30,8 @@ def rank_provisional(rows, limit=10):
             "retailer_key": retail["key"], "title": retail["title"],
             "retailer_url": retail["url"], "retailer_current_price": retail["current_price"],
             "retailer_regular_price": retail["regular_price"],
+            "kroger_zip": retail.get("kroger_zip"),
+            "kroger_location_id": retail.get("kroger_location_id"),
             "ebay_sold_url": row["ebay_search_url"],
             "ebay_sold_low_30d": comp.get("sold_low"),
             "ebay_sold_high_30d": comp.get("sold_high"),
@@ -61,11 +63,14 @@ def render_dashboard(winners, receipt):
         typical = "—" if tlow is None else "{} – {}".format(money(tlow), money(thigh))
         versus = "Below eBay low" if r.get("bestbuy_below_ebay_low") else "Below eBay median"
         below_low = "1" if r.get("bestbuy_below_ebay_low") else "0"
+        title = escape(r["title"])
+        if r.get("kroger_zip"):
+            title += "<br><small>ZIP {}</small>".format(escape(str(r["kroger_zip"])))
         trs.append(
             "<tr data-below-low='" + below_low + "'><td>{}</td><td><b>{}</b><br><a href='{}'>Retailer</a> · "
             "<a href='{}'>eBay sold</a></td><td>{}</td><td>{}<br><small>mean {}</small></td>"
             "<td>{}</td><td>{}</td><td><b>{}</b> ({}%)</td><td><b>{}</b></td><td>{}</td></tr>".format(
-                r["rank"], escape(r["title"]),
+                r["rank"], title,
                 escape(r["retailer_url"], quote=True), escape(r["ebay_sold_url"], quote=True),
                 money(r["retailer_current_price"]), sold_range, money(r.get("ebay_sold_mean_30d")),
                 typical, money(r["ebay_displayed_median_30d"]),
@@ -242,7 +247,8 @@ def execute(*, snapshot=None, url=None, ebay_pages=None, ebay_live=False, demo=F
     (root / "top10.json").write_text(json.dumps(winners, indent=2) + "\n", encoding="utf-8")
     with (root / "top10.csv").open("w", newline="", encoding="utf-8") as f:
         fields = ["rank", "retailer_key", "title", "retailer_url", "retailer_current_price",
-                  "retailer_regular_price", "ebay_sold_url", "ebay_sold_low_30d",
+                  "retailer_regular_price", "kroger_zip", "kroger_location_id",
+                  "ebay_sold_url", "ebay_sold_low_30d",
                   "ebay_sold_high_30d", "ebay_sold_mean_30d", "ebay_typical_low_30d",
                   "ebay_typical_high_30d", "ebay_displayed_median_30d", "bestbuy_below_ebay_low",
                   "indicative_gap_dollars", "indicative_gap_percent", "matched_displayed_sales",

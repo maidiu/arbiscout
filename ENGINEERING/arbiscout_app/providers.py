@@ -110,6 +110,8 @@ def build_records(raw):
             entry.get("sku"), entry.get("condition"))
         if record:
             record["category"] = entry.get("category")
+            record["kroger_zip"] = entry.get("kroger_zip")
+            record["kroger_location_id"] = entry.get("kroger_location_id")
             store.add([record])
     return store.records()
 
@@ -374,7 +376,9 @@ def fetch_kroger(terms, location_id="", zip_code="", limit=50):
                         "current": current, "regular": regular, "sku": product_id,
                         "brand": product.get("brand"), "condition": "New",
                         "source": "https://www.kroger.com", "kind": "kroger_api",
-                        "model": None, "category": str(categories[0]).title()})
+                        "model": None, "category": str(categories[0]).title(),
+                        "kroger_zip": zip_code or "",
+                        "kroger_location_id": location_id})
         time.sleep(0.4)
     return raw, source_url, f"Kroger search: {len(raw)} promoted product(s)"
 

@@ -133,7 +133,7 @@ def set_status(job_id, status):
             JOBS[job_id]["finished"] = now()
 
 
-def command_for(job):
+def command_for(job, zip_override=None):
     env = read_env()
     if job == "bestbuy":
         return [PY, "run_test.py", "--url", env.get("BESTBUY_URL") or "https://www.bestbuy.com/black-friday",
@@ -148,10 +148,8 @@ def command_for(job):
         command = [PY, "providers.py", "--source", "kroger",
                    "--terms", env.get("KROGER_TERMS") or "milk,eggs,bread",
                    "--limit", "50", "--max-products", "500", "--output", "kroger_live"]
-        if env.get("KROGER_LOCATION_ID"):
-            command += ["--location-id", env["KROGER_LOCATION_ID"]]
-        elif env.get("KROGER_ZIP"):
-            command += ["--zip", env["KROGER_ZIP"]]
+        if zip_override:
+            command += ["--zip", zip_override]
         return command
     if job == "catalog":
         return [PY, "build_catalog.py", "--output", "catalog"]
@@ -171,16 +169,14 @@ def run_process(job_id, command, prefix=""):
         ACTIVE_PROC = None
 
 
-def run_single(job_id):
+def run_single(job_id, zip_override=None):
     global STOP_REQUESTED
     try:
-        if job_id == "kroger":
-            env = read_env()
-            if not (env.get("KROGER_LOCATION_ID") or env.get("KROGER_ZIP")):
-                append_log(job_id, "Kroger needs a ZIP code or location ID. Open Settings, set KROGER_ZIP, save, then run again.")
-                set_status(job_id, "failed")
-                return
-        command = command_for(job_id)
+        if job_id == "kroger" and not zip_override:
+            append_log(job_id, "Enter a ZIP code in the Kroger ZIP field above before running Kroger.")
+            set_status(job_id, "failed")
+            return
+        command = command_for(job_id, zip_override)
         if not command:
             append_log(job_id, "No command for this job.")
             set_status(job_id, "failed")
@@ -194,7 +190,7 @@ def run_single(job_id):
         set_status(job_id, "failed")
 
 
-def run_everything():
+def run_everything(zip_override=None):
     global STOP_REQUESTED
     try:
         env = read_env()
@@ -207,16 +203,16 @@ def run_everything():
             steps.append(("woot", "Woot"))
         else:
             append_log("everything", "Skipping Woot: WOOT_API_KEY is not set.")
-        if env.get("KROGER_CLIENT_ID") and env.get("KROGER_CLIENT_SECRET") and (env.get("KROGER_ZIP") or env.get("KROGER_LOCATION_ID")):
+        if zip_override and env.get("KROGER_CLIENT_ID") and env.get("KROGER_CLIENT_SECRET"):
             steps.append(("kroger", "Kroger"))
         else:
-            append_log("everything", "Skipping Kroger: client credentials or ZIP/location are not set.")
+            append_log("everything", "Skipping Kroger: enter a ZIP above (and set Kroger credentials) to include it.")
         failed = False
         for index, (job_id, label) in enumerate(steps, 1):
             if STOP_REQUESTED:
                 break
             append_log("everything", f"=== {label} ({index}/{len(steps) + 1}) ===")
-            command = command_for(job_id)
+            command = command_for(job_id, zip_override if job_id == "kroger" else None)
             if not command:
                 continue
             append_log("everything", "$ " + " ".join(command))
@@ -235,7 +231,7 @@ def run_everything():
         set_status("everything", "failed")
 
 
-def start_job(job_id):
+def start_job(job_id, zip_override=None):
     global ACTIVE_JOB, STOP_REQUESTED
     with LOCK:
         if ACTIVE_JOB:
@@ -244,7 +240,7 @@ def start_job(job_id):
         STOP_REQUESTED = False
         JOBS[job_id]["log"] = []
         set_status(job_id, "running")
-    target = run_everything if job_id == "everything" else (lambda: run_single(job_id))
+    target = (lambda: run_everything(zip_override)) if job_id == "everything" else (lambda: run_single(job_id, zip_override))
     def worker():
         try:
             target()
@@ -355,6 +351,8 @@ header h1{margin:0;font-size:27px}header p{color:#c1d5ea;margin:6px 0 0;font-siz
 .wrap{max-width:1200px;padding:20px;margin:auto}.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 16px}
 button,.btn{display:inline-block;padding:10px 15px;border-radius:9px;border:0;background:#1261bd;color:#fff;font-weight:650;text-decoration:none;cursor:pointer;font-size:13px}
 .btn.alt{background:#fff;color:#17508d;border:1px solid #b9cce2}.btn.big{font-size:16px;padding:14px 22px;background:#0b7a53}
+.zipbox{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #b9cce2;border-radius:9px;padding:7px 10px;color:#17508d;font-size:12px;font-weight:650}
+.zipbox input{width:100px;padding:6px;border:1px solid #cfd9e4;border-radius:6px;font-size:13px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
 .card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:15px}
 .card h3{margin:0 0 8px;font-size:16px;display:flex;justify-content:space-between;gap:8px;align-items:center}
@@ -378,6 +376,7 @@ progress{width:100%;height:10px;accent-color:#1261bd;margin:6px 0}
   <a class="btn alt" href="/reports/top10" target="_blank">Top 10 report</a>
   <a class="btn alt" href="/reports/comparisons" target="_blank">All comparisons</a>
   <a class="btn alt" href="/settings">Settings</a>
+  <label class="zipbox">Kroger ZIP <input id="krogerZip" placeholder="e.g. 29072" inputmode="numeric"></label>
   <button id="stop" class="btn alt" style="display:none">Stop current job</button>
 </div>
 <div class="note">eBay sold pages are still saved by you in the browser; the capture console watches your Downloads and ebay_saved folders. Gaps are gross; fees, shipping and net margin are not included.</div>
@@ -394,14 +393,14 @@ function formatElapsed(start){
   return seconds<60?`${seconds}s`:`${Math.floor(seconds/60)}m ${seconds%60}s`;
 }
 async function poll(){
-  try{const r=await fetch('/api/status',{cache:'no-store'});const s=await r.json();active=s.active;render(s.jobs,s.config);$('stop').style.display=active?'inline-block':'none';}catch(e){}
+  try{const r=await fetch('/api/status',{cache:'no-store'});const s=await r.json();active=s.active;
+    render(s.jobs);$('stop').style.display=active?'inline-block':'none';}catch(e){}
 }
-function render(jobs,config){
+function render(jobs){
   $('cards').innerHTML=Object.entries(jobs).map(([id,j])=>{
     const running=j.status==='running';
-    const hint=id==='kroger'&&config&&!config.kroger?' <small>needs ZIP in Settings</small>':'';
     const bar=running?`<progress max="100" value="${j.progress||0}"></progress><div class="count">${esc(j.progress_text||'working…')} ${esc(formatElapsed(j.started))}</div>`:'';
-    return `<div class="card"><h3>${esc(j.label)}${hint} <span class="badge ${esc(j.status)}">${esc(j.status)}</span></h3>
+    return `<div class="card"><h3>${esc(j.label)} <span class="badge ${esc(j.status)}">${esc(j.status)}</span></h3>
     <p>${j.started?'Started '+esc(j.started):'Not run yet.'}${j.finished?' · finished '+esc(j.finished):''}</p>
     ${bar}
     <button class="btn alt" data-job="${esc(id)}" ${active?'disabled':''}>Run ${esc(j.label)}</button>
@@ -410,7 +409,9 @@ function render(jobs,config){
   document.querySelectorAll('[data-job]').forEach(b=>b.onclick=()=>run(b.dataset.job));
 }
 async function run(job){
-  const r=await fetch('/api/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({job})});
+  const body={job};
+  if(job==='kroger'||job==='everything'){const zip=$('krogerZip').value.trim();if(zip)body.zip=zip;}
+  const r=await fetch('/api/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
   const j=await r.json();if(j.error)alert(j.error);poll();
 }
 document.querySelectorAll('[data-job]').forEach(b=>b.onclick=()=>run(b.dataset.job));
@@ -452,12 +453,10 @@ __SAVED__
 <label><input type="checkbox" name="clear_MEH_API_KEY" style="width:auto"> Clear saved Meh key</label>
 </div>
 <div class="card"><h2>Kroger</h2>
-<p class="hint">Kroger needs a ZIP code or location ID to return store-specific prices. Without one, the Kroger job stops with a setup message.</p>
+<p class="hint">Enter a ZIP on the control room home page for each Kroger run. It is not saved here, so you can change it any time.</p>
 <div class="row"><div><label>Client ID <span class="status">__KROGER_ID_STATUS__</span></label><input name="KROGER_CLIENT_ID" type="password" placeholder="leave blank to keep current"></div>
 <div><label>Client secret <span class="status">__KROGER_SECRET_STATUS__</span></label><input name="KROGER_CLIENT_SECRET" type="password" placeholder="leave blank to keep current"></div></div>
 <label>Search terms (comma-separated)</label><input name="KROGER_TERMS" value="__KROGER_TERMS__" placeholder="milk,eggs,bread">
-<div class="row"><div><label>ZIP code</label><input name="KROGER_ZIP" value="__KROGER_ZIP__" placeholder="29072"></div>
-<div><label>Location ID (optional)</label><input name="KROGER_LOCATION_ID" value="__KROGER_LOCATION_ID__" placeholder=""></div></div>
 <label><input type="checkbox" name="clear_KROGER_CLIENT_ID" style="width:auto"> Clear Kroger client ID</label>
 <label><input type="checkbox" name="clear_KROGER_CLIENT_SECRET" style="width:auto"> Clear Kroger client secret</label>
 </div>
@@ -496,8 +495,6 @@ class Handler(BaseHTTPRequestHandler):
                 "__WOOT_FEED__": env.get("WOOT_FEED", "All"),
                 "__WOOT_MAX__": env.get("WOOT_MAX", "500"),
                 "__KROGER_TERMS__": env.get("KROGER_TERMS", "milk,eggs,bread"),
-                "__KROGER_ZIP__": env.get("KROGER_ZIP", ""),
-                "__KROGER_LOCATION_ID__": env.get("KROGER_LOCATION_ID", ""),
                 "__WOOT_KEY_STATUS__": "set" if env.get("WOOT_API_KEY") else "not set",
                 "__MEH_KEY_STATUS__": "set" if env.get("MEH_API_KEY") else "not set",
                 "__KROGER_ID_STATUS__": "set" if env.get("KROGER_CLIENT_ID") else "not set",
@@ -508,12 +505,9 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, html)
         if parsed.path == "/api/status":
             env = read_env()
-            config = {"kroger": bool(env.get("KROGER_LOCATION_ID") or env.get("KROGER_ZIP")),
-                      "meh": bool(env.get("MEH_API_KEY")),
-                      "woot": bool(env.get("WOOT_API_KEY"))}
             with LOCK:
                 jobs = {key: {**value, "log": value["log"][-80:]} for key, value in JOBS.items()}
-                body = json.dumps({"active": ACTIVE_JOB, "jobs": jobs, "config": config},
+                body = json.dumps({"active": ACTIVE_JOB, "jobs": jobs},
                                   ensure_ascii=False)
             return self._send(200, body, "application/json; charset=utf-8")
         if parsed.path == "/catalog":
@@ -559,7 +553,11 @@ class Handler(BaseHTTPRequestHandler):
                 if job not in JOBS:
                     return self._send(400, json.dumps({"error": "Unknown job."}),
                                       "application/json; charset=utf-8")
-                ok, message = start_job(job)
+                zip_override = (body.get("zip") or "").strip()
+                if job == "kroger" and not zip_override:
+                    return self._send(400, json.dumps({"error": "Enter a ZIP code above before running Kroger."}),
+                                      "application/json; charset=utf-8")
+                ok, message = start_job(job, zip_override)
                 return self._send(200 if ok else 409,
                                   json.dumps({"ok": ok, "message": message}, ensure_ascii=False),
                                   "application/json; charset=utf-8")
@@ -575,8 +573,7 @@ class Handler(BaseHTTPRequestHandler):
                 form = parse_qs(self.rfile.read(length).decode("utf-8", errors="replace"))
                 updates = {}
                 clears = []
-                for key in ("BESTBUY_URL", "WOOT_FEED", "WOOT_MAX", "KROGER_TERMS",
-                            "KROGER_ZIP", "KROGER_LOCATION_ID"):
+                for key in ("BESTBUY_URL", "WOOT_FEED", "WOOT_MAX", "KROGER_TERMS"):
                     if key in form:
                         updates[key] = form[key][0].strip()
                 for key in ("MEH_API_KEY", "WOOT_API_KEY", "KROGER_CLIENT_ID",

@@ -109,7 +109,7 @@ def now():
 
 def append_log(job_id, line):
     line = line.rstrip("\n")
-    progress = re.match(r"PROGRESS\s+(\d+)/(\d+)\s*(.*)", line)
+    progress = re.search(r"PROGRESS\s+(\d+)/(\d+)\s*(.*)", line)
     with LOCK:
         job = JOBS[job_id]
         job["log"].append(line)

@@ -9,6 +9,7 @@ from pathlib import Path
 import threading
 import webbrowser
 
+import arbiscout as app
 import catalog_ui
 import run_test
 
@@ -50,6 +51,12 @@ def build_selection(products, meta):
                    indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     (retailer / "products.json").write_text(
         json.dumps(products, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    log = [{"url": "catalog selection", "depth": 0, "type": "selection", "status": "OK",
+            "products": len(products), "links": 0, "message": ""}]
+    settings = {"source": "selection", "url": "catalog",
+                "fetched_at": datetime.now(timezone.utc).isoformat()}
+    (retailer / "index.html").write_text(
+        app.render_dashboard(products, log, {}, settings), encoding="utf-8")
     run_test.execute(ebay_pages=None, reuse_retailer=True, keep_selection=True,
                      output=str(selected_dir), as_of=datetime.now(timezone.utc))
     return {"selected": len(products), "output": str(selected_dir.resolve()),

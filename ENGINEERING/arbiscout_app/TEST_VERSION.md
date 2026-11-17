@@ -45,15 +45,15 @@ To reuse an existing retailer scrape instead of crawling again (keeps the same c
       --ebay-pages '/path/to/ebay-sold-pages' \
       --reuse-retailer --output bestbuy_test --open
 
-The program computes the dates itself. Records with missing dates or price-type ambiguity are not counted. It never fills a 30-day median from older records. The report shows sold low, high, mean, median, the typical middle-50% range, and whether Best Buy is below the eBay sold low or median. Live automated eBay sold-search collection remains disabled because eBay's robots.txt disallows `/sch/` for automated agents.
+The program computes the dates itself. Records with missing dates or price-type ambiguity are not counted. It never fills a 30-day median from older records. The report shows sold low, high, mean, median, the typical middle-50% range, and whether the retailer is below the eBay sold low or median. Live automated eBay sold-search collection remains disabled because eBay's robots.txt disallows `/sch/` for automated agents.
 
-## Live capture console (click, save, result)
+## Results page (click, save, result)
 
-After one Best Buy scrape:
+After a Deals selection or a source scrape:
 
-    ./watch_ebay.command
+    ./watch_ebay.command ebay_saved --output catalog/selected --keep-selection
 
-This opens a local console. Click **Open next waiting eBay page**, save the completed-listing page into `ebay_saved/` with the filename shown in its row, and the row updates automatically with sold low/high/mean/median, the typical middle-50% range, and the Best Buy-vs-eBay flag. Each saved file is parsed and the top-10 and comparison reports are regenerated. The console only reads files you save; it never fetches eBay itself. On exit it can delete the saved HTML files.
+This opens the Results page. Click **Open next waiting eBay page**, save the completed-listing page into `ebay_saved/` or Downloads, and the row updates automatically with sold low/high/mean/median, the typical middle-50% range, and the retailer-vs-eBay flag. Use the source, category, date, Top 10, waiting and captured filters to narrow the view. Any filename works; pages are matched by their eBay search query. The page only reads files you save; it never fetches eBay itself. On exit only working copies are deleted; your saved source files are kept.
 
 ## Explicit opt-in network test
 

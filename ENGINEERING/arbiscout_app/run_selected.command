@@ -10,11 +10,14 @@ fi
 import json
 from pathlib import Path
 import sys
+import arbiscout
 data=json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
 products=data.get("products") if isinstance(data,dict) else data
 out=Path("catalog/selected/retailer")
 out.mkdir(parents=True,exist_ok=True)
 (out/"products.json").write_text(json.dumps(products,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+log=[{"url":"selected.json","depth":0,"type":"selection","status":"OK","products":len(products),"links":0,"message":""}]
+(out/"index.html").write_text(arbiscout.render_dashboard(products,log,{},{"source":"selection","url":"selected.json"}),encoding="utf-8")
 Path("catalog/selected/selection.json").write_text(json.dumps(data,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
 print(len(products),"products selected")
 PY

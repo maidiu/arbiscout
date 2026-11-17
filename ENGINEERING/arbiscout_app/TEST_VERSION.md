@@ -81,7 +81,7 @@ The immutable historical Nov 7 source bank remains under ENGINEERING/SOURCE_BANK
 
 ## One-click control room
 
-Mac: `start_arbiscout.command`. Windows: `start_arbiscout.bat`. Both open `http://127.0.0.1:8800` with buttons for every source, Settings, the catalog, the eBay capture console, and reports. No terminal is needed after launch. The control room runs the existing scripts as background jobs and shows status/logs, a progress bar, elapsed time and a Stop button. Settings writes the local `.env`; keys are never shown after saving. The catalog defaults to Today, shows observed times and source freshness, supports date ranges and page sizes, and rebuilds from the latest sources when opened. Enter a Kroger ZIP on the control room home page; it is used for that run only and is not saved.
+Mac: `start_arbiscout.command`. Windows: `start_arbiscout.bat`. Both open `http://127.0.0.1:8800` with buttons for every source, Settings, the catalog, the eBay capture console, and reports. No terminal is needed after launch. The control room runs the existing scripts as background jobs and shows status/logs, a progress bar, elapsed time and a Stop button. The capture console shows the current selected run, labels its output folder, and has its own date filter. Settings writes the local `.env`; keys are never shown after saving. The catalog defaults to Today, shows observed times and source freshness, supports date ranges and page sizes, and rebuilds from the latest sources when opened. Enter a Kroger ZIP on the control room home page; it is used for that run only and is not saved.
 
 ## Unified multi-source catalog
 

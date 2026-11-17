@@ -1580,7 +1580,7 @@
       ],
       "dependency_groups": [],
       "priority": "P1",
-      "finding": "Local control room tested: home, settings, job status, catalog redirect and capture redirect all returned 200/302; catalog job completed successfully. Kroger ZIP is a per-run home-page field, not persisted; a local run with ZIP 29072 produced 36 Kroger products tagged with that ZIP. Saved runs link directly to the eBay capture console; duplicate saved button removed; catalog, top-10 and comparison pages expose Capture eBay links. Mac .command and Windows .bat launchers use the same control_room.py. No independent review.",
+      "finding": "Local control room tested: home, settings, job status, catalog redirect and capture redirect all returned 200/302; catalog job completed successfully. Kroger ZIP is a per-run home-page field, not persisted; a local run with ZIP 29072 produced 36 Kroger products tagged with that ZIP. Saved runs link directly to the eBay capture console; duplicate saved button removed; catalog, top-10 and comparison pages expose Capture eBay links. Capture restarts on the selected output and displays the output folder. Mac .command and Windows .bat launchers use the same control_room.py. No independent review.",
       "finding_refs": [
         "ENGINEERING/arbiscout_app/control_room.py"
       ],
@@ -1616,7 +1616,7 @@
       ],
       "dependency_groups": [],
       "priority": "P1",
-      "finding": "Local tests: catalog date filter returns fresh rows only, page-size controls render, open catalog rebuilds and redirects, Woot progress lines parse, and Stop terminates the active provider. Kroger rows display their ZIP in the catalog, capture console and comparison reports; the ZIP is entered per run and not saved. Saved-run messages and reports link to the capture console. No independent review.",
+      "finding": "Local tests: catalog date filter returns fresh rows only, page-size controls render, open catalog rebuilds and redirects, Woot progress lines parse, and Stop terminates the active provider. Kroger rows display their ZIP in the catalog, capture console and comparison reports; the ZIP is entered per run and not saved. Saved-run messages and reports link to the capture console. The capture console has its own date filter, shows observed dates/source/ZIP and labels the selected output. No independent review.",
       "finding_refs": [
         "ENGINEERING/arbiscout_app/catalog_ui.py",
         "ENGINEERING/arbiscout_app/control_room.py"

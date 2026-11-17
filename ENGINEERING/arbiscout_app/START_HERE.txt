@@ -42,8 +42,9 @@ ARBISCOUT — COMPLETE TEST VERSION
    Buy is below the eBay low or median. It watches both ebay_saved/ and
    ~/Downloads, so a normal browser save is detected even if you don't change
    the save location. The console only reads files you save; it never fetches
-   eBay itself. You can also click eBay sold links from the original Best Buy
-   dashboard; saved pages are matched by their eBay search query.
+   eBay itself. It shows the current selected run and has its own Today/7d/30d/
+   custom date filter. You can also click eBay sold links from the original Best
+   Buy dashboard; saved pages are matched by their eBay search query.
 
 7. API sources (Meh / Woot / Kroger): copy .env.example to .env and fill in
    your own keys, then:

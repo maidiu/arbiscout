@@ -40,6 +40,8 @@ def load_state(output):
             "fixture_file": row.get("fixture_file"),
             "title": p.get("title"),
             "retail_url": p.get("url"),
+            "observed_at": p.get("observed_at"),
+            "source": p.get("source") or p.get("source_label") or p.get("source_kind"),
             "kroger_zip": p.get("kroger_zip"),
             "kroger_location_id": p.get("kroger_location_id"),
             "retail_current": p.get("current_price"),
@@ -120,6 +122,15 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
     <option value="sold_low">Lowest eBay sold price</option>
   </select>
   <select id="view"><option value="all">All candidates</option><option value="below_low">Retailer below eBay low</option><option value="below_median">Retailer below eBay median</option></select>
+  <select id="dateRange">
+    <option value="today">Today</option>
+    <option value="24h">Last 24 hours</option>
+    <option value="7d">Last 7 days</option>
+    <option value="30d">Last 30 days</option>
+    <option value="all">All dates</option>
+    <option value="custom">Custom…</option>
+  </select>
+  <span id="customDates" style="display:none"><input id="dateFrom" type="date"> – <input id="dateTo" type="date"></span>
   <label><input type="checkbox" id="complete"> Only products with both retail prices</label>
   <span id="msg" class="count"></span>
   <a class="btn alt" href="http://127.0.0.1:8800/">Control room</a>
@@ -130,7 +141,7 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
 <div class="tablewrap"><table><thead><tr>
 <th>#</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th>
 <th>eBay sold low</th><th>eBay sold high</th><th>Mean</th><th>Median</th><th>Typical 50%</th>
-<th>Retailer vs eBay</th><th>Sales</th><th>File / status</th><th>Open</th>
+<th>Retailer vs eBay</th><th>Sales</th><th>Observed</th><th>File / status</th><th>Open</th>
 </tr></thead><tbody id="rows"></tbody></table></div>
 </main>
 <script>
@@ -138,20 +149,44 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
 const usd=v=>v==null?'—':('$'+Number(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}));
 let state={candidates:[],captured:0,total:0,pending:[]};
+let visible=[];
 function cmpNull(a,b,dir){if(a==null&&b==null)return 0;if(a==null)return 1;if(b==null)return -1;return dir*(a-b);}
+function dateBounds(){
+  const range=$('dateRange').value,now=new Date();
+  const startOfDay=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime();
+  let after=null,before=null;
+  if(range==='today')after=new Date(startOfDay(now)).toISOString();
+  else if(range==='24h')after=new Date(Date.now()-24*3600*1000).toISOString();
+  else if(range==='7d')after=new Date(Date.now()-7*24*3600*1000).toISOString();
+  else if(range==='30d')after=new Date(Date.now()-30*24*3600*1000).toISOString();
+  else if(range==='custom'){
+    if($('dateFrom').value)after=new Date($('dateFrom').value+'T00:00:00').toISOString();
+    if($('dateTo').value)before=new Date($('dateTo').value+'T23:59:59.999').toISOString();
+  }
+  return {after,before};
+}
+function inRange(x,bounds){
+  if(!bounds.after&&!bounds.before)return true;
+  if(!x.observed_at)return false;
+  const t=new Date(x.observed_at);
+  if(bounds.after&&t<new Date(bounds.after))return false;
+  if(bounds.before&&t>new Date(bounds.before))return false;
+  return true;
+}
 function render(){
-  const q=$('q').value.toLowerCase().trim(),sort=$('sort').value,view=$('view').value;
+  const q=$('q').value.toLowerCase().trim(),sort=$('sort').value,view=$('view').value,bounds=dateBounds();
   $('kCap').textContent=state.captured+' / '+state.total;
-  $('kLow').textContent=state.candidates.filter(x=>x.below_low===true).length;
-  $('kMed').textContent=state.candidates.filter(x=>x.below_median===true).length;
   $('kPend').textContent=state.pending.length;
   $('msg').textContent=state.message||'';
-  $('paths').innerHTML='<b>Save into either:</b> '+esc(state.folder)+(state.downloads?' &nbsp;or&nbsp; '+esc(state.downloads):'')+
-    '<br><small>Any filename works; pages are matched by their eBay search query. Working copies: '+esc(state.staging)+'</small>';
-  let rows=state.candidates.filter(x=>(x.title||'').toLowerCase().includes(q));
+  let rows=state.candidates.filter(x=>(x.title||'').toLowerCase().includes(q)&&inRange(x,bounds));
   if($('complete').checked)rows=rows.filter(x=>x.retail_current!=null&&x.retail_regular!=null);
   if(view==='below_low')rows=rows.filter(x=>x.below_low===true);
   if(view==='below_median')rows=rows.filter(x=>x.below_median===true);
+  $('kLow').textContent=rows.filter(x=>x.below_low===true).length;
+  $('kMed').textContent=rows.filter(x=>x.below_median===true).length;
+  $('paths').innerHTML='<b>Save into either:</b> '+esc(state.folder)+(state.downloads?' &nbsp;or&nbsp; '+esc(state.downloads):'')+
+    '<br><small>Showing '+rows.length+' of '+state.total+' candidates · output: '+esc(state.output)+'</small>'+
+    '<br><small>Any filename works; pages are matched by their eBay search query. Working copies: '+esc(state.staging)+'</small>';
   rows.sort((a,b)=>{
     if(sort==='discount')return (b.retail_discount??-1)-(a.retail_discount??-1);
     if(sort==='savings')return (b.retail_savings??-1)-(a.retail_savings??-1);
@@ -162,29 +197,32 @@ function render(){
     if(sort==='sold_low')return cmpNull(a.sold_low,b.sold_low,1);
     return 0;
   });
+  visible=rows;
   $('rows').innerHTML=rows.map(x=>{
     const waiting=x.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||x.ebay_status==='NO_MATCHING_FIXTURE';
-    const has=(x.sample_count||0)>0;
     const vs=x.below_low===true?'<span class="good">Below eBay low</span>':x.below_median===true?'<span class="good">Below eBay median</span>':x.below_median===false?'<span class="bad">At/above eBay median</span>':'—';
     const file=waiting?'<span class="wait">Waiting for file</span>':esc(x.fixture_file||'');
+    const obs=x.observed_at?new Date(x.observed_at).toLocaleString():'—';
     return `<tr><td class="n">${x.fixture_index??''}</td>
-      <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
+      <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.source?'<br><small>'+esc(x.source)+'</small>':''}${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
       <td class="n">${usd(x.retail_current)}</td><td class="n">${usd(x.retail_regular)}</td>
       <td class="n">${x.retail_discount==null?'—':x.retail_discount+'%'}</td><td class="n">${usd(x.retail_savings)}</td>
       <td class="n">${usd(x.sold_low)}</td><td class="n">${usd(x.sold_high)}</td><td class="n">${usd(x.sold_mean)}</td><td class="n">${usd(x.median)}</td>
       <td class="n">${x.typical_low==null?'—':usd(x.typical_low)+' – '+usd(x.typical_high)}</td>
-      <td>${vs}</td><td class="n">${x.sample_count??0}</td>
+      <td>${vs}</td><td class="n">${x.sample_count??0}</td><td class="obs">${esc(obs)}</td>
       <td><small>${file}</small><br><small>${esc(x.status||'')}</small><br><small>${esc(x.ebay_status||'')}</small></td>
       <td><a class="btn" href="${esc(x.ebay_url)}" target="_blank" rel="noopener noreferrer">Open eBay</a></td></tr>`;
-  }).join('')||'<tr><td colspan="15">No matching products.</td></tr>';
+  }).join('')||'<tr><td colspan="16">No candidates in this date range. Choose All dates to see older stored results.</td></tr>';
 }
 async function poll(){try{const r=await fetch('/api/state',{cache:'no-store'});state=await r.json();render();}catch(e){}}
 $('next').onclick=()=>{
-  const x=state.candidates.find(c=>c.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||c.ebay_status==='NO_MATCHING_FIXTURE')
-       ||state.candidates.find(c=>(c.sample_count||0)===0);
-  if(x)window.open(x.ebay_url,'_blank');else alert('All candidates have captured files.');
+  const x=visible.find(c=>c.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||c.ebay_status==='NO_MATCHING_FIXTURE')
+       ||visible.find(c=>(c.sample_count||0)===0);
+  if(x)window.open(x.ebay_url,'_blank');else alert('No waiting candidates in this date range.');
 };
 $('q').oninput=render;$('sort').onchange=render;$('view').onchange=render;$('complete').onchange=render;
+$('dateRange').onchange=()=>{$('customDates').style.display=$('dateRange').value==='custom'?'inline-flex':'none';render();};
+$('dateFrom').onchange=render;$('dateTo').onchange=render;
 poll();setInterval(poll,1500);
 </script></body></html>"""
 

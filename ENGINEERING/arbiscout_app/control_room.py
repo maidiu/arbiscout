@@ -38,6 +38,8 @@ ACTIVE_PROC = None
 STOP_REQUESTED = False
 CATALOG_PROC = None
 WATCHER_PROC = None
+WATCHER_URL = None
+WATCHER_OUTPUT = None
 for _job in JOBS.values():
     _job.setdefault("progress", 0)
     _job.setdefault("progress_text", "")
@@ -315,9 +317,7 @@ def ensure_catalog():
 
 
 def ensure_watcher():
-    global WATCHER_PROC
-    if WATCHER_PROC and WATCHER_PROC.poll() is None:
-        return None, "http://127.0.0.1:8765/"
+    global WATCHER_PROC, WATCHER_URL, WATCHER_OUTPUT
     selected = APP_DIR / "catalog" / "selected" / "retailer" / "products.json"
     output = None
     keep = False
@@ -331,6 +331,16 @@ def ensure_watcher():
                 break
     if not output:
         return None, "No retailer products yet. Run a source first."
+    if WATCHER_PROC and WATCHER_PROC.poll() is None:
+        if WATCHER_OUTPUT == output and WATCHER_URL:
+            return None, WATCHER_URL
+        WATCHER_PROC.terminate()
+        try:
+            WATCHER_PROC.wait(timeout=3)
+        except subprocess.TimeoutExpired:
+            WATCHER_PROC.kill()
+        WATCHER_PROC = None
+        WATCHER_URL = None
     args = ["ebay_watcher.py", "--folder", "ebay_saved", "--output", output,
             "--port", "8765", "--no-open"]
     if keep:
@@ -339,6 +349,8 @@ def ensure_watcher():
     if not proc:
         return None, "Capture console failed to start:\n" + result
     WATCHER_PROC = proc
+    WATCHER_URL = result
+    WATCHER_OUTPUT = output
     return proc, result
 
 

@@ -272,8 +272,8 @@ function sourceBoxes(){
   const counts={};DATA.products.forEach(p=>{counts[p.source]=(counts[p.source]||0)+1;});
   $('sources').innerHTML='<strong>Sources</strong>'+SOURCES.map((s,i)=>`<label><input type="checkbox" value="${esc(s)}" checked> ${esc(s)} (${counts[s]||0})</label>`).join('')+
     `<button class="btn alt" id="all">All</button><button class="btn alt" id="woot">Woot only</button><button class="btn alt" id="notwoot">Except Woot</button><button class="btn alt" id="none">Clear</button>`;
-  $('all').onclick=()=>document.querySelectorAll('#sources input').forEach(x=>x.checked=true),render();
-  $('none').onclick=()=>document.querySelectorAll('#sources input').forEach(x=>x.checked=false),render();
+  $('all').onclick=()=>{document.querySelectorAll('#sources input').forEach(x=>x.checked=true);render();};
+  $('none').onclick=()=>{document.querySelectorAll('#sources input').forEach(x=>x.checked=false);render();};
   $('woot').onclick=()=>{document.querySelectorAll('#sources input').forEach(x=>x.checked=x.value==='Woot');render();};
   $('notwoot').onclick=()=>{document.querySelectorAll('#sources input').forEach(x=>x.checked=x.value!=='Woot');render();};
 }
@@ -365,6 +365,7 @@ $('build').onclick=build;
 $('rows').addEventListener('click',e=>{const b=e.target.closest('.savebtn');if(!b)return;const p=DATA.products.find(x=>saveKey(x)===b.dataset.key);if(p)toggleSave(p);});
 $('savedPanel').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b)return;const p=SAVED_ITEMS.find(x=>saveKey(x)===b.dataset.remove);if(p)toggleSave(p);});
 sourceBoxes();
+$('sources').addEventListener('change',e=>{if(e.target.matches('input[type=checkbox]'))render();});
 $('category').innerHTML='<option value="">All categories</option>'+CATEGORIES.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
 $('modeNote').textContent=DATA.live?'Deals to Results: build a selection or save individual rows, then open Results to capture eBay pages and see gaps. The date filter defaults to Today; choose All dates for older stored results.':'Static view: Build downloads selected.json. Start ./run_catalog.command for one-click selection and a persistent saved list.';
 loadSaved();renderAges();render();

@@ -280,7 +280,7 @@ def main(argv=None):
     p.add_argument("--downloads-dir", help="Watch this folder instead of ~/Downloads")
     p.add_argument("--port", type=int, default=8765)
     p.add_argument("--delete-on-exit", action="store_true",
-                   help="Delete working copies and NN.html files in the primary folder when you stop")
+                   help="Delete working copies when you stop (your saved source files are kept)")
     p.add_argument("--no-open", action="store_true", help="Do not open the console browser tab")
     p.add_argument("--keep-selection", action="store_true",
                    help="Preserve the selected products in file order instead of re-selecting top 20")
@@ -394,13 +394,13 @@ def main(argv=None):
         server.shutdown()
         if a.delete_on_exit:
             removed = 0
-            for target in list(staging.glob("*.html")) + list(folder.glob("*.html")):
+            for target in list(staging.glob("*.html")):
                 try:
                     target.unlink()
                     removed += 1
                 except OSError:
                     pass
-            print("Deleted", removed, "working HTML file(s).")
+            print("Deleted", removed, "working copy file(s). Saved source files were kept.")
 
 
 if __name__ == "__main__":

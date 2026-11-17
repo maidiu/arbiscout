@@ -1580,7 +1580,7 @@
       ],
       "dependency_groups": [],
       "priority": "P1",
-      "finding": "Local control room tested: home, settings, job status, catalog redirect and capture redirect all returned 200/302; catalog job completed successfully. Kroger ZIP is a per-run home-page field, not persisted; a local run with ZIP 29072 produced 36 Kroger products tagged with that ZIP. Saved runs link directly to the eBay capture console; duplicate saved button removed; catalog, top-10 and comparison pages expose Capture eBay links. Capture restarts on the selected output and displays the output folder. Mac .command and Windows .bat launchers use the same control_room.py. No independent review.",
+      "finding": "Local control room tested: home, settings, job status, catalog redirect and capture redirect all returned 200/302; catalog job completed successfully. Kroger ZIP is a per-run home-page field, not persisted; a local run with ZIP 29072 produced 36 Kroger products tagged with that ZIP. Saved runs link directly to the eBay capture console; duplicate saved button removed; catalog, top-10 and comparison pages expose Capture eBay links. Capture restarts on the selected output and displays the output folder. The watcher never deletes saved source HTML files; only working copies are removed. Mac .command and Windows .bat launchers use the same control_room.py. No independent review.",
       "finding_refs": [
         "ENGINEERING/arbiscout_app/control_room.py"
       ],

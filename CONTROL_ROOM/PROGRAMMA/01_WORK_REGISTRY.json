@@ -1656,7 +1656,7 @@
       ],
       "dependency_groups": [],
       "priority": "P1",
-      "finding": "Audit completed. Redundant catalog/retailer dashboards and top10/comparisons/capture pages were consolidated: Control room (jobs/settings), Deals (all products, filters, saved, selection), Results (capture, stats, source/category/date/Top10/waiting/captured filters, diagnostics), Settings (keys and raw reports). Main navigation is same-tab across the four locations. Raw top10/comparisons/retailer files remain available from Settings. Local tests pass; no independent UI review.",
+      "finding": "Audit completed. Redundant catalog/retailer dashboards and top10/comparisons/capture pages were consolidated: Control room (jobs/settings), Deals (all products, filters, saved, selection), Results (capture, stats, source/category/date/Top10/waiting/captured filters, diagnostics), Settings (keys and raw reports). Main navigation is same-tab across the four locations. Raw top10/comparisons/retailer files remain available from Settings. The selected retailer dashboard is generated for the selected run; progress parsing handles prefixed lines from Update everything. Local tests pass; no independent UI review.",
       "finding_refs": [
         "ENGINEERING/arbiscout_app/control_room.py",
         "ENGINEERING/arbiscout_app/catalog_ui.py",

@@ -106,27 +106,18 @@ python3 -m unittest discover -s tests -v
 ```
 
 
-## One-click control room (Mac and Windows)
+## App structure: four locations (Nov 17)
 
-Mac: double-click `start_arbiscout.command`. Windows: double-click `start_arbiscout.bat`. Both start the same local control room at `http://127.0.0.1:8800`.
+Mac: double-click `start_arbiscout.command`. Windows: double-click `start_arbiscout.bat`. Both open the same control room at `http://127.0.0.1:8800`. No terminal is needed after launch.
 
-The control room has buttons for **Update everything**, each source (Best Buy, Meh, Woot, Kroger), **Build catalog**, **Open catalog**, **Capture eBay**, and reports. Settings stores API keys, Best Buy URL, Woot feed, and Kroger search terms in a local `.env`; keys are never displayed again. The catalog and capture consoles open as browser pages, so the person never needs a terminal after launch. The capture console shows the current selected run, labels its output folder, and has its own Today/7d/30d/custom date filter. Long jobs show a progress bar, elapsed time and a **Stop** button. The catalog defaults to **Today**, shows each item's observed time and each source's last update, supports 7/30-day or custom ranges, and pages at 20/50/100/200 rows. Opening the catalog rebuilds it from the latest source files. Enter a Kroger ZIP directly on the control room home page; it is used for that run only and is not saved, so you can change it whenever you want. Windows uses installed Chrome or Edge; Mac uses Chrome.
+- **Control room** — run Update everything or individual sources; progress, elapsed time and Stop; the Kroger ZIP for the next run; Settings.
+- **Deals** — all products from all sources. Filter by source, category and date; sort by % off, savings, price or name; page sizes; both-prices; search; Save individual rows; Saved-only; build a top-N or hand-picked selection.
+- **Results** — capture eBay pages and see sold low/high/mean/median, typical middle-50%, gap, and below-low/median flags. Filter by source, category, date, Top 10 positive gaps, waiting, or captured; per-row Open eBay and Open next waiting. Shows the selected output folder.
+- **Settings** — API keys, Best Buy URL, Woot feed, Kroger terms, and links to the raw generated reports (retailer dashboard, top-10 file, all-comparisons file).
 
-## Unified catalog and source filtering (Nov 7)
+The control room rebuilds Deals from the latest source files when opened. Results restarts on the selected output when opened from the control room. eBay pages are saved manually into `ebay_saved/` or `~/Downloads`; the app never fetches eBay itself. Gaps are gross; fees, shipping and net margin are excluded. Kroger ZIP is per-run and not saved.
 
-`build_catalog.py` merges `bestbuy_live`, `meh_live`, `woot_live`, and `kroger_live` into one `catalog/catalog.json` plus a filterable dashboard. `run_catalog.command` builds the catalog and serves the live selection UI at `127.0.0.1:8770`.
-
-- Filter by **source** (Best Buy / Meh / Woot / Kroger; include or exclude any combination), by **category**, and by text.
-- Sort by **highest % off**, **dollar savings**, **lowest/highest current price**, **name**, **source**, or **category**.
-- Set **Top N** (default 20) and click **Build top N selection**. The selection is written to `catalog/selected/`.
-- Or hand-pick individual deals with **Save** on each row, browse **Saved only**, and click **Build eBay run from saved**. The saved list persists in `catalog/saved.json` while the catalog server runs and across restarts.
-- Capture eBay evidence for that selection with:
-  ```bash
-  ./watch_ebay.command ebay_saved --output catalog/selected --keep-selection
-  ```
-- A downloaded `selected.json` from the static dashboard can be processed with `./run_selected.command selected.json`.
-
-Categories come from provider data where available (Woot categories, Kroger categories) and are inferred from the Best Buy source page/title otherwise. The catalog caps each source at 2,000 products by default (`--max-per-source`) so a large Woot feed remains manageable; the Woot adapter itself caps at 500. The selection is gross retailer discount only; eBay comparison and the below-eBay flags happen after the capture step.
+Under the hood, `build_catalog.py` merges source folders, `catalog_server.py` serves Deals, and `ebay_watcher.py` serves Results. Categories come from provider data where available and are inferred for Best Buy. The catalog caps each source at 2,000 products by default; the Woot adapter caps at 500.
 
 ## Complete executable 20-to-10 test operator (Nov 7)
 

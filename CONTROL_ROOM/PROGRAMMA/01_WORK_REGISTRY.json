@@ -1624,6 +1624,47 @@
       "last_verified_at": "2026-11-17",
       "acceptance_dependencies": [],
       "completion_evidence": []
+    },
+    {
+      "id": "ARB-110",
+      "title": "Four-location consolidation and feature parity",
+      "level": "L2",
+      "stage": "O",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-106",
+        "ARB-107",
+        "ARB-108",
+        "ARB-109"
+      ],
+      "required_capability": "Consolidate the app into Control room, Deals, Results and Settings; use filters for source, category, date, Top 10 and capture state instead of separate report pages; keep raw generated reports available from Settings",
+      "first_consumer": "daily user of the local control room",
+      "acceptance": "Every main page has same-tab navigation to the other main locations; Deals covers browsing, filtering, saving and selection; Results covers capture, statistics, filters and Top 10; Settings covers keys and raw reports; no feature loss",
+      "blocker": "Local-only prototype; no independent UI review",
+      "next_action": "Add browser smoke tests for same-tab navigation and feature parity",
+      "implementation_ref": "ENGINEERING/arbiscout_app/control_room.py",
+      "source_ids": [],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-106",
+        "ARB-107",
+        "ARB-108",
+        "ARB-109"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "Audit completed. Redundant catalog/retailer dashboards and top10/comparisons/capture pages were consolidated: Control room (jobs/settings), Deals (all products, filters, saved, selection), Results (capture, stats, source/category/date/Top10/waiting/captured filters, diagnostics), Settings (keys and raw reports). Main navigation is same-tab across the four locations. Raw top10/comparisons/retailer files remain available from Settings. Local tests pass; no independent UI review.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/control_room.py",
+        "ENGINEERING/arbiscout_app/catalog_ui.py",
+        "ENGINEERING/arbiscout_app/ebay_watcher.py"
+      ],
+      "last_verified_at": "2026-11-17",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     }
   ],
   "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
@@ -1639,5 +1680,5 @@
   "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS (Q001-Q112)",
   "source_examples_not_mandatory": true,
   "data_format": "Canonical JSON registers + generated Markdown dashboards and CSV tables",
-  "task_count": 50
+  "task_count": 51
 }

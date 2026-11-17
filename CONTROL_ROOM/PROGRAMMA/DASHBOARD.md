@@ -6,7 +6,7 @@
 
 ## Scope and counts
 
-- **50** tracked capability tasks: BLOCKED_EXTERNAL: 1, IN_PROGRESS: 3, NOT_STARTED: 19, PROPOSED: 3, PROTOTYPE_DRAFT: 18, REVIEW_PENDING: 1, SCOPED: 1, SOURCE_DOCUMENTED: 4.
+- **51** tracked capability tasks: BLOCKED_EXTERNAL: 1, IN_PROGRESS: 3, NOT_STARTED: 19, PROPOSED: 3, PROTOTYPE_DRAFT: 19, REVIEW_PENDING: 1, SCOPED: 1, SOURCE_DOCUMENTED: 4.
 - **112** research/substantiation questions: OPEN: 74, PARTIAL: 32, SETTLED: 4, SUPERSEDED: 2.
 - **Question dependency** = another conclusion needed first; **task hard prerequisite** = ALL; **source choice** = ANY ONE permitted source; **live evidence gate** = needed for real-world acceptance, not synthetic development.
 - **Downstream reach** counts graph descendants and signals leverage, **not estimated effort, importance by itself, or proof of completion**. All `P0` items require judgment, not automatic worker dispatch.
@@ -15,7 +15,7 @@
 
 | Task | What it establishes | State | Potential downstream | Live evidence gates | Alternative source gate |
 | --- | --- | --- | --- | --- | --- |
-| ARB-031 | Purchase-offer schema and provenance | PROTOTYPE_DRAFT | 18 | — | — |
+| ARB-031 | Purchase-offer schema and provenance | PROTOTYPE_DRAFT | 19 | — | — |
 | ARB-030 | Exact product identity and variant engine | PROTOTYPE_DRAFT | 17 | — | — |
 | ARB-010 | eBay completed-sale historical price access | IN_PROGRESS | 16 | — | — |
 | ARB-022 | Google Shopping search aggregators | SOURCE_DOCUMENTED | 6 | — | — |

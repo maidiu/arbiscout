@@ -98,7 +98,7 @@ def render_dashboard(winners, receipt):
         "<p><b>{}</b> retailer offers checked · <b>{}</b> positive provisional comparisons"
         " · <b>0</b> verified actual-paid comparisons.</p>".format(
             receipt["selected_retail_offers"], receipt["positive_provisional_count"])
-        + "<p><a href='http://127.0.0.1:8800/capture'>Open eBay capture console</a>"
+        + "<p><a href='http://127.0.0.1:8800/results'>Open Results</a>"
         " — save each selected product's sold page there, then refresh this report.</p>"
         "<p>ArbiScout computes its own preceding 30-day cutoff from sold dates,"
         " excludes dated-out sales, missing dates, mismatches, and unresolved Best Offers,"
@@ -112,10 +112,9 @@ def render_dashboard(winners, receipt):
         "<th>Indicative gap</th><th>Retailer vs eBay</th><th>Valid records</th>"
         "</tr></thead><tbody>" + rows + "</tbody></table>"
         "<p><a href='http://127.0.0.1:8800/'>Control room</a>"
-        " · <a href='http://127.0.0.1:8800/catalog'>Catalog</a>"
-        " · <a href='http://127.0.0.1:8800/capture'>Capture eBay</a>"
-        " · <a href='http://127.0.0.1:8800/reports/comparisons'>All comparisons</a>"
-        " · <a href='http://127.0.0.1:8800/reports/retailer'>Retailer dashboard</a></p>"
+        " · <a href='http://127.0.0.1:8800/deals'>Deals</a>"
+        " · <a href='http://127.0.0.1:8800/results'>Results</a>"
+        " · <a href='http://127.0.0.1:8800/settings'>Settings</a></p>"
         "<script>document.getElementById('belowlow').onchange=function(){"
         "var checked=this.checked;"
         "document.querySelectorAll('tbody tr[data-below-low]').forEach(function(tr){"

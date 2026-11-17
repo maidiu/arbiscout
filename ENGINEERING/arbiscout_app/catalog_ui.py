@@ -151,7 +151,7 @@ def render_dashboard(payload, live=False):
     data = data.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
     return """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ArbiScout · unified catalog</title><style>
+<title>ArbiScout · Deals</title><style>
 :root{color-scheme:light;font:14px system-ui,-apple-system,Segoe UI,sans-serif;color:#172333;background:#f3f5f8}
 *{box-sizing:border-box}body{margin:0}header{background:#0c2544;color:#fff;padding:24px max(20px,calc((100vw - 1500px)/2))}
 header h1{margin:0;font-size:27px}header p{color:#c1d5ea;margin:6px 0 0;font-size:13px}
@@ -178,8 +178,8 @@ small{color:#738197}.badge{display:inline-block;padding:2px 7px;border-radius:99
 input[type=date]{padding:8px;border:1px solid #cfd9e4;border-radius:8px;background:#fff;font-size:13px}
 .count{color:#6b798c;font-size:13px}@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
-<header><h1>ArbiScout <span style="font-weight:400;color:#97bce7">/ unified catalog</span></h1>
-<p>Filter by source, category and observation date, sort by discount or savings, then build a top-N or hand-picked eBay run. <a class="btn alt" href="http://127.0.0.1:8800/">← Control room</a> <a class="btn" href="http://127.0.0.1:8800/capture" target="_blank">Capture eBay</a> <a class="btn alt" href="http://127.0.0.1:8800/reports/top10" target="_blank">Top 10</a> <a class="btn alt" href="http://127.0.0.1:8800/reports/comparisons" target="_blank">All comparisons</a> <a class="btn alt" href="http://127.0.0.1:8800/reports/retailer" target="_blank">Retailer dashboard</a></p></header>
+<header><h1>ArbiScout <span style="font-weight:400;color:#97bce7">/ Deals</span></h1>
+<p>Filter by source, category and observation date, sort by discount or savings, then build a top-N or hand-picked eBay run. <a class="btn alt" href="http://127.0.0.1:8800/">← Control room</a> <a class="btn" href="http://127.0.0.1:8800/results">Results</a> <a class="btn alt" href="http://127.0.0.1:8800/settings">Settings</a></p></header>
 <main class="wrap">
 <div class="kpis"><div class="kpi"><strong id="kTotal">0</strong><span>All products</span></div>
 <div class="kpi"><strong id="kFiltered">0</strong><span>After filters</span></div>
@@ -258,7 +258,7 @@ async function buildSaved(){
     $('msg').textContent='Building from saved…';
     try{const r=await fetch('/api/use-saved',{method:'POST'});const j=await r.json();
       if(!r.ok)throw new Error(j.error||'Saved run failed');
-      $('msg').innerHTML=`Saved run: ${j.selected} products. <a href="http://127.0.0.1:8800/capture" target="_blank"><b>Open eBay capture console</b></a> · <a href="/selected/" target="_blank">Top-10 report</a> · <a href="/selected/comparisons/" target="_blank">All comparisons</a><br><small>${j.capture}</small>`;
+      $('msg').innerHTML=`Saved run: ${j.selected} products. <a href="http://127.0.0.1:8800/results"><b>Open Results</b></a><br><small>${j.capture}</small>`;
     }catch(e){$('msg').textContent='Saved run failed: '+e;}
   }else{
     const blob=new Blob([JSON.stringify({products:SAVED_ITEMS},null,2)],{type:'application/json'});
@@ -343,7 +343,7 @@ async function build(){
     $('msg').textContent='Building…';
     try{const r=await fetch('/api/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json();
       if(!r.ok)throw new Error(j.error||'Selection failed');
-      $('msg').innerHTML=`Selected ${j.selected} products. <a href="http://127.0.0.1:8800/capture" target="_blank"><b>Open eBay capture console</b></a> · <a href="/selected/" target="_blank">Top-10 report</a> · <a href="/selected/comparisons/" target="_blank">All comparisons</a><br><small>${j.capture}</small>`;
+      $('msg').innerHTML=`Selected ${j.selected} products. <a href="http://127.0.0.1:8800/results"><b>Open Results</b></a><br><small>${j.capture}</small>`;
     }catch(e){$('msg').textContent='Selection failed: '+e;}
   }else{
     const rows=topRows();const blob=new Blob([JSON.stringify({filters:body,products:rows},null,2)],{type:'application/json'});
@@ -363,6 +363,6 @@ $('rows').addEventListener('click',e=>{const b=e.target.closest('.savebtn');if(!
 $('savedPanel').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b)return;const p=SAVED_ITEMS.find(x=>saveKey(x)===b.dataset.remove);if(p)toggleSave(p);});
 sourceBoxes();
 $('category').innerHTML='<option value="">All categories</option>'+CATEGORIES.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
-$('modeNote').textContent=DATA.live?'Selection runs locally and writes catalog/selected. The date filter defaults to Today; choose All dates to include older stored results. Use Save on individual rows for a hand-picked eBay run.':'Static view: Build downloads selected.json. Start ./run_catalog.command for one-click selection and a persistent saved list.';
+$('modeNote').textContent=DATA.live?'Deals to Results: build a selection or save individual rows, then open Results to capture eBay pages and see gaps. The date filter defaults to Today; choose All dates for older stored results.':'Static view: Build downloads selected.json. Start ./run_catalog.command for one-click selection and a persistent saved list.';
 loadSaved();renderAges();render();
 </script></body></html>""".replace("__DATA__", data)

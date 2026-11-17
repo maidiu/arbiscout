@@ -42,6 +42,7 @@ def load_state(output):
             "retail_url": p.get("url"),
             "observed_at": p.get("observed_at"),
             "source": p.get("source") or p.get("source_label") or p.get("source_kind"),
+            "category": p.get("category"),
             "kroger_zip": p.get("kroger_zip"),
             "kroger_location_id": p.get("kroger_location_id"),
             "retail_current": p.get("current_price"),
@@ -62,6 +63,7 @@ def load_state(output):
             "below_median": c.get("retail_below_median"),
             "gap": c.get("gap"),
             "gap_percent": c.get("gap_percent"),
+            "diagnostics": c.get("diagnostics"),
         })
     candidates.sort(key=lambda x: (x["fixture_index"] is None, x["fixture_index"] or 999))
     captured = sum(1 for x in candidates if (x["sample_count"] or 0) > 0)
@@ -83,7 +85,7 @@ def update_state(folder, downloads, staging, output, pending, message=""):
 
 CONSOLE = r"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ArbiScout · eBay capture console</title><style>
+<title>ArbiScout · Results</title><style>
 :root{color-scheme:light;font:14px system-ui,-apple-system,Segoe UI,sans-serif;color:#172333;background:#f3f5f8}
 *{box-sizing:border-box}body{margin:0}header{background:#0c2544;color:#fff;padding:22px max(20px,calc((100vw - 1600px)/2))}
 header h1{margin:0;font-size:26px}header p{color:#c1d5ea;margin:6px 0 0;font-size:13px}
@@ -101,8 +103,8 @@ td.n{white-space:nowrap;font-variant-numeric:tabular-nums}.item{min-width:260px}
 small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b798c;font-size:13px}
 @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
-<header><h1>ArbiScout <span style="font-weight:400;color:#97bce7">/ eBay capture</span></h1>
-<p>Click <b>Open next waiting eBay page</b>, save the completed-listing page, and the row updates automatically. The app never fetches eBay itself.</p></header>
+<header><h1>ArbiScout <span style="font-weight:400;color:#97bce7">/ Results</span></h1>
+<p>Capture and results in one page. Click <b>Open next waiting eBay page</b>, save the completed-listing page, and the row updates automatically. The app never fetches eBay itself.</p></header>
 <main class="wrap">
 <div class="kpis"><div class="kpi"><strong id="kCap">0</strong><span>Captured / candidates</span></div>
 <div class="kpi"><strong id="kLow">0</strong><span>Retailer below eBay low</span></div>
@@ -121,7 +123,9 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
     <option value="gap">Largest eBay gap</option>
     <option value="sold_low">Lowest eBay sold price</option>
   </select>
-  <select id="view"><option value="all">All candidates</option><option value="below_low">Retailer below eBay low</option><option value="below_median">Retailer below eBay median</option></select>
+  <select id="view"><option value="all">All candidates</option><option value="top10">Top 10 positive gaps</option><option value="below_low">Retailer below eBay low</option><option value="below_median">Retailer below eBay median</option><option value="waiting">Waiting for eBay file</option><option value="captured">With eBay evidence</option></select>
+  <select id="source"><option value="">All sources</option></select>
+  <select id="category"><option value="">All categories</option></select>
   <select id="dateRange">
     <option value="today">Today</option>
     <option value="24h">Last 24 hours</option>
@@ -134,10 +138,8 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
   <label><input type="checkbox" id="complete"> Only products with both retail prices</label>
   <span id="msg" class="count"></span>
   <a class="btn alt" href="http://127.0.0.1:8800/">Control room</a>
-  <a class="btn alt" href="http://127.0.0.1:8800/catalog" target="_blank">Catalog</a>
-  <a class="btn alt" href="/retailer" target="_blank">Retailer dashboard</a>
-  <a class="btn alt" href="/top10" target="_blank">Top 10 report</a>
-  <a class="btn alt" href="/comparisons" target="_blank">All comparisons</a>
+  <a class="btn alt" href="http://127.0.0.1:8800/deals">Deals</a>
+  <a class="btn alt" href="http://127.0.0.1:8800/settings">Settings</a>
 </div>
 <div class="tablewrap"><table><thead><tr>
 <th>#</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th>
@@ -174,54 +176,76 @@ function inRange(x,bounds){
   if(bounds.before&&t>new Date(bounds.before))return false;
   return true;
 }
+function populateFilters(){
+  const sources=[...new Set(state.candidates.map(x=>x.source).filter(Boolean))].sort();
+  const categories=[...new Set(state.candidates.map(x=>x.category).filter(Boolean))].sort();
+  const ss=$('source'),cs=$('category'),sv=ss.value,cv=cs.value;
+  ss.innerHTML='<option value="">All sources</option>'+sources.map(v=>`<option>${esc(v)}</option>`).join('');
+  cs.innerHTML='<option value="">All categories</option>'+categories.map(v=>`<option>${esc(v)}</option>`).join('');
+  ss.value=sv;cs.value=cv;
+}
 function render(){
   const q=$('q').value.toLowerCase().trim(),sort=$('sort').value,view=$('view').value,bounds=dateBounds();
+  const source=$('source').value,category=$('category').value;
   $('kCap').textContent=state.captured+' / '+state.total;
   $('kPend').textContent=state.pending.length;
   $('msg').textContent=state.message||'';
   let rows=state.candidates.filter(x=>(x.title||'').toLowerCase().includes(q)&&inRange(x,bounds));
+  if(source)rows=rows.filter(x=>x.source===source);
+  if(category)rows=rows.filter(x=>x.category===category);
   if($('complete').checked)rows=rows.filter(x=>x.retail_current!=null&&x.retail_regular!=null);
   if(view==='below_low')rows=rows.filter(x=>x.below_low===true);
   if(view==='below_median')rows=rows.filter(x=>x.below_median===true);
+  if(view==='waiting')rows=rows.filter(x=>['NO_FIXTURE_FOR_PRODUCT','NO_MATCHING_FIXTURE'].includes(x.ebay_status)||(x.sample_count||0)===0);
+  if(view==='captured')rows=rows.filter(x=>(x.sample_count||0)>0);
+  if(view==='top10'){
+    rows=rows.filter(x=>x.gap!=null&&x.gap>0&&(x.sample_count||0)>=3);
+    rows.sort((a,b)=>cmpNull(a.gap,b.gap,-1));
+    rows=rows.slice(0,10);
+  }else{
+    rows.sort((a,b)=>{
+      if(sort==='discount')return (b.retail_discount??-1)-(a.retail_discount??-1);
+      if(sort==='savings')return (b.retail_savings??-1)-(a.retail_savings??-1);
+      if(sort==='price')return cmpNull(a.retail_current,b.retail_current,1);
+      if(sort==='price_desc')return cmpNull(a.retail_current,b.retail_current,-1);
+      if(sort==='title')return (a.title||'').localeCompare(b.title||'');
+      if(sort==='gap')return cmpNull(a.gap,b.gap,-1);
+      if(sort==='sold_low')return cmpNull(a.sold_low,b.sold_low,1);
+      return 0;
+    });
+  }
   $('kLow').textContent=rows.filter(x=>x.below_low===true).length;
   $('kMed').textContent=rows.filter(x=>x.below_median===true).length;
   $('paths').innerHTML='<b>Save into either:</b> '+esc(state.folder)+(state.downloads?' &nbsp;or&nbsp; '+esc(state.downloads):'')+
     '<br><small>Showing '+rows.length+' of '+state.total+' candidates · output: '+esc(state.output)+'</small>'+
     '<br><small>Any filename works; pages are matched by their eBay search query. Working copies: '+esc(state.staging)+'</small>';
-  rows.sort((a,b)=>{
-    if(sort==='discount')return (b.retail_discount??-1)-(a.retail_discount??-1);
-    if(sort==='savings')return (b.retail_savings??-1)-(a.retail_savings??-1);
-    if(sort==='price')return cmpNull(a.retail_current,b.retail_current,1);
-    if(sort==='price_desc')return cmpNull(a.retail_current,b.retail_current,-1);
-    if(sort==='title')return (a.title||'').localeCompare(b.title||'');
-    if(sort==='gap')return cmpNull(a.gap,b.gap,-1);
-    if(sort==='sold_low')return cmpNull(a.sold_low,b.sold_low,1);
-    return 0;
-  });
   visible=rows;
-  $('rows').innerHTML=rows.map(x=>{
+  $('rows').innerHTML=rows.map((x,index)=>{
     const waiting=x.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||x.ebay_status==='NO_MATCHING_FIXTURE';
     const vs=x.below_low===true?'<span class="good">Below eBay low</span>':x.below_median===true?'<span class="good">Below eBay median</span>':x.below_median===false?'<span class="bad">At/above eBay median</span>':'—';
     const file=waiting?'<span class="wait">Waiting for file</span>':esc(x.fixture_file||'');
     const obs=x.observed_at?new Date(x.observed_at).toLocaleString():'—';
-    return `<tr><td class="n">${x.fixture_index??''}</td>
-      <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.source?'<br><small>'+esc(x.source)+'</small>':''}${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
+    const rank=view==='top10'?index+1:(x.fixture_index??'');
+    const diag=x.diagnostics?`matched ${x.diagnostics.usable??0}; rejected ${x.diagnostics.model_rejected??0}; unknown offers ${x.diagnostics.unknown_best_offer??0}`:'';
+    return `<tr><td class="n">${rank}</td>
+      <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.source?'<br><small>'+esc(x.source)+'</small>':''}${x.category?'<br><small>'+esc(x.category)+'</small>':''}${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
       <td class="n">${usd(x.retail_current)}</td><td class="n">${usd(x.retail_regular)}</td>
       <td class="n">${x.retail_discount==null?'—':x.retail_discount+'%'}</td><td class="n">${usd(x.retail_savings)}</td>
       <td class="n">${usd(x.sold_low)}</td><td class="n">${usd(x.sold_high)}</td><td class="n">${usd(x.sold_mean)}</td><td class="n">${usd(x.median)}</td>
       <td class="n">${x.typical_low==null?'—':usd(x.typical_low)+' – '+usd(x.typical_high)}</td>
       <td>${vs}</td><td class="n">${x.sample_count??0}</td><td class="obs">${esc(obs)}</td>
-      <td><small>${file}</small><br><small>${esc(x.status||'')}</small><br><small>${esc(x.ebay_status||'')}</small></td>
+      <td><small>${file}</small><br><small>${esc(x.status||'')}</small><br><small>${esc(x.ebay_status||'')}</small>${diag?'<br><small>'+esc(diag)+'</small>':''}</td>
       <td><a class="btn" href="${esc(x.ebay_url)}" target="_blank" rel="noopener noreferrer">Open eBay</a></td></tr>`;
-  }).join('')||'<tr><td colspan="16">No candidates in this date range. Choose All dates to see older stored results.</td></tr>';
+  }).join('')||'<tr><td colspan="16">No candidates match the current filters. Try All dates or a different view.</td></tr>';
 }
-async function poll(){try{const r=await fetch('/api/state',{cache:'no-store'});state=await r.json();render();}catch(e){}}
+async function poll(){try{const r=await fetch('/api/state',{cache:'no-store'});state=await r.json();populateFilters();render();}catch(e){}}
 $('next').onclick=()=>{
   const x=visible.find(c=>c.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||c.ebay_status==='NO_MATCHING_FIXTURE')
        ||visible.find(c=>(c.sample_count||0)===0);
-  if(x)window.open(x.ebay_url,'_blank');else alert('No waiting candidates in this date range.');
+  if(x)window.open(x.ebay_url,'_blank');else alert('No waiting candidates in this view.');
 };
 $('q').oninput=render;$('sort').onchange=render;$('view').onchange=render;$('complete').onchange=render;
+$('source').onchange=render;$('category').onchange=render;
 $('dateRange').onchange=()=>{$('customDates').style.display=$('dateRange').value==='custom'?'inline-flex':'none';render();};
 $('dateFrom').onchange=render;$('dateTo').onchange=render;
 poll();setInterval(poll,1500);

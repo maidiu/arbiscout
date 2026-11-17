@@ -116,7 +116,8 @@
     "Nov 17 active local build: saved runs write exactly the saved products and link directly to the eBay capture console; duplicate saved button removed; catalog/top-10/comparison pages expose capture links.",
     "Nov 17 active local build: capture console has Today/7d/30d/custom date filtering, observed/source/ZIP labels, output-folder display and restarts on the selected run instead of showing stale source output.",
     "Nov 17 active local build: capture watcher never deletes saved source HTML files; only working copies are removed on exit.",
-    "Nov 17 active local build: consistent navigation across control room, catalog, capture console, retailer dashboard, top-10, comparisons and settings."
+    "Nov 17 active local build: consistent navigation across control room, catalog, capture console, retailer dashboard, top-10, comparisons and settings.",
+    "Nov 17 active local build: consolidated app into Control room, Deals, Results and Settings; source/category/date/Top10/waiting/captured filters replace separate report pages; raw reports remain in Settings; same-tab navigation across the four locations."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",

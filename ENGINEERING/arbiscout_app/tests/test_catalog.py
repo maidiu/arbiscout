@@ -49,11 +49,12 @@ class CatalogTests(unittest.TestCase):
     def test_capture_links_present(self):
         catalog_html = catalog_ui.render_dashboard(
             {"products": [], "sources": [], "categories": [], "generated_at": ""})
-        self.assertIn("Capture eBay", catalog_html)
+        self.assertIn("Results", catalog_html)
+        self.assertIn("Control room", catalog_html)
         top10 = run_test.render_dashboard(
             [], {"synthetic_demo": False, "selected_retail_offers": 0,
                  "positive_provisional_count": 0})
-        self.assertIn("Open eBay capture console", top10)
+        self.assertIn("Open Results", top10)
 
     def test_build_catalog_merges_sources(self):
         with tempfile.TemporaryDirectory() as temp:

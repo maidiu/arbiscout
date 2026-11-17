@@ -79,21 +79,16 @@ Source limitation is binding: eBay's ordinary Sold Items results may display an 
 
 The immutable historical Nov 7 source bank remains under ENGINEERING/SOURCE_BANK_20261107_R1. The new test runner is an additive, active development component, not a replacement for or silent mutation of those archived bytes. No merge into main, payments, live marketplace claim or independent reviewer approval is implied.
 
-## One-click control room
+## App structure: four locations
 
-Mac: `start_arbiscout.command`. Windows: `start_arbiscout.bat`. Both open `http://127.0.0.1:8800` with buttons for every source, Settings, the catalog, the eBay capture console, and reports. No terminal is needed after launch. The control room runs the existing scripts as background jobs and shows status/logs, a progress bar, elapsed time and a Stop button. The capture console shows the current selected run, labels its output folder, and has its own date filter. Settings writes the local `.env`; keys are never shown after saving. The catalog defaults to Today, shows observed times and source freshness, supports date ranges and page sizes, and rebuilds from the latest sources when opened. Enter a Kroger ZIP on the control room home page; it is used for that run only and is not saved.
+Mac: `start_arbiscout.command`. Windows: `start_arbiscout.bat`. Both open the same control room at `http://127.0.0.1:8800` with no terminal needed after launch.
 
-## Unified multi-source catalog
+- **Control room** — source jobs, progress/Stop, Kroger ZIP for the next run, Settings.
+- **Deals** — all products; filter by source/category/date; sort; search; Save rows; Saved-only; top-N or hand-picked selection.
+- **Results** — capture eBay pages and see sold low/high/mean/median, typical range, gap and below-low/median flags; filter by source/category/date, Top 10 positive gaps, waiting, or captured; per-row Open eBay and Open next waiting.
+- **Settings** — keys, Best Buy URL, Woot feed, Kroger terms, and raw generated reports.
 
-After running `./run_live.command` and any of `./run_api.command meh|woot|kroger`:
-
-    ./run_catalog.command
-
-This merges the available source folders into `catalog/catalog.json` and opens a local catalog at `127.0.0.1:8770`. Filter by source and category, sort by % off / savings / price / name, set Top N, and click **Build top N selection**. You can also click **Save** on individual rows, browse **Saved only**, and click **Build eBay run from saved**; the saved list persists in `catalog/saved.json`. The selection is written to `catalog/selected/`; capture eBay pages with:
-
-    ./watch_ebay.command ebay_saved --output catalog/selected --keep-selection
-
-The static dashboard's **Build** button downloads `selected.json`; process it with `./run_selected.command selected.json`. Categories are provider-provided where possible and inferred from Best Buy source pages/titles otherwise. Woot results are capped per source (default 2,000 in the catalog, 500 in the adapter) so source filtering stays responsive. Selection is gross retailer discount only; eBay sold comparison follows the capture step.
+Deals rebuilds from the latest source files when opened. Results restarts on the selected output when opened from the control room. Kroger ZIP is per-run and not saved. Gaps are gross; fees, shipping and net margin are excluded.
 
 ## Application tests
 

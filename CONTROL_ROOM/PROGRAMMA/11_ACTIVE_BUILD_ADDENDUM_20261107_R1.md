@@ -11,6 +11,7 @@ This addendum records the active local build on `work/arbiscout-local-build`. It
 - **Distribution output:** sold low, high, mean, median and middle-50% range, plus whether the current retailer price is below the sold low or median.
 - **Catalog freshness:** observed dates, Today/7d/30d/custom filters, 20/50/100/200 paging and source last-update summary; opening the catalog rebuilds from latest sources.
 - **Job progress:** long provider jobs stream progress lines with elapsed time and a Stop control.
+- **Four-location UI:** Control room (jobs/settings), Deals (products/filters/saved/selection), Results (capture/stats/Top10/waiting/captured), Settings (keys/raw reports); same-tab navigation.
 - **Control room:** one local browser page for source jobs, settings, catalog and capture; Mac `.command` and Windows `.bat` launchers.
 - **Saved list:** per-row Save/Remove, Saved-only filtering and a hand-picked eBay run persisted in `catalog/saved.json`.
 - **Unified catalog:** merges Best Buy, Meh, Woot and Kroger outputs with source and category filters, discount/savings/price sorting and a top-N selection written to `catalog/selected/`.

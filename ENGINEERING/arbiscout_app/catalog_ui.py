@@ -224,7 +224,9 @@ input[type=date]{padding:8px;border:1px solid #cfd9e4;border-radius:8px;backgrou
 const DATA=__DATA__;const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
 const usd=v=>v==null?'—':('$'+Number(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}));
-const SOURCES=[...new Set(DATA.products.map(p=>p.source))].sort();
+const SOURCE_ORDER=['Best Buy','Meh','Woot','Kroger'];
+const PRESENT_SOURCES=[...new Set(DATA.products.map(p=>p.source))].sort();
+const SOURCES=[...new Set([...SOURCE_ORDER,...PRESENT_SOURCES])];
 const CATEGORIES=[...new Set(DATA.products.map(p=>p.category))].sort();
 let SAVED_ITEMS=[];
 const saveKey=p=>p.key||p.url||p.title;
@@ -267,7 +269,8 @@ async function buildSaved(){
   }
 }
 function sourceBoxes(){
-  $('sources').innerHTML='<strong>Sources</strong>'+SOURCES.map((s,i)=>`<label><input type="checkbox" value="${esc(s)}" checked> ${esc(s)}</label>`).join('')+
+  const counts={};DATA.products.forEach(p=>{counts[p.source]=(counts[p.source]||0)+1;});
+  $('sources').innerHTML='<strong>Sources</strong>'+SOURCES.map((s,i)=>`<label><input type="checkbox" value="${esc(s)}" checked> ${esc(s)} (${counts[s]||0})</label>`).join('')+
     `<button class="btn alt" id="all">All</button><button class="btn alt" id="woot">Woot only</button><button class="btn alt" id="notwoot">Except Woot</button><button class="btn alt" id="none">Clear</button>`;
   $('all').onclick=()=>document.querySelectorAll('#sources input').forEach(x=>x.checked=true),render();
   $('none').onclick=()=>document.querySelectorAll('#sources input').forEach(x=>x.checked=false),render();
@@ -325,7 +328,7 @@ function render(){
   if(page>pages)page=pages;
   const rows=all.slice((page-1)*size,page*size);
   $('kTotal').textContent=DATA.products.length;$('kFiltered').textContent=all.length;
-  $('kSources').textContent=SOURCES.length;$('kTop').textContent=$('top').value||20;
+  $('kSources').textContent=PRESENT_SOURCES.length;$('kTop').textContent=$('top').value||20;
   $('pageInfo').textContent=`Page ${page} of ${pages} · ${all.length} matching`;
   $('prev').disabled=page<=1;$('next').disabled=page>=pages;
   $('rows').innerHTML=rows.map(p=>{const obs=p.observed_at?new Date(p.observed_at).toLocaleString():'—';return `<tr><td><span class="badge">${esc(p.source)}</span>${p.kroger_zip?'<br><small>ZIP '+esc(p.kroger_zip)+'</small>':''}</td><td>${esc(p.category)}</td>

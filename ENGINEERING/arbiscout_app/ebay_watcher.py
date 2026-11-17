@@ -17,6 +17,7 @@ import signal
 import threading
 import time
 import webbrowser
+from urllib.parse import urlparse
 
 import run_test
 
@@ -24,6 +25,19 @@ STATE = {"folder": "", "downloads": "", "staging": "", "output": "",
          "candidates": [], "captured": 0, "total": 0, "pending": [],
          "updated": "", "message": ""}
 LOCK = threading.Lock()
+
+
+def source_label(product):
+    host = (urlparse(product.get("url") or "").hostname or "").lower()
+    if "bestbuy.com" in host:
+        return "Best Buy"
+    if "meh.com" in host:
+        return "Meh"
+    if "woot.com" in host:
+        return "Woot"
+    if "kroger.com" in host:
+        return "Kroger"
+    return product.get("source") or product.get("source_label") or product.get("source_kind") or "Other"
 
 
 def load_state(output):
@@ -41,7 +55,7 @@ def load_state(output):
             "title": p.get("title"),
             "retail_url": p.get("url"),
             "observed_at": p.get("observed_at"),
-            "source": p.get("source") or p.get("source_label") or p.get("source_kind"),
+            "source": source_label(p),
             "category": p.get("category"),
             "kroger_zip": p.get("kroger_zip"),
             "kroger_location_id": p.get("kroger_location_id"),
@@ -100,7 +114,7 @@ button,.btn{display:inline-block;padding:9px 13px;border-radius:8px;border:0;bac
 table{border-collapse:collapse;width:100%;min-width:1500px}th{background:#eaf0f8;font-size:11px;color:#50617a;position:sticky;top:0;padding:10px;text-align:left;white-space:nowrap}
 td{border-top:1px solid #e9edf3;padding:10px;vertical-align:top;font-size:12px}tbody tr:hover{background:#f8fbff}
 td.n{white-space:nowrap;font-variant-numeric:tabular-nums}.item{min-width:260px}.good{color:#08734a;font-weight:750}.bad{color:#8b4626}.wait{color:#9a630e}
-small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b798c;font-size:13px}
+small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b798c;font-size:13px}.sources{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:9px 12px;margin:10px 0}.sources strong{font-size:12px;color:#50617a}.sources label{font-size:13px;color:#2d3f52}
 @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
 <header><h1>ArbiScout <span style="font-weight:400;color:#97bce7">/ Results</span></h1>
@@ -124,7 +138,7 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
     <option value="sold_low">Lowest eBay sold price</option>
   </select>
   <select id="view"><option value="all">All candidates</option><option value="top10">Top 10 positive gaps</option><option value="below_low">Retailer below eBay low</option><option value="below_median">Retailer below eBay median</option><option value="waiting">Waiting for eBay file</option><option value="captured">With eBay evidence</option></select>
-  <select id="source"><option value="">All sources</option></select>
+  <div class="sources" id="sources"></div>
   <select id="category"><option value="">All categories</option></select>
   <select id="dateRange">
     <option value="today">Today</option>
@@ -176,22 +190,33 @@ function inRange(x,bounds){
   if(bounds.before&&t>new Date(bounds.before))return false;
   return true;
 }
-function populateFilters(){
-  const sources=[...new Set(state.candidates.map(x=>x.source).filter(Boolean))].sort();
+const SOURCE_ORDER=['Best Buy','Meh','Woot','Kroger'];
+let sourceChecked={};
+function activeSources(){return Object.keys(sourceChecked).filter(k=>sourceChecked[k]);}
+function populateSources(){
+  const counts={};state.candidates.forEach(x=>{if(x.source)counts[x.source]=(counts[x.source]||0)+1;});
+  const sources=[...new Set([...SOURCE_ORDER,...Object.keys(counts)])];
+  $('sources').innerHTML='<strong>Sources</strong>'+sources.map(s=>{
+    if(!(s in sourceChecked))sourceChecked[s]=true;
+    return `<label><input type="checkbox" value="${esc(s)}" ${sourceChecked[s]?'checked':''}> ${esc(s)} (${counts[s]||0})</label>`;
+  }).join('')+'<button class="btn alt" id="allSources">All</button><button class="btn alt" id="noSources">Clear</button>';
+  $('allSources').onclick=()=>{sources.forEach(s=>sourceChecked[s]=true);populateSources();render();};
+  $('noSources').onclick=()=>{sources.forEach(s=>sourceChecked[s]=false);populateSources();render();};
+}
+function populateCategories(){
   const categories=[...new Set(state.candidates.map(x=>x.category).filter(Boolean))].sort();
-  const ss=$('source'),cs=$('category'),sv=ss.value,cv=cs.value;
-  ss.innerHTML='<option value="">All sources</option>'+sources.map(v=>`<option>${esc(v)}</option>`).join('');
+  const cs=$('category'),cv=cs.value;
   cs.innerHTML='<option value="">All categories</option>'+categories.map(v=>`<option>${esc(v)}</option>`).join('');
-  ss.value=sv;cs.value=cv;
+  cs.value=cv;
 }
 function render(){
   const q=$('q').value.toLowerCase().trim(),sort=$('sort').value,view=$('view').value,bounds=dateBounds();
-  const source=$('source').value,category=$('category').value;
+  const category=$('category').value,active=activeSources();
   $('kCap').textContent=state.captured+' / '+state.total;
   $('kPend').textContent=state.pending.length;
   $('msg').textContent=state.message||'';
   let rows=state.candidates.filter(x=>(x.title||'').toLowerCase().includes(q)&&inRange(x,bounds));
-  if(source)rows=rows.filter(x=>x.source===source);
+  if(active.length)rows=rows.filter(x=>active.includes(x.source));else rows=[];
   if(category)rows=rows.filter(x=>x.category===category);
   if($('complete').checked)rows=rows.filter(x=>x.retail_current!=null&&x.retail_regular!=null);
   if(view==='below_low')rows=rows.filter(x=>x.below_low===true);
@@ -238,16 +263,17 @@ function render(){
       <td><a class="btn" href="${esc(x.ebay_url)}" target="_blank" rel="noopener noreferrer">Open eBay</a></td></tr>`;
   }).join('')||'<tr><td colspan="16">No candidates match the current filters. Try All dates or a different view.</td></tr>';
 }
-async function poll(){try{const r=await fetch('/api/state',{cache:'no-store'});state=await r.json();populateFilters();render();}catch(e){}}
+async function poll(){try{const r=await fetch('/api/state',{cache:'no-store'});state=await r.json();populateSources();populateCategories();render();}catch(e){}}
 $('next').onclick=()=>{
   const x=visible.find(c=>c.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||c.ebay_status==='NO_MATCHING_FIXTURE')
        ||visible.find(c=>(c.sample_count||0)===0);
   if(x)window.open(x.ebay_url,'_blank');else alert('No waiting candidates in this view.');
 };
 $('q').oninput=render;$('sort').onchange=render;$('view').onchange=render;$('complete').onchange=render;
-$('source').onchange=render;$('category').onchange=render;
+$('category').onchange=render;
 $('dateRange').onchange=()=>{$('customDates').style.display=$('dateRange').value==='custom'?'inline-flex':'none';render();};
 $('dateFrom').onchange=render;$('dateTo').onchange=render;
+$('sources').addEventListener('change',e=>{if(e.target.matches('input[type=checkbox]')){sourceChecked[e.target.value]=e.target.checked;render();}});
 poll();setInterval(poll,1500);
 </script></body></html>"""
 

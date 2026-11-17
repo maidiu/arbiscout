@@ -115,7 +115,8 @@
     "Nov 17 active local build: Kroger ZIP is a per-run home-page input (not saved) and Kroger rows display their ZIP in the catalog, capture console and comparison reports.",
     "Nov 17 active local build: saved runs write exactly the saved products and link directly to the eBay capture console; duplicate saved button removed; catalog/top-10/comparison pages expose capture links.",
     "Nov 17 active local build: capture console has Today/7d/30d/custom date filtering, observed/source/ZIP labels, output-folder display and restarts on the selected run instead of showing stale source output.",
-    "Nov 17 active local build: capture watcher never deletes saved source HTML files; only working copies are removed on exit."
+    "Nov 17 active local build: capture watcher never deletes saved source HTML files; only working copies are removed on exit.",
+    "Nov 17 active local build: consistent navigation across control room, catalog, capture console, retailer dashboard, top-10, comparisons and settings."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",

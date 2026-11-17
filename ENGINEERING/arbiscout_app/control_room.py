@@ -387,6 +387,7 @@ progress{width:100%;height:10px;accent-color:#1261bd;margin:6px 0}
   <a class="btn alt" href="/capture">Capture eBay</a>
   <a class="btn alt" href="/reports/top10" target="_blank">Top 10 report</a>
   <a class="btn alt" href="/reports/comparisons" target="_blank">All comparisons</a>
+  <a class="btn alt" href="/reports/retailer" target="_blank">Retailer dashboard</a>
   <a class="btn alt" href="/settings">Settings</a>
   <label class="zipbox">Kroger ZIP <input id="krogerZip" placeholder="e.g. 29072" inputmode="numeric"></label>
   <button id="stop" class="btn alt" style="display:none">Stop current job</button>
@@ -447,7 +448,7 @@ button,.btn{display:inline-block;padding:10px 15px;border-radius:9px;border:0;ba
 @media(max-width:600px){.row{grid-template-columns:1fr}}
 </style></head><body>
 <header><h1>ArbiScout / settings</h1></header><main class="wrap">
-<p><a class="btn alt" href="/">Back to control room</a></p>
+<p><a class="btn alt" href="/">Control room</a> <a class="btn alt" href="/catalog">Catalog</a> <a class="btn alt" href="/capture">Capture eBay</a> <a class="btn alt" href="/reports/top10">Top 10</a> <a class="btn alt" href="/reports/comparisons">All comparisons</a> <a class="btn alt" href="/reports/retailer">Retailer dashboard</a></p>
 __SAVED__
 <div class="note">Keys are stored only in this folder's <b>.env</b> and are never displayed again. Leave a key blank to keep the current value; tick Clear to remove it.</div>
 <form method="post" action="/api/settings">

@@ -134,6 +134,7 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
   <label><input type="checkbox" id="complete"> Only products with both retail prices</label>
   <span id="msg" class="count"></span>
   <a class="btn alt" href="http://127.0.0.1:8800/">Control room</a>
+  <a class="btn alt" href="http://127.0.0.1:8800/catalog" target="_blank">Catalog</a>
   <a class="btn alt" href="/retailer" target="_blank">Retailer dashboard</a>
   <a class="btn alt" href="/top10" target="_blank">Top 10 report</a>
   <a class="btn alt" href="/comparisons" target="_blank">All comparisons</a>

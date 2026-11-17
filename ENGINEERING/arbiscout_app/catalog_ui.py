@@ -179,7 +179,7 @@ input[type=date]{padding:8px;border:1px solid #cfd9e4;border-radius:8px;backgrou
 .count{color:#6b798c;font-size:13px}@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
 <header><h1>ArbiScout <span style="font-weight:400;color:#97bce7">/ unified catalog</span></h1>
-<p>Filter by source, category and observation date, sort by discount or savings, then build a top-N or hand-picked eBay run. <a class="btn alt" href="http://127.0.0.1:8800/">← Control room</a> <a class="btn" href="http://127.0.0.1:8800/capture" target="_blank">Capture eBay</a></p></header>
+<p>Filter by source, category and observation date, sort by discount or savings, then build a top-N or hand-picked eBay run. <a class="btn alt" href="http://127.0.0.1:8800/">← Control room</a> <a class="btn" href="http://127.0.0.1:8800/capture" target="_blank">Capture eBay</a> <a class="btn alt" href="http://127.0.0.1:8800/reports/top10" target="_blank">Top 10</a> <a class="btn alt" href="http://127.0.0.1:8800/reports/comparisons" target="_blank">All comparisons</a> <a class="btn alt" href="http://127.0.0.1:8800/reports/retailer" target="_blank">Retailer dashboard</a></p></header>
 <main class="wrap">
 <div class="kpis"><div class="kpi"><strong id="kTotal">0</strong><span>All products</span></div>
 <div class="kpi"><strong id="kFiltered">0</strong><span>After filters</span></div>

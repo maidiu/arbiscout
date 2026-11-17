@@ -12,6 +12,7 @@ ARBISCOUT — COMPLETE TEST VERSION
    - DEALS: every product from every source. Filter by source, category and
      observation date; sort by % off, savings, price or name; page through
      results; Save individual rows; build a top-N or hand-picked selection.
+     Woot variants are grouped by product family with a variant count.
    - RESULTS: capture eBay sold pages and see the sold low/high/mean/median,
      typical range, gap, and whether the retailer is below the eBay low or
      median. Filter by source, category, date, Top 10 positive gaps, waiting

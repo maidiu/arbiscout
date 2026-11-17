@@ -119,7 +119,8 @@
     "Nov 17 active local build: consistent navigation across control room, catalog, capture console, retailer dashboard, top-10, comparisons and settings.",
     "Nov 17 active local build: consolidated app into Control room, Deals, Results and Settings; source/category/date/Top10/waiting/captured filters replace separate report pages; raw reports remain in Settings; same-tab navigation across the four locations.",
     "Nov 17 final pass: progress parsing handles prefixed Update everything lines; selected retailer dashboard generated for raw reports; CLI selected path generates the same dashboard; navigation/feature parity rechecked.",
-    "Nov 17 final source-filter pass: Deals and Results both expose all four sources with counts; Results uses multi-select source checkboxes; headless browser check confirmed labels and filtering."
+    "Nov 17 final source-filter pass: Deals and Results both expose all four sources with counts; Results uses multi-select source checkboxes; headless browser check confirmed labels and filtering.",
+    "Nov 17 final grouping pass: Woot size/color/model variants grouped by product family with variant counts (500 raw variants -> 354 catalog families; Apple Watch Braided Solo Loop 35 -> 1 row); full source filters with counts on Deals and Results."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",

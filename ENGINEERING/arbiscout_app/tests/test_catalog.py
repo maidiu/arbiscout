@@ -46,6 +46,11 @@ class CatalogTests(unittest.TestCase):
         rows = catalog_ui.filter_sort(products, observed_after="2026-11-01T00:00:00+00:00")
         self.assertEqual(len(rows), 2)
 
+    def test_woot_family_groups_model_variants(self):
+        a = build_catalog.woot_family("Apple MJJ53AM/A Apple Watch Braided Solo Loop 40mm")
+        b = build_catalog.woot_family("Apple MJJF3AM/A Apple Watch Braided Solo Loop 40mm")
+        self.assertEqual(a, b)
+
     def test_capture_links_present(self):
         catalog_html = catalog_ui.render_dashboard(
             {"products": [], "sources": [], "categories": [], "generated_at": ""})

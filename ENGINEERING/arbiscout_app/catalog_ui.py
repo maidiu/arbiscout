@@ -251,7 +251,7 @@ async function toggleSave(p){
 function renderSaved(){
   const n=SAVED_ITEMS.length;
   $('savedPanel').innerHTML=`<h3>Saved (${n}) <button class="btn alt" id="buildSaved2">Build eBay run from saved</button></h3>`+
-    (n?SAVED_ITEMS.map(p=>`<div class="saveditem"><span><b>${esc(p.title)}</b><small>${esc(p.source)}${p.kroger_zip?' · ZIP '+esc(p.kroger_zip):''} · ${esc(p.category)} · ${usd(p.current_price)} · ${p.discount_percent==null?'—':p.discount_percent+'% off'}</small></span><button class="btn alt savebtn" data-remove="${esc(saveKey(p))}">Remove</button></div>`).join(''):'<small>No saved items yet. Use Save on any row.</small>');
+    (n?SAVED_ITEMS.map(p=>`<div class="saveditem"><span><b>${esc(p.title)}</b><small>${esc(p.source)}${p.kroger_zip?' · ZIP '+esc(p.kroger_zip):''} · ${esc(p.category)}${p.variant_count>1?' · '+p.variant_count+' variants':''} · ${usd(p.current_price)} · ${p.discount_percent==null?'—':p.discount_percent+'% off'}</small></span><button class="btn alt savebtn" data-remove="${esc(saveKey(p))}">Remove</button></div>`).join(''):'<small>No saved items yet. Use Save on any row.</small>');
   const b=$('buildSaved2');if(b)b.onclick=buildSaved;
 }
 async function buildSaved(){
@@ -331,7 +331,7 @@ function render(){
   $('kSources').textContent=PRESENT_SOURCES.length;$('kTop').textContent=$('top').value||20;
   $('pageInfo').textContent=`Page ${page} of ${pages} · ${all.length} matching`;
   $('prev').disabled=page<=1;$('next').disabled=page>=pages;
-  $('rows').innerHTML=rows.map(p=>{const obs=p.observed_at?new Date(p.observed_at).toLocaleString():'—';return `<tr><td><span class="badge">${esc(p.source)}</span>${p.kroger_zip?'<br><small>ZIP '+esc(p.kroger_zip)+'</small>':''}</td><td>${esc(p.category)}</td>
+  $('rows').innerHTML=rows.map(p=>{const obs=p.observed_at?new Date(p.observed_at).toLocaleString():'—';return `<tr><td><span class="badge">${esc(p.source)}</span>${p.kroger_zip?'<br><small>ZIP '+esc(p.kroger_zip)+'</small>':''}</td><td>${esc(p.category)}${p.variant_count>1?'<br><small>'+p.variant_count+' variants</small>':''}</td>
     <td class="item"><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(p.title)}</b></a></td>
     <td class="n">${usd(p.current_price)}</td><td class="n">${usd(p.regular_price)}</td>
     <td class="n">${p.discount_percent==null?'—':p.discount_percent+'%'}</td><td class="n">${usd(p.savings)}</td>

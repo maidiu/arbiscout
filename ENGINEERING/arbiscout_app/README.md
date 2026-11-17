@@ -111,7 +111,7 @@ python3 -m unittest discover -s tests -v
 Mac: double-click `start_arbiscout.command`. Windows: double-click `start_arbiscout.bat`. Both open the same control room at `http://127.0.0.1:8800`. No terminal is needed after launch.
 
 - **Control room** — run Update everything or individual sources; progress, elapsed time and Stop; the Kroger ZIP for the next run; Settings.
-- **Deals** — all products from all sources. Filter by source, category and date; sort by % off, savings, price or name; page sizes; both-prices; search; Save individual rows; Saved-only; build a top-N or hand-picked selection.
+- **Deals** — all products from all sources. Filter by source, category and date; sort by % off, savings, price or name; page sizes; both-prices; search; Save individual rows; Saved-only; build a top-N or hand-picked selection. Woot size/color/model variants are grouped into one row per product family with a variant count.
 - **Results** — capture eBay pages and see sold low/high/mean/median, typical middle-50%, gap, and below-low/median flags. Filter by source, category, date, Top 10 positive gaps, waiting, or captured; per-row Open eBay and Open next waiting. Shows the selected output folder.
 - **Settings** — API keys, Best Buy URL, Woot feed, Kroger terms, and links to the raw generated reports (retailer dashboard, top-10 file, all-comparisons file).
 

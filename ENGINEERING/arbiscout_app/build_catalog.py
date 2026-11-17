@@ -5,6 +5,7 @@ import argparse
 from datetime import datetime, timezone
 import json
 from pathlib import Path
+import re
 
 import catalog_ui
 
@@ -14,6 +15,14 @@ DEFAULT_INPUTS = [
     ("Woot", "woot_live"),
     ("Kroger", "kroger_live"),
 ]
+
+
+def woot_family(title):
+    text = (title or "").lower()
+    text = re.sub(r"\s*-\s*(?:condition|color|style|fit|size|gender):.*$", "", text)
+    text = re.sub(r"\b[a-z]{2,}[a-z0-9./-]*\d[a-z0-9./-]*\b", "", text)
+    text = re.sub(r"\b\d+(?:\.\d+)?\s*(?:mm|inch|in|gb|tb)\b", "", text)
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def products_path(path):
@@ -38,6 +47,20 @@ def load_source(label, path, max_per_source):
             continue
         seen.add(key)
         normalized.append(catalog_ui.normalize(row, label))
+    if label.lower() == "woot":
+        groups = {}
+        for row in normalized:
+            groups.setdefault(woot_family(row.get("title", "")), []).append(row)
+        grouped = []
+        for rows in groups.values():
+            best = sorted(rows, key=lambda r: (-(r.get("discount_percent") or -1),
+                                               -(r.get("savings") or 0),
+                                               r.get("current_price") or 1e12,
+                                               r.get("title", "")))[0]
+            best = dict(best)
+            best["variant_count"] = len(rows)
+            grouped.append(best)
+        normalized = grouped
     if max_per_source and len(normalized) > max_per_source:
         normalized = catalog_ui.filter_sort(normalized, sort="discount", top=max_per_source)
     print(f"{label}: {len(normalized)} products from {target}")

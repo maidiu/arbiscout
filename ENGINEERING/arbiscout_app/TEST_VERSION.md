@@ -84,7 +84,7 @@ The immutable historical Nov 7 source bank remains under ENGINEERING/SOURCE_BANK
 Mac: `start_arbiscout.command`. Windows: `start_arbiscout.bat`. Both open the same control room at `http://127.0.0.1:8800` with no terminal needed after launch.
 
 - **Control room** — source jobs, progress/Stop, Kroger ZIP for the next run, Settings.
-- **Deals** — all products; filter by source/category/date; sort; search; Save rows; Saved-only; top-N or hand-picked selection.
+- **Deals** — all products; filter by source/category/date; sort; search; Save rows; Saved-only; top-N or hand-picked selection. Woot variants are grouped by product family with a variant count.
 - **Results** — capture eBay pages and see sold low/high/mean/median, typical range, gap and below-low/median flags; filter by source/category/date, Top 10 positive gaps, waiting, or captured; per-row Open eBay and Open next waiting.
 - **Settings** — keys, Best Buy URL, Woot feed, Kroger terms, and raw generated reports.
 

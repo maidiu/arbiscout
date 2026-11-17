@@ -57,6 +57,7 @@ def load_state(output):
             "observed_at": p.get("observed_at"),
             "source": source_label(p),
             "category": p.get("category"),
+            "variant_count": p.get("variant_count"),
             "kroger_zip": p.get("kroger_zip"),
             "kroger_location_id": p.get("kroger_location_id"),
             "retail_current": p.get("current_price"),
@@ -253,7 +254,7 @@ function render(){
     const rank=view==='top10'?index+1:(x.fixture_index??'');
     const diag=x.diagnostics?`matched ${x.diagnostics.usable??0}; rejected ${x.diagnostics.model_rejected??0}; unknown offers ${x.diagnostics.unknown_best_offer??0}`:'';
     return `<tr><td class="n">${rank}</td>
-      <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.source?'<br><small>'+esc(x.source)+'</small>':''}${x.category?'<br><small>'+esc(x.category)+'</small>':''}${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
+      <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.source?'<br><small>'+esc(x.source)+'</small>':''}${x.category?'<br><small>'+esc(x.category)+'</small>':''}${x.variant_count>1?'<br><small>'+x.variant_count+' variants</small>':''}${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
       <td class="n">${usd(x.retail_current)}</td><td class="n">${usd(x.retail_regular)}</td>
       <td class="n">${x.retail_discount==null?'—':x.retail_discount+'%'}</td><td class="n">${usd(x.retail_savings)}</td>
       <td class="n">${usd(x.sold_low)}</td><td class="n">${usd(x.sold_high)}</td><td class="n">${usd(x.sold_mean)}</td><td class="n">${usd(x.median)}</td>

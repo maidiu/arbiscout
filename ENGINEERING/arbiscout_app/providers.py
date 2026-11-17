@@ -16,6 +16,7 @@ import re
 import ssl
 import sys
 import time
+from urllib.error import HTTPError
 from urllib.parse import quote, urlencode, urljoin
 from urllib.request import Request, urlopen
 
@@ -61,11 +62,15 @@ def http_json(url, headers=None, method="GET", body=None, timeout=30):
                                     **(headers or {})}, method=method)
     if body is not None:
         request.data = body.encode("utf-8") if isinstance(body, str) else body
-    with urlopen(request, timeout=timeout, context=SSL_CONTEXT) as response:
-        payload = response.read(8_000_001)
-        if len(payload) > 8_000_000:
-            raise RuntimeError("Provider response larger than safe maximum")
-        return json.loads(payload.decode("utf-8", errors="replace"))
+    try:
+        with urlopen(request, timeout=timeout, context=SSL_CONTEXT) as response:
+            payload = response.read(8_000_001)
+            if len(payload) > 8_000_000:
+                raise RuntimeError("Provider response larger than safe maximum")
+            return json.loads(payload.decode("utf-8", errors="replace"))
+    except HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")[:300]
+        raise RuntimeError(f"HTTP {exc.code} from {url}: {detail}") from exc
 
 
 def number(*values):
@@ -201,9 +206,11 @@ def fetch_woot(feed="All", limit=500):
         raise SystemExit("Missing WOOT_API_KEY in .env or the environment.")
     feed = feed or "All"
     url = f"https://developer.woot.com/feed/{quote(feed)}"
+    print(f"Woot feed {feed}: fetching live offers...", flush=True)
     data = http_json(url, headers={"x-api-key": key})
     feed_items = [item for item in (data.get("Items") or [])
                   if isinstance(item, dict) and not item.get("IsSoldOut")]
+    print(f"Woot feed {feed}: {len(feed_items)} live offers", flush=True)
     if limit and len(feed_items) > limit:
         def feed_score(item):
             sale = woot_price(item.get("SalePrice"))
@@ -216,21 +223,27 @@ def fetch_woot(feed="All", limit=500):
         feed_items = feed_items[:limit]
     details = {}
     offer_ids = [item.get("OfferId") for item in feed_items if item.get("OfferId")]
+    batches = (len(offer_ids) + 24) // 25
+    print(f"Woot feed {feed}: enriching {len(offer_ids)} offers in {batches} detail batch(es)...",
+          flush=True)
     for start in range(0, len(offer_ids), 25):
         batch = offer_ids[start:start + 25]
         try:
             offers = http_json("https://developer.woot.com/getoffers",
                                headers={"x-api-key": key,
                                         "Content-Type": "application/json"},
-                               method="POST", body=json.dumps(batch))
+                               method="POST", body=json.dumps(batch), timeout=20)
             for offer in offers or []:
                 if isinstance(offer, dict) and offer.get("Id"):
                     details[offer["Id"]] = offer
         except Exception as exc:
             print(f"Woot detail enrichment failed for {len(batch)} offers: {exc}",
-                  file=sys.stderr)
+                  file=sys.stderr, flush=True)
+        done = min(start + len(batch), len(offer_ids))
+        print(f"PROGRESS {done}/{len(offer_ids)} Woot detail batches", flush=True)
         if start + 25 < len(offer_ids):
             time.sleep(1.1)
+    print(f"Woot: parsed {len(details)} enriched offers", flush=True)
     raw = []
     for item in feed_items:
         offer_id = item.get("OfferId")

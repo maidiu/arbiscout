@@ -9,6 +9,8 @@ This addendum records the active local build on `work/arbiscout-local-build`. It
 - **Browser-mode retailer fetch:** installed Chrome, lazy-price settling, raw-page capture and no individual product-page fallback. A bounded Best Buy listing run on 2026-11-07 produced **137 unique products, 74 complete price pairs, 12 listing pages and 0 failed pages**.
 - **eBay evidence intake:** a local watcher reads only HTML the user manually saves into `ebay_saved/` or `~/Downloads`, matches pages to retailer candidates by the eBay search query, parses them and regenerates reports. It never fetches eBay. Probe: **25 saved files, 20 matched, 8 positive provisional gaps**.
 - **Distribution output:** sold low, high, mean, median and middle-50% range, plus whether the current retailer price is below the sold low or median.
+- **Catalog freshness:** observed dates, Today/7d/30d/custom filters, 20/50/100/200 paging and source last-update summary; opening the catalog rebuilds from latest sources.
+- **Job progress:** long provider jobs stream progress lines with elapsed time and a Stop control.
 - **Control room:** one local browser page for source jobs, settings, catalog and capture; Mac `.command` and Windows `.bat` launchers.
 - **Saved list:** per-row Save/Remove, Saved-only filtering and a hand-picked eBay run persisted in `catalog/saved.json`.
 - **Unified catalog:** merges Best Buy, Meh, Woot and Kroger outputs with source and category filters, discount/savings/price sorting and a top-N selection written to `catalog/selected/`.

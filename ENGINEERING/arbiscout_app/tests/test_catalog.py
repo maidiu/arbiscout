@@ -31,6 +31,20 @@ class CatalogTests(unittest.TestCase):
                                       categories=["Home & Outdoor"], sort="discount")
         self.assertEqual([r["title"] for r in rows], ["A"])
 
+    def test_date_filter(self):
+        products = [
+            {"source": "Woot", "category": "X", "title": "Fresh",
+             "observed_at": "2026-11-17T12:00:00+00:00",
+             "current_price": 1, "regular_price": 2, "discount_percent": 50, "savings": 1},
+            {"source": "Woot", "category": "X", "title": "Old",
+             "observed_at": "2026-11-07T12:00:00+00:00",
+             "current_price": 1, "regular_price": 2, "discount_percent": 50, "savings": 1},
+        ]
+        rows = catalog_ui.filter_sort(products, observed_after="2026-11-17T00:00:00+00:00")
+        self.assertEqual([r["title"] for r in rows], ["Fresh"])
+        rows = catalog_ui.filter_sort(products, observed_after="2026-11-01T00:00:00+00:00")
+        self.assertEqual(len(rows), 2)
+
     def test_build_catalog_merges_sources(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

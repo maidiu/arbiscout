@@ -101,8 +101,8 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
 <p>Click <b>Open next waiting eBay page</b>, save the completed-listing page, and the row updates automatically. The app never fetches eBay itself.</p></header>
 <main class="wrap">
 <div class="kpis"><div class="kpi"><strong id="kCap">0</strong><span>Captured / candidates</span></div>
-<div class="kpi"><strong id="kLow">0</strong><span>Best Buy below eBay low</span></div>
-<div class="kpi"><strong id="kMed">0</strong><span>Best Buy below eBay median</span></div>
+<div class="kpi"><strong id="kLow">0</strong><span>Retailer below eBay low</span></div>
+<div class="kpi"><strong id="kMed">0</strong><span>Retailer below eBay median</span></div>
 <div class="kpi"><strong id="kPend">0</strong><span>Files being read</span></div></div>
 <div class="note" id="paths"></div>
 <div class="controls">
@@ -117,17 +117,18 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
     <option value="gap">Largest eBay gap</option>
     <option value="sold_low">Lowest eBay sold price</option>
   </select>
-  <select id="view"><option value="all">All candidates</option><option value="below_low">Best Buy below eBay low</option><option value="below_median">Best Buy below eBay median</option></select>
+  <select id="view"><option value="all">All candidates</option><option value="below_low">Retailer below eBay low</option><option value="below_median">Retailer below eBay median</option></select>
   <label><input type="checkbox" id="complete"> Only products with both retail prices</label>
   <span id="msg" class="count"></span>
-  <a class="btn alt" href="/retailer" target="_blank">Best Buy dashboard</a>
+  <a class="btn alt" href="http://127.0.0.1:8800/">Control room</a>
+  <a class="btn alt" href="/retailer" target="_blank">Retailer dashboard</a>
   <a class="btn alt" href="/top10" target="_blank">Top 10 report</a>
   <a class="btn alt" href="/comparisons" target="_blank">All comparisons</a>
 </div>
 <div class="tablewrap"><table><thead><tr>
 <th>#</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th>
 <th>eBay sold low</th><th>eBay sold high</th><th>Mean</th><th>Median</th><th>Typical 50%</th>
-<th>Best Buy vs eBay</th><th>Sales</th><th>File / status</th><th>Open</th>
+<th>Retailer vs eBay</th><th>Sales</th><th>File / status</th><th>Open</th>
 </tr></thead><tbody id="rows"></tbody></table></div>
 </main>
 <script>
@@ -257,7 +258,7 @@ def main(argv=None):
         downloads = Path.home() / "Downloads" if a.downloads else None
     staging = output / "comparisons" / ".ebay_staging"
     if not (output / "retailer" / "products.json").is_file():
-        raise SystemExit("No Best Buy candidates yet. Run ./run_live.command first.")
+        raise SystemExit("No retailer candidates yet. Run a source first.")
     folder.mkdir(parents=True, exist_ok=True)
     staging.mkdir(parents=True, exist_ok=True)
     for old in staging.glob("*.html"):

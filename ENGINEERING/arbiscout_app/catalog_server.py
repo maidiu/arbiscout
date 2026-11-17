@@ -128,7 +128,9 @@ class Handler(BaseHTTPRequestHandler):
                 rows = catalog_ui.filter_sort(
                     PAYLOAD.get("products", []), sources=sources, categories=categories,
                     query=body.get("query", ""), both_prices=bool(body.get("both_prices")),
-                    sort=body.get("sort", "discount"), top=body.get("top", 20))
+                    sort=body.get("sort", "discount"), top=body.get("top", 20),
+                    observed_after=body.get("observed_after"),
+                    observed_before=body.get("observed_before"))
                 if not rows:
                     return self._send(400, json.dumps({"error": "No products match those filters."}),
                                       "application/json; charset=utf-8")

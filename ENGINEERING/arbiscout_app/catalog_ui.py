@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Shared category, filter/sort and dashboard code for the unified catalog."""
 from __future__ import annotations
+from datetime import datetime, timezone
 import json
 import re
 from urllib.parse import urlparse
@@ -76,9 +77,35 @@ def normalize(product, source):
     return row
 
 
+def parse_observed(value):
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
 def filter_sort(products, sources=None, categories=None, query="", both_prices=False,
-                sort="discount", top=None):
+                sort="discount", top=None, observed_after=None, observed_before=None):
     rows = list(products)
+    after = parse_observed(observed_after)
+    before = parse_observed(observed_before)
+    if after or before:
+        filtered = []
+        for row in rows:
+            seen = parse_observed(row.get("observed_at"))
+            if not seen:
+                continue
+            if after and seen < after:
+                continue
+            if before and seen > before:
+                continue
+            filtered.append(row)
+        rows = filtered
     if sources:
         allowed = set(sources)
         rows = [r for r in rows if r.get("source") in allowed]
@@ -146,20 +173,33 @@ small{color:#738197}.badge{display:inline-block;padding:2px 7px;border-radius:99
 .savedpanel h3{margin:0 0 8px;font-size:15px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 .saveditem{display:flex;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid #eef2f6;padding:7px 0;font-size:12px}
 .saveditem small{display:block}.savebtn{padding:6px 9px;font-size:11px}
+.pager{display:flex;gap:8px;align-items:center;margin:12px 0;flex-wrap:wrap}
+.pager button{padding:7px 11px}.obs{white-space:nowrap;color:#738197}
+input[type=date]{padding:8px;border:1px solid #cfd9e4;border-radius:8px;background:#fff;font-size:13px}
 .count{color:#6b798c;font-size:13px}@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
 <header><h1>ArbiScout <span style="font-weight:400;color:#97bce7">/ unified catalog</span></h1>
-<p>Filter by source and category, sort by discount or savings, then build a top-N selection for the eBay comparison and capture console.</p></header>
+<p>Filter by source, category and observation date, sort by discount or savings, then build a top-N or hand-picked eBay run. <a class="btn alt" href="http://127.0.0.1:8800/">← Control room</a></p></header>
 <main class="wrap">
 <div class="kpis"><div class="kpi"><strong id="kTotal">0</strong><span>All products</span></div>
 <div class="kpi"><strong id="kFiltered">0</strong><span>After filters</span></div>
 <div class="kpi"><strong id="kSources">0</strong><span>Sources present</span></div>
 <div class="kpi"><strong id="kTop">20</strong><span>Selection size</span></div></div>
 <div class="sources" id="sources"></div>
+<div class="count" id="sourceAges"></div>
 <div class="savedpanel" id="savedPanel"></div>
 <div class="controls">
   <input id="q" type="search" placeholder="Search product, category or source…">
   <select id="category"><option value="">All categories</option></select>
+  <select id="dateRange">
+    <option value="today">Today</option>
+    <option value="24h">Last 24 hours</option>
+    <option value="7d">Last 7 days</option>
+    <option value="30d">Last 30 days</option>
+    <option value="all">All dates</option>
+    <option value="custom">Custom…</option>
+  </select>
+  <span id="customDates" style="display:none"><input id="dateFrom" type="date"> – <input id="dateTo" type="date"></span>
   <select id="sort">
     <option value="discount">Highest % off</option>
     <option value="savings">Highest dollar savings</option>
@@ -172,12 +212,14 @@ small{color:#738197}.badge{display:inline-block;padding:2px 7px;border-radius:99
   <label><input type="checkbox" id="complete"> Both prices only</label>
   <label><input type="checkbox" id="savedOnly"> Saved only</label>
   <label>Top <input id="top" type="number" min="1" max="500" value="20"></label>
+  <label>Page size <select id="pageSize"><option>20</option><option>50</option><option>100</option><option>200</option></select></label>
   <button id="build">Build top N selection</button>
   <button id="buildSaved" class="btn alt">Build eBay run from saved</button>
   <span id="msg" class="count"></span>
 </div>
 <div class="note" id="modeNote"></div>
-<div class="tablewrap"><table><thead><tr><th>Source</th><th>Category</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th><th>Save</th><th>Open</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="tablewrap"><table><thead><tr><th>Source</th><th>Category</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th><th>Observed</th><th>Save</th><th>Open</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="pager"><button id="prev" class="btn alt">Previous</button><span id="pageInfo" class="count"></span><button id="next" class="btn alt">Next</button></div>
 </main>
 <script>
 const DATA=__DATA__;const $=id=>document.getElementById(id);
@@ -233,8 +275,26 @@ function sourceBoxes(){
   $('notwoot').onclick=()=>{document.querySelectorAll('#sources input').forEach(x=>x.checked=x.value!=='Woot');render();};
 }
 function activeSources(){return [...document.querySelectorAll('#sources input:checked')].map(x=>x.value);}
-function filtered(applyTop){
+let page=1;
+function dateBounds(){
+  const range=$('dateRange').value,now=new Date();
+  const startOfDay=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime();
+  let after=null,before=null;
+  if(range==='today')after=new Date(startOfDay(now)).toISOString();
+  else if(range==='24h')after=new Date(Date.now()-24*3600*1000).toISOString();
+  else if(range==='7d')after=new Date(Date.now()-7*24*3600*1000).toISOString();
+  else if(range==='30d')after=new Date(Date.now()-30*24*3600*1000).toISOString();
+  else if(range==='custom'){
+    if($('dateFrom').value)after=new Date($('dateFrom').value+'T00:00:00').toISOString();
+    if($('dateTo').value)before=new Date($('dateTo').value+'T23:59:59.999').toISOString();
+  }
+  return {after,before};
+}
+function filteredRows(){
+  const bounds=dateBounds();
   let rows=DATA.products.filter(p=>activeSources().includes(p.source));
+  if(bounds.after)rows=rows.filter(p=>p.observed_at&&new Date(p.observed_at)>=new Date(bounds.after));
+  if(bounds.before)rows=rows.filter(p=>p.observed_at&&new Date(p.observed_at)<=new Date(bounds.before));
   const cat=$('category').value;if(cat)rows=rows.filter(p=>p.category===cat);
   const q=$('q').value.toLowerCase().trim();if(q)rows=rows.filter(p=>((p.title||'')+' '+(p.category||'')+' '+(p.source||'')).toLowerCase().includes(q));
   if($('complete').checked)rows=rows.filter(p=>p.current_price!=null&&p.regular_price!=null);
@@ -250,38 +310,58 @@ function filtered(applyTop){
     if(s==='category')return (a.category||'').localeCompare(b.category||'')||(a.title||'').localeCompare(b.title||'');
     return (num(b.discount_percent,-1)-num(a.discount_percent,-1))||(num(b.savings,0)-num(a.savings,0))||(a.title||'').localeCompare(b.title||'');
   });
-  if(applyTop){const n=Math.max(1,parseInt($('top').value)||20);rows=rows.slice(0,n);}
   return rows;
 }
+function topRows(){const n=Math.max(1,parseInt($('top').value)||20);return filteredRows().slice(0,n);}
+function renderAges(){
+  const latest={},counts={};
+  DATA.products.forEach(p=>{counts[p.source]=(counts[p.source]||0)+1;if((p.observed_at||'')>(latest[p.source]||''))latest[p.source]=p.observed_at;});
+  $('sourceAges').textContent='Last observed: '+Object.entries(latest).map(([s,d])=>`${s} ${new Date(d).toLocaleString()} (${counts[s]})`).join(' · ');
+}
 function render(){
-  const rows=filtered(true);
-  $('kTotal').textContent=DATA.products.length;$('kFiltered').textContent=filtered(false).length;
+  const all=filteredRows();
+  const size=parseInt($('pageSize').value)||20;
+  const pages=Math.max(1,Math.ceil(all.length/size));
+  if(page>pages)page=pages;
+  const rows=all.slice((page-1)*size,page*size);
+  $('kTotal').textContent=DATA.products.length;$('kFiltered').textContent=all.length;
   $('kSources').textContent=SOURCES.length;$('kTop').textContent=$('top').value||20;
-  $('rows').innerHTML=rows.map(p=>`<tr><td><span class="badge">${esc(p.source)}</span></td><td>${esc(p.category)}</td>
+  $('pageInfo').textContent=`Page ${page} of ${pages} · ${all.length} matching`;
+  $('prev').disabled=page<=1;$('next').disabled=page>=pages;
+  $('rows').innerHTML=rows.map(p=>{const obs=p.observed_at?new Date(p.observed_at).toLocaleString():'—';return `<tr><td><span class="badge">${esc(p.source)}</span></td><td>${esc(p.category)}</td>
     <td class="item"><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer"><b>${esc(p.title)}</b></a></td>
     <td class="n">${usd(p.current_price)}</td><td class="n">${usd(p.regular_price)}</td>
     <td class="n">${p.discount_percent==null?'—':p.discount_percent+'%'}</td><td class="n">${usd(p.savings)}</td>
+    <td class="obs">${esc(obs)}</td>
     <td><button class="btn alt savebtn" data-key="${esc(saveKey(p))}">${isSaved(p)?'Saved':'Save'}</button></td>
-    <td><a class="btn" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">Open</a></td></tr>`).join('')||'<tr><td colspan="9">No products match the current filters.</td></tr>';
+    <td><a class="btn" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">Open</a></td></tr>`}).join('')||'<tr><td colspan="10">No products match the current filters.</td></tr>';
 }
 async function build(){
-  const body={sources:activeSources(),category:$('category').value,query:$('q').value,both_prices:$('complete').checked,sort:$('sort').value,top:Math.max(1,parseInt($('top').value)||20)};
+  const bounds=dateBounds();
+  const body={sources:activeSources(),category:$('category').value,query:$('q').value,both_prices:$('complete').checked,sort:$('sort').value,top:Math.max(1,parseInt($('top').value)||20),observed_after:bounds.after,observed_before:bounds.before};
   if(DATA.live){
     $('msg').textContent='Building…';
     try{const r=await fetch('/api/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json();
       $('msg').innerHTML=`Selected ${j.selected} products. <a href="/selected/" target="_blank">Top-10 report</a> · <a href="/selected/comparisons/" target="_blank">All comparisons</a><br><small>Capture eBay pages: ./watch_ebay.command ebay_saved --output catalog/selected --keep-selection</small>`;
     }catch(e){$('msg').textContent='Selection failed: '+e;}
   }else{
-    const rows=filtered(true);const blob=new Blob([JSON.stringify({filters:body,products:rows},null,2)],{type:'application/json'});
+    const rows=topRows();const blob=new Blob([JSON.stringify({filters:body,products:rows},null,2)],{type:'application/json'});
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='selected.json';a.click();
     $('msg').textContent='Downloaded selected.json. Save it and run ./run_selected.command selected.json';
   }
 }
-$('q').oninput=render;$('sort').onchange=render;$('category').onchange=render;$('complete').onchange=render;$('savedOnly').onchange=render;$('top').oninput=render;$('build').onclick=build;$('buildSaved').onclick=buildSaved;
+function reset(){page=1;render();}
+$('q').oninput=reset;$('sort').onchange=reset;$('category').onchange=reset;$('complete').onchange=reset;$('savedOnly').onchange=reset;$('top').oninput=render;
+$('dateRange').onchange=()=>{$('customDates').style.display=$('dateRange').value==='custom'?'inline-flex':'none';reset();};
+$('dateFrom').onchange=reset;$('dateTo').onchange=reset;
+$('pageSize').onchange=()=>{page=1;render();};
+$('prev').onclick=()=>{page=Math.max(1,page-1);render();};
+$('next').onclick=()=>{page++;render();};
+$('build').onclick=build;$('buildSaved').onclick=buildSaved;
 $('rows').addEventListener('click',e=>{const b=e.target.closest('.savebtn');if(!b)return;const p=DATA.products.find(x=>saveKey(x)===b.dataset.key);if(p)toggleSave(p);});
 $('savedPanel').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b)return;const p=SAVED_ITEMS.find(x=>saveKey(x)===b.dataset.remove);if(p)toggleSave(p);});
 sourceBoxes();
 $('category').innerHTML='<option value="">All categories</option>'+CATEGORIES.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
-$('modeNote').textContent=DATA.live?'Selection runs locally and writes catalog/selected. Use Save on individual rows for a hand-picked eBay run.':'Static view: Build downloads selected.json. Start ./run_catalog.command for one-click selection and a persistent saved list.';
-loadSaved();render();
+$('modeNote').textContent=DATA.live?'Selection runs locally and writes catalog/selected. The date filter defaults to Today; choose All dates to include older stored results. Use Save on individual rows for a hand-picked eBay run.':'Static view: Build downloads selected.json. Start ./run_catalog.command for one-click selection and a persistent saved list.';
+loadSaved();renderAges();render();
 </script></body></html>""".replace("__DATA__", data)

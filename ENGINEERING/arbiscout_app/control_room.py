@@ -34,8 +34,13 @@ JOBS = {
 }
 LOCK = threading.RLock()
 ACTIVE_JOB = None
+ACTIVE_PROC = None
+STOP_REQUESTED = False
 CATALOG_PROC = None
 WATCHER_PROC = None
+for _job in JOBS.values():
+    _job.setdefault("progress", 0)
+    _job.setdefault("progress_text", "")
 
 
 def read_env(path=ENV_PATH):
@@ -102,10 +107,15 @@ def now():
 
 def append_log(job_id, line):
     line = line.rstrip("\n")
+    progress = re.match(r"PROGRESS\s+(\d+)/(\d+)\s*(.*)", line)
     with LOCK:
         job = JOBS[job_id]
         job["log"].append(line)
         job["log"] = job["log"][-500:]
+        if progress:
+            total = max(1, int(progress.group(2)))
+            job["progress"] = round(100 * int(progress.group(1)) / total)
+            job["progress_text"] = progress.group(3)
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     with (LOG_DIR / f"{job_id}.log").open("a", encoding="utf-8") as handle:
         handle.write(line + "\n")
@@ -117,7 +127,9 @@ def set_status(job_id, status):
         if status == "running":
             JOBS[job_id]["started"] = now()
             JOBS[job_id]["finished"] = None
-        elif status in ("success", "failed", "skipped"):
+            JOBS[job_id]["progress"] = 0
+            JOBS[job_id]["progress_text"] = ""
+        elif status in ("success", "failed", "skipped", "stopped"):
             JOBS[job_id]["finished"] = now()
 
 
@@ -147,15 +159,27 @@ def command_for(job):
 
 
 def run_process(job_id, command, prefix=""):
+    global ACTIVE_PROC
     proc = subprocess.Popen(command, cwd=APP_DIR, stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, text=True, bufsize=1)
-    for line in proc.stdout or []:
-        append_log(job_id, (prefix + line).rstrip())
-    return proc.wait()
+    ACTIVE_PROC = proc
+    try:
+        for line in proc.stdout or []:
+            append_log(job_id, (prefix + line).rstrip())
+        return proc.wait()
+    finally:
+        ACTIVE_PROC = None
 
 
 def run_single(job_id):
+    global STOP_REQUESTED
     try:
+        if job_id == "kroger":
+            env = read_env()
+            if not (env.get("KROGER_LOCATION_ID") or env.get("KROGER_ZIP")):
+                append_log(job_id, "Kroger needs a ZIP code or location ID. Open Settings, set KROGER_ZIP, save, then run again.")
+                set_status(job_id, "failed")
+                return
         command = command_for(job_id)
         if not command:
             append_log(job_id, "No command for this job.")
@@ -163,7 +187,7 @@ def run_single(job_id):
             return
         append_log(job_id, "$ " + " ".join(command))
         code = run_process(job_id, command)
-        set_status(job_id, "success" if code == 0 else "failed")
+        set_status(job_id, "stopped" if STOP_REQUESTED else ("success" if code == 0 else "failed"))
         append_log(job_id, f"Finished with exit code {code}.")
     except Exception as exc:
         append_log(job_id, f"ERROR: {exc}")
@@ -171,6 +195,7 @@ def run_single(job_id):
 
 
 def run_everything():
+    global STOP_REQUESTED
     try:
         env = read_env()
         steps = [("bestbuy", "Best Buy")]
@@ -187,8 +212,10 @@ def run_everything():
         else:
             append_log("everything", "Skipping Kroger: client credentials or ZIP/location are not set.")
         failed = False
-        for job_id, label in steps:
-            append_log("everything", f"=== {label} ===")
+        for index, (job_id, label) in enumerate(steps, 1):
+            if STOP_REQUESTED:
+                break
+            append_log("everything", f"=== {label} ({index}/{len(steps) + 1}) ===")
             command = command_for(job_id)
             if not command:
                 continue
@@ -197,22 +224,24 @@ def run_everything():
             if code != 0:
                 failed = True
                 append_log("everything", f"{label} failed with exit code {code}; continuing.")
-        append_log("everything", "=== Catalog ===")
-        code = run_process("everything", command_for("catalog"), prefix="[Catalog] ")
-        if code != 0:
-            failed = True
-        set_status("everything", "failed" if failed else "success")
+        if not STOP_REQUESTED:
+            append_log("everything", "=== Catalog ===")
+            code = run_process("everything", command_for("catalog"), prefix="[Catalog] ")
+            if code != 0:
+                failed = True
+        set_status("everything", "stopped" if STOP_REQUESTED else ("failed" if failed else "success"))
     except Exception as exc:
         append_log("everything", f"ERROR: {exc}")
         set_status("everything", "failed")
 
 
 def start_job(job_id):
-    global ACTIVE_JOB
+    global ACTIVE_JOB, STOP_REQUESTED
     with LOCK:
         if ACTIVE_JOB:
             return False, f"{ACTIVE_JOB} is already running."
         ACTIVE_JOB = job_id
+        STOP_REQUESTED = False
         JOBS[job_id]["log"] = []
         set_status(job_id, "running")
     target = run_everything if job_id == "everything" else (lambda: run_single(job_id))
@@ -225,6 +254,17 @@ def start_job(job_id):
                 ACTIVE_JOB = None
     threading.Thread(target=worker, daemon=True).start()
     return True, "Started."
+
+
+def stop_job():
+    global STOP_REQUESTED
+    STOP_REQUESTED = True
+    proc = ACTIVE_PROC
+    if proc and proc.poll() is None:
+        proc.terminate()
+        append_log(ACTIVE_JOB or "everything", "Stop requested; terminating the current process.")
+        return True
+    return False
 
 
 def start_server(args, log_name, pattern, timeout=10):
@@ -254,10 +294,20 @@ def start_server(args, log_name, pattern, timeout=10):
 
 def ensure_catalog():
     global CATALOG_PROC
+    with LOCK:
+        if ACTIVE_JOB:
+            return None, f"{ACTIVE_JOB} is still running. Wait for it to finish, then open the catalog."
+    build = subprocess.run([PY, "build_catalog.py", "--output", "catalog"], cwd=APP_DIR,
+                           capture_output=True, text=True)
+    if build.returncode != 0:
+        return None, "Catalog build failed:\n" + (build.stdout + build.stderr)[-800:]
     if CATALOG_PROC and CATALOG_PROC.poll() is None:
-        return None, "http://127.0.0.1:8770/"
-    if not (APP_DIR / "catalog" / "catalog.json").is_file():
-        return None, "No catalog yet. Run Build catalog or Update everything first."
+        CATALOG_PROC.terminate()
+        try:
+            CATALOG_PROC.wait(timeout=3)
+        except subprocess.TimeoutExpired:
+            CATALOG_PROC.kill()
+        CATALOG_PROC = None
     proc, result = start_server(
         ["catalog_server.py", "--catalog", "catalog", "--output", "catalog",
          "--port", "8770", "--no-open"],
@@ -313,6 +363,7 @@ button,.btn{display:inline-block;padding:10px 15px;border-radius:9px;border:0;ba
 .badge.skipped{background:#eef2f6;color:#64748b}
 .card p{color:#536071;font-size:12px;line-height:1.4;margin:6px 0}
 pre{white-space:pre-wrap;background:#f6f8fa;border-radius:7px;padding:9px;max-height:150px;overflow:auto;font-size:11px;margin:8px 0 0}
+progress{width:100%;height:10px;accent-color:#1261bd;margin:6px 0}
 .note{background:#fff9e6;border:1px solid #f1d38d;border-radius:9px;padding:11px 14px;color:#644a1a;font-size:13px;margin:14px 0}
 .footer{color:#738197;font-size:12px;margin-top:20px}
 @media(max-width:600px){.grid{grid-template-columns:1fr}}
@@ -322,11 +373,12 @@ pre{white-space:pre-wrap;background:#f6f8fa;border-radius:7px;padding:9px;max-he
 <main class="wrap">
 <div class="top">
   <button class="btn big" data-job="everything">Update everything</button>
-  <a class="btn alt" href="/catalog" target="_blank">Open catalog</a>
-  <a class="btn alt" href="/capture" target="_blank">Capture eBay</a>
+  <a class="btn alt" href="/catalog">Open catalog</a>
+  <a class="btn alt" href="/capture">Capture eBay</a>
   <a class="btn alt" href="/reports/top10" target="_blank">Top 10 report</a>
   <a class="btn alt" href="/reports/comparisons" target="_blank">All comparisons</a>
   <a class="btn alt" href="/settings">Settings</a>
+  <button id="stop" class="btn alt" style="display:none">Stop current job</button>
 </div>
 <div class="note">eBay sold pages are still saved by you in the browser; the capture console watches your Downloads and ebay_saved folders. Gaps are gross; fees, shipping and net margin are not included.</div>
 <div class="grid" id="cards"></div>
@@ -336,14 +388,25 @@ pre{white-space:pre-wrap;background:#f6f8fa;border-radius:7px;padding:9px;max-he
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
 let active=null;
-async function poll(){
-  try{const r=await fetch('/api/status',{cache:'no-store'});const s=await r.json();active=s.active;render(s.jobs);}catch(e){}
+function formatElapsed(start){
+  if(!start)return '';
+  const seconds=Math.max(0,Math.floor((Date.now()-new Date(start))/1000));
+  return seconds<60?`${seconds}s`:`${Math.floor(seconds/60)}m ${seconds%60}s`;
 }
-function render(jobs){
-  $('cards').innerHTML=Object.entries(jobs).map(([id,j])=>`<div class="card"><h3>${esc(j.label)} <span class="badge ${esc(j.status)}">${esc(j.status)}</span></h3>
+async function poll(){
+  try{const r=await fetch('/api/status',{cache:'no-store'});const s=await r.json();active=s.active;render(s.jobs,s.config);$('stop').style.display=active?'inline-block':'none';}catch(e){}
+}
+function render(jobs,config){
+  $('cards').innerHTML=Object.entries(jobs).map(([id,j])=>{
+    const running=j.status==='running';
+    const hint=id==='kroger'&&config&&!config.kroger?' <small>needs ZIP in Settings</small>':'';
+    const bar=running?`<progress max="100" value="${j.progress||0}"></progress><div class="count">${esc(j.progress_text||'working…')} ${esc(formatElapsed(j.started))}</div>`:'';
+    return `<div class="card"><h3>${esc(j.label)}${hint} <span class="badge ${esc(j.status)}">${esc(j.status)}</span></h3>
     <p>${j.started?'Started '+esc(j.started):'Not run yet.'}${j.finished?' · finished '+esc(j.finished):''}</p>
+    ${bar}
     <button class="btn alt" data-job="${esc(id)}" ${active?'disabled':''}>Run ${esc(j.label)}</button>
-    <pre>${esc((j.log||[]).slice(-12).join('\n')||'No output yet.')}</pre></div>`).join('');
+    <pre>${esc((j.log||[]).slice(-12).join('\n')||'No output yet.')}</pre></div>`;
+  }).join('');
   document.querySelectorAll('[data-job]').forEach(b=>b.onclick=()=>run(b.dataset.job));
 }
 async function run(job){
@@ -351,6 +414,7 @@ async function run(job){
   const j=await r.json();if(j.error)alert(j.error);poll();
 }
 document.querySelectorAll('[data-job]').forEach(b=>b.onclick=()=>run(b.dataset.job));
+$('stop').onclick=async()=>{await fetch('/api/stop',{method:'POST'});poll();};
 poll();setInterval(poll,2000);
 </script></body></html>"""
 
@@ -388,6 +452,7 @@ __SAVED__
 <label><input type="checkbox" name="clear_MEH_API_KEY" style="width:auto"> Clear saved Meh key</label>
 </div>
 <div class="card"><h2>Kroger</h2>
+<p class="hint">Kroger needs a ZIP code or location ID to return store-specific prices. Without one, the Kroger job stops with a setup message.</p>
 <div class="row"><div><label>Client ID <span class="status">__KROGER_ID_STATUS__</span></label><input name="KROGER_CLIENT_ID" type="password" placeholder="leave blank to keep current"></div>
 <div><label>Client secret <span class="status">__KROGER_SECRET_STATUS__</span></label><input name="KROGER_CLIENT_SECRET" type="password" placeholder="leave blank to keep current"></div></div>
 <label>Search terms (comma-separated)</label><input name="KROGER_TERMS" value="__KROGER_TERMS__" placeholder="milk,eggs,bread">
@@ -442,9 +507,14 @@ class Handler(BaseHTTPRequestHandler):
                 html = html.replace(key, str(value))
             return self._send(200, html)
         if parsed.path == "/api/status":
+            env = read_env()
+            config = {"kroger": bool(env.get("KROGER_LOCATION_ID") or env.get("KROGER_ZIP")),
+                      "meh": bool(env.get("MEH_API_KEY")),
+                      "woot": bool(env.get("WOOT_API_KEY"))}
             with LOCK:
                 jobs = {key: {**value, "log": value["log"][-80:]} for key, value in JOBS.items()}
-                body = json.dumps({"active": ACTIVE_JOB, "jobs": jobs}, ensure_ascii=False)
+                body = json.dumps({"active": ACTIVE_JOB, "jobs": jobs, "config": config},
+                                  ensure_ascii=False)
             return self._send(200, body, "application/json; charset=utf-8")
         if parsed.path == "/catalog":
             _, result = ensure_catalog()
@@ -496,6 +566,9 @@ class Handler(BaseHTTPRequestHandler):
             except Exception as exc:
                 return self._send(500, json.dumps({"error": str(exc)[:200]}),
                                   "application/json; charset=utf-8")
+        if parsed.path == "/api/stop":
+            return self._send(200, json.dumps({"stopped": stop_job()}, ensure_ascii=False),
+                              "application/json; charset=utf-8")
         if parsed.path == "/api/settings":
             try:
                 length = int(self.headers.get("Content-Length") or 0)

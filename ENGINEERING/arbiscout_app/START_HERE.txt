@@ -5,6 +5,9 @@ ARBISCOUT — COMPLETE TEST VERSION
    Windows: double-click start_arbiscout.bat
    The browser opens http://127.0.0.1:8800. Use Settings for keys, then
    "Update everything", "Open catalog", and "Capture eBay". No terminal needed.
+   Long jobs show a progress bar and a Stop button. The catalog defaults to
+   Today's observations; use the date filter for older stored results, and set
+   a Kroger ZIP or location in Settings before running Kroger.
 
 1. Open Terminal in this folder.
 2. Install: python3 -m pip install -r requirements.txt

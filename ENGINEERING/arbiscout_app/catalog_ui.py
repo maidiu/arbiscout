@@ -179,7 +179,7 @@ input[type=date]{padding:8px;border:1px solid #cfd9e4;border-radius:8px;backgrou
 .count{color:#6b798c;font-size:13px}@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
 <header><h1>ArbiScout <span style="font-weight:400;color:#97bce7">/ unified catalog</span></h1>
-<p>Filter by source, category and observation date, sort by discount or savings, then build a top-N or hand-picked eBay run. <a class="btn alt" href="http://127.0.0.1:8800/">← Control room</a></p></header>
+<p>Filter by source, category and observation date, sort by discount or savings, then build a top-N or hand-picked eBay run. <a class="btn alt" href="http://127.0.0.1:8800/">← Control room</a> <a class="btn" href="http://127.0.0.1:8800/capture" target="_blank">Capture eBay</a></p></header>
 <main class="wrap">
 <div class="kpis"><div class="kpi"><strong id="kTotal">0</strong><span>All products</span></div>
 <div class="kpi"><strong id="kFiltered">0</strong><span>After filters</span></div>
@@ -214,7 +214,6 @@ input[type=date]{padding:8px;border:1px solid #cfd9e4;border-radius:8px;backgrou
   <label>Top <input id="top" type="number" min="1" max="500" value="20"></label>
   <label>Page size <select id="pageSize"><option>20</option><option>50</option><option>100</option><option>200</option></select></label>
   <button id="build">Build top N selection</button>
-  <button id="buildSaved" class="btn alt">Build eBay run from saved</button>
   <span id="msg" class="count"></span>
 </div>
 <div class="note" id="modeNote"></div>
@@ -258,7 +257,8 @@ async function buildSaved(){
   if(DATA.live){
     $('msg').textContent='Building from saved…';
     try{const r=await fetch('/api/use-saved',{method:'POST'});const j=await r.json();
-      $('msg').innerHTML=`Saved run: ${j.selected} products. <a href="/selected/" target="_blank">Top-10 report</a> · <a href="/selected/comparisons/" target="_blank">All comparisons</a><br><small>${j.capture}</small>`;
+      if(!r.ok)throw new Error(j.error||'Saved run failed');
+      $('msg').innerHTML=`Saved run: ${j.selected} products. <a href="http://127.0.0.1:8800/capture" target="_blank"><b>Open eBay capture console</b></a> · <a href="/selected/" target="_blank">Top-10 report</a> · <a href="/selected/comparisons/" target="_blank">All comparisons</a><br><small>${j.capture}</small>`;
     }catch(e){$('msg').textContent='Saved run failed: '+e;}
   }else{
     const blob=new Blob([JSON.stringify({products:SAVED_ITEMS},null,2)],{type:'application/json'});
@@ -342,7 +342,8 @@ async function build(){
   if(DATA.live){
     $('msg').textContent='Building…';
     try{const r=await fetch('/api/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json();
-      $('msg').innerHTML=`Selected ${j.selected} products. <a href="/selected/" target="_blank">Top-10 report</a> · <a href="/selected/comparisons/" target="_blank">All comparisons</a><br><small>Capture eBay pages: ./watch_ebay.command ebay_saved --output catalog/selected --keep-selection</small>`;
+      if(!r.ok)throw new Error(j.error||'Selection failed');
+      $('msg').innerHTML=`Selected ${j.selected} products. <a href="http://127.0.0.1:8800/capture" target="_blank"><b>Open eBay capture console</b></a> · <a href="/selected/" target="_blank">Top-10 report</a> · <a href="/selected/comparisons/" target="_blank">All comparisons</a><br><small>${j.capture}</small>`;
     }catch(e){$('msg').textContent='Selection failed: '+e;}
   }else{
     const rows=topRows();const blob=new Blob([JSON.stringify({filters:body,products:rows},null,2)],{type:'application/json'});
@@ -357,7 +358,7 @@ $('dateFrom').onchange=reset;$('dateTo').onchange=reset;
 $('pageSize').onchange=()=>{page=1;render();};
 $('prev').onclick=()=>{page=Math.max(1,page-1);render();};
 $('next').onclick=()=>{page++;render();};
-$('build').onclick=build;$('buildSaved').onclick=buildSaved;
+$('build').onclick=build;
 $('rows').addEventListener('click',e=>{const b=e.target.closest('.savebtn');if(!b)return;const p=DATA.products.find(x=>saveKey(x)===b.dataset.key);if(p)toggleSave(p);});
 $('savedPanel').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b)return;const p=SAVED_ITEMS.find(x=>saveKey(x)===b.dataset.remove);if(p)toggleSave(p);});
 sourceBoxes();

@@ -7,6 +7,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import build_catalog
 import catalog_ui
+import run_test
 
 
 class CatalogTests(unittest.TestCase):
@@ -44,6 +45,15 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual([r["title"] for r in rows], ["Fresh"])
         rows = catalog_ui.filter_sort(products, observed_after="2026-11-01T00:00:00+00:00")
         self.assertEqual(len(rows), 2)
+
+    def test_capture_links_present(self):
+        catalog_html = catalog_ui.render_dashboard(
+            {"products": [], "sources": [], "categories": [], "generated_at": ""})
+        self.assertIn("Capture eBay", catalog_html)
+        top10 = run_test.render_dashboard(
+            [], {"synthetic_demo": False, "selected_retail_offers": 0,
+                 "positive_provisional_count": 0})
+        self.assertIn("Open eBay capture console", top10)
 
     def test_build_catalog_merges_sources(self):
         with tempfile.TemporaryDirectory() as temp:

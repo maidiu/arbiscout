@@ -112,7 +112,8 @@
     "Nov 7 active local build: Woot detail enrichment via /getoffers; All feed capped to 500, collections expanded, variants deduped, 500/500 complete price pairs in the local test.",
     "Nov 7 active local build: one-click browser control room with source job buttons, settings, catalog/capture links and Mac/Windows launchers.",
     "Nov 17 active local build: catalog freshness dates, Today/7d/30d/custom date filters, 20/50/100/200 pagination, observed column, source last-update summary, catalog rebuild on open, Woot progress and Stop control, and a clear Kroger ZIP/location setup message.",
-    "Nov 17 active local build: Kroger ZIP is a per-run home-page input (not saved) and Kroger rows display their ZIP in the catalog, capture console and comparison reports."
+    "Nov 17 active local build: Kroger ZIP is a per-run home-page input (not saved) and Kroger rows display their ZIP in the catalog, capture console and comparison reports.",
+    "Nov 17 active local build: saved runs write exactly the saved products and link directly to the eBay capture console; duplicate saved button removed; catalog/top-10/comparison pages expose capture links."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",

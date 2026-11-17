@@ -98,7 +98,9 @@ def render_dashboard(winners, receipt):
         "<p><b>{}</b> retailer offers checked · <b>{}</b> positive provisional comparisons"
         " · <b>0</b> verified actual-paid comparisons.</p>".format(
             receipt["selected_retail_offers"], receipt["positive_provisional_count"])
-        + "<p>ArbiScout computes its own preceding 30-day cutoff from sold dates,"
+        + "<p><a href='http://127.0.0.1:8800/capture'>Open eBay capture console</a>"
+        " — save each selected product's sold page there, then refresh this report.</p>"
+        "<p>ArbiScout computes its own preceding 30-day cutoff from sold dates,"
         " excludes dated-out sales, missing dates, mismatches, and unresolved Best Offers,"
         " then ranks by absolute price difference. The candidate 20 are initially"
         " chosen by retailer markdown. Sold range is the lowest–highest usable 30-day"

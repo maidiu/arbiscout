@@ -72,17 +72,34 @@ def fixture_query(html):
 def map_fixtures(fixture_dir,deals,threshold=0.7):
     mapping={};unmatched=[];scores=[]
     for path in sorted(Path(fixture_dir).glob('*.html')):
-        try:query=fixture_query(path.read_text(encoding='utf-8',errors='replace'))
-        except OSError:continue
+        try:
+            html=path.read_text(encoding='utf-8',errors='replace')
+            query=fixture_query(html)
+            sold_titles=[row.get('title','') for row in parse_ebay_sold_html(html,search_url(query or 'fixture'))[0]]
+        except OSError:
+            continue
         normalized=_norm_title(query)
-        best=(0.0,None)
+        best=(0.0,None,{})
         for i,product in enumerate(deals):
             target=_norm_title(product.get('ebay_query') or product.get('title') or '')
-            score=SequenceMatcher(None,normalized,target).ratio()
-            if score>best[0]:best=(score,i)
+            query_score=SequenceMatcher(None,normalized,target).ratio()
+            has_model=bool(str(product.get('model') or product.get('mpn') or '').strip())
+            model_found=bool(has_model and sold_titles and any(model_match(product,title)[0] for title in sold_titles))
+            model_score=1.0 if model_found else 0.0
+            title_score=max((SequenceMatcher(None,_norm_title(product.get('title') or ''),_norm_title(title)).ratio()
+                             for title in sold_titles),default=0.0)
+            if has_model and sold_titles:
+                score=1.0 if model_found else max(title_score,min(query_score,0.69))
+            else:
+                score=max(query_score,title_score)
+            if score>best[0]:
+                best=(score,i,{'query_score':round(query_score,3),
+                               'sold_model_score':round(model_score,3),
+                               'sold_title_score':round(title_score,3)})
         scores.append({'file':path.name,'query':query[:200],
                        'best_score':round(best[0],3),
-                       'candidate_index':best[1]+1 if best[1] is not None else None})
+                       'candidate_index':best[1]+1 if best[1] is not None else None,
+                       **best[2]})
         if best[1] is not None and best[0]>=threshold:
             current=mapping.get(best[1])
             if current is None or best[0]>current[0]:mapping[best[1]]=(best[0],path)

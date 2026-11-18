@@ -5,6 +5,11 @@ import sys,tempfile,unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import ebay_comparison as e
 
+DELL={'key':'dell:dc16255','title':'Dell 16 Laptop','model':'DC16255','ebay_query':'Dell DC16255',
+      'url':'https://www.dell.com/en-us/shop/laptop-computers/spd/dell16laptopdc16255/dc16255_fixed_10',
+      'current_price':649.99,'regular_price':1099.99,'discount_percent':40.9,'savings':450.0,
+      'price_conflict':False,'variant_conflict':False}
+
 RETAIL={'key':'bestbuy:123','title':'Sony WH-1000XM5 Wireless Noise Canceling Headphones - Black',
         'url':'https://www.bestbuy.com/product/x/123','current_price':199.99,'regular_price':399.99,
         'discount_percent':50.0,'savings':200.0,'price_conflict':False,'variant_conflict':False}
@@ -47,6 +52,29 @@ class EBayEvidenceTests(unittest.TestCase):
     def test_only_retail_complete_top20(self):
         goods=[{**RETAIL,'current_price':None,'discount_percent':99},RETAIL]
         self.assertEqual(len(e.choose_deals(goods)),1)
+    def test_changed_query_still_matches_by_sold_model(self):
+        with tempfile.TemporaryDirectory() as temp:
+            fixtures=Path(temp)
+            page=('<input id="gh-ac" value="Dell 16 inch laptop 16GB">'
+                  + ''.join(sold_card(str(200000000000+i),'Dell 16 DC16255 16" Touch Laptop 16GB 512GB',
+                                      'Nov 06, 2026','599.99') for i in range(3)))
+            (fixtures/'changed-query.html').write_text(page)
+            mapping,unmatched,scores=e.map_fixtures(fixtures,[DELL])
+            self.assertIn(0,mapping)
+            self.assertEqual(unmatched,[])
+            self.assertEqual(scores[0]['sold_model_score'],1.0)
+
+    def test_changed_query_does_not_match_wrong_sold_model(self):
+        with tempfile.TemporaryDirectory() as temp:
+            fixtures=Path(temp)
+            page=('<input id="gh-ac" value="Dell DC16255">'
+                  + sold_card('300000000001','Acer Aspire 5 15.6" Laptop','Nov 06, 2026','599.99'))
+            (fixtures/'wrong-model.html').write_text(page)
+            mapping,unmatched,scores=e.map_fixtures(fixtures,[DELL])
+            self.assertNotIn(0,mapping)
+            self.assertEqual(unmatched,['wrong-model.html'])
+            self.assertLess(scores[0]['best_score'],0.7)
+
     def test_end_to_end_fixture_ranking(self):
         with tempfile.TemporaryDirectory() as temp:
             p=Path(temp);(p/'retail.json').write_text(json.dumps([RETAIL]));(p/'fixtures').mkdir()

@@ -37,7 +37,7 @@ The 48 HOLD sources emit no products and have no invented selectors, endpoints o
 ## Verification
 
 - Root tests: `python3 -m unittest discover -s tests` — **5 passed**.
-- App tests: `python3 -m unittest discover -s ENGINEERING/arbiscout_app/tests` — **52 executed, 51 passed, 1 skipped**.
+- App tests: `python3 -m unittest discover -s ENGINEERING/arbiscout_app/tests` — **53 executed, 52 passed, 1 skipped**.
 - Workroom validator: `python3 CONTROL_ROOM/RETAILER_EXPANSION/20261117_R1/scripts/validate_and_render.py --check` — **PASS, 54 treatment files**.
 - `git diff --check` — clean at the treatment commit.
 
@@ -47,6 +47,6 @@ The 48 HOLD sources emit no products and have no invented selectors, endpoints o
 - The 48 HOLD cases need authorized page-1/page-2 captures or approved feeds before selectors, pagination and price semantics can be established. Do not guess them.
 - Dell model-code fix: `Dell16LaptopDC16255` now maps to `DC16255`; the existing saved Dell 16 page yields **3 usable sold observations**, provisional median **$599.99** vs retail **$649.99**. This is still displayed-price evidence, not verified actual paid.
 - Results watcher now stages already-saved eBay HTML before its first comparison and reuses a single running instance; the saved Dell 16 page shows 3 usable sold observations. Saved-page matching now uses sold-item titles/model codes, so a user-improved search query no longer breaks the match. Save HTML, not Safari `.webarchive` files.
-- Optional LLM identity refinement added: Results supports per-candidate arm/disarm plus **Run selected** and **Run all new**. Selected candidates are combined into one compact identity-only job when safe, split only by a configurable input-size limit. Strict JSON verdicts remove wrong-config/used/unknown rows; cache, raw backup and deterministic calculations remain local. Checked rows display the post-LLM exact/removed counts, usable sample, median and gap, and a persistent `llm_checked` flag prevents Run all new from processing them again. No live provider call was made; provider terms and false-positive rates remain open.
+- Optional LLM identity refinement added: Results supports per-candidate arm/disarm plus **Run selected** and **Run all new**. Selected candidates are combined into one compact identity-only job when safe, split only by a configurable input-size limit. Strict JSON verdicts remove wrong-config/used/unknown rows; cache, raw backup and deterministic calculations remain local. Checked rows display the post-LLM exact/removed counts, usable sample, median and gap, and a persistent `llm_checked` flag prevents Run all new from processing them again. Results also has a per-candidate HTML Match selector; manual mappings override auto-match and are persisted in `manual_matches.json`. No live provider call was made; provider terms and false-positive rates remain open.
 - Fresh identity, stock, payable-price and independent reviewer acceptance remain open.
 - Next productive move: resolve Dell/LEGO rights and completeness, then choose the next highest-yield HOLD family with a viable permission path. Promote only cases with exact evidence.

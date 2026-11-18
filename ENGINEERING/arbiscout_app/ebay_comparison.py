@@ -88,21 +88,34 @@ def map_fixtures(fixture_dir,deals,threshold=0.7):
             model_score=1.0 if model_found else 0.0
             title_score=max((SequenceMatcher(None,_norm_title(product.get('title') or ''),_norm_title(title)).ratio()
                              for title in sold_titles),default=0.0)
+            key_word=_key_word(product.get('title') or '')
+            brand=_brand(product.get('title') or '')
+            sold_text=' '.join(sold_titles).lower()
+            key_found=bool(not has_model and key_word and brand and sold_titles
+                           and _contains(brand,sold_text)
+                           and any(_contains(key_word,title.lower()) for title in sold_titles))
+            key_score=1.0 if key_found else 0.0
+            match_count=sum(1 for title in sold_titles if model_match(product,title)[0]) if sold_titles else 0
             if has_model and sold_titles:
                 score=1.0 if model_found else max(title_score,min(query_score,0.69))
+            elif key_found:
+                score=1.0
             else:
                 score=max(query_score,title_score)
-            if score>best[0]:
+            if score>best[0] or (score==best[0] and match_count>best[2].get('sold_match_count',0)):
                 best=(score,i,{'query_score':round(query_score,3),
                                'sold_model_score':round(model_score,3),
-                               'sold_title_score':round(title_score,3)})
+                               'sold_key_score':round(key_score,3),
+                               'sold_title_score':round(title_score,3),
+                               'sold_match_count':match_count})
         scores.append({'file':path.name,'query':query[:200],
                        'best_score':round(best[0],3),
                        'candidate_index':best[1]+1 if best[1] is not None else None,
                        **best[2]})
         if best[1] is not None and best[0]>=threshold:
             current=mapping.get(best[1])
-            if current is None or best[0]>current[0]:mapping[best[1]]=(best[0],path)
+            if current is None or best[0]>current[0] or (best[0]==current[0] and best[2].get('sold_match_count',0)>current[2].get('sold_match_count',0)):
+                mapping[best[1]]=(best[0],path,best[2])
         else:unmatched.append(path.name)
     return {i:value[1] for i,value in mapping.items()},unmatched,scores
 
@@ -175,6 +188,14 @@ def _contains(needle,haystack):
     return bool(re.search(r'(?<!\w)'+re.escape(needle)+r'(?!\w)',haystack))
 
 
+def _key_word(title):
+    brand=_brand(title)
+    for word in _distinctive_words(title):
+        if word!=brand and len(word)>=3:
+            return word
+    return None
+
+
 def model_match(retail,sale_title):
     title=(retail.get('title') or '')
     sold=(sale_title or '').lower()
@@ -182,6 +203,9 @@ def model_match(retail,sale_title):
     model=str(retail.get('model') or retail.get('mpn') or '').lower().strip()
     if model and len(model)>=3:
         return (model in sold,'model_match' if model in sold else 'model_missing')
+    key_word=_key_word(title)
+    if key_word and not _contains(key_word,sold):
+        return False,'key_word_missing'
     # Reject only when the sold title states a different screen/disc size.
     size=re.search(r'(\d{2,3})\s*(?:"|”|inch|in\b)',title,re.I)
     sold_size=re.search(r'(\d{2,3})\s*(?:"|”|inch|in\b)',sold,re.I)
@@ -335,7 +359,7 @@ def fetch_live(query_url,timeout=18,delay=2.5):
         return data.decode('utf-8',errors='replace')
 
 
-def compare_top20(retail_json,output,top=20,order='percent',fixture_dir=None,live=False,min_sales=3,as_of=None,auto_match=False,require_discount=True,deals_override=None):
+def compare_top20(retail_json,output,top=20,order='percent',fixture_dir=None,live=False,min_sales=3,as_of=None,auto_match=False,require_discount=True,deals_override=None,manual_matches=None):
     if deals_override is None:
         deals=choose_deals(json.loads(Path(retail_json).read_text(encoding='utf-8')),top,order,require_discount)
     else:
@@ -344,6 +368,13 @@ def compare_top20(retail_json,output,top=20,order='percent',fixture_dir=None,liv
     mapping={};unmatched=[];scores=[]
     if fixture_dir and auto_match:
         mapping,unmatched,scores=map_fixtures(fixture_dir,deals)
+        if manual_matches:
+            key_to_index={p.get('key') or p.get('url') or p.get('title'):i for i,p in enumerate(deals)}
+            for key,path in manual_matches.items():
+                idx=key_to_index.get(key)
+                target=Path(path)
+                if idx is not None and target.is_file():
+                    mapping[idx]=target
     records=[];all_sales=[]
     for i,p in enumerate(deals):
         query=p.get('ebay_query') or p.get('title','')

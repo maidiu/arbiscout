@@ -75,6 +75,42 @@ class EBayEvidenceTests(unittest.TestCase):
             self.assertEqual(unmatched,['wrong-model.html'])
             self.assertLess(scores[0]['best_score'],0.7)
 
+    def test_no_model_key_word_and_manual_html_override(self):
+        bob = {"key": "bestbuy:bob", "title": "bObsweep - Maxim All-in-One Robot Vacuum & Mop, 22000 Pa Suction, Odor-Filter AutoWash/Dry/Empty Dock, w EdgeReach - Titanium Black",
+               "model": None, "ebay_query": "bObsweep - Maxim All-in-One Robot Vacuum Mop",
+               "url": "https://www.bestbuy.com/product/bobsweep-maxim/1",
+               "current_price": 319.99, "regular_price": 1419.99,
+               "discount_percent": 77.5, "savings": 1100.0,
+               "price_conflict": False, "variant_conflict": False}
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            fixtures = root / "fixtures"
+            fixtures.mkdir()
+            (fixtures / "bio.html").write_text(
+                '<input id="gh-ac" value="bObsweep - Bio Self-Empty">'
+                + ''.join(sold_card(str(400000000000+i), 'bObsweep Bio Self-Empty Robot Vacuum', 'Nov 10, 2026', '200.00')
+                          for i in range(3)))
+            (fixtures / "maxim.html").write_text(
+                '<input id="gh-ac" value="bObsweep - Maxim Robot Vacuum">'
+                + ''.join(sold_card(str(500000000000+i), 'bObsweep Maxim Robotic Vacuum & Mop', 'Nov 10, 2026', '220.00')
+                          for i in range(3)))
+            mapping, unmatched, scores = e.map_fixtures(fixtures, [bob])
+            self.assertIn(0, mapping)
+            self.assertEqual(mapping[0].name, "maxim.html")
+            self.assertIn("bio.html", unmatched)
+            manual = root / "manual.html"
+            manual.write_text(
+                '<input id="gh-ac" value="my custom search">'
+                + ''.join(sold_card(str(600000000000+i), 'bObsweep Maxim Robot Vacuum Mop', 'Nov 10, 2026', '225.00')
+                          for i in range(3)))
+            rows = e.compare_top20(root / "unused.json", root / "out", top=1,
+                                   fixture_dir=fixtures, auto_match=True,
+                                   deals_override=[bob],
+                                   manual_matches={bob["key"]: str(manual)},
+                                   as_of=datetime(2026, 11, 17, tzinfo=timezone.utc))
+            self.assertEqual(rows[0]["fixture_file"], "manual.html")
+            self.assertEqual(rows[0]["comparison"]["sample_count"], 3)
+
     def test_end_to_end_fixture_ranking(self):
         with tempfile.TemporaryDirectory() as temp:
             p=Path(temp);(p/'retail.json').write_text(json.dumps([RETAIL]));(p/'fixtures').mkdir()

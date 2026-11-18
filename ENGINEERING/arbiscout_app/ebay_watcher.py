@@ -25,9 +25,12 @@ import run_test
 
 STATE = {"folder": "", "downloads": "", "staging": "", "output": "",
          "candidates": [], "captured": 0, "total": 0, "pending": [],
-         "armed": [], "updated": "", "message": ""}
+         "armed": [], "files": [], "updated": "", "message": ""}
 REFINE = {"status": "idle", "message": "", "started": None, "finished": None, "result": None}
 ARMED = set()
+MANUAL = {}
+KEEP_SELECTION = False
+REPROCESSING = False
 LOCK = threading.Lock()
 
 
@@ -144,6 +147,56 @@ def run_refine_thread(folder, downloads, staging, output, keys=None):
                            "finished": datetime.now(timezone.utc).isoformat(timespec="seconds")})
 
 
+def load_manual(output):
+    path = Path(output) / "manual_matches.json"
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return {str(key): str(value) for key, value in data.items() if key and value} if isinstance(data, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def save_manual(output):
+    if not output:
+        return
+    path = Path(output) / "manual_matches.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(MANUAL, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def manual_files(folder, downloads):
+    files = {}
+    for directory in (folder, downloads):
+        if not directory:
+            continue
+        target = Path(directory)
+        if not target.is_dir():
+            continue
+        for path in sorted(target.glob("*.html")):
+            files[path.name] = str(path.resolve())
+    return files
+
+
+def reprocess_thread(folder, downloads, staging, output):
+    global REPROCESSING
+    with LOCK:
+        REPROCESSING = True
+        STATE["message"] = "Reprocessing manual match..."
+    try:
+        run_test.execute(ebay_pages=str(staging), reuse_retailer=True,
+                         output=str(output), as_of=datetime.now(timezone.utc),
+                         ebay_auto_match=True, keep_selection=KEEP_SELECTION,
+                         manual_matches=MANUAL)
+        update_state(folder, downloads, staging, output, [], "Manual match applied")
+    except Exception as exc:
+        update_state(folder, downloads, staging, output, [], "Manual match failed: " + str(exc)[:300])
+    finally:
+        with LOCK:
+            REPROCESSING = False
+
+
 def load_armed(output):
     path = Path(output) / "llm_armed.json"
     if not path.is_file():
@@ -167,8 +220,12 @@ def save_armed(output):
 def update_state(folder, downloads, staging, output, pending, message=""):
     data = load_state(output)
     with LOCK:
+        files = manual_files(folder, downloads)
+        for candidate in data.get("candidates", []):
+            candidate["manual_file"] = Path(MANUAL.get(candidate.get("key"), "")).name if MANUAL.get(candidate.get("key")) else ""
         STATE.update({"folder": str(Path(folder).resolve()),
                       "armed": sorted(ARMED),
+                      "files": [{"name": name, "path": path} for name, path in sorted(files.items())],
                       "downloads": str(Path(downloads).resolve()) if downloads else "",
                       "staging": str(Path(staging).resolve()),
                       "output": str(Path(output).resolve()),
@@ -194,7 +251,7 @@ button,.btn{display:inline-block;padding:9px 13px;border-radius:8px;border:0;bac
 .btn.alt{background:#fff;color:#17508d;border:1px solid #b9cce2}.tablewrap{overflow:auto;border:1px solid #e2e8f0;border-radius:11px;background:#fff}
 table{border-collapse:collapse;width:100%;min-width:1500px}th{background:#eaf0f8;font-size:11px;color:#50617a;position:sticky;top:0;padding:10px;text-align:left;white-space:nowrap}
 td{border-top:1px solid #e9edf3;padding:10px;vertical-align:top;font-size:12px}tbody tr:hover{background:#f8fbff}
-td.n{white-space:nowrap;font-variant-numeric:tabular-nums}.item{min-width:260px}.good{color:#08734a;font-weight:750}.bad{color:#8b4626}.wait{color:#9a630e}
+td.n{white-space:nowrap;font-variant-numeric:tabular-nums}.item{min-width:260px}.good{color:#08734a;font-weight:750}.bad{color:#8b4626}.wait{color:#9a630e}td select{padding:5px;font-size:11px;max-width:220px}
 small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b798c;font-size:13px}.sources{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:9px 12px;margin:10px 0}.sources strong{font-size:12px;color:#50617a}.sources label{font-size:13px;color:#2d3f52}
 @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
@@ -241,7 +298,7 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
 <div class="tablewrap"><table><thead><tr>
 <th>#</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th>
 <th>eBay sold low</th><th>eBay sold high</th><th>Mean</th><th>Median</th><th>Typical 50%</th>
-<th>Retailer vs eBay</th><th>Sales</th><th>Observed</th><th>File / status</th><th>LLM</th><th>Open</th>
+<th>Retailer vs eBay</th><th>Sales</th><th>Observed</th><th>File / status</th><th>Match</th><th>LLM</th><th>Open</th>
 </tr></thead><tbody id="rows"></tbody></table></div>
 </main>
 <script>
@@ -338,6 +395,9 @@ function render(){
     const llmCell=x.llm_checked
       ? `<span class="good">LLM checked</span><br><small>${esc(x.llm_summary||'')}</small>`
       : `<label><input type="checkbox" class="arm" data-key="${esc(x.key)}" ${armed?'checked':''}> arm</label>`;
+    const manual=x.manual_file||'';
+    const fileOptions=(state.files||[]).map(f=>`<option value="${esc(f.name)}" ${manual===f.name?'selected':''}>${esc(f.name)}</option>`).join('');
+    const matchCell=`<select class="manual" data-key="${esc(x.key)}"><option value="">Auto</option>${fileOptions}</select>`;
     const diag=x.diagnostics?`matched ${x.diagnostics.usable??0}; rejected ${x.diagnostics.model_rejected??0}; unknown offers ${x.diagnostics.unknown_best_offer??0}${x.diagnostics.llm_exact!=null?`; LLM exact ${x.diagnostics.llm_exact}, removed ${x.diagnostics.llm_removed}`:''}`:'';
     return `<tr><td class="n">${rank}</td>
       <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.source?'<br><small>'+esc(x.source)+'</small>':''}${x.category?'<br><small>'+esc(x.category)+'</small>':''}${x.variant_count>1?'<br><small>'+x.variant_count+' variants</small>':''}${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
@@ -347,16 +407,30 @@ function render(){
       <td class="n">${x.typical_low==null?'—':usd(x.typical_low)+' – '+usd(x.typical_high)}</td>
       <td>${vs}</td><td class="n">${x.sample_count??0}</td><td class="obs">${esc(obs)}</td>
       <td><small>${file}</small><br><small>${esc(x.status||'')}</small><br><small>${esc(x.ebay_status||'')}</small>${diag?'<br><small>'+esc(diag)+'</small>':''}</td>
+      <td>${matchCell}</td>
       <td>${llmCell}</td>
       <td><a class="btn" href="${esc(x.ebay_url)}" target="_blank" rel="noopener noreferrer">Open eBay</a></td></tr>`;
-  }).join('')||'<tr><td colspan="17">No candidates match the current filters. Try All dates or a different view.</td></tr>';
+  }).join('')||'<tr><td colspan="18">No candidates match the current filters. Try All dates or a different view.</td></tr>';
 }
 async function poll(){try{const r=await fetch('/api/state',{cache:'no-store'});state=await r.json();populateSources();populateCategories();render();}catch(e){}}
 async function refineStatus(){try{const r=await fetch('/api/refine/status',{cache:'no-store'});const j=await r.json();const running=j.status==='running';$('refineSelected').disabled=running;$('refineNew').disabled=running;$('refineMsg').textContent=running?'Refining…':(j.message||'');if(j.status==='success')poll();}catch(e){}}
 async function runRefine(mode){const r=await fetch('/api/refine',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode})});const j=await r.json();if(j.error)alert(j.error);else $('refineMsg').textContent='Refining…';refineStatus();}
 $('refineSelected').onclick=()=>runRefine('selected');
 $('refineNew').onclick=()=>runRefine('new');
-$('rows').addEventListener('change',async e=>{if(!e.target.matches('.arm'))return;const key=e.target.dataset.key;const armed=e.target.checked;const r=await fetch('/api/arm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,armed})});const j=await r.json();if(j.error){alert(j.error);e.target.checked=!armed;}else{state.armed=j.armed||[];render();}});
+$('rows').addEventListener('change',async e=>{
+  if(e.target.matches('.arm')){
+    const key=e.target.dataset.key,armed=e.target.checked;
+    const r=await fetch('/api/arm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,armed})});
+    const j=await r.json();
+    if(j.error){alert(j.error);e.target.checked=!armed;}else{state.armed=j.armed||[];render();}
+  }
+  if(e.target.matches('.manual')){
+    const key=e.target.dataset.key,file=e.target.value;
+    const r=await fetch('/api/manual-map',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,file})});
+    const j=await r.json();
+    if(j.error)alert(j.error);else{$('refineMsg').textContent='Manual match applied…';setTimeout(poll,1200);}
+  }
+});
 $('next').onclick=()=>{
   const x=visible.find(c=>c.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||c.ebay_status==='NO_MATCHING_FIXTURE')
        ||visible.find(c=>(c.sample_count||0)===0);
@@ -442,6 +516,36 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, json.dumps({"ok": True, "armed": armed},
                                               ensure_ascii=False),
                               "application/json; charset=utf-8")
+        if self.path == "/api/manual-map":
+            key = str(body.get("key") or "").strip()
+            filename = str(body.get("file") or "").strip()
+            if not key:
+                return self._send(400, json.dumps({"error": "Missing candidate key."}),
+                                  "application/json; charset=utf-8")
+            with LOCK:
+                folder = STATE.get("folder")
+                downloads = STATE.get("downloads") or None
+                staging = STATE.get("staging")
+                output = STATE.get("output")
+                busy = REPROCESSING
+            if busy:
+                return self._send(409, json.dumps({"error": "Reprocessing already running."}),
+                                  "application/json; charset=utf-8")
+            if filename:
+                files = manual_files(folder, downloads)
+                if filename not in files:
+                    return self._send(400, json.dumps({"error": "HTML file not found in the watched folders."}),
+                                      "application/json; charset=utf-8")
+                MANUAL[key] = files[filename]
+            else:
+                MANUAL.pop(key, None)
+            save_manual(output)
+            threading.Thread(target=reprocess_thread,
+                             args=(folder, downloads, staging, output), daemon=True).start()
+            return self._send(200, json.dumps({"ok": True, "file": filename,
+                                               "manual": MANUAL.get(key, "")},
+                                              ensure_ascii=False),
+                              "application/json; charset=utf-8")
         if self.path == "/api/refine":
             mode = str(body.get("mode") or "selected").lower()
             with LOCK:
@@ -500,6 +604,8 @@ def main(argv=None):
     p.add_argument("--keep-selection", action="store_true",
                    help="Preserve the selected products in file order instead of re-selecting top 20")
     a = p.parse_args(argv)
+    global KEEP_SELECTION
+    KEEP_SELECTION = a.keep_selection
 
     def stop(_signum, _frame):
         raise KeyboardInterrupt
@@ -509,6 +615,8 @@ def main(argv=None):
     output = Path(a.output)
     ARMED.clear()
     ARMED.update(load_armed(output))
+    MANUAL.clear()
+    MANUAL.update(load_manual(output))
     if a.downloads_dir:
         downloads = Path(a.downloads_dir)
     else:
@@ -558,7 +666,8 @@ def main(argv=None):
     try:
         run_test.execute(ebay_pages=str(staging), reuse_retailer=True,
                          output=str(output), as_of=datetime.now(timezone.utc),
-                         ebay_auto_match=True, keep_selection=a.keep_selection)
+                         ebay_auto_match=True, keep_selection=a.keep_selection,
+                         manual_matches=MANUAL)
     except Exception as exc:
         print("Initial processing error:", exc)
     initial_message = (f"Processed {len(initial_pages)} saved page(s) at startup"
@@ -610,7 +719,8 @@ def main(argv=None):
                         copied.append((key, signature))
                     run_test.execute(ebay_pages=str(staging), reuse_retailer=True,
                                      output=str(output), as_of=datetime.now(timezone.utc),
-                                     ebay_auto_match=True, keep_selection=a.keep_selection)
+                                     ebay_auto_match=True, keep_selection=a.keep_selection,
+                                     manual_matches=MANUAL)
                     for key, signature in copied:
                         seen[key] = signature
                         pending.pop(key, None)

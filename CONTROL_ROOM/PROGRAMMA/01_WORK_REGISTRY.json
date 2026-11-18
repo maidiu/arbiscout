@@ -1730,7 +1730,7 @@
       ],
       "dependency_groups": [],
       "priority": "P2",
-      "finding": "Optional LLM refinement added: per-candidate arm/disarm, Run selected and Run all new; selected candidates are combined into one compact identity-only job when safe, split only by a configurable input-size limit. Strict JSON verdicts filter wrong-config/used/unknown rows; cache, raw backup and deterministic calculations remain local. Checked rows display post-LLM exact/removed, sample, median and gap; `llm_checked` prevents rerun. No live provider call was made. App tests: 52 executed, 51 passed, 1 skipped.",
+      "finding": "Optional LLM refinement added: per-candidate arm/disarm, Run selected and Run all new; selected candidates are combined into one compact identity-only job when safe, split only by a configurable input-size limit. Strict JSON verdicts filter wrong-config/used/unknown rows; cache, raw backup and deterministic calculations remain local. Checked rows display post-LLM exact/removed, sample, median and gap; `llm_checked` prevents rerun. No live provider call was made. App tests: 53 executed, 52 passed, 1 skipped. Results also supports a persisted per-candidate HTML Match selector for auto-match failures.",
       "finding_refs": [
         "ENGINEERING/arbiscout_app/llm_refine.py",
         "ENGINEERING/arbiscout_app/ebay_watcher.py",

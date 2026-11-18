@@ -166,7 +166,8 @@ def make_demo_sold(path, products, at):
 def execute(*, snapshot=None, url=None, ebay_pages=None, ebay_live=False, demo=False,
             output="arbiscout_test", as_of=None, mode="http", browser_visible=False,
             timeout=20, delay=1.5, reuse_retailer=False, delete_ebay_pages=False,
-            ebay_auto_match=False, include_current_only=None, keep_selection=False):
+            ebay_auto_match=False, include_current_only=None, keep_selection=False,
+            manual_matches=None):
     if demo and (snapshot or url or ebay_pages or ebay_live):
         raise ValueError("Demo cannot mix with real sources")
     if ebay_pages and ebay_live:
@@ -213,7 +214,8 @@ def execute(*, snapshot=None, url=None, ebay_pages=None, ebay_live=False, demo=F
         products_path, root / "comparisons", top=20, fixture_dir=ebay_pages,
         live=ebay_live, as_of=at, auto_match=ebay_auto_match,
         require_discount=not include_current_only,
-        deals_override=products if keep_selection else None)
+        deals_override=products if keep_selection else None,
+        manual_matches=manual_matches)
     match_report = {}
     match_path = root / "comparisons" / "fixture_match.json"
     if ebay_auto_match and match_path.is_file():

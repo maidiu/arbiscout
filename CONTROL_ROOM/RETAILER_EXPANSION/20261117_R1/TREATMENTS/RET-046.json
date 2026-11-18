@@ -5,9 +5,9 @@
   "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
   "research_snapshot_date": "2026-11-17",
   "implementation_status": "EXISTING_SOURCE_RECHECK",
-  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
-  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
-  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "rights_status": "TERMS_REVIEW_REQUIRED",
+  "mechanism_status": "LOCAL_ADAPTER_IMPLEMENTED_NOT_RECAPTURED",
+  "quality_status": "LOCAL_TESTS_ONLY",
   "integration_status": "PRIOR_APPLICATION_IMPLEMENTATION_UNREVIEWED",
   "review_status": "NOT_REVIEWED",
   "source_family": "OFFICIAL_CATEGORY_FEED_AND_BATCH_DETAILS",
@@ -21,23 +21,116 @@
     "public_evidence_grade": "OFFICIAL_API_AND_EXISTING_ADAPTER"
   },
   "implementation": {
-    "adapter_paths": [],
+    "adapter_paths": [
+      "ENGINEERING/arbiscout_app/providers.py"
+    ],
     "fixture_paths": [],
-    "test_paths": [],
+    "test_paths": [
+      "ENGINEERING/arbiscout_app/tests/test_providers.py",
+      "ENGINEERING/arbiscout_app/tests/test_catalog.py",
+      "ENGINEERING/arbiscout_app/tests/test_source_registry.py"
+    ],
     "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
-    "last_commit_sha": null,
-    "actual_live_rows": null,
-    "correct_current_prices_verified": null
+    "last_commit_sha": "8bdf2111593b6d2e0ea5ab3d7819abcc0153b112",
+    "actual_live_rows": 500,
+    "correct_current_prices_verified": false
   },
-  "receipts": [],
-  "blockers": [],
-  "open_questions": [],
-  "decisions": [],
+  "receipts": [
+    {
+      "type": "SOURCE_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-046.json",
+      "sha256": "2d2669f7f67ce1cda6279aa5e58a73dabe7dfa0290da23d97bf13c08c295fee5",
+      "commit_sha": "8bdf2111593b6d2e0ea5ab3d7819abcc0153b112",
+      "captured_at": "2026-11-17",
+      "verdict": "LOCAL_ONLY_NOT_AUTHORIZED",
+      "notes": "Local app receipt; not a fresh authorized capture."
+    },
+    {
+      "type": "PAGING_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-046.json",
+      "sha256": "2d2669f7f67ce1cda6279aa5e58a73dabe7dfa0290da23d97bf13c08c295fee5",
+      "commit_sha": "8bdf2111593b6d2e0ea5ab3d7819abcc0153b112",
+      "captured_at": "2026-11-17",
+      "verdict": "LOCAL_ONLY_NOT_AUTHORIZED",
+      "notes": "Paging behavior is local-run evidence, not independently counted."
+    },
+    {
+      "type": "PRICE_EXTRACTION_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-046.json",
+      "sha256": "2d2669f7f67ce1cda6279aa5e58a73dabe7dfa0290da23d97bf13c08c295fee5",
+      "commit_sha": "8bdf2111593b6d2e0ea5ab3d7819abcc0153b112",
+      "captured_at": "2026-11-17",
+      "verdict": "LOCAL_ONLY_NOT_AUTHORIZED",
+      "notes": "Price roles are documented; current prices are not independently verified."
+    },
+    {
+      "type": "IDENTITY_RECEIPT",
+      "path": "RECEIPTS/RET-046/README.md",
+      "sha256": "e55e83968febed06d40b2b4549dae9899d26e1e0e34a61a321735f1953b6c69b",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "LOCAL_RULES_ONLY",
+      "notes": "Identity/variant rules recorded; no fresh exact-product acceptance."
+    },
+    {
+      "type": "RIGHTS_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-046.json",
+      "sha256": "2d2669f7f67ce1cda6279aa5e58a73dabe7dfa0290da23d97bf13c08c295fee5",
+      "commit_sha": "8bdf2111593b6d2e0ea5ab3d7819abcc0153b112",
+      "captured_at": "2026-11-17",
+      "verdict": "NOT_AUTHORIZED",
+      "notes": "Terms/rights review remains open; no production claim."
+    },
+    {
+      "type": "CATALOG_RECEIPT",
+      "path": "RECEIPTS/RET-046/README.md",
+      "sha256": "e55e83968febed06d40b2b4549dae9899d26e1e0e34a61a321735f1953b6c69b",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "LOCAL_TEST_ONLY",
+      "notes": "Local catalog tests only; no fresh live catalog acceptance."
+    },
+    {
+      "type": "TEST_RECEIPT",
+      "path": "RECEIPTS/RET-046/README.md",
+      "sha256": "e55e83968febed06d40b2b4549dae9899d26e1e0e34a61a321735f1953b6c69b",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "PASS_LOCAL",
+      "notes": "App/registry tests pass locally; one private-snapshot test is skipped."
+    }
+  ],
+  "blockers": [
+    "Local adapter only; rights/terms review and independent acceptance remain open."
+  ],
+  "open_questions": [
+    "What independent rights review and fresh authorized capture are required before LIVE_VALIDATED?"
+  ],
+  "decisions": [
+    {
+      "date": "2026-11-17",
+      "kind": "COVERAGE_LEDGER_20261117",
+      "decision": "EXISTING_SOURCE_RECHECK",
+      "note": "Local adapter only; rights/terms review and independent acceptance remain open."
+    }
+  ],
   "history": [
     {
       "date": "2026-11-17",
       "kind": "INITIAL_SEED",
       "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    },
+    {
+      "date": "2026-11-17",
+      "kind": "COVERAGE_LEDGER_UPDATE_20261117",
+      "note": "IMPLEMENTED_LOCAL: Local adapter works; live rights/terms review and independent acceptance remain open. Next: Preserve existing API adapter; do not scrape needlessly"
     }
-  ]
+  ],
+  "coverage": {
+    "ledger_status": "IMPLEMENTED_LOCAL",
+    "access_gate": "API_USE_RIGHTS_REVIEW",
+    "blocker": "Local adapter works; live rights/terms review and independent acceptance remain open.",
+    "next_action": "Preserve existing API adapter; do not scrape needlessly",
+    "ledger_path": "ENGINEERING/arbiscout_app/sources/coverage_ledger.md"
+  }
 }

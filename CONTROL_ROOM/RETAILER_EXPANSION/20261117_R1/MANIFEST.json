@@ -3,7 +3,7 @@
   "snapshot_date": "2026-11-17",
   "source_count": 54,
   "source_of_truth": "TREATMENTS/RET-xxx.json are mutable source-status records; RESEARCH/MECHANISM_SPECIFICATIONS.json is immutable research snapshot; DASHBOARD.md is generated",
-  "current_branch_base": "65529f5c5d23820d679f8d003157a1dd25d4f994",
+  "current_branch_base": "8bdf2111593b6d2e0ea5ab3d7819abcc0153b112",
   "research_source": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
   "cases": [
     {
@@ -384,5 +384,8 @@
       "json": "TREATMENTS/RET-054.json",
       "journal": "TREATMENTS/RET-054.md"
     }
-  ]
+  ],
+  "workroom_seed_sha": "16a194d4aa5d98b6262c1ad956211f2f9d345a37",
+  "workroom_ci_head_sha": "8517aba3a9420e8558f3285608dd25e92c8b68f5",
+  "implementation_branch": "agent/arb-retail54-implementation-20261117-r1"
 }

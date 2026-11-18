@@ -4,10 +4,10 @@
   "name": "Advance Auto Parts",
   "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
   "research_snapshot_date": "2026-11-17",
-  "implementation_status": "UNSTARTED",
-  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "implementation_status": "ACCESS_HOLD",
+  "rights_status": "APPROVED_FEED_REQUIRED",
   "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
-  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "quality_status": "NO_SOURCE_VALIDATION",
   "integration_status": "NOT_INTEGRATED",
   "review_status": "NOT_REVIEWED",
   "source_family": "LOCATION_VEHICLE_FITMENT_AND_IMPACT_CATALOG",
@@ -29,15 +29,48 @@
     "actual_live_rows": null,
     "correct_current_prices_verified": null
   },
-  "receipts": [],
-  "blockers": [],
-  "open_questions": [],
-  "decisions": [],
+  "receipts": [
+    {
+      "type": "RIGHTS_RECEIPT",
+      "path": "RECEIPTS/RET-051/rights.md",
+      "sha256": "cef1bda61fa46d3a486d5135286527f0e79568b09b69de02b9aefcdc44937c0b",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "HOLD",
+      "notes": "Approved feed/partner brand access is required."
+    }
+  ],
+  "blockers": [
+    "Approved feed/partner brand access is required."
+  ],
+  "open_questions": [
+    "What authorized capture or approved feed can establish selectors, pagination, price semantics and identity?"
+  ],
+  "decisions": [
+    {
+      "date": "2026-11-17",
+      "kind": "COVERAGE_LEDGER_20261117",
+      "decision": "ACCESS_HOLD",
+      "note": "Approved feed/partner brand access is required."
+    }
+  ],
   "history": [
     {
       "date": "2026-11-17",
       "kind": "INITIAL_SEED",
       "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    },
+    {
+      "date": "2026-11-17",
+      "kind": "COVERAGE_LEDGER_UPDATE_20261117",
+      "note": "HOLD_APPROVED_FEED: Approved feed/partner brand access is required. Next: Prefer authorized catalog, requires vehicle fitment gate"
     }
-  ]
+  ],
+  "coverage": {
+    "ledger_status": "HOLD_APPROVED_FEED",
+    "access_gate": "PARTNER_APPROVAL_NEEDED_FOR_FEED",
+    "blocker": "Approved feed/partner brand access is required.",
+    "next_action": "Prefer authorized catalog, requires vehicle fitment gate",
+    "ledger_path": "ENGINEERING/arbiscout_app/sources/coverage_ledger.md"
+  }
 }

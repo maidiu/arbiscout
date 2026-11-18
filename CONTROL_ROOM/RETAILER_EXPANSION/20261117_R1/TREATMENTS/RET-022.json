@@ -4,10 +4,10 @@
   "name": "Academy Sports + Outdoors",
   "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
   "research_snapshot_date": "2026-11-17",
-  "implementation_status": "UNSTARTED",
-  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "implementation_status": "ACCESS_HOLD",
+  "rights_status": "TERMS_REVIEW_REQUIRED",
   "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
-  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "quality_status": "NO_SOURCE_VALIDATION",
   "integration_status": "NOT_INTEGRATED",
   "review_status": "NOT_REVIEWED",
   "source_family": "NESTED_CLEARANCE_CATEGORY",
@@ -29,15 +29,48 @@
     "actual_live_rows": null,
     "correct_current_prices_verified": null
   },
-  "receipts": [],
-  "blockers": [],
-  "open_questions": [],
-  "decisions": [],
+  "receipts": [
+    {
+      "type": "RIGHTS_RECEIPT",
+      "path": "RECEIPTS/RET-022/rights.md",
+      "sha256": "c6f6fb83a46493081e2567cae1a789ab9f468fc87691dca09994b0cad48b8824",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "HOLD",
+      "notes": "Terms/API permission review is required before collection."
+    }
+  ],
+  "blockers": [
+    "Terms/API permission review is required before collection."
+  ],
+  "open_questions": [
+    "What authorized capture or approved feed can establish selectors, pagination, price semantics and identity?"
+  ],
+  "decisions": [
+    {
+      "date": "2026-11-17",
+      "kind": "COVERAGE_LEDGER_20261117",
+      "decision": "ACCESS_HOLD",
+      "note": "Terms/API permission review is required before collection."
+    }
+  ],
   "history": [
     {
       "date": "2026-11-17",
       "kind": "INITIAL_SEED",
       "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    },
+    {
+      "date": "2026-11-17",
+      "kind": "COVERAGE_LEDGER_UPDATE_20261117",
+      "note": "HOLD_TERMS: Terms/API permission review is required before collection. Next: Potential adapter; eBay comparability sparse in apparel"
     }
-  ]
+  ],
+  "coverage": {
+    "ledger_status": "HOLD_TERMS",
+    "access_gate": "TERMS_REVIEW_NEEDED",
+    "blocker": "Terms/API permission review is required before collection.",
+    "next_action": "Potential adapter; eBay comparability sparse in apparel",
+    "ledger_path": "ENGINEERING/arbiscout_app/sources/coverage_ledger.md"
+  }
 }

@@ -16,9 +16,9 @@ ARBISCOUT — COMPLETE TEST VERSION
    - RESULTS: capture eBay sold pages and see the sold low/high/mean/median,
      typical range, gap, and whether the retailer is below the eBay low or
      median. Filter by source, category, date, Top 10 positive gaps, waiting
-     for a file, or captured evidence. Optional Refine with DeepSeek sends only
-     sanitized extracted listings to an OpenAI-compatible endpoint; it removes
-     non-matches but never adds listings or prices.
+     for a file, or captured evidence. Arm candidates, then Run selected with DeepSeek or Run all new with
+     DeepSeek. Selected candidates are sent in one compact identity-only job
+     when safe; the LLM removes non-matches but never calculates or adds prices.
    - SETTINGS: API keys, Best Buy/Dell/LEGO URLs, Woot feed, Kroger search terms,
      optional DeepSeek settings, links
      to the raw generated report files, and Source coverage (54 cases).

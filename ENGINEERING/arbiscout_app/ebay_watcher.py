@@ -25,8 +25,9 @@ import run_test
 
 STATE = {"folder": "", "downloads": "", "staging": "", "output": "",
          "candidates": [], "captured": 0, "total": 0, "pending": [],
-         "updated": "", "message": ""}
+         "armed": [], "updated": "", "message": ""}
 REFINE = {"status": "idle", "message": "", "started": None, "finished": None, "result": None}
+ARMED = set()
 LOCK = threading.Lock()
 
 
@@ -55,6 +56,8 @@ def load_state(output):
         candidates.append({
             "fixture_index": row.get("fixture_index"),
             "fixture_file": row.get("fixture_file"),
+            "key": p.get("key") or p.get("url"),
+            "llm_refined": bool(row.get("llm_refinement")),
             "title": p.get("title"),
             "retail_url": p.get("url"),
             "observed_at": p.get("observed_at"),
@@ -88,18 +91,25 @@ def load_state(output):
     return {"candidates": candidates, "captured": captured, "total": len(candidates)}
 
 
-def run_refine_thread(folder, downloads, staging, output):
+def run_refine_thread(folder, downloads, staging, output, keys=None):
     global REFINE
+    label = f"{len(keys)} selected candidate(s)" if keys is not None else "saved listings"
     with LOCK:
-        REFINE.update({"status": "running", "message": "Refining saved listings with DeepSeek...",
+        REFINE.update({"status": "running", "message": f"Refining {label} with DeepSeek...",
                        "started": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                        "finished": None, "result": None})
     try:
+        args = [sys.executable, str(Path(__file__).with_name("llm_refine.py")),
+                "--output", str(output), "--json"]
+        if keys is not None:
+            keys_path = Path(output) / "comparisons" / "llm_run_keys.json"
+            keys_path.parent.mkdir(parents=True, exist_ok=True)
+            keys_path.write_text(json.dumps({"keys": sorted(keys)}, indent=2) + "\n",
+                                 encoding="utf-8")
+            args += ["--keys-file", str(keys_path)]
         proc = subprocess.run(
-            [sys.executable, str(Path(__file__).with_name("llm_refine.py")),
-             "--output", str(output), "--json"],
-            cwd=str(Path(__file__).resolve().parent), capture_output=True, text=True,
-            timeout=300)
+            args, cwd=str(Path(__file__).resolve().parent), capture_output=True, text=True,
+            timeout=900)
         if proc.returncode != 0:
             detail = (proc.stderr or proc.stdout or "LLM refinement failed").strip()
             raise RuntimeError(detail[-500:])
@@ -118,10 +128,31 @@ def run_refine_thread(folder, downloads, staging, output):
                            "finished": datetime.now(timezone.utc).isoformat(timespec="seconds")})
 
 
+def load_armed(output):
+    path = Path(output) / "llm_armed.json"
+    if not path.is_file():
+        return set()
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        keys = data.get("keys", []) if isinstance(data, dict) else data
+        return {str(key) for key in keys if key}
+    except (OSError, ValueError):
+        return set()
+
+
+def save_armed(output):
+    if not output:
+        return
+    path = Path(output) / "llm_armed.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"keys": sorted(ARMED)}, indent=2) + "\n", encoding="utf-8")
+
+
 def update_state(folder, downloads, staging, output, pending, message=""):
     data = load_state(output)
     with LOCK:
         STATE.update({"folder": str(Path(folder).resolve()),
+                      "armed": sorted(ARMED),
                       "downloads": str(Path(downloads).resolve()) if downloads else "",
                       "staging": str(Path(staging).resolve()),
                       "output": str(Path(output).resolve()),
@@ -161,7 +192,8 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
 <div class="note" id="paths"></div>
 <div class="controls">
   <button id="next">Open next waiting eBay page</button>
-  <button id="refine">Refine with DeepSeek</button><span id="refineMsg" class="count"></span>
+  <button id="refineSelected">Run selected with DeepSeek</button>
+  <button id="refineNew">Run all new with DeepSeek</button><span id="refineMsg" class="count"></span>
   <input id="q" type="search" placeholder="Filter by product name, model, price…">
   <select id="sort">
     <option value="discount">Highest % off</option>
@@ -193,14 +225,14 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
 <div class="tablewrap"><table><thead><tr>
 <th>#</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th>
 <th>eBay sold low</th><th>eBay sold high</th><th>Mean</th><th>Median</th><th>Typical 50%</th>
-<th>Retailer vs eBay</th><th>Sales</th><th>Observed</th><th>File / status</th><th>Open</th>
+<th>Retailer vs eBay</th><th>Sales</th><th>Observed</th><th>File / status</th><th>LLM</th><th>Open</th>
 </tr></thead><tbody id="rows"></tbody></table></div>
 </main>
 <script>
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
 const usd=v=>v==null?'—':('$'+Number(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}));
-let state={candidates:[],captured:0,total:0,pending:[]};
+let state={candidates:[],captured:0,total:0,pending:[],armed:[]};
 let visible=[];
 function cmpNull(a,b,dir){if(a==null&&b==null)return 0;if(a==null)return 1;if(b==null)return -1;return dir*(a-b);}
 function dateBounds(){
@@ -295,12 +327,16 @@ function render(){
       <td class="n">${x.typical_low==null?'—':usd(x.typical_low)+' – '+usd(x.typical_high)}</td>
       <td>${vs}</td><td class="n">${x.sample_count??0}</td><td class="obs">${esc(obs)}</td>
       <td><small>${file}</small><br><small>${esc(x.status||'')}</small><br><small>${esc(x.ebay_status||'')}</small>${diag?'<br><small>'+esc(diag)+'</small>':''}</td>
+      <td><label><input type="checkbox" class="arm" data-key="${esc(x.key)}" ${(state.armed||[]).includes(x.key)?'checked':''}> ${x.llm_refined?'<span class="good">refined</span>':'arm'}</label></td>
       <td><a class="btn" href="${esc(x.ebay_url)}" target="_blank" rel="noopener noreferrer">Open eBay</a></td></tr>`;
-  }).join('')||'<tr><td colspan="16">No candidates match the current filters. Try All dates or a different view.</td></tr>';
+  }).join('')||'<tr><td colspan="17">No candidates match the current filters. Try All dates or a different view.</td></tr>';
 }
 async function poll(){try{const r=await fetch('/api/state',{cache:'no-store'});state=await r.json();populateSources();populateCategories();render();}catch(e){}}
-async function refineStatus(){try{const r=await fetch('/api/refine/status',{cache:'no-store'});const j=await r.json();$('refine').disabled=j.status==='running';$('refineMsg').textContent=j.status==='running'?'Refining…':(j.message||'');if(j.status==='success')poll();}catch(e){}}
-$('refine').onclick=async()=>{const r=await fetch('/api/refine',{method:'POST'});const j=await r.json();if(j.error)alert(j.error);else $('refineMsg').textContent='Refining…';refineStatus();};
+async function refineStatus(){try{const r=await fetch('/api/refine/status',{cache:'no-store'});const j=await r.json();const running=j.status==='running';$('refineSelected').disabled=running;$('refineNew').disabled=running;$('refineMsg').textContent=running?'Refining…':(j.message||'');if(j.status==='success')poll();}catch(e){}}
+async function runRefine(mode){const r=await fetch('/api/refine',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode})});const j=await r.json();if(j.error)alert(j.error);else $('refineMsg').textContent='Refining…';refineStatus();}
+$('refineSelected').onclick=()=>runRefine('selected');
+$('refineNew').onclick=()=>runRefine('new');
+$('rows').addEventListener('change',async e=>{if(!e.target.matches('.arm'))return;const key=e.target.dataset.key;const armed=e.target.checked;const r=await fetch('/api/arm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,armed})});const j=await r.json();if(j.error){alert(j.error);e.target.checked=!armed;}else{state.armed=j.armed||[];render();}});
 $('next').onclick=()=>{
   const x=visible.find(c=>c.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||c.ebay_status==='NO_MATCHING_FIXTURE')
        ||visible.find(c=>(c.sample_count||0)===0);
@@ -360,7 +396,28 @@ class Handler(BaseHTTPRequestHandler):
         return self._send(404, "Not found.")
 
     def do_POST(self):
+        try:
+            length = int(self.headers.get("Content-Length") or 0)
+            body = json.loads(self.rfile.read(length) or b"{}")
+        except Exception:
+            body = {}
+        if self.path == "/api/arm":
+            key = str(body.get("key") or "").strip()
+            if not key:
+                return self._send(400, json.dumps({"error": "Missing candidate key."}),
+                                  "application/json; charset=utf-8")
+            with LOCK:
+                if body.get("armed"):
+                    ARMED.add(key)
+                else:
+                    ARMED.discard(key)
+                save_armed(STATE.get("output"))
+                armed = sorted(ARMED)
+            return self._send(200, json.dumps({"ok": True, "armed": armed},
+                                              ensure_ascii=False),
+                              "application/json; charset=utf-8")
         if self.path == "/api/refine":
+            mode = str(body.get("mode") or "selected").lower()
             with LOCK:
                 if REFINE.get("status") == "running":
                     return self._send(409, json.dumps({"error": "Refinement already running."}),
@@ -369,12 +426,32 @@ class Handler(BaseHTTPRequestHandler):
                 folder = STATE.get("folder")
                 downloads = STATE.get("downloads") or None
                 staging = STATE.get("staging")
+                candidates = list(STATE.get("candidates", []))
+                armed = set(ARMED)
             if not output or not folder:
                 return self._send(400, json.dumps({"error": "No selected output is ready."}),
                                   "application/json; charset=utf-8")
+            if mode == "selected":
+                keys = [c.get("key") for c in candidates
+                        if c.get("key") in armed and (c.get("sample_count") or 0) > 0]
+                label = "armed"
+            elif mode in ("new", "all_new", "all"):
+                keys = [c.get("key") for c in candidates
+                        if c.get("key") and not c.get("llm_refined")
+                        and (c.get("sample_count") or 0) > 0]
+                label = "new"
+            else:
+                return self._send(400, json.dumps({"error": "Unknown refinement mode."}),
+                                  "application/json; charset=utf-8")
+            keys = [key for key in keys if key]
+            if not keys:
+                return self._send(400, json.dumps(
+                    {"error": f"No {label} candidates with eBay evidence."}),
+                    "application/json; charset=utf-8")
             threading.Thread(target=run_refine_thread,
-                             args=(folder, downloads, staging, output), daemon=True).start()
-            return self._send(202, json.dumps({"ok": True}), "application/json; charset=utf-8")
+                             args=(folder, downloads, staging, output, keys), daemon=True).start()
+            return self._send(202, json.dumps({"ok": True, "mode": mode, "keys": len(keys)}),
+                              "application/json; charset=utf-8")
         return self._send(404, "Not found.")
 
     def log_message(self, *_args):
@@ -402,6 +479,8 @@ def main(argv=None):
 
     folder = Path(a.folder)
     output = Path(a.output)
+    ARMED.clear()
+    ARMED.update(load_armed(output))
     if a.downloads_dir:
         downloads = Path(a.downloads_dir)
     else:

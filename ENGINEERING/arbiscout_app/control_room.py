@@ -493,6 +493,7 @@ __SAVED__
 <label>API base URL</label><input name="LLM_BASE_URL" value="__LLM_BASE_URL__" placeholder="https://api.deepseek.com/v1">
 <div class="row"><div><label>Model</label><input name="LLM_MODEL" value="__LLM_MODEL__" placeholder="deepseek-chat"></div>
 <div><label>Minimum confidence</label><input name="LLM_MIN_CONFIDENCE" value="__LLM_MIN_CONFIDENCE__" placeholder="0.8"></div></div>
+<label>Max input characters per job</label><input name="LLM_MAX_INPUT_CHARS" value="__LLM_MAX_INPUT_CHARS__" placeholder="80000">
 <label>API key <span class="status">__LLM_KEY_STATUS__</span></label><input name="LLM_API_KEY" type="password" placeholder="leave blank to keep current">
 <label><input type="checkbox" name="clear_LLM_API_KEY" style="width:auto"> Clear saved LLM key</label>
 </div>
@@ -550,9 +551,10 @@ class Handler(BaseHTTPRequestHandler):
                 "__BESTBUY_URL__": env.get("BESTBUY_URL", "https://www.bestbuy.com/black-friday"),
                 "__DELL_URL__": env.get("DELL_URL", DELL_URL),
                 "__LEGO_URL__": env.get("LEGO_URL", LEGO_URL),
-                "__LLM_BASE_URL__": env.get("LLM_BASE_URL", "https://api.deepseek.com/v1"),
-                "__LLM_MODEL__": env.get("LLM_MODEL", "deepseek-chat"),
+                "__LLM_BASE_URL__": env.get("LLM_BASE_URL") or env.get("DEEPSEEK_BASE_URL") or "https://api.deepseek.com/v1",
+                "__LLM_MODEL__": env.get("LLM_MODEL") or env.get("DEEPSEEK_MODEL") or "deepseek-chat",
                 "__LLM_MIN_CONFIDENCE__": env.get("LLM_MIN_CONFIDENCE", "0.8"),
+                "__LLM_MAX_INPUT_CHARS__": env.get("LLM_MAX_INPUT_CHARS", "80000"),
                 "__LLM_KEY_STATUS__": "set" if env.get("LLM_API_KEY") or env.get("DEEPSEEK_API_KEY") else "not set",
                 "__WOOT_FEED__": env.get("WOOT_FEED", "All"),
                 "__WOOT_MAX__": env.get("WOOT_MAX", "500"),
@@ -654,7 +656,8 @@ class Handler(BaseHTTPRequestHandler):
                 updates = {}
                 clears = []
                 for key in ("BESTBUY_URL", "DELL_URL", "LEGO_URL", "WOOT_FEED", "WOOT_MAX",
-                            "KROGER_TERMS", "LLM_BASE_URL", "LLM_MODEL", "LLM_MIN_CONFIDENCE"):
+                            "KROGER_TERMS", "LLM_BASE_URL", "LLM_MODEL",
+                            "LLM_MIN_CONFIDENCE", "LLM_MAX_INPUT_CHARS"):
                     if key in form:
                         updates[key] = form[key][0].strip()
                 for key in ("MEH_API_KEY", "WOOT_API_KEY", "KROGER_CLIENT_ID",

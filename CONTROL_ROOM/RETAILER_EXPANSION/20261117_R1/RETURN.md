@@ -5,6 +5,7 @@
 **Reconciled app head:** `8bdf2111593b6d2e0ea5ab3d7819abcc0153b112`
 **Treatment ledger commit:** `a745e7e`
 **Dell implementation commit:** `0e144bced6ae130ae3464ba6002c3af218dbc84f`
+**Model-code fix commit:** `216febf7bad514cfd6fd6ebd4eae920a2804ce10`
 **Scope:** all 54 RET cases accounted for. No autonomous merge to `main`.
 
 ## Status totals

@@ -1,0 +1,40 @@
+{
+  "id": "RET-048",
+  "name": "Kroger",
+  "status": "IMPLEMENTED_LOCAL",
+  "SOURCE_RECEIPT": {
+    "adapter": "providers.py (fetch_kroger)",
+    "mechanism": "LOCATION_SCOPED_OAUTH_PRODUCT_SEARCH",
+    "source_urls": [
+      "https://api.kroger.com/v1/connect/oauth2/token",
+      "https://api.kroger.com/v1/products",
+      "https://api.kroger.com/v1/locations"
+    ],
+    "capture": "OAuth client credentials; products search with filter.term and filter.locationId; ZIP entered per run.",
+    "local_evidence": "Local run with ZIP 29072 and terms milk/eggs/bread: 36 promoted products; catalog later showed 77 Kroger rows across runs.",
+    "variant_policy": "First priced item per product; productId dedupe; ZIP and location stored on each row.",
+    "limitations": "Store-specific prices and availability; search is term-based, not a universal on-sale feed."
+  },
+  "PAGING_RECEIPT": {
+    "strategy": "Search terms with filter.limit; no category census claim.",
+    "not_exhaustive": true
+  },
+  "PRICE_EXTRACTION_RECEIPT": {
+    "current_price_role": "Promo price when greater than zero and below regular; otherwise regular.",
+    "regular_price_role": "Retailer regular price for the selected location.",
+    "rejections": "Products without a regular price or without a promoted price are skipped.",
+    "no_range_minimum_as_buyable": true
+  },
+  "RIGHTS_RECEIPT": {
+    "access_gate": "TERMS_REVIEW_NEEDED",
+    "permission_certified": false,
+    "production_ready": false,
+    "note": "User-supplied OAuth credentials; store-specific use, retention and redistribution rights remain to be reviewed."
+  },
+  "fixture_status": "LIVE_API_LOCAL_TEST_ONLY",
+  "live_status": "EXECUTED_LOCALLY",
+  "tests": [
+    "tests/test_providers.py",
+    "tests/test_control_room.py"
+  ]
+}

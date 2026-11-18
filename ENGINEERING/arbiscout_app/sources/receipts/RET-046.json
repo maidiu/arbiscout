@@ -1,0 +1,40 @@
+{
+  "id": "RET-046",
+  "name": "Woot",
+  "status": "IMPLEMENTED_LOCAL",
+  "SOURCE_RECEIPT": {
+    "adapter": "providers.py (fetch_woot)",
+    "mechanism": "OFFICIAL_CATEGORY_FEED_AND_BATCH_DETAILS",
+    "source_urls": [
+      "https://developer.woot.com/feed/All",
+      "https://developer.woot.com/getoffers"
+    ],
+    "capture": "GET feed with x-api-key; POST /getoffers in batches of 25; rate-limit sleep between batches.",
+    "local_evidence": "All feed capped at 500 offers; 500/500 complete sale/list price pairs in the local test; 354 catalog product families after variant grouping.",
+    "variant_policy": "Group by offer title + price; variant count retained; model/color/size variants are not separate catalog rows.",
+    "limitations": "Developer-key access is not an independent rights review; feed data quality varies."
+  },
+  "PAGING_RECEIPT": {
+    "strategy": "Single named feed with optional page parameter; current adapter caps at the requested maximum.",
+    "page_2_evidence": "Feed pagination documented; current local run used the capped first set.",
+    "not_exhaustive": true
+  },
+  "PRICE_EXTRACTION_RECEIPT": {
+    "current_price_role": "Item SalePrice from offer detail.",
+    "regular_price_role": "Item ListPrice from offer detail when greater than sale price.",
+    "rejections": "Items without a sale price are skipped; list price is never invented.",
+    "no_range_minimum_as_buyable": true
+  },
+  "RIGHTS_RECEIPT": {
+    "access_gate": "TERMS_REVIEW_NEEDED",
+    "permission_certified": false,
+    "production_ready": false,
+    "note": "User-supplied developer key; purpose, storage and redistribution rights remain to be reviewed."
+  },
+  "fixture_status": "LIVE_API_LOCAL_TEST_ONLY",
+  "live_status": "EXECUTED_LOCALLY",
+  "tests": [
+    "tests/test_providers.py",
+    "tests/test_catalog.py"
+  ]
+}

@@ -17,8 +17,11 @@ ARBISCOUT — COMPLETE TEST VERSION
      typical range, gap, and whether the retailer is below the eBay low or
      median. Filter by source, category, date, Top 10 positive gaps, waiting
      for a file, or captured evidence.
-   - SETTINGS: API keys, Best Buy URL, Woot feed, Kroger search terms, and
-     links to the raw generated report files.
+   - SETTINGS: API keys, Best Buy URL, Woot feed, Kroger search terms, links
+     to the raw generated report files, and Source coverage (54 cases).
+     Four sources are implemented locally (Best Buy, Woot, Meh, Kroger); the
+     other 50 are explicit HOLD with the exact rights/feed/terms/capture
+     blocker. HOLD sources emit no products; no selectors are fabricated.
 
    Kroger ZIP is entered on the control room home page for each run. It is not
    saved, so you can change it any time.

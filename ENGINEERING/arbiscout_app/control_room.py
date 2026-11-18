@@ -7,11 +7,13 @@ their output to status cards, and launches the catalog/capture consoles.
 from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
+from html import escape
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
 from pathlib import Path
 import re
+import source_registry
 import subprocess
 import sys
 import threading
@@ -442,6 +444,7 @@ input{width:100%;padding:9px;border:1px solid #cfd9e4;border-radius:8px;font-siz
 button,.btn{display:inline-block;padding:10px 15px;border-radius:9px;border:0;background:#1261bd;color:#fff;font-weight:650;text-decoration:none;cursor:pointer;font-size:13px}
 .btn.alt{background:#fff;color:#17508d;border:1px solid #b9cce2}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .note{background:#fff9e6;border:1px solid #f1d38d;border-radius:9px;padding:11px 14px;color:#644a1a;font-size:13px;margin:12px 0}
+.tablewrap{overflow:auto;max-height:420px;border:1px solid #e2e8f0;border-radius:8px;margin-top:8px}table{border-collapse:collapse;width:100%;font-size:11px}th,td{padding:7px;border-bottom:1px solid #eef2f6;text-align:left;vertical-align:top}th{background:#eef2f6;position:sticky;top:0}
 @media(max-width:600px){.row{grid-template-columns:1fr}}
 </style></head><body>
 <header><h1>ArbiScout / settings</h1></header><main class="wrap">
@@ -473,6 +476,7 @@ __SAVED__
 <button type="submit">Save settings</button>
 </form>
 <div class="card"><h2>Raw reports</h2><p><a class="btn alt" href="/reports/top10">Top 10 file</a> <a class="btn alt" href="/reports/comparisons">All comparisons file</a> <a class="btn alt" href="/reports/retailer">Retailer dashboard file</a></p><p class="hint">Normal use is Deals and Results. These are the underlying generated views, kept for inspection.</p></div>
+<div class="card"><h2>Source coverage (54 cases)</h2><p class="hint">__SOURCE_SUMMARY__</p><details><summary>Show all 54 sources</summary><div class="tablewrap"><table><thead><tr><th>ID</th><th>Source</th><th>Mechanism</th><th>Status</th><th>Access gate</th><th>Blocker</th><th>Next action</th></tr></thead><tbody>__SOURCE_TABLE__</tbody></table></div></details><p class="hint">HOLD means the app emits no products for that source rather than inventing selectors, endpoints or prices.</p></div>
 </main></body></html>"""
 
 
@@ -511,6 +515,24 @@ class Handler(BaseHTTPRequestHandler):
                 "__KROGER_ID_STATUS__": "set" if env.get("KROGER_CLIENT_ID") else "not set",
                 "__KROGER_SECRET_STATUS__": "set" if env.get("KROGER_CLIENT_SECRET") else "not set",
             }
+            try:
+                coverage = source_registry.coverage_rows()
+                info = source_registry.summary()
+                source_table = "".join(
+                    "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
+                        escape(str(r.get("id") or "")), escape(str(r.get("name") or "")),
+                        escape(str(r.get("family") or "")), escape(str(r.get("status") or "")),
+                        escape(str(r.get("access_gate") or "")), escape(str(r.get("blocker") or "")),
+                        escape(str(r.get("next_action") or "")))
+                    for r in coverage)
+                source_summary = "{} implemented locally; {} HOLD. HOLD means no adapter/products are emitted.".format(
+                    info["counts"].get("IMPLEMENTED_LOCAL", 0),
+                    info["total"] - info["counts"].get("IMPLEMENTED_LOCAL", 0))
+            except Exception as exc:
+                source_table = ""
+                source_summary = "Coverage registry unavailable: " + str(exc)[:200]
+            replacements["__SOURCE_SUMMARY__"] = source_summary
+            replacements["__SOURCE_TABLE__"] = source_table
             for key, value in replacements.items():
                 html = html.replace(key, str(value))
             return self._send(200, html)

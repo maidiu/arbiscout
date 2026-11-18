@@ -44,6 +44,8 @@ def source_label(product, fallback=""):
     host = (urlparse(product.get("url") or "").hostname or "").lower()
     if "bestbuy.com" in host:
         return "Best Buy"
+    if "dell.com" in host:
+        return "Dell"
     if "meh.com" in host:
         return "Meh"
     if "woot.com" in host:
@@ -224,7 +226,7 @@ input[type=date]{padding:8px;border:1px solid #cfd9e4;border-radius:8px;backgrou
 const DATA=__DATA__;const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
 const usd=v=>v==null?'—':('$'+Number(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}));
-const SOURCE_ORDER=['Best Buy','Meh','Woot','Kroger'];
+const SOURCE_ORDER=['Best Buy','Dell','Meh','Woot','Kroger'];
 const PRESENT_SOURCES=[...new Set(DATA.products.map(p=>p.source))].sort();
 const SOURCES=[...new Set([...SOURCE_ORDER,...PRESENT_SOURCES])];
 const CATEGORIES=[...new Set(DATA.products.map(p=>p.category))].sort();

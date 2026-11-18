@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""API adapters for Meh, Woot, and Kroger.
+"""Adapters for Meh, Woot, Kroger, and Dell.
 
 Reads keys from .env or the environment, fetches live deals, and writes the
 same products.json/crawl_log.json/index.html layout used by the crawler.
@@ -29,6 +29,7 @@ except ImportError:
     SSL_CONTEXT = ssl.create_default_context()
 
 USER_AGENT = "ArbiScoutPersonal/0.2 (provider adapter; read-only research)"
+DELL_URL = "https://www.dell.com/en-us/shop/deals/dc"
 ROOT = Path(__file__).resolve().parent
 
 
@@ -109,9 +110,11 @@ def build_records(raw):
             entry.get("percent"), entry.get("model"), entry.get("brand"),
             entry.get("sku"), entry.get("condition"))
         if record:
-            record["category"] = entry.get("category")
-            record["kroger_zip"] = entry.get("kroger_zip")
-            record["kroger_location_id"] = entry.get("kroger_location_id")
+            for field in ("category", "kroger_zip", "kroger_location_id",
+                          "stock_status", "market_price_reference",
+                          "regular_price_source"):
+                if field in entry:
+                    record[field] = entry[field]
             store.add([record])
     return store.records()
 
@@ -304,6 +307,73 @@ def fetch_woot(feed="All", limit=500):
     return raw, url, f"Woot feed {feed}: {len(raw)} live item(s) from {len(feed_items)} offer(s)"
 
 
+def dell_category(title, url):
+    text = f"{title or ''} {url or ''}".lower()
+    if "monitor" in text:
+        return "Monitors"
+    if any(word in text for word in ("desktop", "aurora", "alienware")):
+        return "Desktops"
+    if any(word in text for word in ("laptop", "xps", "inspiron", "latitude")):
+        return "Laptops"
+    if "gaming" in text:
+        return "Gaming"
+    return "Computers & Tablets"
+
+
+def dell_products_from_html(page_html, source_url=DELL_URL):
+    match = re.search(r'ProductsDetailInfo\s*=\s*JSON\.parse\("(.*?)"\)', page_html or "", re.S)
+    if not match:
+        raise RuntimeError("Dell page did not contain ProductsDetailInfo")
+    try:
+        decoded = json.loads('"' + match.group(1) + '"')
+        data = json.loads(decoded)
+    except (ValueError, TypeError) as exc:
+        raise RuntimeError("Dell embedded product JSON could not be decoded") from exc
+    if not isinstance(data, dict):
+        raise RuntimeError("Dell embedded product JSON is not an object")
+    raw = []
+    for key, item in data.items():
+        if not isinstance(item, dict):
+            continue
+        title = item.get("title")
+        url = item.get("pdUrl")
+        current = number(item.get("dellPrice"))
+        if not title or not url or current is None:
+            continue
+        url = urljoin(source_url, url)
+        if not app.is_safe_http(url) or not app.same_site(url, source_url):
+            continue
+        regular = number(item.get("marketPrice"))
+        if regular is not None and regular <= current:
+            regular = None
+        raw.append({
+            "url": url,
+            "title": title,
+            "current": current,
+            "regular": regular,
+            "sku": item.get("productId") or key,
+            "model": item.get("variantCode"),
+            "brand": "Dell",
+            "condition": "New",
+            "source": "https://www.dell.com",
+            "kind": "dell_embedded_json",
+            "category": dell_category(title, url),
+            "stock_status": item.get("snpStockStatus"),
+            "market_price_reference": True,
+            "regular_price_source": "dell_market_price" if regular is not None else None,
+        })
+    return raw, source_url, f"Dell deals: {len(raw)} embedded offer(s)"
+
+
+def fetch_dell_deals(url=DELL_URL, snapshot=None):
+    if snapshot:
+        page_html = Path(snapshot).read_text(encoding="utf-8", errors="replace")
+    else:
+        with app.Fetcher("https://www.dell.com", mode="http", timeout=30) as fetcher:
+            page_html = fetcher.get(url)
+    return dell_products_from_html(page_html, url)
+
+
 def kroger_token(client_id, client_secret):
     basic = base64.b64encode(f"{client_id}:{client_secret}".encode()).decode()
     body = urlencode({"grant_type": "client_credentials", "scope": "product.compact"})
@@ -383,13 +453,13 @@ def fetch_kroger(terms, location_id="", zip_code="", limit=50):
     return raw, source_url, f"Kroger search: {len(raw)} promoted product(s)"
 
 
-def write_output(output, products, source, source_url, message):
+def write_output(output, products, source, source_url, message, kind="api"):
     output = Path(output)
     retailer = output / "retailer"
     retailer.mkdir(parents=True, exist_ok=True)
-    log = [{"url": source_url, "depth": 0, "type": "api", "status": "OK",
+    log = [{"url": source_url, "depth": 0, "type": kind, "status": "OK",
             "products": len(products), "links": 0, "message": message}]
-    settings = {"source": source, "url": source_url,
+    settings = {"source": source, "url": source_url, "kind": kind,
                 "fetched_at": datetime.now(timezone.utc).isoformat()}
     (retailer / "products.json").write_text(
         json.dumps(products, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -406,8 +476,8 @@ def write_output(output, products, source, source_url, message):
 
 def main(argv=None):
     load_env()
-    parser = argparse.ArgumentParser(description="Fetch deals from Meh, Woot, or Kroger")
-    parser.add_argument("--source", required=True, choices=["meh", "woot", "kroger"])
+    parser = argparse.ArgumentParser(description="Fetch deals from Meh, Woot, Kroger, or Dell")
+    parser.add_argument("--source", required=True, choices=["meh", "woot", "kroger", "dell"])
     parser.add_argument("--output", help="Output folder (default: <source>_live)")
     parser.add_argument("--feed", default="All", help="Woot feed name (default: All)")
     parser.add_argument("--terms", help="Kroger search terms, comma-separated")
@@ -416,12 +486,16 @@ def main(argv=None):
     parser.add_argument("--limit", type=int, default=50, help="Kroger results per term")
     parser.add_argument("--max-products", type=int, default=500,
                         help="Cap products written to the dashboard (default 500)")
+    parser.add_argument("--url", help="Dell deals URL (default: official Top Deals page)")
+    parser.add_argument("--snapshot", help="Parse a saved Dell HTML snapshot instead of fetching")
     args = parser.parse_args(argv)
     output = args.output or (args.source + "_live")
     if args.source == "meh":
         raw, source_url, message = fetch_meh()
     elif args.source == "woot":
         raw, source_url, message = fetch_woot(args.feed, args.max_products)
+    elif args.source == "dell":
+        raw, source_url, message = fetch_dell_deals(args.url or DELL_URL, args.snapshot)
     else:
         terms = [t.strip() for t in (args.terms or env("KROGER_TERMS")).split(",") if t.strip()]
         raw, source_url, message = fetch_kroger(terms, args.location_id, args.zip, args.limit)
@@ -430,7 +504,8 @@ def main(argv=None):
         products.sort(key=lambda r: (-(r.get("discount_percent") or 0),
                                      -(r.get("savings") or 0), r.get("title", "")))
         products = products[:args.max_products]
-    write_output(output, products, args.source, source_url, message)
+    write_output(output, products, args.source, source_url, message,
+                 kind="html" if args.source == "dell" else "api")
     return 0
 
 

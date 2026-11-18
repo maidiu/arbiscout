@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Merge Best Buy, Meh, Woot and Kroger products into one catalog."""
+"""Merge Best Buy, Dell, Meh, Woot and Kroger products into one catalog."""
 from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
@@ -11,6 +11,7 @@ import catalog_ui
 
 DEFAULT_INPUTS = [
     ("Best Buy", "bestbuy_live"),
+    ("Dell", "dell_live"),
     ("Meh", "meh_live"),
     ("Woot", "woot_live"),
     ("Kroger", "kroger_live"),

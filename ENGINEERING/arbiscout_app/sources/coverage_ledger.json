@@ -2,10 +2,10 @@
   "summary": {
     "total": 54,
     "counts": {
-      "IMPLEMENTED_LOCAL": 4,
+      "IMPLEMENTED_LOCAL": 5,
       "HOLD_RIGHTS": 5,
       "HOLD_APPROVED_FEED": 9,
-      "HOLD_TERMS": 36,
+      "HOLD_TERMS": 35,
       "HOLD_NEEDS_CAPTURE": 0,
       "HOLD_EVIDENCE": 0
     },
@@ -13,9 +13,10 @@
       "Best Buy",
       "Woot",
       "Meh",
-      "Kroger"
+      "Kroger",
+      "Dell new-product deals"
     ],
-    "generated_at": "2026-11-18T00:46:27+00:00"
+    "generated_at": "2026-11-18T00:58:30+00:00"
   },
   "rows": [
     {
@@ -821,11 +822,11 @@
       "evidence_status": "VERIFIED_EMBEDDED_OFFER_FIELDS",
       "access_gate": "TERMS_REVIEW_NEEDED",
       "selector_status": "UNKNOWN_NEEDS_SAVED_HTML",
-      "status": "HOLD_TERMS",
-      "blocker": "Terms/API permission review is required before collection.",
+      "status": "IMPLEMENTED_LOCAL",
+      "blocker": "Local adapter works; live rights/terms review and independent acceptance remain open.",
       "next_action": "Top-six saved-HTML canary; parse embedded offer JSON after actual HTML receipt",
-      "adapter": null,
-      "receipt": null,
+      "adapter": "providers.py (Dell embedded offer JSON)",
+      "receipt": "sources/receipts/RET-054.json",
       "production_ready": false
     }
   ]

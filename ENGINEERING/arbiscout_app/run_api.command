@@ -8,12 +8,12 @@ fi
 .venv/bin/python -m pip -q install -r requirements.txt
 SOURCE="${1:-}"
 if [ -z "$SOURCE" ]; then
-  printf 'Source (meh/woot/kroger): '
+  printf 'Source (meh/woot/kroger/dell): '
   IFS= read -r SOURCE
 fi
 case "$SOURCE" in
-  meh|woot|kroger) ;;
-  *) echo 'Choose meh, woot, or kroger.'; exit 1 ;;
+  meh|woot|kroger|dell) ;;
+  *) echo 'Choose meh, woot, kroger, or dell.'; exit 1 ;;
 esac
 OUTPUT="${2:-${SOURCE}_live}"
 ARGS=(--source "$SOURCE" --output "$OUTPUT" --max-products 500)

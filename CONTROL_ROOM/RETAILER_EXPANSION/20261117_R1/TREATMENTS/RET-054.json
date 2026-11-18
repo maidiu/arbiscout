@@ -4,11 +4,11 @@
   "name": "Dell new-product deals",
   "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
   "research_snapshot_date": "2026-11-17",
-  "implementation_status": "ACCESS_HOLD",
+  "implementation_status": "FIXTURE_VALIDATED",
   "rights_status": "TERMS_REVIEW_REQUIRED",
-  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
-  "quality_status": "NO_SOURCE_VALIDATION",
-  "integration_status": "NOT_INTEGRATED",
+  "mechanism_status": "CAPTURE_VERIFIED_EMBEDDED_JSON",
+  "quality_status": "FIXTURE_AND_LOCAL_CAPTURE_ONLY",
+  "integration_status": "CATALOG_LOCAL_TEST_ONLY",
   "review_status": "NOT_REVIEWED",
   "source_family": "EMBEDDED_STRUCTURED_OFFER_OBJECT",
   "research_snapshot": {
@@ -21,30 +21,96 @@
     "public_evidence_grade": "VERIFIED_EMBEDDED_OFFER_FIELDS"
   },
   "implementation": {
-    "adapter_paths": [],
-    "fixture_paths": [],
-    "test_paths": [],
+    "adapter_paths": [
+      "ENGINEERING/arbiscout_app/providers.py"
+    ],
+    "fixture_paths": [
+      "ENGINEERING/arbiscout_app/tests/test_providers.py"
+    ],
+    "test_paths": [
+      "ENGINEERING/arbiscout_app/tests/test_providers.py",
+      "ENGINEERING/arbiscout_app/tests/test_control_room.py",
+      "ENGINEERING/arbiscout_app/tests/test_catalog.py",
+      "ENGINEERING/arbiscout_app/tests/test_source_registry.py"
+    ],
     "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
     "last_commit_sha": null,
-    "actual_live_rows": null,
-    "correct_current_prices_verified": null
+    "actual_live_rows": 36,
+    "correct_current_prices_verified": false,
+    "observed_local_rows": 36,
+    "capture_sha256": "282354b2a263f37db709cc76a0f9251c42799df04887be5f0c63d722e783bf4c",
+    "captured_at": "2026-11-17T19:56:38-05:00"
   },
   "receipts": [
     {
-      "type": "RIGHTS_RECEIPT",
-      "path": "RECEIPTS/RET-054/rights.md",
-      "sha256": "7eef0119a0eaf08bc3766a5429e657d737f3aabfcd188f72957c4b6aa9e4508a",
+      "type": "SOURCE_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
+      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
       "commit_sha": null,
       "captured_at": "2026-11-17",
-      "verdict": "HOLD",
-      "notes": "Terms/API permission review is required before collection."
+      "verdict": "LOCAL_CAPTURE_NOT_AUTHORIZED",
+      "notes": "Single Dell Top Deals capture; raw HTML hash 282354b2a263f37db709cc76a0f9251c42799df04887be5f0c63d722e783bf4c."
+    },
+    {
+      "type": "PAGING_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
+      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "SINGLE_PAGE_NOT_EXHAUSTIVE",
+      "notes": "No page parameter followed; page-2 behavior unobserved."
+    },
+    {
+      "type": "PRICE_EXTRACTION_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
+      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "PARSER_VERIFIED_LOCAL_CAPTURE",
+      "notes": "dellPrice current; marketPrice reference only when greater; 2 current-only rows retained."
+    },
+    {
+      "type": "IDENTITY_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
+      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "PARTIAL_IDENTITY",
+      "notes": "productId, variantCode and pdUrl retained; GTIN and final configuration unverified."
+    },
+    {
+      "type": "RIGHTS_RECEIPT",
+      "path": "RECEIPTS/RET-054/rights.md",
+      "sha256": "9129ce24107cebc8fe85351e502fbe098ffdc3daa291031560cc2e099eafdcf4",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "TERMS_REVIEW_REQUIRED",
+      "notes": "Robots allowed; permission, purpose and retention unresolved."
+    },
+    {
+      "type": "CATALOG_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
+      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "LOCAL_TEST_ONLY",
+      "notes": "36 Dell rows merged into a temporary catalog; no accepted live integration."
+    },
+    {
+      "type": "TEST_RECEIPT",
+      "path": "ENGINEERING/arbiscout_app/tests/test_providers.py",
+      "sha256": "062be92e6c206a82f55fd2465a94f56fd637e7608cc122db8b6ba52dd90c0377",
+      "commit_sha": null,
+      "captured_at": "2026-11-17",
+      "verdict": "PASS_LOCAL",
+      "notes": "Synthetic ProductsDetailInfo fixture; positive, null-market, current-only and missing-payload tests."
     }
   ],
   "blockers": [
-    "Terms/API permission review is required before collection."
+    "Dell terms/rights review and independent live acceptance remain open; configuration/GTIN identity is not fully verified."
   ],
   "open_questions": [
-    "What authorized capture or approved feed can establish selectors, pagination, price semantics and identity?"
+    "What terms review and exact configuration/GTIN verification are required before LIVE_VALIDATED?"
   ],
   "decisions": [
     {
@@ -52,6 +118,12 @@
       "kind": "COVERAGE_LEDGER_20261117",
       "decision": "ACCESS_HOLD",
       "note": "Terms/API permission review is required before collection."
+    },
+    {
+      "date": "2026-11-17",
+      "kind": "DELL_FIXTURE_VALIDATION_20261117",
+      "decision": "FIXTURE_VALIDATED",
+      "note": "Single local capture parsed 36 offers; parser tests pass. Rights and live acceptance remain HOLD."
     }
   ],
   "history": [
@@ -64,13 +136,18 @@
       "date": "2026-11-17",
       "kind": "COVERAGE_LEDGER_UPDATE_20261117",
       "note": "HOLD_TERMS: Terms/API permission review is required before collection. Next: Top-six saved-HTML canary; parse embedded offer JSON after actual HTML receipt"
+    },
+    {
+      "date": "2026-11-17",
+      "kind": "DELL_CAPTURE_AND_FIXTURE_20261117",
+      "note": "Captured Dell Top Deals (2,137,332 bytes; sha256 282354b2...); parsed 36 offers (34 paired, 2 current-only); implemented providers.py parser and tests; local catalog test 36 rows; rights not authorized."
     }
   ],
   "coverage": {
-    "ledger_status": "HOLD_TERMS",
+    "ledger_status": "FIXTURE_VALIDATED",
     "access_gate": "TERMS_REVIEW_NEEDED",
-    "blocker": "Terms/API permission review is required before collection.",
-    "next_action": "Top-six saved-HTML canary; parse embedded offer JSON after actual HTML receipt",
+    "blocker": "Dell terms/rights review and independent live acceptance remain open; configuration/GTIN identity is not fully verified.",
+    "next_action": "Obtain rights review and exact configuration/GTIN evidence before LIVE_VALIDATED.",
     "ledger_path": "ENGINEERING/arbiscout_app/sources/coverage_ledger.md"
   }
 }

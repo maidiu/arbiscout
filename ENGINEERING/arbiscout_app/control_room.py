@@ -25,9 +25,11 @@ APP_DIR = Path(__file__).resolve().parent
 ENV_PATH = APP_DIR / ".env"
 LOG_DIR = APP_DIR / "control_room_logs"
 PY = sys.executable
+DELL_URL = "https://www.dell.com/en-us/shop/deals/dc"
 
 JOBS = {
     "bestbuy": {"label": "Best Buy", "status": "idle", "started": None, "finished": None, "log": []},
+    "dell": {"label": "Dell", "status": "idle", "started": None, "finished": None, "log": []},
     "meh": {"label": "Meh", "status": "idle", "started": None, "finished": None, "log": []},
     "woot": {"label": "Woot", "status": "idle", "started": None, "finished": None, "log": []},
     "kroger": {"label": "Kroger", "status": "idle", "started": None, "finished": None, "log": []},
@@ -143,6 +145,9 @@ def command_for(job, zip_override=None):
         return [PY, "run_test.py", "--url", env.get("BESTBUY_URL") or "https://www.bestbuy.com/black-friday",
                 "--mode", "browser", "--browser-visible", "--timeout", "60", "--delay", "2",
                 "--output", "bestbuy_live"]
+    if job == "dell":
+        return [PY, "providers.py", "--source", "dell",
+                "--url", env.get("DELL_URL") or DELL_URL, "--output", "dell_live"]
     if job == "meh":
         return [PY, "providers.py", "--source", "meh", "--output", "meh_live"]
     if job == "woot":
@@ -198,7 +203,7 @@ def run_everything(zip_override=None):
     global STOP_REQUESTED
     try:
         env = read_env()
-        steps = [("bestbuy", "Best Buy")]
+        steps = [("bestbuy", "Best Buy"), ("dell", "Dell")]
         if env.get("MEH_API_KEY"):
             steps.append(("meh", "Meh"))
         else:
@@ -327,7 +332,7 @@ def ensure_watcher():
         output = "catalog/selected"
         keep = True
     else:
-        for candidate in ("bestbuy_live", "woot_live", "meh_live", "kroger_live"):
+        for candidate in ("bestbuy_live", "dell_live", "woot_live", "meh_live", "kroger_live"):
             if (APP_DIR / candidate / "retailer" / "products.json").is_file():
                 output = candidate
                 break
@@ -455,6 +460,9 @@ __SAVED__
 <div class="card"><h2>Best Buy</h2>
 <label>Deals page URL</label><input name="BESTBUY_URL" value="__BESTBUY_URL__" placeholder="https://www.bestbuy.com/black-friday">
 </div>
+<div class="card"><h2>Dell</h2>
+<label>Deals page URL</label><input name="DELL_URL" value="__DELL_URL__" placeholder="https://www.dell.com/en-us/shop/deals/dc">
+</div>
 <div class="card"><h2>Woot</h2>
 <div class="row"><div><label>Feed</label><input name="WOOT_FEED" value="__WOOT_FEED__" placeholder="All"></div>
 <div><label>Maximum products</label><input name="WOOT_MAX" value="__WOOT_MAX__" placeholder="500"></div></div>
@@ -507,6 +515,7 @@ class Handler(BaseHTTPRequestHandler):
             replacements = {
                 "__SAVED__": saved,
                 "__BESTBUY_URL__": env.get("BESTBUY_URL", "https://www.bestbuy.com/black-friday"),
+                "__DELL_URL__": env.get("DELL_URL", DELL_URL),
                 "__WOOT_FEED__": env.get("WOOT_FEED", "All"),
                 "__WOOT_MAX__": env.get("WOOT_MAX", "500"),
                 "__KROGER_TERMS__": env.get("KROGER_TERMS", "milk,eggs,bread"),
@@ -606,7 +615,7 @@ class Handler(BaseHTTPRequestHandler):
                 form = parse_qs(self.rfile.read(length).decode("utf-8", errors="replace"))
                 updates = {}
                 clears = []
-                for key in ("BESTBUY_URL", "WOOT_FEED", "WOOT_MAX", "KROGER_TERMS"):
+                for key in ("BESTBUY_URL", "DELL_URL", "WOOT_FEED", "WOOT_MAX", "KROGER_TERMS"):
                     if key in form:
                         updates[key] = form[key][0].strip()
                 for key in ("MEH_API_KEY", "WOOT_API_KEY", "KROGER_CLIENT_ID",

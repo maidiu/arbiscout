@@ -1,0 +1,67 @@
+{
+  "id": "RET-054",
+  "name": "Dell new-product deals",
+  "status": "IMPLEMENTED_LOCAL",
+  "treatment_status": "FIXTURE_VALIDATED",
+  "SOURCE_RECEIPT": {
+    "adapter": "providers.py (fetch_dell_deals)",
+    "mechanism": "EMBEDDED_STRUCTURED_OFFER_OBJECT",
+    "source_urls": [
+      "https://www.dell.com/en-us/shop/deals/dc"
+    ],
+    "capture": "Single HTTP GET through app.Fetcher with robots.txt check; Dell Top Deals HTML contains ProductsDetailInfo JSON. No pagination, product-page crawl, sign-in or checkout.",
+    "captured_at": "2026-11-17T19:56:38-05:00",
+    "raw_html_sha256": "282354b2a263f37db709cc76a0f9251c42799df04887be5f0c63d722e783bf4c",
+    "raw_html_bytes": 2137332,
+    "local_evidence": "36 embedded offers parsed; 34 with current and market reference; 2 current-only; 36 normalized rows in a local catalog test.",
+    "variant_policy": "productId + variantCode + product URL; configuration and GTIN are not independently verified.",
+    "limitations": "One page only; marketPrice is Dell's reference, not a historical paid price; rights review remains open."
+  },
+  "PAGING_RECEIPT": {
+    "strategy": "Single Top Deals page; no page parameter followed.",
+    "page_2_evidence": "Not observed.",
+    "stop_reason": "Bounded single-page discovery.",
+    "not_exhaustive": true
+  },
+  "PRICE_EXTRACTION_RECEIPT": {
+    "current_price_role": "dellPrice from the embedded product object.",
+    "regular_price_role": "marketPrice only when it is greater than dellPrice; otherwise null.",
+    "rejections": "Missing title, URL, or dellPrice is skipped; marketPrice at or below dellPrice is not treated as a reference.",
+    "current_only_rows": 2,
+    "no_range_minimum_as_buyable": true,
+    "market_price_is_not_paid_price": true
+  },
+  "IDENTITY_RECEIPT": {
+    "fields": ["productId", "variantCode", "pdUrl", "title", "snpStockStatus"],
+    "gtin_verified": false,
+    "configuration_verified": false,
+    "note": "No cross-seller consolidation; base product URL and productId are retained."
+  },
+  "RIGHTS_RECEIPT": {
+    "access_gate": "TERMS_REVIEW_NEEDED",
+    "robots_allowed": true,
+    "permission_certified": false,
+    "production_ready": false,
+    "note": "Single local read-only capture; Dell terms, retention and redistribution rights remain unresolved."
+  },
+  "CATALOG_RECEIPT": {
+    "local_test": "36 Dell rows merged into a temporary catalog with source Dell.",
+    "accepted_live": false
+  },
+  "TEST_RECEIPT": {
+    "tests": [
+      "ENGINEERING/arbiscout_app/tests/test_providers.py",
+      "ENGINEERING/arbiscout_app/tests/test_control_room.py",
+      "ENGINEERING/arbiscout_app/tests/test_catalog.py"
+    ],
+    "fixture": "Synthetic HTML containing the observed ProductsDetailInfo JSON shape.",
+    "live_capture": "One local public-page capture; not an authorized live acceptance."
+  },
+  "fixture_status": "SYNTHETIC_PARSER_FIXTURE",
+  "live_status": "ONE_LOCAL_PUBLIC_CAPTURE_NOT_ACCEPTED",
+  "tests": [
+    "ENGINEERING/arbiscout_app/tests/test_providers.py",
+    "ENGINEERING/arbiscout_app/tests/test_control_room.py",
+    "ENGINEERING/arbiscout_app/tests/test_catalog.py"
+  ]
+}

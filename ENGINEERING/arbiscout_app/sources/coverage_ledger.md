@@ -1,8 +1,8 @@
 # ArbiScout retailer source coverage — 54 cases
 
-Generated: 2026-11-18T00:46:27+00:00
+Generated: 2026-11-18T00:58:30+00:00
 
-**4 implemented locally; 50 HOLD.**
+**5 implemented locally; 49 HOLD.**
 
 HOLD is deliberate: no saved capture, rights review or approved feed means no live adapter and no fabricated products.
 
@@ -61,4 +61,4 @@ HOLD is deliberate: no saved capture, rights review or approved feed means no li
 | RET-051 | Advance Auto Parts | LOCATION_VEHICLE_FITMENT_AND_IMPACT_CATALOG | PUBLIC_PROMO_PAGE_PLUS_OFFICIAL_FEED | PARTNER_APPROVAL_NEEDED_FOR_FEED | HOLD_APPROVED_FEED | Approved feed/partner brand access is required. | Prefer authorized catalog, requires vehicle fitment gate |
 | RET-052 | Fanatics | IMPACT_LICENSED_MERCH_CATALOG | OFFICIAL_FEED_DOC | PARTNER_APPROVAL_NEEDED_FOR_FEED | HOLD_APPROVED_FEED | Approved feed/partner brand access is required. | Use Impact feed where allowed; physical licensed goods only |
 | RET-053 | PUMA US | SALE_AND_FINAL_SALE_VARIANT_GRID | PUBLIC_SALE_PAGE_AND_PROMO_TERMS | CJ_BRAND_APPROVAL_NEEDED | HOLD_APPROVED_FEED | Approved feed/partner brand access is required. | Use daily feed if approved; family cards not exact variants |
-| RET-054 | Dell new-product deals | EMBEDDED_STRUCTURED_OFFER_OBJECT | VERIFIED_EMBEDDED_OFFER_FIELDS | TERMS_REVIEW_NEEDED | HOLD_TERMS | Terms/API permission review is required before collection. | Top-six saved-HTML canary; parse embedded offer JSON after actual HTML receipt |
+| RET-054 | Dell new-product deals | EMBEDDED_STRUCTURED_OFFER_OBJECT | VERIFIED_EMBEDDED_OFFER_FIELDS | TERMS_REVIEW_NEEDED | IMPLEMENTED_LOCAL | Local adapter works; live rights/terms review and independent acceptance remain open. | Top-six saved-HTML canary; parse embedded offer JSON after actual HTML receipt |

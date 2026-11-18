@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 import sys
 import unittest
@@ -16,6 +17,55 @@ class ProviderHelperTests(unittest.TestCase):
         self.assertEqual(providers.woot_category(["PC"]), "Computers & Tablets")
         self.assertEqual(providers.woot_category(["SHIRT"]), "Apparel")
         self.assertIsNone(providers.woot_category(["WOOT"]))
+
+    @staticmethod
+    def dell_snapshot(products):
+        payload = json.dumps(products).replace('"', r'\u0022')
+        return f'<script>ProductsDetailInfo = JSON.parse("{payload}");</script>'
+
+    def test_dell_embedded_json_prices_and_identity(self):
+        products = {
+            "a": {"productId": "a", "title": "XPS 13 Laptop",
+                  "pdUrl": "https://www.dell.com/en-us/shop/laptop-computers/spd/xps/a",
+                  "dellPrice": "$749.99", "marketPrice": "$999.99",
+                  "variantCode": "XPS13", "snpStockStatus": 0},
+            "b": {"productId": "b", "title": "New Dell 14S Laptop",
+                  "pdUrl": "https://www.dell.com/en-us/shop/laptop-computers/spd/dell14s/b",
+                  "dellPrice": "$749.99", "marketPrice": None,
+                  "variantCode": "DELL14S", "snpStockStatus": 0},
+            "c": {"productId": "c", "title": "Dell 16 Laptop",
+                  "pdUrl": "https://www.dell.com/en-us/shop/laptop-computers/spd/dell16/c",
+                  "dellPrice": "$649.99", "marketPrice": "$599.99",
+                  "variantCode": "DELL16", "snpStockStatus": 1},
+            "missing": {"title": "No URL", "dellPrice": "$10.00"},
+        }
+        raw, url, message = providers.dell_products_from_html(self.dell_snapshot(products))
+        self.assertEqual(len(raw), 3)
+        self.assertIn("3 embedded offer", message)
+        by_sku = {row["sku"]: row for row in raw}
+        self.assertEqual(by_sku["a"]["current"], 749.99)
+        self.assertEqual(by_sku["a"]["regular"], 999.99)
+        self.assertEqual(by_sku["a"]["category"], "Laptops")
+        self.assertIsNone(by_sku["b"]["regular"])
+        self.assertIsNone(by_sku["c"]["regular"])
+        self.assertEqual(by_sku["c"]["stock_status"], 1)
+        self.assertTrue(by_sku["a"]["market_price_reference"])
+
+    def test_dell_parser_rejects_missing_payload(self):
+        with self.assertRaises(RuntimeError):
+            providers.dell_products_from_html("<html>no offers</html>")
+
+    def test_dell_records_keep_current_only_rows(self):
+        raw, _, _ = providers.dell_products_from_html(self.dell_snapshot({
+            "a": {"productId": "a", "title": "Dell 16 Laptop",
+                  "pdUrl": "https://www.dell.com/en-us/shop/laptop-computers/spd/dell16/a",
+                  "dellPrice": "$649.99", "marketPrice": None},
+        }))
+        records = providers.build_records(raw)
+        self.assertEqual(len(records), 1)
+        self.assertFalse(records[0]["price_complete"])
+        self.assertEqual(records[0]["current_price"], 649.99)
+        self.assertIsNone(records[0]["regular_price"])
 
 
 if __name__ == "__main__":

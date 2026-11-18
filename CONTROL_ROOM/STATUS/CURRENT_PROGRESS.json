@@ -17,7 +17,7 @@
     "live_marketplace_integrations": 0,
     "real_scored_opportunities": 0,
     "sourcefree_current_candidate": "ENGINEERING/arbiscout_app: browser-mode retailer fetch, saved eBay sold-page watcher, sold-price distribution stats and Meh/Woot/Kroger API adapters (local prototype, not independently reviewed)",
-    "local_sourcefree_tests_passed": 37,
+    "local_sourcefree_tests_passed": 41,
     "github_app_tests": {
       "run_url": "https://github.com/maidiu/arbiscout/actions/runs/42412720168",
       "head": "7c486130958a69d213f3098106f790ce93435b7d",
@@ -39,7 +39,7 @@
       "verified_actual_paid_prices": 0,
       "artifact_id": 13590102124
     },
-    "local_sourcefree_tests_executed": 38,
+    "local_sourcefree_tests_executed": 42,
     "local_sourcefree_tests_skipped": 1,
     "active_build": {
       "status": "LOCAL_PROTOTYPE_DRAFT_NOT_INDEPENDENTLY_REVIEWED",
@@ -86,11 +86,11 @@
     "local_sourcefree_tests_failed": 0,
     "local_source_coverage": {
       "total": 54,
-      "implemented_local": 4,
-      "hold": 50,
+      "implemented_local": 5,
+      "hold": 49,
       "hold_rights": 5,
       "hold_approved_feed": 9,
-      "hold_terms": 36,
+      "hold_terms": 35,
       "production_ready": 0,
       "ledger": "ENGINEERING/arbiscout_app/sources/coverage_ledger.md",
       "receipts": "ENGINEERING/arbiscout_app/sources/receipts/"
@@ -104,7 +104,7 @@
     "Provider API keys were used locally for Meh/Woot/Kroger; independent provider-terms and coverage review remains open.",
     "Live eBay HTML retrieval/coverage and paid Best Offer fidelity are unproved; actual paid-price API benchmark remains necessary.",
     "Displayed eBay sold prices are provisional; no licensed actual-paid completed-sales feed is integrated.",
-    "50 of 54 retailer source mechanisms remain HOLD pending authorized page captures, rights/terms review or approved feeds; no fabricated selectors were added."
+    "49 of 54 retailer source mechanisms remain HOLD pending authorized page captures, rights/terms review or approved feeds; no fabricated selectors were added."
   ],
   "done": [
     "User product constitution corrected to exclusive purchase-price-gap research (draft PR #2)",
@@ -135,7 +135,8 @@
     "Nov 17 final source-filter pass: Deals and Results both expose all four sources with counts; Results uses multi-select source checkboxes; headless browser check confirmed labels and filtering.",
     "Nov 17 final grouping pass: Woot size/color/model variants grouped by product family with variant counts (500 raw variants -> 354 catalog families; Apple Watch Braided Solo Loop 35 -> 1 row); full source filters with counts on Deals and Results.",
     "Nov 17 source-filter interaction fix: Deals source checkboxes re-render on change; All/Clear buttons fixed; verified Woot unchecked 653 -> 299, recheck -> 653, Clear -> 0, All -> 653.",
-    "Nov 17 source coverage: 54-case source-neutral registry and ledger generated; Best Buy/Woot/Meh/Kroger marked implemented locally; 50 sources explicit HOLD (5 rights, 9 approved feed, 36 terms); Settings shows the 54-row table; receipts and 38 local tests (37 pass, 1 skip) recorded."
+    "Nov 17 source coverage: 54-case source-neutral registry and ledger generated; Best Buy/Woot/Meh/Kroger marked implemented locally; 50 sources explicit HOLD (5 rights, 9 approved feed, 36 terms); Settings shows the 54-row table; receipts and 38 local tests (37 pass, 1 skip) recorded.",
+    "Nov 17 Dell RET-054: single robots-checked Top Deals capture parsed 36 embedded offers (34 paired, 2 current-only); providers.py parser, control-room job, catalog source, synthetic fixture tests and local catalog test added; treatment FIXTURE_VALIDATED, rights/live acceptance still open."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",
@@ -198,7 +199,7 @@
     }
   ],
   "active_workers": [],
-  "delta": "2026-11-07: exact candidate code bank + 16 local offline unit tests + 30-day date filtering and provisional dashboard; all external actual-paid, authorization, independent reviewer and protected merge gates remain HOLD. Prior October 31 planning source cut preserved. / SAME DAY TEST EXTENSION: PR16 active run_test.py, CI app test 20 (19 PASS/1 user-snapshot SKIP), 20 synthetic offers -> 20 provisional positive matches -> 10 displayed top rows, 0 real actual-paid; status court CONTROL_ROOM/PROGRAMMA/10_TWENTY_TO_TEN_TEST_RECEIPT_20261107_R1.md; immutable source bank retained. / 2026-11-17: 54-case retailer coverage registry added; 4 implemented local adapters, 50 explicit HOLD, 38 local tests (37 pass/1 skip), Settings coverage table; no rights upgrade.",
+  "delta": "2026-11-07: exact candidate code bank + 16 local offline unit tests + 30-day date filtering and provisional dashboard; all external actual-paid, authorization, independent reviewer and protected merge gates remain HOLD. Prior October 31 planning source cut preserved. / SAME DAY TEST EXTENSION: PR16 active run_test.py, CI app test 20 (19 PASS/1 user-snapshot SKIP), 20 synthetic offers -> 20 provisional positive matches -> 10 displayed top rows, 0 real actual-paid; status court CONTROL_ROOM/PROGRAMMA/10_TWENTY_TO_TEN_TEST_RECEIPT_20261107_R1.md; immutable source bank retained. / 2026-11-17: 54-case retailer coverage registry added; 4 implemented local adapters, 50 explicit HOLD, 38 local tests (37 pass/1 skip), Settings coverage table; no rights upgrade. / 2026-11-17: Dell RET-054 fixture-validated from one local capture; 5 implemented local, 49 HOLD, 42 app tests (41 pass/1 skip); rights remain unresolved.",
   "current_mandate": "Purchase research ONLY: find major-retailer acquisition prices maximally below regular comparable eBay historical completed-sale price patterns; calculate and rank observed gaps.",
   "constitution_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
   "programma": {

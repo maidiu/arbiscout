@@ -46,6 +46,10 @@ class CatalogTests(unittest.TestCase):
         rows = catalog_ui.filter_sort(products, observed_after="2026-11-01T00:00:00+00:00")
         self.assertEqual(len(rows), 2)
 
+    def test_dell_source_label(self):
+        self.assertEqual(catalog_ui.source_label(
+            {"url": "https://www.dell.com/en-us/shop/laptop-computers/spd/xps/a"}), "Dell")
+
     def test_woot_family_groups_model_variants(self):
         a = build_catalog.woot_family("Apple MJJ53AM/A Apple Watch Braided Solo Loop 40mm")
         b = build_catalog.woot_family("Apple MJJF3AM/A Apple Watch Braided Solo Loop 40mm")

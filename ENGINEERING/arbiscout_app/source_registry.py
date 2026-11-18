@@ -23,6 +23,8 @@ IMPLEMENTED = {
                  "receipt": "sources/receipts/RET-047.json"},
     "RET-048": {"adapter": "providers.py (Kroger OAuth products/locations)",
                  "receipt": "sources/receipts/RET-048.json"},
+    "RET-054": {"adapter": "providers.py (Dell embedded offer JSON)",
+                 "receipt": "sources/receipts/RET-054.json"},
 }
 
 STATUS_ORDER = [

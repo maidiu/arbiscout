@@ -7,7 +7,7 @@ ARBISCOUT — COMPLETE TEST VERSION
    The browser opens http://127.0.0.1:8800.
 
    The app has four main locations:
-   - CONTROL ROOM: run Best Buy/Meh/Woot/Kroger, watch progress, stop jobs,
+   - CONTROL ROOM: run Best Buy/Dell/Meh/Woot/Kroger, watch progress, stop jobs,
      enter the Kroger ZIP for the next run, and open Settings.
    - DEALS: every product from every source. Filter by source, category and
      observation date; sort by % off, savings, price or name; page through
@@ -17,10 +17,10 @@ ARBISCOUT — COMPLETE TEST VERSION
      typical range, gap, and whether the retailer is below the eBay low or
      median. Filter by source, category, date, Top 10 positive gaps, waiting
      for a file, or captured evidence.
-   - SETTINGS: API keys, Best Buy URL, Woot feed, Kroger search terms, links
+   - SETTINGS: API keys, Best Buy/Dell URLs, Woot feed, Kroger search terms, links
      to the raw generated report files, and Source coverage (54 cases).
-     Four sources are implemented locally (Best Buy, Woot, Meh, Kroger); the
-     other 50 are explicit HOLD with the exact rights/feed/terms/capture
+     Five sources are implemented locally (Best Buy, Dell, Woot, Meh, Kroger);
+     the other 49 are explicit HOLD with the exact rights/feed/terms/capture
      blocker. HOLD sources emit no products; no selectors are fabricated.
 
    Kroger ZIP is entered on the control room home page for each run. It is not
@@ -43,6 +43,7 @@ ARBISCOUT — COMPLETE TEST VERSION
    ./run_api.command meh
    ./run_api.command woot      # choose All for volume
    ./run_api.command kroger    # prompts for search terms and ZIP
+   ./run_api.command dell      # Dell Top Deals embedded offers
    Each writes its own <source>_live/retailer/products.json.
 
 4. Deals and Results from the CLI

@@ -30,6 +30,7 @@ except ImportError:
 
 USER_AGENT = "ArbiScoutPersonal/0.2 (provider adapter; read-only research)"
 DELL_URL = "https://www.dell.com/en-us/shop/deals/dc"
+LEGO_URL = "https://www.lego.com/en-us/categories/sales-and-deals"
 ROOT = Path(__file__).resolve().parent
 
 
@@ -112,7 +113,9 @@ def build_records(raw):
         if record:
             for field in ("category", "kroger_zip", "kroger_location_id",
                           "stock_status", "market_price_reference",
-                          "regular_price_source", "variant_code"):
+                          "regular_price_source", "variant_code", "variant_sku",
+                          "set_number", "availability_text", "on_sale",
+                          "list_price_reference"):
                 if field in entry:
                     record[field] = entry[field]
             store.add([record])
@@ -380,6 +383,79 @@ def fetch_dell_deals(url=DELL_URL, snapshot=None):
     return dell_products_from_html(page_html, url)
 
 
+def lego_products_from_html(page_html, source_url=LEGO_URL):
+    match = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>',
+                      page_html or "", re.S)
+    if not match:
+        raise RuntimeError("LEGO page did not contain __NEXT_DATA__")
+    try:
+        data = json.loads(match.group(1))
+    except (ValueError, TypeError) as exc:
+        raise RuntimeError("LEGO __NEXT_DATA__ could not be decoded") from exc
+    apollo = (data.get("props", {}).get("pageProps", {}).get("__APOLLO_STATE__") or {})
+    if not isinstance(apollo, dict):
+        raise RuntimeError("LEGO Apollo state is not an object")
+    raw = []
+    for key, item in apollo.items():
+        if not key.startswith("SingleVariantProduct:") or not isinstance(item, dict):
+            continue
+        variant = apollo.get((item.get("variant") or {}).get("__ref") or "", {})
+        if not isinstance(variant, dict):
+            continue
+        price = variant.get("price") or {}
+        current = number(price.get("formattedValue"))
+        if current is None and isinstance(price.get("centAmount"), (int, float)):
+            current = round(price["centAmount"] / 100, 2)
+        list_price = variant.get("listPrice") or {}
+        regular = number(list_price.get("formattedValue"))
+        if regular is None and isinstance(list_price.get("centAmount"), (int, float)):
+            regular = round(list_price["centAmount"] / 100, 2)
+        if current is None:
+            continue
+        if regular is not None and regular <= current:
+            regular = None
+        title = item.get("name")
+        path = item.get("pdpPath")
+        if not title or not path:
+            continue
+        url = urljoin(source_url, path)
+        if not app.is_safe_http(url) or not app.same_site(url, source_url):
+            continue
+        product_code = item.get("productCode") or item.get("id")
+        attributes = variant.get("attributes") or {}
+        raw.append({
+            "url": url,
+            "title": title,
+            "current": current,
+            "regular": regular,
+            "percent": variant.get("salePercentage"),
+            "sku": product_code,
+            "model": product_code,
+            "variant_sku": variant.get("sku"),
+            "brand": "LEGO",
+            "condition": "New",
+            "source": "https://www.lego.com",
+            "kind": "lego_next_data",
+            "category": "Toys & Games",
+            "set_number": product_code,
+            "stock_status": attributes.get("availabilityStatus"),
+            "availability_text": attributes.get("availabilityText"),
+            "on_sale": attributes.get("onSale"),
+            "list_price_reference": True,
+            "regular_price_source": "lego_list_price" if regular is not None else None,
+        })
+    return raw, source_url, f"LEGO sale: {len(raw)} set(s)"
+
+
+def fetch_lego_deals(url=LEGO_URL, snapshot=None):
+    if snapshot:
+        page_html = Path(snapshot).read_text(encoding="utf-8", errors="replace")
+    else:
+        with app.Fetcher("https://www.lego.com", mode="http", timeout=30) as fetcher:
+            page_html = fetcher.get(url)
+    return lego_products_from_html(page_html, url)
+
+
 def kroger_token(client_id, client_secret):
     basic = base64.b64encode(f"{client_id}:{client_secret}".encode()).decode()
     body = urlencode({"grant_type": "client_credentials", "scope": "product.compact"})
@@ -482,8 +558,8 @@ def write_output(output, products, source, source_url, message, kind="api"):
 
 def main(argv=None):
     load_env()
-    parser = argparse.ArgumentParser(description="Fetch deals from Meh, Woot, Kroger, or Dell")
-    parser.add_argument("--source", required=True, choices=["meh", "woot", "kroger", "dell"])
+    parser = argparse.ArgumentParser(description="Fetch deals from Meh, Woot, Kroger, Dell, or LEGO")
+    parser.add_argument("--source", required=True, choices=["meh", "woot", "kroger", "dell", "lego"])
     parser.add_argument("--output", help="Output folder (default: <source>_live)")
     parser.add_argument("--feed", default="All", help="Woot feed name (default: All)")
     parser.add_argument("--terms", help="Kroger search terms, comma-separated")
@@ -502,6 +578,8 @@ def main(argv=None):
         raw, source_url, message = fetch_woot(args.feed, args.max_products)
     elif args.source == "dell":
         raw, source_url, message = fetch_dell_deals(args.url or DELL_URL, args.snapshot)
+    elif args.source == "lego":
+        raw, source_url, message = fetch_lego_deals(args.url or LEGO_URL, args.snapshot)
     else:
         terms = [t.strip() for t in (args.terms or env("KROGER_TERMS")).split(",") if t.strip()]
         raw, source_url, message = fetch_kroger(terms, args.location_id, args.zip, args.limit)
@@ -511,7 +589,7 @@ def main(argv=None):
                                      -(r.get("savings") or 0), r.get("title", "")))
         products = products[:args.max_products]
     write_output(output, products, args.source, source_url, message,
-                 kind="html" if args.source == "dell" else "api")
+                 kind="html" if args.source in ("dell", "lego") else "api")
     return 0
 
 

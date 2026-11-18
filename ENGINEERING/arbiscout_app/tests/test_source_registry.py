@@ -17,7 +17,7 @@ class SourceRegistryTests(unittest.TestCase):
     def test_implemented_adapters(self):
         rows = source_registry.coverage_rows()
         implemented = {r["name"] for r in rows if r["status"] == "IMPLEMENTED_LOCAL"}
-        self.assertEqual(implemented, {"Best Buy", "Woot", "Meh", "Kroger", "Dell new-product deals"})
+        self.assertEqual(implemented, {"Best Buy", "LEGO Store", "Woot", "Meh", "Kroger", "Dell new-product deals"})
         for row in rows:
             if row["status"] == "IMPLEMENTED_LOCAL":
                 self.assertTrue(row["adapter"])
@@ -55,7 +55,7 @@ class SourceRegistryTests(unittest.TestCase):
     def test_summary_counts(self):
         info = source_registry.summary()
         self.assertEqual(info["total"], 54)
-        self.assertEqual(info["counts"].get("IMPLEMENTED_LOCAL"), 5)
+        self.assertEqual(info["counts"].get("IMPLEMENTED_LOCAL"), 6)
 
 
 if __name__ == "__main__":

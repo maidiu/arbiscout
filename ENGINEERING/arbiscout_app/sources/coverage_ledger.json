@@ -2,21 +2,22 @@
   "summary": {
     "total": 54,
     "counts": {
-      "IMPLEMENTED_LOCAL": 5,
+      "IMPLEMENTED_LOCAL": 6,
       "HOLD_RIGHTS": 5,
       "HOLD_APPROVED_FEED": 9,
-      "HOLD_TERMS": 35,
+      "HOLD_TERMS": 34,
       "HOLD_NEEDS_CAPTURE": 0,
       "HOLD_EVIDENCE": 0
     },
     "implemented": [
       "Best Buy",
+      "LEGO Store",
       "Woot",
       "Meh",
       "Kroger",
       "Dell new-product deals"
     ],
-    "generated_at": "2026-11-18T00:58:30+00:00"
+    "generated_at": "2026-11-18T03:11:20+00:00"
   },
   "rows": [
     {
@@ -447,11 +448,11 @@
       "evidence_status": "VERIFIED_PAGE_NUMBER_URL",
       "access_gate": "TERMS_REVIEW_NEEDED",
       "selector_status": "UNKNOWN_NEEDS_SAVED_HTML",
-      "status": "HOLD_TERMS",
-      "blocker": "Terms/API permission review is required before collection.",
+      "status": "IMPLEMENTED_LOCAL",
+      "blocker": "Local adapter works; live rights/terms review and independent acceptance remain open.",
       "next_action": "Exact set ID excellent; exclude gifts as cash discount",
-      "adapter": null,
-      "receipt": null,
+      "adapter": "providers.py (LEGO __NEXT_DATA__ sale sets)",
+      "receipt": "sources/receipts/RET-029.json",
       "production_ready": false
     },
     {

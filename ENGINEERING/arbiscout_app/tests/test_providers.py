@@ -57,6 +57,52 @@ class ProviderHelperTests(unittest.TestCase):
         self.assertEqual(providers.dell_model("Dell14SDS14270"), "DS14270")
         self.assertEqual(providers.dell_model("XPS13"), "XPS13")
 
+    @staticmethod
+    def lego_snapshot(apollo):
+        payload = json.dumps({"props": {"pageProps": {"__APOLLO_STATE__": apollo}}})
+        return f'<script id="__NEXT_DATA__" type="application/json">{payload}</script>'
+
+    def test_lego_embedded_json_prices_and_set_identity(self):
+        apollo = {
+            "SingleVariantProduct:76470": {
+                "productCode": "76470", "name": "Enchanted Flying Ford Anglia",
+                "pdpPath": "/en-us/product/enchanted-flying-ford-anglia-76470",
+                "variant": {"__ref": "ProductVariant:1"},
+            },
+            "ProductVariant:1": {
+                "sku": "6588716", "salePercentage": 20,
+                "price": {"formattedValue": 63.99},
+                "listPrice": {"formattedValue": 79.99},
+                "attributes": {"availabilityStatus": "E_AVAILABLE", "onSale": True},
+            },
+            "SingleVariantProduct:42209": {
+                "productCode": "42209", "name": "Volvo L120 Electric Wheel Loader",
+                "pdpPath": "/en-us/product/volvo-l120-electric-wheel-loader-42209",
+                "variant": {"__ref": "ProductVariant:2"},
+            },
+            "ProductVariant:2": {
+                "sku": "6526825", "salePercentage": 30,
+                "price": {"centAmount": 8399},
+                "listPrice": {"centAmount": 8399},
+                "attributes": {"availabilityStatus": "E_AVAILABLE", "onSale": True},
+            },
+        }
+        raw, _, message = providers.lego_products_from_html(self.lego_snapshot(apollo))
+        self.assertEqual(len(raw), 2)
+        self.assertIn("2 set", message)
+        by_set = {row["set_number"]: row for row in raw}
+        self.assertEqual(by_set["76470"]["current"], 63.99)
+        self.assertEqual(by_set["76470"]["regular"], 79.99)
+        self.assertEqual(by_set["76470"]["model"], "76470")
+        self.assertEqual(by_set["76470"]["variant_sku"], "6588716")
+        self.assertEqual(by_set["76470"]["category"], "Toys & Games")
+        self.assertEqual(by_set["42209"]["current"], 83.99)
+        self.assertIsNone(by_set["42209"]["regular"])
+
+    def test_lego_parser_rejects_missing_payload(self):
+        with self.assertRaises(RuntimeError):
+            providers.lego_products_from_html("<html>no data</html>")
+
     def test_dell_parser_rejects_missing_payload(self):
         with self.assertRaises(RuntimeError):
             providers.dell_products_from_html("<html>no offers</html>")

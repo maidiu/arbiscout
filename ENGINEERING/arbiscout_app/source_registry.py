@@ -17,6 +17,8 @@ SPECS_PATH = APP_DIR / "sources" / "mechanism_specifications.json"
 IMPLEMENTED = {
     "RET-001": {"adapter": "arbiscout.py (browser listing + extractors)",
                  "receipt": "sources/receipts/RET-001.json"},
+    "RET-029": {"adapter": "providers.py (LEGO __NEXT_DATA__ sale sets)",
+                 "receipt": "sources/receipts/RET-029.json"},
     "RET-046": {"adapter": "providers.py (Woot API feed + /getoffers)",
                  "receipt": "sources/receipts/RET-046.json"},
     "RET-047": {"adapter": "providers.py (Meh current-deal API)",

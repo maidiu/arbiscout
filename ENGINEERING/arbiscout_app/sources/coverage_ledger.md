@@ -1,8 +1,8 @@
 # ArbiScout retailer source coverage — 54 cases
 
-Generated: 2026-11-18T00:58:30+00:00
+Generated: 2026-11-18T03:11:20+00:00
 
-**5 implemented locally; 49 HOLD.**
+**6 implemented locally; 48 HOLD.**
 
 HOLD is deliberate: no saved capture, rights review or approved feed means no live adapter and no fabricated products.
 
@@ -36,7 +36,7 @@ HOLD is deliberate: no saved capture, rights review or approved feed means no li
 | RET-026 | Harbor Freight | COUPON_AND_CLUB_CAMPAIGN | VERIFIED_51_CLEARANCE_ROWS_AND_FULFILLMENT | TERMS_REVIEW_NEEDED | HOLD_TERMS | Terms/API permission review is required before collection. | Separate public price from member price; avoid fake eBay equivalence |
 | RET-027 | Michaels | CLEARANCE_PLUS_MARKETPLACE_VARIANTS | OFFICIAL_VARIANT_RULES | TERMS_REVIEW_NEEDED | HOLD_TERMS | Terms/API permission review is required before collection. | Record merchant-of-record and promo exclusions |
 | RET-028 | Barnes & Noble | EDITORIAL_COUPON_TO_FORMAT_SPECIFIC_PRODUCTS | PUBLIC_OFFICIAL_PROMO_PAGE | TERMS_REVIEW_NEEDED | HOLD_TERMS | Terms/API permission review is required before collection. | Strong identity for books; avoid mixing edition/format |
-| RET-029 | LEGO Store | PAGE_NUMBERED_SET_CATALOG | VERIFIED_PAGE_NUMBER_URL | TERMS_REVIEW_NEEDED | HOLD_TERMS | Terms/API permission review is required before collection. | Exact set ID excellent; exclude gifts as cash discount |
+| RET-029 | LEGO Store | PAGE_NUMBERED_SET_CATALOG | VERIFIED_PAGE_NUMBER_URL | TERMS_REVIEW_NEEDED | IMPLEMENTED_LOCAL | Local adapter works; live rights/terms review and independent acceptance remain open. | Exact set ID excellent; exclude gifts as cash discount |
 | RET-030 | Disney Store | BRANDED_SALE_GRID | PUBLIC_SALE_PAGE | CJ_BRAND_APPROVAL_NEEDED | HOLD_APPROVED_FEED | Approved feed/partner brand access is required. | Prefer named CJ product feed; static HTML research canary |
 | RET-031 | Walgreens | WEEKLY_AD_AND_COUPON_CATALOG | OFFICIAL_CLIPPED_COUPONS_PROGRAM | TERMS_REVIEW_NEEDED | HOLD_TERMS | Terms/API permission review is required before collection. | Deprioritize, exclude rewards from immediate purchase price |
 | RET-032 | CVS | EXTRACARE_PROMO_AND_WEEKLY_AD | OFFICIAL_MEMBERSHIP_RULES | TERMS_REVIEW_NEEDED | HOLD_TERMS | Terms/API permission review is required before collection. | Require store-specific listing and reward qualification |

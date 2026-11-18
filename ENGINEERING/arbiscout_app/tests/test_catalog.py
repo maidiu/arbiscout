@@ -50,6 +50,10 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(catalog_ui.source_label(
             {"url": "https://www.dell.com/en-us/shop/laptop-computers/spd/xps/a"}), "Dell")
 
+    def test_lego_source_label(self):
+        self.assertEqual(catalog_ui.source_label(
+            {"url": "https://www.lego.com/en-us/product/enchanted-flying-ford-anglia-76470"}), "LEGO")
+
     def test_woot_family_groups_model_variants(self):
         a = build_catalog.woot_family("Apple MJJ53AM/A Apple Watch Braided Solo Loop 40mm")
         b = build_catalog.woot_family("Apple MJJF3AM/A Apple Watch Braided Solo Loop 40mm")

@@ -27,10 +27,12 @@ ENV_PATH = APP_DIR / ".env"
 LOG_DIR = APP_DIR / "control_room_logs"
 PY = sys.executable
 DELL_URL = "https://www.dell.com/en-us/shop/deals/dc"
+LEGO_URL = "https://www.lego.com/en-us/categories/sales-and-deals"
 
 JOBS = {
     "bestbuy": {"label": "Best Buy", "status": "idle", "started": None, "finished": None, "log": []},
     "dell": {"label": "Dell", "status": "idle", "started": None, "finished": None, "log": []},
+    "lego": {"label": "LEGO", "status": "idle", "started": None, "finished": None, "log": []},
     "meh": {"label": "Meh", "status": "idle", "started": None, "finished": None, "log": []},
     "woot": {"label": "Woot", "status": "idle", "started": None, "finished": None, "log": []},
     "kroger": {"label": "Kroger", "status": "idle", "started": None, "finished": None, "log": []},
@@ -149,6 +151,9 @@ def command_for(job, zip_override=None):
     if job == "dell":
         return [PY, "providers.py", "--source", "dell",
                 "--url", env.get("DELL_URL") or DELL_URL, "--output", "dell_live"]
+    if job == "lego":
+        return [PY, "providers.py", "--source", "lego",
+                "--url", env.get("LEGO_URL") or LEGO_URL, "--output", "lego_live"]
     if job == "meh":
         return [PY, "providers.py", "--source", "meh", "--output", "meh_live"]
     if job == "woot":
@@ -204,7 +209,7 @@ def run_everything(zip_override=None):
     global STOP_REQUESTED
     try:
         env = read_env()
-        steps = [("bestbuy", "Best Buy"), ("dell", "Dell")]
+        steps = [("bestbuy", "Best Buy"), ("dell", "Dell"), ("lego", "LEGO")]
         if env.get("MEH_API_KEY"):
             steps.append(("meh", "Meh"))
         else:
@@ -344,7 +349,7 @@ def ensure_watcher():
         output = "catalog/selected"
         keep = True
     else:
-        for candidate in ("bestbuy_live", "dell_live", "woot_live", "meh_live", "kroger_live"):
+        for candidate in ("bestbuy_live", "dell_live", "lego_live", "woot_live", "meh_live", "kroger_live"):
             if (APP_DIR / candidate / "retailer" / "products.json").is_file():
                 output = candidate
                 break
@@ -480,6 +485,9 @@ __SAVED__
 <div class="card"><h2>Dell</h2>
 <label>Deals page URL</label><input name="DELL_URL" value="__DELL_URL__" placeholder="https://www.dell.com/en-us/shop/deals/dc">
 </div>
+<div class="card"><h2>LEGO</h2>
+<label>Sale page URL</label><input name="LEGO_URL" value="__LEGO_URL__" placeholder="https://www.lego.com/en-us/categories/sales-and-deals">
+</div>
 <div class="card"><h2>Woot</h2>
 <div class="row"><div><label>Feed</label><input name="WOOT_FEED" value="__WOOT_FEED__" placeholder="All"></div>
 <div><label>Maximum products</label><input name="WOOT_MAX" value="__WOOT_MAX__" placeholder="500"></div></div>
@@ -533,6 +541,7 @@ class Handler(BaseHTTPRequestHandler):
                 "__SAVED__": saved,
                 "__BESTBUY_URL__": env.get("BESTBUY_URL", "https://www.bestbuy.com/black-friday"),
                 "__DELL_URL__": env.get("DELL_URL", DELL_URL),
+                "__LEGO_URL__": env.get("LEGO_URL", LEGO_URL),
                 "__WOOT_FEED__": env.get("WOOT_FEED", "All"),
                 "__WOOT_MAX__": env.get("WOOT_MAX", "500"),
                 "__KROGER_TERMS__": env.get("KROGER_TERMS", "milk,eggs,bread"),
@@ -632,7 +641,7 @@ class Handler(BaseHTTPRequestHandler):
                 form = parse_qs(self.rfile.read(length).decode("utf-8", errors="replace"))
                 updates = {}
                 clears = []
-                for key in ("BESTBUY_URL", "DELL_URL", "WOOT_FEED", "WOOT_MAX", "KROGER_TERMS"):
+                for key in ("BESTBUY_URL", "DELL_URL", "LEGO_URL", "WOOT_FEED", "WOOT_MAX", "KROGER_TERMS"):
                     if key in form:
                         updates[key] = form[key][0].strip()
                 for key in ("MEH_API_KEY", "WOOT_API_KEY", "KROGER_CLIENT_ID",

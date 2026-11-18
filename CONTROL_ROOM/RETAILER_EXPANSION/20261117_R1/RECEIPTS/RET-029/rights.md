@@ -1,9 +1,11 @@
-# RET-029 rights hold — 2026-11-17
+# RET-029 LEGO rights and capture receipt — 2026-11-17
 
-- **Retailer:** LEGO Store
-- **Treatment status:** ACCESS_HOLD
+- **Treatment status:** FIXTURE_VALIDATED (not LIVE_VALIDATED)
 - **Access gate:** TERMS_REVIEW_NEEDED
-- **Blocker:** Terms/API permission review is required before collection.
-- **Next action:** Exact set ID excellent; exclude gifts as cash discount
-- **Evidence:** research snapshot only; no authorized capture, selectors, live rows or price claims.
+- **Robots:** LEGO robots.txt allowed the sales-and-deals path at capture time.
+- **Capture:** One local read-only HTTP GET of https://www.lego.com/en-us/categories/sales-and-deals; no pagination, product-page crawl, sign-in or checkout.
+- **Raw HTML:** local only; SHA-256 `9c1726178de633da4453a47c244f615e672aef469b6f3078f8ce2e2ad15c174b`; 1,174,608 bytes.
+- **Parsed sets:** 18 sale sets; 18 with current and list reference.
+- **Blocker:** LEGO terms, permitted purpose, retention and redistribution are unresolved. listPrice is a vendor reference, not a paid price. Set identity is strong; GTIN is not captured.
+- **Next action:** obtain rights review and confirm pagination/set completeness before any LIVE_VALIDATED or production claim.
 - **Review:** NOT_REVIEWED.

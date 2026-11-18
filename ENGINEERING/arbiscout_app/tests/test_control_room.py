@@ -19,7 +19,7 @@ class ControlRoomTests(unittest.TestCase):
             self.assertEqual(path.stat().st_mode & 0o777, 0o600)
 
     def test_job_commands_exist(self):
-        for job in ("bestbuy", "dell", "meh", "woot", "kroger", "catalog"):
+        for job in ("bestbuy", "dell", "lego", "meh", "woot", "kroger", "catalog"):
             command = control_room.command_for(job)
             self.assertIsInstance(command, list)
             self.assertGreater(len(command), 1)

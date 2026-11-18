@@ -1,0 +1,67 @@
+{
+  "id": "RET-029",
+  "name": "LEGO Store",
+  "status": "IMPLEMENTED_LOCAL",
+  "treatment_status": "FIXTURE_VALIDATED",
+  "SOURCE_RECEIPT": {
+    "adapter": "providers.py (fetch_lego_deals)",
+    "mechanism": "PAGE_NUMBERED_SET_CATALOG",
+    "source_urls": [
+      "https://www.lego.com/en-us/categories/sales-and-deals"
+    ],
+    "capture": "Single HTTP GET through app.Fetcher with robots.txt check; the sale page contains JSON-LD ItemList and __NEXT_DATA__ Apollo state. No pagination, product-page crawl, sign-in or checkout.",
+    "captured_at": "2026-11-17T22:10:04-05:00",
+    "raw_html_sha256": "9c1726178de633da4453a47c244f615e672aef469b6f3078f8ce2e2ad15c174b",
+    "raw_html_bytes": 1174608,
+    "local_evidence": "18 LEGO sale sets parsed; 18 with current and list reference; 18 normalized rows in a local catalog test.",
+    "variant_policy": "Set number/productCode plus variant SKU and product URL; no variant range collapsed into a different set.",
+    "limitations": "Single sale page; listPrice is LEGO's reference, not a historical paid price; rights review remains open."
+  },
+  "PAGING_RECEIPT": {
+    "strategy": "Single sales-and-deals page; no page parameter followed.",
+    "page_2_evidence": "Not observed.",
+    "stop_reason": "Bounded single-page discovery.",
+    "not_exhaustive": true
+  },
+  "PRICE_EXTRACTION_RECEIPT": {
+    "current_price_role": "ProductVariant.price.formattedValue (or centAmount/100).",
+    "regular_price_role": "ProductVariant.listPrice only when greater than current; otherwise null.",
+    "sale_percentage": "ProductVariant.salePercentage when supplied.",
+    "rejections": "Missing current price or product path is skipped; listPrice at or below current is not treated as a reference.",
+    "current_only_rows": 0,
+    "no_range_minimum_as_buyable": true,
+    "list_price_is_not_paid_price": true
+  },
+  "IDENTITY_RECEIPT": {
+    "fields": ["productCode", "set_number", "variant_sku", "pdpPath", "name"],
+    "gtin_verified": false,
+    "note": "LEGO set number is the exact set identity; variant SKU is retained separately. No cross-set consolidation."
+  },
+  "RIGHTS_RECEIPT": {
+    "access_gate": "TERMS_REVIEW_NEEDED",
+    "robots_allowed": true,
+    "permission_certified": false,
+    "production_ready": false,
+    "note": "Single local read-only capture; LEGO terms, retention and redistribution rights remain unresolved."
+  },
+  "CATALOG_RECEIPT": {
+    "local_test": "18 LEGO rows merged into a temporary catalog with source LEGO.",
+    "accepted_live": false
+  },
+  "TEST_RECEIPT": {
+    "tests": [
+      "ENGINEERING/arbiscout_app/tests/test_providers.py",
+      "ENGINEERING/arbiscout_app/tests/test_control_room.py",
+      "ENGINEERING/arbiscout_app/tests/test_catalog.py"
+    ],
+    "fixture": "Synthetic __NEXT_DATA__ Apollo state with two sets, plus one local real capture.",
+    "live_capture": "One local public-page capture; not an authorized live acceptance."
+  },
+  "fixture_status": "SYNTHETIC_PARSER_FIXTURE",
+  "live_status": "ONE_LOCAL_PUBLIC_CAPTURE_NOT_ACCEPTED",
+  "tests": [
+    "ENGINEERING/arbiscout_app/tests/test_providers.py",
+    "ENGINEERING/arbiscout_app/tests/test_control_room.py",
+    "ENGINEERING/arbiscout_app/tests/test_catalog.py"
+  ]
+}

@@ -49,7 +49,7 @@ def main():
             assert "REVIEW_RECEIPT" in kinds, f"Accepted without independent review: {item['id']}"
         statuses[state] = statuses.get(state, 0) + 1
     lines = ["# Retailer treatment dashboard", "",
-             "**Derived from individual treatment JSON.** Research-backed source inventory: 54. Generated with \`scripts/validate_and_render.py\`; do not edit manually.", "",
+             "**Derived from individual treatment JSON.** Research-backed source inventory: 54. Generated with `scripts/validate_and_render.py`; do not edit manually.", "",
              "| ID | Retailer/source | Mechanism family | Treatment status |",
              "|---|---|---|---|"]
     for item in manifest["cases"]:

@@ -298,7 +298,7 @@ def sold_summary(good):
     return out
 
 
-def qualify(retail,observations,as_of=None,min_sales=3):
+def qualify(retail,observations,as_of=None,min_sales=3,identity_verified=False):
     as_of=as_of or datetime.now(timezone.utc)
     start=as_of-timedelta(days=30)
     diag={'returned':len(observations),'dated_in_window':0,'unknown_best_offer':0,'model_rejected':0,
@@ -310,8 +310,9 @@ def qualify(retail,observations,as_of=None,min_sales=3):
         if d is None or not start<=d.astimezone(timezone.utc)<=as_of:
             diag['date_rejected']+=1;continue
         diag['dated_in_window']+=1
-        match,_=model_match(retail,o.get('title',''))
-        if not match:diag['model_rejected']+=1;continue
+        if not identity_verified:
+            match,_=model_match(retail,o.get('title',''))
+            if not match:diag['model_rejected']+=1;continue
         if o.get('price_status')=='UNKNOWN_ACCEPTED_OFFER':diag['unknown_best_offer']+=1;continue
         v=o.get('paid_price')
         if v is None or not 0<float(v)<1e7:

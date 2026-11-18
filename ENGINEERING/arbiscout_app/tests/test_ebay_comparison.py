@@ -52,6 +52,16 @@ class EBayEvidenceTests(unittest.TestCase):
     def test_only_retail_complete_top20(self):
         goods=[{**RETAIL,'current_price':None,'discount_percent':99},RETAIL]
         self.assertEqual(len(e.choose_deals(goods)),1)
+    def test_llm_identity_can_rescue_regex_miss(self):
+        obs = [{"item_id": "x", "title": "Dell 16 Laptop 16GB 512GB",
+                "sold_at": "2026-11-10T00:00:00+00:00", "displayed_price": 600.0,
+                "paid_price": 600.0, "price_status": "DISPLAYED_SOLD"}]
+        as_of = datetime(2026, 11, 17, tzinfo=timezone.utc)
+        self.assertEqual(e.qualify(DELL, obs, as_of)["sample_count"], 0)
+        rescued = e.qualify(DELL, obs, as_of, identity_verified=True)
+        self.assertEqual(rescued["sample_count"], 1)
+        self.assertEqual(rescued["historical_median"], 600.0)
+
     def test_changed_query_still_matches_by_sold_model(self):
         with tempfile.TemporaryDirectory() as temp:
             fixtures=Path(temp)

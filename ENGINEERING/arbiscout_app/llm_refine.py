@@ -361,6 +361,9 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=12
                 if str(product.get("condition") or "").lower() == "new" and USED_RE.search(title):
                     verdict = {**verdict, "verdict": "USED_OR_REFURB",
                                "reason": "Deterministic condition guard"}
+                elif ebay.BAD_MATCH.search(title):
+                    verdict = {**verdict, "verdict": "PARTS_OR_DAMAGED",
+                               "reason": "Deterministic parts/bundle guard"}
                 elif observation.get("price_status") in ("UNKNOWN_ACCEPTED_OFFER", "AMBIGUOUS_RANGE"):
                     verdict = {**verdict, "verdict": "UNKNOWN",
                                "reason": "Price status is not a usable displayed sale"}
@@ -368,7 +371,7 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=12
                     exact.append(observation)
             if verdict["verdict"] == "UNKNOWN":
                 unknown += 1
-        comparison = ebay.qualify(product, exact, as_of)
+        comparison = ebay.qualify(product, exact, as_of, identity_verified=True)
         comparison["diagnostics"]["llm_exact"] = len(exact)
         comparison["diagnostics"]["llm_removed"] = len(source_observations) - len(exact)
         comparison["diagnostics"]["llm_unknown"] = unknown

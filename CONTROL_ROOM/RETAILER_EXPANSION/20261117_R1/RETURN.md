@@ -4,7 +4,7 @@
 **Workroom seed / CI head:** `16a194d4aa5d98b6262c1ad956211f2f9d345a37` / `8517aba3a9420e8558f3285608dd25e92c8b68f5`
 **Reconciled app head:** `8bdf2111593b6d2e0ea5ab3d7819abcc0153b112`
 **Treatment ledger commit:** `a745e7e`
-**Dell implementation commit:** see branch head
+**Dell implementation commit:** `0e144bced6ae130ae3464ba6002c3af218dbc84f`
 **Scope:** all 54 RET cases accounted for. No autonomous merge to `main`.
 
 ## Status totals

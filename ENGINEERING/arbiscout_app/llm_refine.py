@@ -372,6 +372,7 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=12
             if verdict["verdict"] == "UNKNOWN":
                 unknown += 1
         comparison = ebay.qualify(product, exact, as_of, identity_verified=True)
+        before = (existing.get(key) or {}).get("comparison") or {}
         comparison["diagnostics"]["llm_exact"] = len(exact)
         comparison["diagnostics"]["llm_removed"] = len(source_observations) - len(exact)
         comparison["diagnostics"]["llm_unknown"] = unknown
@@ -391,6 +392,12 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=12
                 "removed": len(source_observations) - len(exact), "unknown": unknown,
                 "min_confidence": min_confidence, "jobs": len(jobs),
                 "input_chars": input_chars,
+                "before_sample_count": before.get("sample_count"),
+                "before_median": before.get("historical_median"),
+                "before_gap": before.get("gap"),
+                "after_sample_count": comparison.get("sample_count"),
+                "after_median": comparison.get("historical_median"),
+                "after_gap": comparison.get("gap"),
             },
         }
         records.append(record)

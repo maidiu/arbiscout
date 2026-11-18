@@ -70,6 +70,21 @@ def load_state(output):
         if c.get("gap") is not None:
             summary_parts.append(f"gap ${c.get('gap'):,.2f}")
         llm_summary = " · ".join(summary_parts)
+        def stats_summary(n, median, gap):
+            parts = []
+            if n is not None:
+                parts.append(f"n={n}")
+            if median is not None:
+                parts.append(f"median ${median:,.2f}")
+            if gap is not None:
+                parts.append(f"gap ${gap:,.2f}")
+            return " · ".join(parts)
+        llm_pre_summary = stats_summary(refinement.get("before_sample_count"),
+                                        refinement.get("before_median"),
+                                        refinement.get("before_gap"))
+        llm_post_summary = stats_summary(refinement.get("after_sample_count", c.get("sample_count")),
+                                         refinement.get("after_median", c.get("historical_median")),
+                                         refinement.get("after_gap", c.get("gap")))
         candidates.append({
             "fixture_index": row.get("fixture_index"),
             "fixture_file": row.get("fixture_file"),
@@ -77,6 +92,8 @@ def load_state(output):
             "llm_refined": checked,
             "llm_checked": checked,
             "llm_summary": llm_summary,
+            "llm_pre_summary": llm_pre_summary,
+            "llm_post_summary": llm_post_summary,
             "title": p.get("title"),
             "retail_url": p.get("url"),
             "observed_at": p.get("observed_at"),
@@ -393,8 +410,8 @@ function render(){
     const rank=view==='top10'?index+1:(x.fixture_index??'');
     const armed=(state.armed||[]).includes(x.key);
     const llmCell=x.llm_checked
-      ? `<span class="good">LLM checked</span><br><small>${esc(x.llm_summary||'')}</small>`
-      : `<label><input type="checkbox" class="arm" data-key="${esc(x.key)}" ${armed?'checked':''}> arm</label>`;
+      ? `<span class="good">POST-LLM</span><br><small>pre ${esc(x.llm_pre_summary||'—')}</small><br><small>post ${esc(x.llm_post_summary||'—')}</small><br><small>${esc(x.llm_summary||'')}</small>`
+      : `<span class="wait">PRE-LLM</span><br><label><input type="checkbox" class="arm" data-key="${esc(x.key)}" ${armed?'checked':''}> arm</label>`;
     const manual=x.manual_file||'';
     const fileOptions=(state.files||[]).map(f=>`<option value="${esc(f.name)}" ${manual===f.name?'selected':''}>${esc(f.name)}</option>`).join('');
     const matchCell=`<select class="manual" data-key="${esc(x.key)}"><option value="">Auto</option>${fileOptions}</select>`;

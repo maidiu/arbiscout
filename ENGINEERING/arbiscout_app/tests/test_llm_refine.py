@@ -83,6 +83,7 @@ class LLMRefineTests(unittest.TestCase):
             self.assertEqual(refined[0]["comparison"]["diagnostics"]["llm_exact"], 1)
             self.assertEqual(refined[0]["comparison"]["diagnostics"]["llm_removed"], 2)
             self.assertTrue(refined[0]["llm_checked"])
+            self.assertEqual(refined[0]["llm_refinement"]["after_sample_count"], 1)
             self.assertTrue((root / "comparisons" / "llm_verdicts.json").is_file())
             self.assertTrue((root / "comparisons" / "comparisons_raw.json").is_file())
 
@@ -97,7 +98,10 @@ class LLMRefineTests(unittest.TestCase):
                 "retailer": product, "ebay_search_url": "https://www.ebay.com/sch/i.html",
                 "ebay_status": "LLM_REFINED", "fixture_index": 1, "fixture_file": "01.html",
                 "llm_checked": True,
-                "llm_refinement": {"exact": 2, "removed": 1, "unknown": 0},
+                "llm_refinement": {"exact": 2, "removed": 1, "unknown": 0,
+                                   "before_sample_count": 72, "before_median": 210.0,
+                                   "before_gap": None, "after_sample_count": 2,
+                                   "after_median": 100.0, "after_gap": 10.0},
                 "comparison": {"status": "INSUFFICIENT_VERIFIED_SALES",
                                "sample_count": 2, "historical_median": 100.0,
                                "gap": 10.0, "diagnostics": {}},
@@ -110,6 +114,9 @@ class LLMRefineTests(unittest.TestCase):
             self.assertIn("1 removed", candidate["llm_summary"])
             self.assertIn("median $100.00", candidate["llm_summary"])
             self.assertIn("gap $10.00", candidate["llm_summary"])
+            self.assertIn("n=72", candidate["llm_pre_summary"])
+            self.assertIn("n=2", candidate["llm_post_summary"])
+            self.assertIn("median $100.00", candidate["llm_post_summary"])
 
     def test_multiple_retailers_are_sent_in_one_compact_job(self):
         now = datetime.now(timezone.utc).isoformat()

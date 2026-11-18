@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-014",
+  "name": "GameStop",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "CLEARANCE_FILTERED_COMMERCE_GRID",
+  "research_snapshot": {
+    "candidate_lane": "RESTRICTED_SITE / PARTNER",
+    "reported_mechanism": "Deals page /deals and /all-clearance; filter parameters prefn1=lifecycleStatus&prefv1=Shop+Clearance; product condition facets New / Pre-Owned / Refurbished; pagination needs direct anchor inspection.",
+    "reported_extraction": "System/platform, edition/region, physical vs digital, GameStop SKU, lifecycle condition, list/Pro price and quantity.",
+    "known_risks": "Pro-only price and condition must never compare to new eBay data; excluded gift cards/digital goods.",
+    "known_access_disposition": "NO_AUTOMATED_WEB_ACCESS_PENDING_GRANT",
+    "primary_evidence_url": "https://www.gamestop.com/all-clearance",
+    "public_evidence_grade": "PUBLIC_FILTERED_PAGE_AND_REPO_TERMS"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

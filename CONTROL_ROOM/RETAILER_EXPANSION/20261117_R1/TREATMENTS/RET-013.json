@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-013",
+  "name": "Micro Center",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "STORE_SCOPED_CLEARANCE_AND_OPEN_BOX",
+  "research_snapshot": {
+    "candidate_lane": "LISTING_BROWSER_WITH_CONSENT",
+    "reported_mechanism": "Clearance/Overstock page plus Open Box and closeout listing surfaces; links support ?storeid=### on site; enumerate *within a chosen store*, not nationwide.",
+    "reported_extraction": "Product SKU, model, retail vs open-box, grade, local in-store quantity and SKU-specific price. One-off open-box items separate.",
+    "known_risks": "Store-required price visibility (“just sign in” sometimes), pickup-only, grade variation and expired one-off items.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.microcenter.com/site/content/clearance-outlet.aspx?storeid=101",
+    "public_evidence_grade": "PUBLIC_STORE_SPECIFIC_URL"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

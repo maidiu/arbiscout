@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-044",
+  "name": "AliExpress",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "CROSS_BORDER_VARIATION_MARKETPLACE",
+  "research_snapshot": {
+    "candidate_lane": "APPROVED_IMPORT_FEED / MANUAL",
+    "reported_mechanism": "Seller product catalog and promotional flash sales; official sanctioned affiliate data path rather than generalized website auto-navigation.",
+    "reported_extraction": "Seller, product offer ID, selected variant/spec, shipping to destination, VAT/tax, quantity, delivery date.",
+    "known_risks": "Base tile price often cheapest option; shipping or variation changes paid amount; long delivery and import duties.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.aliexpress.com/",
+    "public_evidence_grade": "PRIOR_REPO_MARKETPLACE_CANDIDATE"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

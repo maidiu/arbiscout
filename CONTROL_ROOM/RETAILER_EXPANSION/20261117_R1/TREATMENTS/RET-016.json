@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-016",
+  "name": "Office Depot",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "TOP_DEALS_LANDING_AND_LOGIN_PRICES",
+  "research_snapshot": {
+    "candidate_lane": "LISTING_BROWSER_WITH_CONSENT",
+    "reported_mechanism": "Top Deals /l/deal-center/top-deals and /deals; navigate to clearance product categories; log-in-to-see-price rows cannot be scored anonymously.",
+    "reported_extraction": "Office Depot item ID, pack count, business price context and coupon; price visibility state separate from price value.",
+    "known_risks": "Business/account prices, buy-online-pickup discounts, tax/shipping coupon terms.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.officedepot.com/l/deal-center/top-deals",
+    "public_evidence_grade": "PUBLIC_DEAL_LANDING"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

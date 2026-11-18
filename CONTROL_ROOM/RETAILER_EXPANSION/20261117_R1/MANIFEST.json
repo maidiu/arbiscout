@@ -1,0 +1,388 @@
+{
+  "schema_version": "1.0",
+  "snapshot_date": "2026-11-17",
+  "source_count": 54,
+  "source_of_truth": "TREATMENTS/RET-xxx.json are mutable source-status records; RESEARCH/MECHANISM_SPECIFICATIONS.json is immutable research snapshot; DASHBOARD.md is generated",
+  "current_branch_base": "65529f5c5d23820d679f8d003157a1dd25d4f994",
+  "research_source": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "cases": [
+    {
+      "id": "RET-001",
+      "name": "Best Buy",
+      "family": "HYDRATED_LISTING_WITH_BESTBUY_SELECTORS",
+      "json": "TREATMENTS/RET-001.json",
+      "journal": "TREATMENTS/RET-001.md"
+    },
+    {
+      "id": "RET-002",
+      "name": "Walmart",
+      "family": "MARKETPLACE_CLEARANCE_GRID",
+      "json": "TREATMENTS/RET-002.json",
+      "journal": "TREATMENTS/RET-002.md"
+    },
+    {
+      "id": "RET-003",
+      "name": "Target",
+      "family": "CATEGORY_CLEARANCE_FACETS",
+      "json": "TREATMENTS/RET-003.json",
+      "journal": "TREATMENTS/RET-003.md"
+    },
+    {
+      "id": "RET-004",
+      "name": "Home Depot",
+      "family": "PROMOTION_PAGE_PLUS_OFFICIAL_FEED",
+      "json": "TREATMENTS/RET-004.json",
+      "journal": "TREATMENTS/RET-004.md"
+    },
+    {
+      "id": "RET-005",
+      "name": "Lowe's",
+      "family": "SAVINGS_LANDING_TO_LOCALIZED_LISTINGS",
+      "json": "TREATMENTS/RET-005.json",
+      "journal": "TREATMENTS/RET-005.md"
+    },
+    {
+      "id": "RET-006",
+      "name": "Amazon (sold by Amazon)",
+      "family": "ASIN_OFFER_AND_KEEPA_DEALS",
+      "json": "TREATMENTS/RET-006.json",
+      "journal": "TREATMENTS/RET-006.md"
+    },
+    {
+      "id": "RET-007",
+      "name": "Amazon (third-party marketplace)",
+      "family": "ASIN_SELLER_OFFER_AND_KEEPA",
+      "json": "TREATMENTS/RET-007.json",
+      "journal": "TREATMENTS/RET-007.md"
+    },
+    {
+      "id": "RET-008",
+      "name": "Costco",
+      "family": "MEMBERSHIP_CAMPAIGN_PAGE",
+      "json": "TREATMENTS/RET-008.json",
+      "journal": "TREATMENTS/RET-008.md"
+    },
+    {
+      "id": "RET-009",
+      "name": "Sam's Club",
+      "family": "MEMBERSHIP_INSTANT_SAVINGS",
+      "json": "TREATMENTS/RET-009.json",
+      "journal": "TREATMENTS/RET-009.md"
+    },
+    {
+      "id": "RET-010",
+      "name": "BJ's Wholesale",
+      "family": "MEMBERSHIP_CLEARANCE_CATEGORY",
+      "json": "TREATMENTS/RET-010.json",
+      "journal": "TREATMENTS/RET-010.md"
+    },
+    {
+      "id": "RET-011",
+      "name": "B&H Photo",
+      "family": "DEALZONE_EDITORIAL_LIST",
+      "json": "TREATMENTS/RET-011.json",
+      "journal": "TREATMENTS/RET-011.md"
+    },
+    {
+      "id": "RET-012",
+      "name": "Newegg",
+      "family": "EVENT_SALE_AND_MARKETPLACE_GRID",
+      "json": "TREATMENTS/RET-012.json",
+      "journal": "TREATMENTS/RET-012.md"
+    },
+    {
+      "id": "RET-013",
+      "name": "Micro Center",
+      "family": "STORE_SCOPED_CLEARANCE_AND_OPEN_BOX",
+      "json": "TREATMENTS/RET-013.json",
+      "journal": "TREATMENTS/RET-013.md"
+    },
+    {
+      "id": "RET-014",
+      "name": "GameStop",
+      "family": "CLEARANCE_FILTERED_COMMERCE_GRID",
+      "json": "TREATMENTS/RET-014.json",
+      "journal": "TREATMENTS/RET-014.md"
+    },
+    {
+      "id": "RET-015",
+      "name": "Staples",
+      "family": "DEAL_CATEGORY_WITH_PRODUCT_ROWS",
+      "json": "TREATMENTS/RET-015.json",
+      "journal": "TREATMENTS/RET-015.md"
+    },
+    {
+      "id": "RET-016",
+      "name": "Office Depot",
+      "family": "TOP_DEALS_LANDING_AND_LOGIN_PRICES",
+      "json": "TREATMENTS/RET-016.json",
+      "journal": "TREATMENTS/RET-016.md"
+    },
+    {
+      "id": "RET-017",
+      "name": "Kohl's",
+      "family": "EVENT_PROMOTION_TO_PRODUCT_GRID",
+      "json": "TREATMENTS/RET-017.json",
+      "journal": "TREATMENTS/RET-017.md"
+    },
+    {
+      "id": "RET-018",
+      "name": "Macy's",
+      "family": "CLEARANCE_VARIANT_GRID",
+      "json": "TREATMENTS/RET-018.json",
+      "journal": "TREATMENTS/RET-018.md"
+    },
+    {
+      "id": "RET-019",
+      "name": "Nordstrom Rack",
+      "family": "OFFPRICE_CLEARANCE_VARIANT_GRID",
+      "json": "TREATMENTS/RET-019.json",
+      "journal": "TREATMENTS/RET-019.md"
+    },
+    {
+      "id": "RET-020",
+      "name": "REI",
+      "family": "EXPLICIT_PAGE_30_GRID",
+      "json": "TREATMENTS/RET-020.json",
+      "journal": "TREATMENTS/RET-020.md"
+    },
+    {
+      "id": "RET-021",
+      "name": "DICK'S Sporting Goods",
+      "family": "FILTERABLE_SALE_GRID",
+      "json": "TREATMENTS/RET-021.json",
+      "journal": "TREATMENTS/RET-021.md"
+    },
+    {
+      "id": "RET-022",
+      "name": "Academy Sports + Outdoors",
+      "family": "NESTED_CLEARANCE_CATEGORY",
+      "json": "TREATMENTS/RET-022.json",
+      "journal": "TREATMENTS/RET-022.md"
+    },
+    {
+      "id": "RET-023",
+      "name": "Bass Pro Shops",
+      "family": "FIRSTRESULT_AND_PAGE_GRID",
+      "json": "TREATMENTS/RET-023.json",
+      "journal": "TREATMENTS/RET-023.md"
+    },
+    {
+      "id": "RET-024",
+      "name": "Cabela's",
+      "family": "FIRSTRESULT_AND_PAGE_GRID",
+      "json": "TREATMENTS/RET-024.json",
+      "journal": "TREATMENTS/RET-024.md"
+    },
+    {
+      "id": "RET-025",
+      "name": "Tractor Supply",
+      "family": "STORE_CONTEXT_CLEARANCE_CATEGORIES",
+      "json": "TREATMENTS/RET-025.json",
+      "journal": "TREATMENTS/RET-025.md"
+    },
+    {
+      "id": "RET-026",
+      "name": "Harbor Freight",
+      "family": "COUPON_AND_CLUB_CAMPAIGN",
+      "json": "TREATMENTS/RET-026.json",
+      "journal": "TREATMENTS/RET-026.md"
+    },
+    {
+      "id": "RET-027",
+      "name": "Michaels",
+      "family": "CLEARANCE_PLUS_MARKETPLACE_VARIANTS",
+      "json": "TREATMENTS/RET-027.json",
+      "journal": "TREATMENTS/RET-027.md"
+    },
+    {
+      "id": "RET-028",
+      "name": "Barnes & Noble",
+      "family": "EDITORIAL_COUPON_TO_FORMAT_SPECIFIC_PRODUCTS",
+      "json": "TREATMENTS/RET-028.json",
+      "journal": "TREATMENTS/RET-028.md"
+    },
+    {
+      "id": "RET-029",
+      "name": "LEGO Store",
+      "family": "PAGE_NUMBERED_SET_CATALOG",
+      "json": "TREATMENTS/RET-029.json",
+      "journal": "TREATMENTS/RET-029.md"
+    },
+    {
+      "id": "RET-030",
+      "name": "Disney Store",
+      "family": "BRANDED_SALE_GRID",
+      "json": "TREATMENTS/RET-030.json",
+      "journal": "TREATMENTS/RET-030.md"
+    },
+    {
+      "id": "RET-031",
+      "name": "Walgreens",
+      "family": "WEEKLY_AD_AND_COUPON_CATALOG",
+      "json": "TREATMENTS/RET-031.json",
+      "journal": "TREATMENTS/RET-031.md"
+    },
+    {
+      "id": "RET-032",
+      "name": "CVS",
+      "family": "EXTRACARE_PROMO_AND_WEEKLY_AD",
+      "json": "TREATMENTS/RET-032.json",
+      "journal": "TREATMENTS/RET-032.md"
+    },
+    {
+      "id": "RET-033",
+      "name": "Chewy",
+      "family": "DUAL_PRICE_AUTOSHIP_AND_STANDARD",
+      "json": "TREATMENTS/RET-033.json",
+      "journal": "TREATMENTS/RET-033.md"
+    },
+    {
+      "id": "RET-034",
+      "name": "Petco",
+      "family": "PAGE_48_AND_SORT_GRID",
+      "json": "TREATMENTS/RET-034.json",
+      "journal": "TREATMENTS/RET-034.md"
+    },
+    {
+      "id": "RET-035",
+      "name": "PetSmart",
+      "family": "CLEARANCE_GRID_PLUS_STRIKETHROUGH_DEFINITION",
+      "json": "TREATMENTS/RET-035.json",
+      "journal": "TREATMENTS/RET-035.md"
+    },
+    {
+      "id": "RET-036",
+      "name": "Wayfair",
+      "family": "FLASH_SALE_FACETED_FURNITURE_GRID",
+      "json": "TREATMENTS/RET-036.json",
+      "journal": "TREATMENTS/RET-036.md"
+    },
+    {
+      "id": "RET-037",
+      "name": "Adorama",
+      "family": "PROMO_LISTING_WITH_RIGHTS_CONFLICT",
+      "json": "TREATMENTS/RET-037.json",
+      "journal": "TREATMENTS/RET-037.md"
+    },
+    {
+      "id": "RET-038",
+      "name": "Monoprice",
+      "family": "CLEARANCE_PRODUCT_LIST_CURRENT_PRICE",
+      "json": "TREATMENTS/RET-038.json",
+      "journal": "TREATMENTS/RET-038.md"
+    },
+    {
+      "id": "RET-039",
+      "name": "Samsung US",
+      "family": "TRADEIN_HEAVY_CAMPAIGN",
+      "json": "TREATMENTS/RET-039.json",
+      "journal": "TREATMENTS/RET-039.md"
+    },
+    {
+      "id": "RET-040",
+      "name": "Dell Outlet",
+      "family": "UNIQUE_OUTLET_CONFIGURATION",
+      "json": "TREATMENTS/RET-040.json",
+      "journal": "TREATMENTS/RET-040.md"
+    },
+    {
+      "id": "RET-041",
+      "name": "Lenovo US",
+      "family": "CONFIGURED_PARTNUMBER_DEAL_GRID",
+      "json": "TREATMENTS/RET-041.json",
+      "journal": "TREATMENTS/RET-041.md"
+    },
+    {
+      "id": "RET-042",
+      "name": "HP US",
+      "family": "WEEKLY_CONFIGURABLE_PRODUCTS",
+      "json": "TREATMENTS/RET-042.json",
+      "journal": "TREATMENTS/RET-042.md"
+    },
+    {
+      "id": "RET-043",
+      "name": "Nintendo Store",
+      "family": "DIGITAL_HEAVY_SALE_CATALOG",
+      "json": "TREATMENTS/RET-043.json",
+      "journal": "TREATMENTS/RET-043.md"
+    },
+    {
+      "id": "RET-044",
+      "name": "AliExpress",
+      "family": "CROSS_BORDER_VARIATION_MARKETPLACE",
+      "json": "TREATMENTS/RET-044.json",
+      "journal": "TREATMENTS/RET-044.md"
+    },
+    {
+      "id": "RET-045",
+      "name": "Alibaba",
+      "family": "B2B_TIERED_QUOTATION",
+      "json": "TREATMENTS/RET-045.json",
+      "journal": "TREATMENTS/RET-045.md"
+    },
+    {
+      "id": "RET-046",
+      "name": "Woot",
+      "family": "OFFICIAL_CATEGORY_FEED_AND_BATCH_DETAILS",
+      "json": "TREATMENTS/RET-046.json",
+      "journal": "TREATMENTS/RET-046.md"
+    },
+    {
+      "id": "RET-047",
+      "name": "Meh",
+      "family": "SINGLE_DAILY_DEAL_FEED",
+      "json": "TREATMENTS/RET-047.json",
+      "journal": "TREATMENTS/RET-047.md"
+    },
+    {
+      "id": "RET-048",
+      "name": "Kroger",
+      "family": "LOCATION_SCOPED_OAUTH_PRODUCT_SEARCH",
+      "json": "TREATMENTS/RET-048.json",
+      "journal": "TREATMENTS/RET-048.md"
+    },
+    {
+      "id": "RET-049",
+      "name": "Backcountry",
+      "family": "DEEP_PAGE_NUMBER_CLEARANCE_GRID",
+      "json": "TREATMENTS/RET-049.json",
+      "journal": "TREATMENTS/RET-049.md"
+    },
+    {
+      "id": "RET-050",
+      "name": "Acme Tools",
+      "family": "OFFSET_SIZE_SKU_PRICE_PAIR",
+      "json": "TREATMENTS/RET-050.json",
+      "journal": "TREATMENTS/RET-050.md"
+    },
+    {
+      "id": "RET-051",
+      "name": "Advance Auto Parts",
+      "family": "LOCATION_VEHICLE_FITMENT_AND_IMPACT_CATALOG",
+      "json": "TREATMENTS/RET-051.json",
+      "journal": "TREATMENTS/RET-051.md"
+    },
+    {
+      "id": "RET-052",
+      "name": "Fanatics",
+      "family": "IMPACT_LICENSED_MERCH_CATALOG",
+      "json": "TREATMENTS/RET-052.json",
+      "journal": "TREATMENTS/RET-052.md"
+    },
+    {
+      "id": "RET-053",
+      "name": "PUMA US",
+      "family": "SALE_AND_FINAL_SALE_VARIANT_GRID",
+      "json": "TREATMENTS/RET-053.json",
+      "journal": "TREATMENTS/RET-053.md"
+    },
+    {
+      "id": "RET-054",
+      "name": "Dell new-product deals",
+      "family": "EMBEDDED_STRUCTURED_OFFER_OBJECT",
+      "json": "TREATMENTS/RET-054.json",
+      "journal": "TREATMENTS/RET-054.md"
+    }
+  ]
+}

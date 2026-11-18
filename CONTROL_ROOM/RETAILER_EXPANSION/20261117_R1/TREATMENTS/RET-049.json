@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-049",
+  "name": "Backcountry",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "DEEP_PAGE_NUMBER_CLEARANCE_GRID",
+  "research_snapshot": {
+    "candidate_lane": "LISTING_BROWSER / PARTNER_PRODUCT_FEED",
+    "reported_mechanism": "Confirmed /rc/clearance?page=N; indexed page 95 exists and page 5 reports 4,061 results. Category facets and price/discount facet links. This is a deep paginated enumerable clearance surface.",
+    "reported_extraction": "Products show color counts; resolve the actual size/color current offer, not cheapest among family and not wrong model year.",
+    "known_risks": "Category broad, lot of apparel variants; Outlet/clearance need stock and individual option.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.backcountry.com/rc/clearance?page=5",
+    "public_evidence_grade": "VERIFIED_DEEP_PAGING_AND_TOTAL"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-035",
+  "name": "PetSmart",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "CLEARANCE_GRID_PLUS_STRIKETHROUGH_DEFINITION",
+  "research_snapshot": {
+    "candidate_lane": "LISTING_BROWSER_WITH_CONSENT",
+    "reported_mechanism": "Official /sale/clearance/ category page. Discover pagination controls from snapshot and product list, rather than assuming.",
+    "reported_extraction": "Current price plus strike-through reference, SKU/size/pack; promotional terms specify crossed-out reference may be MSRP, median paid or non-member retail.",
+    "known_risks": "Treat strikethrough as retailer reference with unknown basis; loyalty and store pickup prices distinct.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.petsmart.com/help/promotional-terms",
+    "public_evidence_grade": "OFFICIAL_REFERENCE_PRICE_DEFINITION"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

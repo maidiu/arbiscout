@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-048",
+  "name": "Kroger",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "EXISTING_SOURCE_RECHECK",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "PRIOR_APPLICATION_IMPLEMENTATION_UNREVIEWED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "LOCATION_SCOPED_OAUTH_PRODUCT_SEARCH",
+  "research_snapshot": {
+    "candidate_lane": "EXISTING_DIRECT_API",
+    "reported_mechanism": "Existing client-credential OAuth, choose store by location ZIP, query GET /v1/products with filter.term, filter.locationId, filter.limit. No documented enumerate-all-sale filter.",
+    "reported_extraction": "Product UPC/productId, item regular and promo, productPageURI, category and store ID.",
+    "known_risks": "Price promotion is for selected location, no global deal coverage, nonfood inventory sparse.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.postman.com/kroger/the-kroger-co-s-public-workspace/documentation/ki6utqb/kroger-public-apis",
+    "public_evidence_grade": "OFFICIAL_API_AND_EXISTING_ADAPTER"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

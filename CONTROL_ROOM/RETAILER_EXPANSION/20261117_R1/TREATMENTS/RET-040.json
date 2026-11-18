@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-040",
+  "name": "Dell Outlet",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "UNIQUE_OUTLET_CONFIGURATION",
+  "research_snapshot": {
+    "candidate_lane": "STRUCTURED_BROWSER_WITH_CONSENT",
+    "reported_mechanism": "Separate Outlet/Refurb landing /en-us/shop/lp/outlet; inspect list pagination/configure flows with explicit current stock per unique machine.",
+    "reported_extraction": "Service/configuration ID, processor/RAM/SSD/OS, refurb grade and warranty; sample may be unique stock.",
+    "known_risks": "An Outlet machine is not a new Dell retail SKU; exact-condition sold comp often sparse.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.dell.com/en-us/shop/lp/outlet",
+    "public_evidence_grade": "PUBLIC_OUTLET_PAGE"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

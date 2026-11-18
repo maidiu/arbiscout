@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-025",
+  "name": "Tractor Supply",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "STORE_CONTEXT_CLEARANCE_CATEGORIES",
+  "research_snapshot": {
+    "candidate_lane": "LISTING_BROWSER_WITH_CONSENT",
+    "reported_mechanism": "Homepage exposes Shop Items On Sale tabbed product list (Top Deals, Outdoor Power Equipment, Pet, Poultry, Livestock, Truck & Automotive, Tools etc); separate Digital Flyer at /tsc/cms/digital-flyer. Precise pagination still requires saved HTML.",
+    "reported_extraction": "Public Top Deals renders item-level Now/Was/Save labels (e.g. $299.99 Was $399.99), Add to Cart, and some See Price at Checkout cards; capture store, item ID, model, stock, pack and category.",
+    "known_risks": "Store-selected promotions, oversized equipment and freight, farm package quantities.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.tractorsupply.com/",
+    "public_evidence_grade": "PUBLIC_TABBED_DEAL_CARDS_NOW_WAS"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

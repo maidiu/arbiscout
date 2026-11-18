@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-051",
+  "name": "Advance Auto Parts",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "LOCATION_VEHICLE_FITMENT_AND_IMPACT_CATALOG",
+  "research_snapshot": {
+    "candidate_lane": "IMPACT_CATALOG / LISTING_BROWSER",
+    "reported_mechanism": "Official /o/advance-auto-parts-coupons-and-deals is a real promotion landing with links advertising up to 80% clearance; Impact product catalog is a separate official partner channel. Follow the promo category links and resolve local store/vehicle fitment.",
+    "reported_extraction": "Manufacturer part + brand, OEM cross-ref, exact fitment, checkout store, core charge and shipping.",
+    "known_risks": "SKU might be compatible rather than physically identical; core charges and store-specific promotions.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://shop.advanceautoparts.com/o/advance-auto-parts-coupons-and-deals",
+    "public_evidence_grade": "PUBLIC_PROMO_PAGE_PLUS_OFFICIAL_FEED"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

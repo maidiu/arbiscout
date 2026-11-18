@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-003",
+  "name": "Target",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "CATEGORY_CLEARANCE_FACETS",
+  "research_snapshot": {
+    "candidate_lane": "RESTRICTED_SITE / PARTNER_FEED",
+    "reported_mechanism": "Clearance lives at /c/clearance/-/N-5q0ga; inspect filters and page controls in rendered browser; URLs for continuation not established.",
+    "reported_extraction": "Collect product cards with DPCI/TCIN and price badges, select variant/condition and Pickup/Ship context. Do not use marketing tile as product.",
+    "known_risks": "Target Circle account offers, regional availability and color/size differences.",
+    "known_access_disposition": "NO_AUTOMATED_WEB_ACCESS_PENDING_GRANT",
+    "primary_evidence_url": "https://www.target.com/c/clearance/-/N-5q0ga",
+    "public_evidence_grade": "PUBLIC_ENTRY_AND_REPO_TERMS"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

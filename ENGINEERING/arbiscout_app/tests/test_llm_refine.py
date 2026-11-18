@@ -136,7 +136,9 @@ class LLMRefineTests(unittest.TestCase):
                                       "diagnostics": {}}}
             (root / "comparisons" / "comparisons_raw.json").write_text(json.dumps([raw]))
             (root / "comparisons" / "comparisons.json").write_text(json.dumps([refined]))
+            (root / "comparisons" / "comparisons_llm.json").write_text(json.dumps([refined]))
             self.assertTrue(ebay_watcher.reset_llm_record(root, key))
+            self.assertEqual(json.loads((root / "comparisons" / "comparisons_llm.json").read_text()), [])
             current = json.loads((root / "comparisons" / "comparisons.json").read_text())
             self.assertNotIn("llm_checked", current[0])
             self.assertNotIn("llm_refinement", current[0])

@@ -285,6 +285,16 @@ def reset_llm_record(output, key):
     if found:
         current_path.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n",
                                 encoding="utf-8")
+        llm_path = Path(output) / "comparisons" / "comparisons_llm.json"
+        if llm_path.is_file():
+            try:
+                llm_rows = json.loads(llm_path.read_text(encoding="utf-8"))
+                llm_rows = [row for row in llm_rows
+                            if row.get("retailer", {}).get("key") != key]
+                llm_path.write_text(json.dumps(llm_rows, indent=2, ensure_ascii=False) + "\n",
+                                    encoding="utf-8")
+            except (OSError, ValueError):
+                pass
     return found
 
 

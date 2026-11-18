@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-001",
+  "name": "Best Buy",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "EXISTING_SOURCE_RECHECK",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "PRIOR_APPLICATION_IMPLEMENTATION_UNREVIEWED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "HYDRATED_LISTING_WITH_BESTBUY_SELECTORS",
+  "research_snapshot": {
+    "candidate_lane": "EXISTING_BROWSER + OFFICIAL_API",
+    "reported_mechanism": "Start Black Friday and Top 100 category pages; follow ranked sale links at bounded depth; scroll for lazy cards, wait until customer-price elements settle. Existing runner uses 12 secondary pages; no product pages by default.",
+    "reported_extraction": "Current code reads [data-testid=\"product-card\"], .wf-offer, generic grid cards, JSON-LD and optional product-page details; archive settled rendered HTML and dedupe by product URL/SKU.",
+    "known_risks": "Current/regular price must come from one product observation; inspect open-box, membership, pickup and sold-out separately.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://github.com/maidiu/arbiscout/blob/65529f5c5d23820d679f8d003157a1dd25d4f994/ENGINEERING/arbiscout_app/arbiscout.py",
+    "public_evidence_grade": "IMPLEMENTED_SOURCE_AND_BANKED_LOCAL_RUN"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

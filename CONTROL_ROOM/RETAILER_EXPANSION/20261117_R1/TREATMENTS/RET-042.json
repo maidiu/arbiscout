@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-042",
+  "name": "HP US",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "WEEKLY_CONFIGURABLE_PRODUCTS",
+  "research_snapshot": {
+    "candidate_lane": "STRUCTURED_BROWSER_WITH_CONSENT",
+    "reported_mechanism": "Weekly deals /us-en/shop/slp/weekly-deals shows category tabs and product cards including explicit laptop configuration titles; inspect all tabs and paging.",
+    "reported_extraction": "Full HP product SKU, CPU/RAM/SSD/screen/warranty, now/regular and add-to-cart status; fixed SKU versus customizable builder.",
+    "known_risks": "Customized base price changes with options; Instant Savings not identical to rebate.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.hp.com/us-en/shop/slp/weekly-deals",
+    "public_evidence_grade": "PUBLIC_CONFIG_TEXT"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

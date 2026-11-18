@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-034",
+  "name": "Petco",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "PAGE_48_AND_SORT_GRID",
+  "research_snapshot": {
+    "candidate_lane": "LISTING_BROWSER_WITH_CONSENT",
+    "reported_mechanism": "Clearance /category/top-deals/clearance shows 1–48 of 527 results; page=2 works; supported sortby=offerprice&sortorder=ascending in URL.",
+    "reported_extraction": "Cards visibly state e.g. $75.00 was $149.99; some require choices (“More Choices Available”), pickup/same-day state.",
+    "known_risks": "Regional pickup-only, package quantity, conditional rewards and product option range.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.petco.com/category/top-deals/clearance?page=2&sortby=offerprice&sortorder=ascending",
+    "public_evidence_grade": "VERIFIED_48_PAGINATION_SORT"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-045",
+  "name": "Alibaba",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "B2B_TIERED_QUOTATION",
+  "research_snapshot": {
+    "candidate_lane": "SUPPLIER_QUOTE / MANUAL",
+    "reported_mechanism": "Supplier catalog and RFQ; product tiles often show per-piece price range at MOQ, not single consumer transaction.",
+    "reported_extraction": "Factory/supplier, specification, quantity break, MOQ, shipping term, freight, import/tariff duties and lead time.",
+    "known_risks": "Cannot compare 100-unit FOB quote to one delivered eBay unit; no amount due until quote qualified.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://www.alibaba.com/",
+    "public_evidence_grade": "PRIOR_REPO_B2B_CANDIDATE"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-047",
+  "name": "Meh",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "EXISTING_SOURCE_RECHECK",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "PRIOR_APPLICATION_IMPLEMENTATION_UNREVIEWED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "SINGLE_DAILY_DEAL_FEED",
+  "research_snapshot": {
+    "candidate_lane": "EXISTING_DIRECT_API / PUBLIC_FEED",
+    "reported_mechanism": "Existing keyed /api/1/current.json plus documented public https://meh.com/feed.json and RSS; one daily headline deal, not a merchant-wide paginated sale catalog.",
+    "reported_extraction": "Deal/items, variants, price, MSRP, soldOutAt, item ID, item-specific product link.",
+    "known_risks": "Bundles and variant prices may differ; one deal/day throughput ceiling.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://meh.com/support",
+    "public_evidence_grade": "OFFICIAL_FEED_AND_EXISTING_ADAPTER"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

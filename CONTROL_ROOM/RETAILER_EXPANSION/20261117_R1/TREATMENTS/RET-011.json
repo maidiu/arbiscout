@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-011",
+  "name": "B&H Photo",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "DEALZONE_EDITORIAL_LIST",
+  "research_snapshot": {
+    "candidate_lane": "RESTRICTED_SITE / REQUESTED_FEED",
+    "reported_mechanism": "Deal Zone shows current limited-time camera/computer/audio promotions; record timed section/category links, page continuation unknown.",
+    "reported_extraction": "Manufacturer model, B&H SKU, current/regular price when present, rebate and bundle/kit variation; do not interpret promotion countdown as stock.",
+    "known_risks": "Instant/mail-in rebates, multi-item kits, ship/tax eligibility.",
+    "known_access_disposition": "NO_AUTOMATED_WEB_ACCESS_PENDING_GRANT",
+    "primary_evidence_url": "https://www.bhphotovideo.com/find/dealZone.jsp",
+    "public_evidence_grade": "PUBLIC_DEALZONE_PAGE_AND_REPO_TERMS"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

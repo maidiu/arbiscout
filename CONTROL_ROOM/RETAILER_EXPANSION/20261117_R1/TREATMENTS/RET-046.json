@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-046",
+  "name": "Woot",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "EXISTING_SOURCE_RECHECK",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "PRIOR_APPLICATION_IMPLEMENTATION_UNREVIEWED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "OFFICIAL_CATEGORY_FEED_AND_BATCH_DETAILS",
+  "research_snapshot": {
+    "candidate_lane": "EXISTING_DIRECT_API",
+    "reported_mechanism": "Existing keyed GET /feed/{feedname}, categories All/Clearance/Computers/Electronics/Tools; POST /getoffers expands offer details in batches (local adapter batches 25).",
+    "reported_extraction": "OfferId, SalePrice/ListPrice, IsSoldOut, Condition, variant details and actual offer URL; preserve collection family/variant structure.",
+    "known_risks": "Min/Max price ranges and multiple conditions must remain separate purchasable variants; merchant/stock/shipping conditions.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://developer.woot.com/",
+    "public_evidence_grade": "OFFICIAL_API_AND_EXISTING_ADAPTER"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

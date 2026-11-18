@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "source_id": "RET-009",
+  "name": "Sam's Club",
+  "research_path": "RESEARCH/MECHANISM_SPECIFICATIONS.json",
+  "research_snapshot_date": "2026-11-17",
+  "implementation_status": "UNSTARTED",
+  "rights_status": "NOT_YET_VERIFIED_FOR_THIS_USE",
+  "mechanism_status": "RESEARCH_ONLY_NOT_SOURCE_CAPTURE_VERIFIED",
+  "quality_status": "NO_NEW_SOURCE_VALIDATION",
+  "integration_status": "NOT_INTEGRATED",
+  "review_status": "NOT_REVIEWED",
+  "source_family": "MEMBERSHIP_INSTANT_SAVINGS",
+  "research_snapshot": {
+    "candidate_lane": "MEMBER_SESSION / PARTNER",
+    "reported_mechanism": "Instant Savings Program, member-linked online/club inventory; map promotional list to product offers after entitlement and club context selected.",
+    "reported_extraction": "Member item ID, club ZIP, offer validity, member actual payable price and pack quantity. Record inaccessible price as unknown.",
+    "known_risks": "Membership prerequisite, instant savings can be redeemed once, local club vs online inventory.",
+    "known_access_disposition": "REVIEW_TERMS_BEFORE_AUTOMATED_COLLECTION",
+    "primary_evidence_url": "https://help.samsclub.com/app/answers/detail/a_id/520/~/what-is-sams-club-instant-savings-program",
+    "public_evidence_grade": "OFFICIAL_PROGRAM_TERMS"
+  },
+  "implementation": {
+    "adapter_paths": [],
+    "fixture_paths": [],
+    "test_paths": [],
+    "source_contract": "ENGINEERING/arbiscout_app/*/retailer/products.json",
+    "last_commit_sha": null,
+    "actual_live_rows": null,
+    "correct_current_prices_verified": null
+  },
+  "receipts": [],
+  "blockers": [],
+  "open_questions": [],
+  "decisions": [],
+  "history": [
+    {
+      "date": "2026-11-17",
+      "kind": "INITIAL_SEED",
+      "note": "Research only; no fresh live source run, authorization, adapter validation or independent review implied."
+    }
+  ]
+}

@@ -99,8 +99,9 @@ def listing_identity(observation):
 
 
 def cache_key(model, retailer_id, retailer, listing):
-    raw = json.dumps({"model": model, "retailer_id": retailer_id,
-                      "retailer": retailer, "listing": listing},
+    raw = json.dumps({"model": model, "prompt_version": PROMPT_VERSION,
+                      "retailer_id": retailer_id, "retailer": retailer,
+                      "listing": listing},
                      sort_keys=True, ensure_ascii=False)
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 

@@ -139,6 +139,35 @@ class LLMRefineTests(unittest.TestCase):
             self.assertNotIn("llm_refinement", current[0])
             self.assertEqual(current[0]["comparison"]["sample_count"], 2)
 
+    def test_merge_llm_refinement_persists_only_matching_evidence(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "comparisons").mkdir()
+            key = "dell:dc16255"
+            observation = {"item_id": "d1", "retailer_key": key,
+                           "title": "Dell 16 DC16255 16GB 512GB",
+                           "displayed_price": 600.0, "sold_at": "2026-11-10T00:00:00+00:00",
+                           "price_status": "DISPLAYED_SOLD"}
+            fingerprint = llm_refine.observations_fingerprint([observation])
+            raw = {"retailer": {"key": key, "title": "Dell 16 Laptop"},
+                   "comparison": {"sample_count": 1, "diagnostics": {}}}
+            refined = {"retailer": {"key": key, "title": "Dell 16 Laptop"},
+                       "llm_checked": True,
+                       "llm_refinement": {"evidence_fingerprint": fingerprint},
+                       "comparison": {"sample_count": 1, "diagnostics": {}}}
+            (root / "comparisons" / "comparisons.json").write_text(json.dumps([raw]))
+            (root / "comparisons" / "comparisons_llm.json").write_text(json.dumps([refined]))
+            (root / "comparisons" / "sold_observations.json").write_text(json.dumps([observation]))
+            ebay_watcher.merge_llm_refinement(root)
+            current = json.loads((root / "comparisons" / "comparisons.json").read_text())
+            self.assertTrue(current[0].get("llm_checked"))
+            (root / "comparisons" / "comparisons.json").write_text(json.dumps([raw]))
+            observation["title"] = "Dell 16 DC16255 32GB 2TB"
+            (root / "comparisons" / "sold_observations.json").write_text(json.dumps([observation]))
+            ebay_watcher.merge_llm_refinement(root)
+            current = json.loads((root / "comparisons" / "comparisons.json").read_text())
+            self.assertNotIn("llm_checked", current[0])
+
     def test_refine_preserves_unselected_candidates(self):
         now = datetime.now(timezone.utc).isoformat()
         dell = {"key": "dell:dc16255", "title": "Dell 16 Laptop", "model": "DC16255",

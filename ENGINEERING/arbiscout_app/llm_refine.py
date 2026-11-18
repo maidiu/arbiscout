@@ -98,6 +98,14 @@ def listing_identity(observation):
     return {"item_id": listing_id(observation), "title": observation.get("title") or ""}
 
 
+def observations_fingerprint(observations):
+    payload = [{key: observation.get(key) for key in
+                ("item_id", "title", "displayed_price", "sold_at", "price_status")}
+               for observation in observations]
+    return hashlib.sha256(json.dumps(payload, sort_keys=True, ensure_ascii=False)
+                          .encode("utf-8")).hexdigest()
+
+
 def cache_key(model, retailer_id, retailer, listing):
     raw = json.dumps({"model": model, "prompt_version": PROMPT_VERSION,
                       "retailer_id": retailer_id, "retailer": retailer,
@@ -401,6 +409,7 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=50
                 "after_sample_count": comparison.get("sample_count"),
                 "after_median": comparison.get("historical_median"),
                 "after_gap": comparison.get("gap"),
+                "evidence_fingerprint": observations_fingerprint(source_observations),
             },
         }
         records.append(record)

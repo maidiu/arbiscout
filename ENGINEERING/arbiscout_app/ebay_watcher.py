@@ -206,12 +206,53 @@ def reprocess_thread(folder, downloads, staging, output):
                          output=str(output), as_of=datetime.now(timezone.utc),
                          ebay_auto_match=True, keep_selection=KEEP_SELECTION,
                          manual_matches=MANUAL)
+        merge_llm_refinement(output)
         update_state(folder, downloads, staging, output, [], "Manual match applied")
     except Exception as exc:
         update_state(folder, downloads, staging, output, [], "Manual match failed: " + str(exc)[:300])
     finally:
         with LOCK:
             REPROCESSING = False
+
+
+def observations_fingerprint(observations):
+    payload = [{key: observation.get(key) for key in
+                ("item_id", "title", "displayed_price", "sold_at", "price_status")}
+               for observation in observations]
+    return hashlib.sha256(json.dumps(payload, sort_keys=True, ensure_ascii=False)
+                          .encode("utf-8")).hexdigest()
+
+
+def merge_llm_refinement(output):
+    current_path = Path(output) / "comparisons" / "comparisons.json"
+    llm_path = Path(output) / "comparisons" / "comparisons_llm.json"
+    observations_path = Path(output) / "comparisons" / "sold_observations.json"
+    if not (current_path.is_file() and llm_path.is_file() and observations_path.is_file()):
+        return
+    try:
+        current = json.loads(current_path.read_text(encoding="utf-8"))
+        refined = json.loads(llm_path.read_text(encoding="utf-8"))
+        observations = json.loads(observations_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return
+    refined_by_key = {row.get("retailer", {}).get("key"): row for row in refined}
+    by_retailer = {}
+    for observation in observations:
+        by_retailer.setdefault(observation.get("retailer_key"), []).append(observation)
+    changed = False
+    for row in current:
+        key = row.get("retailer", {}).get("key")
+        candidate = refined_by_key.get(key)
+        if not candidate or not candidate.get("llm_checked"):
+            continue
+        stored = (candidate.get("llm_refinement") or {}).get("evidence_fingerprint")
+        if stored and stored != observations_fingerprint(by_retailer.get(key, [])):
+            continue
+        row.update(candidate)
+        changed = True
+    if changed:
+        current_path.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n",
+                                encoding="utf-8")
 
 
 def reset_llm_record(output, key):
@@ -739,6 +780,7 @@ def main(argv=None):
                          output=str(output), as_of=datetime.now(timezone.utc),
                          ebay_auto_match=True, keep_selection=a.keep_selection,
                          manual_matches=MANUAL)
+        merge_llm_refinement(output)
     except Exception as exc:
         print("Initial processing error:", exc)
     initial_message = (f"Processed {len(initial_pages)} saved page(s) at startup"
@@ -792,6 +834,7 @@ def main(argv=None):
                                      output=str(output), as_of=datetime.now(timezone.utc),
                                      ebay_auto_match=True, keep_selection=a.keep_selection,
                                      manual_matches=MANUAL)
+                    merge_llm_refinement(output)
                     for key, signature in copied:
                         seen[key] = signature
                         pending.pop(key, None)

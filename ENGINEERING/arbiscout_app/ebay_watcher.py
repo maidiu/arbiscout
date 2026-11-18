@@ -489,7 +489,7 @@ function render(){
     const manual=x.manual_file||'';
     const fileOptions=(state.files||[]).map(f=>`<option value="${esc(f.name)}" ${manual===f.name?'selected':''}>${esc(f.name)}</option>`).join('');
     const matchCell=`<select class="manual" data-key="${esc(x.key)}"><option value="">Auto</option>${fileOptions}</select>`;
-    const diag=x.diagnostics?`matched ${x.diagnostics.usable??0}; rejected ${x.diagnostics.model_rejected??0}; unknown offers ${x.diagnostics.unknown_best_offer??0}${x.diagnostics.llm_exact!=null?`; LLM exact ${x.diagnostics.llm_exact}, removed ${x.diagnostics.llm_removed}`:''}`:'';
+    const diag=x.diagnostics?`matched ${x.diagnostics.usable??0}; model rejected ${x.diagnostics.model_rejected??0}; condition rejected ${x.diagnostics.condition_rejected??0}; date rejected ${x.diagnostics.date_rejected??0}; unknown offers ${x.diagnostics.unknown_best_offer??0}${x.diagnostics.llm_exact!=null?`; LLM exact ${x.diagnostics.llm_exact}, removed ${x.diagnostics.llm_removed}`:''}`:'';
     return `<tr><td class="n">${rank}</td>
       <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.source?'<br><small>'+esc(x.source)+'</small>':''}${x.category?'<br><small>'+esc(x.category)+'</small>':''}${x.variant_count>1?'<br><small>'+x.variant_count+' variants</small>':''}${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
       <td class="n">${usd(x.retail_current)}</td><td class="n">${usd(x.retail_regular)}</td>

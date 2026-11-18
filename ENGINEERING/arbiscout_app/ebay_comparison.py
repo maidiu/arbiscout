@@ -248,6 +248,21 @@ def price(s):
     except InvalidOperation:return None
 
 
+def condition_from_text(text):
+    value = (text or '').lower()
+    if re.search(r'\b(?:for parts|parts only|not working|repair only)\b', value):
+        return 'PARTS'
+    if re.search(r'\bopen[ -]?box\b', value):
+        return 'OPEN_BOX'
+    if re.search(r'\b(?:refurbished|renewed)\b', value):
+        return 'REFURBISHED'
+    if re.search(r'\b(?:pre[ -]?owned|used)\b', value):
+        return 'USED'
+    if re.search(r'\b(?:brand new|new)\b', value):
+        return 'NEW'
+    return 'UNKNOWN'
+
+
 def parse_ebay_sold_html(html,query_url):
     soup=BeautifulSoup(html,'html.parser')
     body=soup.get_text(' ',strip=True)[:3000].lower()
@@ -266,6 +281,9 @@ def parse_ebay_sold_html(html,query_url):
         if not title or title.lower() in ('shop on ebay','sponsored'):continue
         pnode=node.select_one('.s-item__price,.s-card__price')
         if not pnode:continue
+        condition_text=' | '.join(x.get_text(' ',strip=True) for x in
+            node.select('.s-card__subtitle,.s-item__subtitle,.s-item__condition,.s-card__condition'))
+        condition=condition_from_text(condition_text) if condition_text else condition_from_text(title)
         raw_price=pnode.get_text(' ',strip=True)
         date_node=node.select_one('.s-item__ended-date,.s-item__endedDate,.s-item__caption--signal,.s-card__caption,.s-item__title--tagblock')
         date_text=(date_node.get_text(' ',strip=True) if date_node else '')
@@ -281,7 +299,8 @@ def parse_ebay_sold_html(html,query_url):
         rows.append({'item_id':im.group(1),'title':title,'item_url':link,'sold_at':when.isoformat() if when else None,
                      'displayed_price':price(raw_price),'paid_price':v,
                      'price_status':'UNKNOWN_ACCEPTED_OFFER' if best else 'AMBIGUOUS_RANGE' if ambiguous else 'DISPLAYED_SOLD',
-                     'date_status':'KNOWN' if when else 'UNKNOWN','source_url':query_url})
+                     'date_status':'KNOWN' if when else 'UNKNOWN','condition':condition,
+                     'condition_text':condition_text[:160],'source_url':query_url})
     return rows,'PARSED' if rows else 'NO_SOLD_ROWS_PARSED'
 
 
@@ -302,7 +321,7 @@ def qualify(retail,observations,as_of=None,min_sales=3,identity_verified=False):
     as_of=as_of or datetime.now(timezone.utc)
     start=as_of-timedelta(days=30)
     diag={'returned':len(observations),'dated_in_window':0,'unknown_best_offer':0,'model_rejected':0,
-          'date_rejected':0,'unknown_paid':0,'usable':0}
+          'date_rejected':0,'condition_rejected':0,'unknown_paid':0,'usable':0}
     good=[]
     for o in observations:
         try:d=datetime.fromisoformat(o.get('sold_at') or '')
@@ -310,6 +329,11 @@ def qualify(retail,observations,as_of=None,min_sales=3,identity_verified=False):
         if d is None or not start<=d.astimezone(timezone.utc)<=as_of:
             diag['date_rejected']+=1;continue
         diag['dated_in_window']+=1
+        retail_condition=condition_from_text(retail.get('condition') or 'NEW')
+        sold_condition=o.get('condition') or condition_from_text(o.get('title',''))
+        if sold_condition=='PARTS' or (retail_condition=='NEW' and sold_condition!='NEW') or (
+                retail_condition in ('USED','REFURBISHED','OPEN_BOX') and sold_condition!=retail_condition):
+            diag['condition_rejected']+=1;continue
         if not identity_verified:
             match,_=model_match(retail,o.get('title',''))
             if not match:diag['model_rejected']+=1;continue

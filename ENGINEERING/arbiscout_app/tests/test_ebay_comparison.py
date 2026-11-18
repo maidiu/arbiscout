@@ -14,8 +14,9 @@ RETAIL={'key':'bestbuy:123','title':'Sony WH-1000XM5 Wireless Noise Canceling He
         'url':'https://www.bestbuy.com/product/x/123','current_price':199.99,'regular_price':399.99,
         'discount_percent':50.0,'savings':200.0,'price_conflict':False,'variant_conflict':False}
 
-def sold_card(id,title,dt,price,extra=''):
-    return f'<li class="s-item"><a class="s-item__link" href="https://www.ebay.com/itm/{id}"><h3 class="s-item__title">{title}</h3></a><span class="s-item__price">${price}</span><span class="s-item__ended-date">Sold {dt}</span><span>{extra}</span></li>'
+def sold_card(id,title,dt,price,extra='',condition='Brand New'):
+    condition_html=f'<span class="s-item__subtitle">{condition}</span>' if condition else ''
+    return f'<li class="s-item"><a class="s-item__link" href="https://www.ebay.com/itm/{id}"><h3 class="s-item__title">{title}</h3></a><span class="s-item__price">${price}</span><span class="s-item__ended-date">Sold {dt}</span>{condition_html}<span>{extra}</span></li>'
 
 class EBayEvidenceTests(unittest.TestCase):
     def test_filters_dates_price_and_best_offer(self):
@@ -55,12 +56,25 @@ class EBayEvidenceTests(unittest.TestCase):
     def test_llm_identity_can_rescue_regex_miss(self):
         obs = [{"item_id": "x", "title": "Dell 16 Laptop 16GB 512GB",
                 "sold_at": "2026-11-10T00:00:00+00:00", "displayed_price": 600.0,
-                "paid_price": 600.0, "price_status": "DISPLAYED_SOLD"}]
+                "paid_price": 600.0, "price_status": "DISPLAYED_SOLD",
+                "condition": "NEW"}]
         as_of = datetime(2026, 11, 17, tzinfo=timezone.utc)
         self.assertEqual(e.qualify(DELL, obs, as_of)["sample_count"], 0)
         rescued = e.qualify(DELL, obs, as_of, identity_verified=True)
         self.assertEqual(rescued["sample_count"], 1)
         self.assertEqual(rescued["historical_median"], 600.0)
+
+    def test_condition_filter_rejects_pre_owned_open_box_and_unknown(self):
+        page = ''.join([
+            sold_card('700000000001', RETAIL['title'], 'Nov 10, 2026', '300.00', condition='Brand New'),
+            sold_card('700000000002', RETAIL['title'], 'Nov 10, 2026', '250.00', condition='Pre-Owned'),
+            sold_card('700000000003', RETAIL['title'], 'Nov 10, 2026', '260.00', condition='Open Box'),
+            sold_card('700000000004', RETAIL['title'], 'Nov 10, 2026', '240.00', condition=''),
+        ])
+        obs, _ = e.parse_ebay_sold_html(page, e.search_url('Sony'))
+        result = e.qualify(RETAIL, obs, datetime(2026, 11, 17, tzinfo=timezone.utc))
+        self.assertEqual(result['sample_count'], 1)
+        self.assertEqual(result['diagnostics']['condition_rejected'], 3)
 
     def test_changed_query_still_matches_by_sold_model(self):
         with tempfile.TemporaryDirectory() as temp:

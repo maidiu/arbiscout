@@ -42,15 +42,18 @@ class LLMRefineTests(unittest.TestCase):
             {"item_id": "1", "retailer_key": "dell:dc16255",
              "title": "Dell 16 DC16255 16GB 512GB Laptop", "sold_at": now,
              "displayed_price": 600.0, "paid_price": 600.0,
-             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/1"},
+             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/1",
+             "condition": "NEW"},
             {"item_id": "2", "retailer_key": "dell:dc16255",
              "title": "Dell 16 DC16255 32GB 2TB Laptop", "sold_at": now,
              "displayed_price": 900.0, "paid_price": 900.0,
-             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/2"},
+             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/2",
+             "condition": "NEW"},
             {"item_id": "3", "retailer_key": "dell:dc16255",
              "title": "Dell 16 DC16255 16GB 512GB Used", "sold_at": now,
              "displayed_price": 500.0, "paid_price": 500.0,
-             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/3"},
+             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/3",
+             "condition": "USED"},
         ]
         receipt = {
             "as_of_utc": now, "synthetic_demo": False, "selected_retail_offers": 1,
@@ -147,7 +150,7 @@ class LLMRefineTests(unittest.TestCase):
             observation = {"item_id": "d1", "retailer_key": key,
                            "title": "Dell 16 DC16255 16GB 512GB",
                            "displayed_price": 600.0, "sold_at": "2026-11-10T00:00:00+00:00",
-                           "price_status": "DISPLAYED_SOLD"}
+                           "price_status": "DISPLAYED_SOLD", "condition": "NEW"}
             fingerprint = llm_refine.observations_fingerprint([observation])
             raw = {"retailer": {"key": key, "title": "Dell 16 Laptop"},
                    "comparison": {"sample_count": 1, "diagnostics": {}}}
@@ -181,7 +184,7 @@ class LLMRefineTests(unittest.TestCase):
         observation = {"item_id": "d1", "retailer_key": "dell:dc16255",
                        "title": "Dell 16 DC16255 16GB 512GB", "sold_at": now,
                        "displayed_price": 600.0, "paid_price": 600.0,
-                       "price_status": "DISPLAYED_SOLD"}
+                       "price_status": "DISPLAYED_SOLD", "condition": "NEW"}
         receipt = {"as_of_utc": now, "synthetic_demo": False, "selected_retail_offers": 2,
                    "positive_provisional_count": 0, "top_ten_count": 0,
                    "actual_paid_verified_count": 0, "source_mode": "SAVED_EBAY_HTML"}
@@ -224,11 +227,13 @@ class LLMRefineTests(unittest.TestCase):
             {"item_id": "d1", "retailer_key": "dell:dc16255",
              "title": "Dell 16 DC16255 16GB 512GB", "sold_at": now,
              "displayed_price": 600.0, "paid_price": 600.0,
-             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/d1"},
+             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/d1",
+             "condition": "NEW"},
             {"item_id": "l1", "retailer_key": "lego:76470",
              "title": "LEGO 76470 Enchanted Flying Ford Anglia New", "sold_at": now,
              "displayed_price": 70.0, "paid_price": 70.0,
-             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/l1"},
+             "price_status": "DISPLAYED_SOLD", "item_url": "https://www.ebay.com/itm/l1",
+             "condition": "NEW"},
         ]
         receipt = {"as_of_utc": now, "synthetic_demo": False, "selected_retail_offers": 2,
                    "positive_provisional_count": 0, "top_ten_count": 0,

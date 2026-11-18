@@ -95,7 +95,8 @@ def retailer_identity(product):
 
 
 def listing_identity(observation):
-    return {"item_id": listing_id(observation), "title": observation.get("title") or ""}
+    return {"item_id": listing_id(observation), "title": observation.get("title") or "",
+            "condition": observation.get("condition") or "UNKNOWN"}
 
 
 def observations_fingerprint(observations):
@@ -327,7 +328,8 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=50
             ck = cache_key(model, key, retailer, listing)
             cached = cache.get(ck)
             if not (cached and cached.get("verdict") in ALLOWED_VERDICTS):
-                pending.append({"item_id": lid, "title": listing["title"]})
+                pending.append({"item_id": lid, "title": listing["title"],
+                                "condition": listing.get("condition")})
         if pending:
             pending_groups.append({"retailer_id": key, "retailer": retailer,
                                    "listings": pending})
@@ -369,7 +371,9 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=50
             verdict = verdicts.get(lid) or {"verdict": "UNKNOWN", "confidence": 0.0}
             if verdict["verdict"] == "EXACT_MATCH" and verdict["confidence"] >= min_confidence:
                 title = str(observation.get("title") or "")
-                if str(product.get("condition") or "").lower() == "new" and USED_RE.search(title):
+                if str(product.get("condition") or "").lower() == "new" and (
+                        USED_RE.search(title) or observation.get("condition") in
+                        ("USED", "REFURBISHED", "OPEN_BOX", "PARTS")):
                     verdict = {**verdict, "verdict": "USED_OR_REFURB",
                                "reason": "Deterministic condition guard"}
                 elif ebay.BAD_MATCH.search(title):

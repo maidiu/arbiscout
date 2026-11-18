@@ -147,7 +147,8 @@ def make_demo_sold(path, products, at):
             cards.append(
                 "<li class='s-item'><a class='s-item__link' href='https://www.ebay.com/itm/{}'>"
                 "<h3 class='s-item__title'>{}</h3></a><span class='s-item__price'>"
-                "&#36;{:.2f}</span><span class='s-item__ended-date'>Sold {}</span></li>".format(
+                "&#36;{:.2f}</span><span class='s-item__ended-date'>Sold {}</span>"
+                "<span class='s-item__subtitle'>Brand New</span></li>".format(
                     880000000000 + 10*i + k, title,
                     float(item["current_price"]) + 40 + 4*i + 2*k,
                     (at-timedelta(days=k+1)).strftime("%b %d, %Y")))
@@ -157,7 +158,8 @@ def make_demo_sold(path, products, at):
             cards.append(
                 "<li class='s-item'><a class='s-item__link' href='https://www.ebay.com/itm/{}'>"
                 "<h3 class='s-item__title'>{}</h3></a><span class='s-item__price'>"
-                "&#36;{:.2f}</span><span class='s-item__ended-date'>Sold {}</span>{}</li>".format(
+                "&#36;{:.2f}</span><span class='s-item__ended-date'>Sold {}</span>"
+                "<span class='s-item__subtitle'>Brand New</span>{}</li>".format(
                     item_id, title, amt, (at-timedelta(days=days)).strftime("%b %d, %Y"), extra))
         (path / "{:02d}.html".format(i)).write_text(
             "<html><body>" + "".join(cards) + "</body></html>", encoding="utf-8")

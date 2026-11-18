@@ -488,6 +488,14 @@ __SAVED__
 <div class="card"><h2>LEGO</h2>
 <label>Sale page URL</label><input name="LEGO_URL" value="__LEGO_URL__" placeholder="https://www.lego.com/en-us/categories/sales-and-deals">
 </div>
+<div class="card"><h2>DeepSeek refinement</h2>
+<p class="hint">Optional. Only sanitized extracted listing records are sent; raw HTML and keys stay local. The LLM can remove listings, never add or invent prices.</p>
+<label>API base URL</label><input name="LLM_BASE_URL" value="__LLM_BASE_URL__" placeholder="https://api.deepseek.com/v1">
+<div class="row"><div><label>Model</label><input name="LLM_MODEL" value="__LLM_MODEL__" placeholder="deepseek-chat"></div>
+<div><label>Minimum confidence</label><input name="LLM_MIN_CONFIDENCE" value="__LLM_MIN_CONFIDENCE__" placeholder="0.8"></div></div>
+<label>API key <span class="status">__LLM_KEY_STATUS__</span></label><input name="LLM_API_KEY" type="password" placeholder="leave blank to keep current">
+<label><input type="checkbox" name="clear_LLM_API_KEY" style="width:auto"> Clear saved LLM key</label>
+</div>
 <div class="card"><h2>Woot</h2>
 <div class="row"><div><label>Feed</label><input name="WOOT_FEED" value="__WOOT_FEED__" placeholder="All"></div>
 <div><label>Maximum products</label><input name="WOOT_MAX" value="__WOOT_MAX__" placeholder="500"></div></div>
@@ -542,6 +550,10 @@ class Handler(BaseHTTPRequestHandler):
                 "__BESTBUY_URL__": env.get("BESTBUY_URL", "https://www.bestbuy.com/black-friday"),
                 "__DELL_URL__": env.get("DELL_URL", DELL_URL),
                 "__LEGO_URL__": env.get("LEGO_URL", LEGO_URL),
+                "__LLM_BASE_URL__": env.get("LLM_BASE_URL", "https://api.deepseek.com/v1"),
+                "__LLM_MODEL__": env.get("LLM_MODEL", "deepseek-chat"),
+                "__LLM_MIN_CONFIDENCE__": env.get("LLM_MIN_CONFIDENCE", "0.8"),
+                "__LLM_KEY_STATUS__": "set" if env.get("LLM_API_KEY") or env.get("DEEPSEEK_API_KEY") else "not set",
                 "__WOOT_FEED__": env.get("WOOT_FEED", "All"),
                 "__WOOT_MAX__": env.get("WOOT_MAX", "500"),
                 "__KROGER_TERMS__": env.get("KROGER_TERMS", "milk,eggs,bread"),
@@ -641,11 +653,12 @@ class Handler(BaseHTTPRequestHandler):
                 form = parse_qs(self.rfile.read(length).decode("utf-8", errors="replace"))
                 updates = {}
                 clears = []
-                for key in ("BESTBUY_URL", "DELL_URL", "LEGO_URL", "WOOT_FEED", "WOOT_MAX", "KROGER_TERMS"):
+                for key in ("BESTBUY_URL", "DELL_URL", "LEGO_URL", "WOOT_FEED", "WOOT_MAX",
+                            "KROGER_TERMS", "LLM_BASE_URL", "LLM_MODEL", "LLM_MIN_CONFIDENCE"):
                     if key in form:
                         updates[key] = form[key][0].strip()
                 for key in ("MEH_API_KEY", "WOOT_API_KEY", "KROGER_CLIENT_ID",
-                            "KROGER_CLIENT_SECRET"):
+                            "KROGER_CLIENT_SECRET", "LLM_API_KEY"):
                     if form.get(f"clear_{key}"):
                         clears.append(key)
                     elif key in form and form[key][0].strip():

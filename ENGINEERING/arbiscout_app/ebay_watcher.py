@@ -14,6 +14,8 @@ import json
 from pathlib import Path
 import re
 import signal
+import subprocess
+import sys
 import threading
 import time
 import webbrowser
@@ -24,6 +26,7 @@ import run_test
 STATE = {"folder": "", "downloads": "", "staging": "", "output": "",
          "candidates": [], "captured": 0, "total": 0, "pending": [],
          "updated": "", "message": ""}
+REFINE = {"status": "idle", "message": "", "started": None, "finished": None, "result": None}
 LOCK = threading.Lock()
 
 
@@ -85,6 +88,36 @@ def load_state(output):
     return {"candidates": candidates, "captured": captured, "total": len(candidates)}
 
 
+def run_refine_thread(folder, downloads, staging, output):
+    global REFINE
+    with LOCK:
+        REFINE.update({"status": "running", "message": "Refining saved listings with DeepSeek...",
+                       "started": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                       "finished": None, "result": None})
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(Path(__file__).with_name("llm_refine.py")),
+             "--output", str(output), "--json"],
+            cwd=str(Path(__file__).resolve().parent), capture_output=True, text=True,
+            timeout=300)
+        if proc.returncode != 0:
+            detail = (proc.stderr or proc.stdout or "LLM refinement failed").strip()
+            raise RuntimeError(detail[-500:])
+        lines = [line for line in proc.stdout.splitlines() if line.strip()]
+        result = json.loads(lines[-1]) if lines else {}
+        message = (f"Refined: {result.get('exact', 0)} exact / "
+                   f"{result.get('removed', 0)} removed")
+        with LOCK:
+            REFINE.update({"status": "success", "message": message,
+                           "finished": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                           "result": result})
+        update_state(folder, downloads, staging, output, [], message)
+    except Exception as exc:
+        with LOCK:
+            REFINE.update({"status": "failed", "message": str(exc)[:500],
+                           "finished": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+
+
 def update_state(folder, downloads, staging, output, pending, message=""):
     data = load_state(output)
     with LOCK:
@@ -128,6 +161,7 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
 <div class="note" id="paths"></div>
 <div class="controls">
   <button id="next">Open next waiting eBay page</button>
+  <button id="refine">Refine with DeepSeek</button><span id="refineMsg" class="count"></span>
   <input id="q" type="search" placeholder="Filter by product name, model, price…">
   <select id="sort">
     <option value="discount">Highest % off</option>
@@ -191,7 +225,7 @@ function inRange(x,bounds){
   if(bounds.before&&t>new Date(bounds.before))return false;
   return true;
 }
-const SOURCE_ORDER=['Best Buy','Meh','Woot','Kroger'];
+const SOURCE_ORDER=['Best Buy','Dell','LEGO','Meh','Woot','Kroger'];
 let sourceChecked={};
 function activeSources(){return Object.keys(sourceChecked).filter(k=>sourceChecked[k]);}
 function populateSources(){
@@ -252,7 +286,7 @@ function render(){
     const file=waiting?'<span class="wait">Waiting for file</span>':esc(x.fixture_file||'');
     const obs=x.observed_at?new Date(x.observed_at).toLocaleString():'—';
     const rank=view==='top10'?index+1:(x.fixture_index??'');
-    const diag=x.diagnostics?`matched ${x.diagnostics.usable??0}; rejected ${x.diagnostics.model_rejected??0}; unknown offers ${x.diagnostics.unknown_best_offer??0}`:'';
+    const diag=x.diagnostics?`matched ${x.diagnostics.usable??0}; rejected ${x.diagnostics.model_rejected??0}; unknown offers ${x.diagnostics.unknown_best_offer??0}${x.diagnostics.llm_exact!=null?`; LLM exact ${x.diagnostics.llm_exact}, removed ${x.diagnostics.llm_removed}`:''}`:'';
     return `<tr><td class="n">${rank}</td>
       <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.source?'<br><small>'+esc(x.source)+'</small>':''}${x.category?'<br><small>'+esc(x.category)+'</small>':''}${x.variant_count>1?'<br><small>'+x.variant_count+' variants</small>':''}${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
       <td class="n">${usd(x.retail_current)}</td><td class="n">${usd(x.retail_regular)}</td>
@@ -265,6 +299,8 @@ function render(){
   }).join('')||'<tr><td colspan="16">No candidates match the current filters. Try All dates or a different view.</td></tr>';
 }
 async function poll(){try{const r=await fetch('/api/state',{cache:'no-store'});state=await r.json();populateSources();populateCategories();render();}catch(e){}}
+async function refineStatus(){try{const r=await fetch('/api/refine/status',{cache:'no-store'});const j=await r.json();$('refine').disabled=j.status==='running';$('refineMsg').textContent=j.status==='running'?'Refining…':(j.message||'');if(j.status==='success')poll();}catch(e){}}
+$('refine').onclick=async()=>{const r=await fetch('/api/refine',{method:'POST'});const j=await r.json();if(j.error)alert(j.error);else $('refineMsg').textContent='Refining…';refineStatus();};
 $('next').onclick=()=>{
   const x=visible.find(c=>c.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||c.ebay_status==='NO_MATCHING_FIXTURE')
        ||visible.find(c=>(c.sample_count||0)===0);
@@ -275,7 +311,7 @@ $('category').onchange=render;
 $('dateRange').onchange=()=>{$('customDates').style.display=$('dateRange').value==='custom'?'inline-flex':'none';render();};
 $('dateFrom').onchange=render;$('dateTo').onchange=render;
 $('sources').addEventListener('change',e=>{if(e.target.matches('input[type=checkbox]')){sourceChecked[e.target.value]=e.target.checked;render();}});
-poll();setInterval(poll,1500);
+poll();refineStatus();setInterval(poll,1500);setInterval(refineStatus,2000);
 </script></body></html>"""
 
 
@@ -311,12 +347,34 @@ class Handler(BaseHTTPRequestHandler):
             with LOCK:
                 body = json.dumps(STATE, ensure_ascii=False)
             return self._send(200, body, "application/json; charset=utf-8")
+        if self.path == "/api/refine/status":
+            with LOCK:
+                body = json.dumps(REFINE, ensure_ascii=False)
+            return self._send(200, body, "application/json; charset=utf-8")
         if self.path == "/top10":
             return self._file(Path(STATE["output"]) / "index.html")
         if self.path == "/comparisons":
             return self._file(Path(STATE["output"]) / "comparisons" / "index.html")
         if self.path == "/retailer":
             return self._file(Path(STATE["output"]) / "retailer" / "index.html")
+        return self._send(404, "Not found.")
+
+    def do_POST(self):
+        if self.path == "/api/refine":
+            with LOCK:
+                if REFINE.get("status") == "running":
+                    return self._send(409, json.dumps({"error": "Refinement already running."}),
+                                      "application/json; charset=utf-8")
+                output = STATE.get("output")
+                folder = STATE.get("folder")
+                downloads = STATE.get("downloads") or None
+                staging = STATE.get("staging")
+            if not output or not folder:
+                return self._send(400, json.dumps({"error": "No selected output is ready."}),
+                                  "application/json; charset=utf-8")
+            threading.Thread(target=run_refine_thread,
+                             args=(folder, downloads, staging, output), daemon=True).start()
+            return self._send(202, json.dumps({"ok": True}), "application/json; charset=utf-8")
         return self._send(404, "Not found.")
 
     def log_message(self, *_args):

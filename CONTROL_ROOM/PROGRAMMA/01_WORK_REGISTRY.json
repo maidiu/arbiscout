@@ -1703,6 +1703,42 @@
       "last_verified_at": "2026-11-17",
       "acceptance_dependencies": [],
       "completion_evidence": []
+    },
+    {
+      "id": "ARB-112",
+      "title": "Optional LLM identity refinement for saved eBay evidence",
+      "level": "L2",
+      "stage": "O",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-110"
+      ],
+      "required_capability": "Send only sanitized extracted sold-listing records to a configurable OpenAI-compatible LLM endpoint; require strict JSON verdicts; use the LLM subtractively to remove wrong model/configuration/condition listings; keep the deterministic matcher as fallback; cache verdicts and expose a Results button",
+      "first_consumer": "user reviewing saved eBay evidence for exact-item identity",
+      "acceptance": "Button requires a configured key; only structured listing records are sent; the LLM cannot add listings or prices; verdicts are cached; wrong-config/used examples are removed; deterministic fallback remains; tests pass",
+      "blocker": "No live provider call tested; provider terms, model stability and false-positive/false-negative rates are not independently evaluated",
+      "next_action": "Run with a user-provided key on a small saved set, compare refined vs deterministic samples, and review rejected exact matches",
+      "implementation_ref": "ENGINEERING/arbiscout_app/llm_refine.py",
+      "source_ids": [],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-110",
+        "ARB-111"
+      ],
+      "dependency_groups": [],
+      "priority": "P2",
+      "finding": "Optional LLM refinement added: llm_refine.py sends sanitized extracted listings, validates strict JSON verdicts, filters wrong-config/used/unknown rows, caches results and leaves comparisons_raw.json. Results has a Refine with DeepSeek button; no live provider call was made. App tests: 50 executed, 49 passed, 1 skipped.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/llm_refine.py",
+        "ENGINEERING/arbiscout_app/ebay_watcher.py",
+        "ENGINEERING/arbiscout_app/tests/test_llm_refine.py"
+      ],
+      "last_verified_at": "2026-11-17",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     }
   ],
   "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
@@ -1718,5 +1754,5 @@
   "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS (Q001-Q112)",
   "source_examples_not_mandatory": true,
   "data_format": "Canonical JSON registers + generated Markdown dashboards and CSV tables",
-  "task_count": 52
+  "task_count": 53
 }

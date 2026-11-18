@@ -24,3 +24,4 @@
 | A20 | 54-case source coverage registry distinguishes four rechecked adapters and one fixture-validated Dell parser from 49 explicit HOLD sources with rights/feed/terms/capture blockers | HOLD source shown as implemented, fabricated selectors/endpoints, missing ledger row | PROTOTYPE_DRAFT (54/54 ledger; 4 rechecked; Dell fixture-validated; 49 HOLD; no independent review) |
 
 A successful mock does not establish live market evidence. Different statuses for source documented / permitted / executable / tested / independently accepted / deployed must be preserved. No subsequent transaction belongs to acceptance.
+| A21 | Optional LLM refinement sends only sanitized extracted listings, requires strict JSON verdicts and can only remove rows | LLM adds/invents listings or prices, raw HTML sent, unreviewed verdict treated as accepted | PROTOTYPE_DRAFT (fake-LLM tests; no live provider call) |

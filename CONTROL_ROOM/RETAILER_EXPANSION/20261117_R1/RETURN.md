@@ -6,6 +6,7 @@
 **Treatment ledger commit:** `a745e7e`
 **Dell implementation commit:** `0e144bced6ae130ae3464ba6002c3af218dbc84f`
 **Model-code fix commit:** `216febf7bad514cfd6fd6ebd4eae920a2804ce10`
+**LEGO implementation commit:** `0432d2f368345b8f86218caf018830806448d0fc`
 **Scope:** all 54 RET cases accounted for. No autonomous merge to `main`.
 
 ## Status totals

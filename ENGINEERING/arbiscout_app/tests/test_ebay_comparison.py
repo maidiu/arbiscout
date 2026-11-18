@@ -74,6 +74,8 @@ class EBayEvidenceTests(unittest.TestCase):
         obs, _ = e.parse_ebay_sold_html(page, e.search_url('Sony'))
         result = e.qualify(RETAIL, obs, datetime(2026, 11, 17, tzinfo=timezone.utc))
         self.assertEqual(result['sample_count'], 1)
+        self.assertEqual(result['general_sample_count'], 4)
+        self.assertIsNotNone(result['general_historical_median'])
         self.assertEqual(result['diagnostics']['condition_rejected'], 3)
 
     def test_changed_query_still_matches_by_sold_model(self):

@@ -365,11 +365,16 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=50
                 "verdict": "UNKNOWN", "confidence": 0.0,
                 "reason": "No cached or returned verdict", "attributes": {}}
         exact = []
+        general_pool = []
         unknown = 0
         for observation in source_observations:
             lid = listing_id(observation)
             verdict = verdicts.get(lid) or {"verdict": "UNKNOWN", "confidence": 0.0}
-            if verdict["verdict"] == "EXACT_MATCH" and verdict["confidence"] >= min_confidence:
+            if verdict["verdict"] == "UNKNOWN":
+                unknown += 1
+            if verdict["confidence"] < min_confidence:
+                continue
+            if verdict["verdict"] == "EXACT_MATCH":
                 title = str(observation.get("title") or "")
                 if str(product.get("condition") or "").lower() == "new" and (
                         USED_RE.search(title) or observation.get("condition") in
@@ -384,9 +389,12 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=50
                                "reason": "Price status is not a usable displayed sale"}
                 else:
                     exact.append(observation)
-            if verdict["verdict"] == "UNKNOWN":
-                unknown += 1
-        comparison = ebay.qualify(product, exact, as_of, identity_verified=True)
+                    general_pool.append(observation)
+                    continue
+            if verdict["verdict"] == "USED_OR_REFURB" and observation.get("price_status") not in (
+                    "UNKNOWN_ACCEPTED_OFFER", "AMBIGUOUS_RANGE"):
+                general_pool.append(observation)
+        comparison = ebay.qualify(product, general_pool, as_of, identity_verified=True)
         before = (existing.get(key) or {}).get("comparison") or {}
         comparison["diagnostics"]["llm_exact"] = len(exact)
         comparison["diagnostics"]["llm_removed"] = len(source_observations) - len(exact)
@@ -413,6 +421,8 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=50
                 "after_sample_count": comparison.get("sample_count"),
                 "after_median": comparison.get("historical_median"),
                 "after_gap": comparison.get("gap"),
+                "general_after_sample_count": comparison.get("general_sample_count"),
+                "general_after_median": comparison.get("general_historical_median"),
                 "evidence_fingerprint": observations_fingerprint(source_observations),
             },
         }

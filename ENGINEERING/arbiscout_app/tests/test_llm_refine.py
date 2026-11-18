@@ -87,6 +87,7 @@ class LLMRefineTests(unittest.TestCase):
             self.assertEqual(refined[0]["comparison"]["diagnostics"]["llm_removed"], 2)
             self.assertTrue(refined[0]["llm_checked"])
             self.assertEqual(refined[0]["llm_refinement"]["after_sample_count"], 1)
+            self.assertEqual(refined[0]["llm_refinement"]["general_after_sample_count"], 2)
             self.assertTrue((root / "comparisons" / "llm_verdicts.json").is_file())
             self.assertTrue((root / "comparisons" / "comparisons_raw.json").is_file())
 

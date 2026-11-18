@@ -321,19 +321,15 @@ def qualify(retail,observations,as_of=None,min_sales=3,identity_verified=False):
     as_of=as_of or datetime.now(timezone.utc)
     start=as_of-timedelta(days=30)
     diag={'returned':len(observations),'dated_in_window':0,'unknown_best_offer':0,'model_rejected':0,
-          'date_rejected':0,'condition_rejected':0,'unknown_paid':0,'usable':0}
-    good=[]
+          'date_rejected':0,'condition_rejected':0,'unknown_paid':0,'usable':0,'general_usable':0}
+    good=[];general_good=[]
+    retail_condition=condition_from_text(retail.get('condition') or 'NEW')
     for o in observations:
         try:d=datetime.fromisoformat(o.get('sold_at') or '')
         except ValueError:d=None
         if d is None or not start<=d.astimezone(timezone.utc)<=as_of:
             diag['date_rejected']+=1;continue
         diag['dated_in_window']+=1
-        retail_condition=condition_from_text(retail.get('condition') or 'NEW')
-        sold_condition=o.get('condition') or condition_from_text(o.get('title',''))
-        if sold_condition=='PARTS' or (retail_condition=='NEW' and sold_condition!='NEW') or (
-                retail_condition in ('USED','REFURBISHED','OPEN_BOX') and sold_condition!=retail_condition):
-            diag['condition_rejected']+=1;continue
         if not identity_verified:
             match,_=model_match(retail,o.get('title',''))
             if not match:diag['model_rejected']+=1;continue
@@ -341,21 +337,37 @@ def qualify(retail,observations,as_of=None,min_sales=3,identity_verified=False):
         v=o.get('paid_price')
         if v is None or not 0<float(v)<1e7:
             diag['unknown_paid']+=1;continue
+        sold_condition=o.get('condition') or condition_from_text(o.get('title',''))
+        if sold_condition=='PARTS':
+            diag['condition_rejected']+=1;continue
+        general_good.append(float(v))
+        if (retail_condition=='NEW' and sold_condition!='NEW') or (
+                retail_condition in ('USED','REFURBISHED','OPEN_BOX') and sold_condition!=retail_condition):
+            diag['condition_rejected']+=1;continue
         good.append(float(v))
     diag['usable']=len(good)
+    diag['general_usable']=len(general_good)
     retail_price=retail.get('current_price')
     empty={k:None for k in ('sold_low','sold_high','sold_mean','historical_median','typical_low','typical_high')}
     summary=sold_summary(good) if good else empty
+    general_summary=sold_summary(general_good) if general_good else empty
+    general_fields={'general_'+key:value for key,value in general_summary.items()}
+    general_fields['general_sample_count']=len(general_good)
     base={'status':'INSUFFICIENT_VERIFIED_SALES','gap':None,'gap_percent':None,
-          'sample_count':len(good),'diagnostics':diag,**summary,
+          'sample_count':len(good),'diagnostics':diag,**summary,**general_fields,
           'retail_below_low':None,'retail_below_median':None,'retail_below_high':None,
-          'gap_vs_low':None,'gap_vs_high':None}
+          'gap_vs_low':None,'gap_vs_high':None,
+          'general_gap':None,'general_gap_percent':None}
     if good and retail_price is not None and retail_price>0:
         base.update({'retail_below_low':retail_price<summary['sold_low'],
                      'retail_below_median':retail_price<summary['historical_median'],
                      'retail_below_high':retail_price<summary['sold_high'],
                      'gap_vs_low':round(summary['sold_low']-retail_price,2),
                      'gap_vs_high':round(summary['sold_high']-retail_price,2)})
+        if general_good:
+            general_baseline=general_summary['historical_median']
+            base['general_gap']=round(general_baseline-float(retail_price),2)
+            base['general_gap_percent']=round(100*base['general_gap']/general_baseline,1) if general_baseline else None
     if len(good)<min_sales:return base
     if retail_price is None or retail_price<=0:
         return {**base,'status':'RETAIL_PRICE_UNKNOWN'}

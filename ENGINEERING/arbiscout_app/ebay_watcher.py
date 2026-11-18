@@ -116,6 +116,13 @@ def load_state(output):
             "median": c.get("historical_median"),
             "typical_low": c.get("typical_low"),
             "typical_high": c.get("typical_high"),
+            "general_low": c.get("general_sold_low"),
+            "general_high": c.get("general_sold_high"),
+            "general_mean": c.get("general_sold_mean"),
+            "general_median": c.get("general_historical_median"),
+            "general_typical_low": c.get("general_typical_low"),
+            "general_typical_high": c.get("general_typical_high"),
+            "general_sample_count": c.get("general_sample_count"),
             "below_low": c.get("retail_below_low"),
             "below_median": c.get("retail_below_median"),
             "gap": c.get("gap"),
@@ -399,7 +406,7 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
 <div class="tablewrap"><table><thead><tr>
 <th>#</th><th>Product</th><th>Current</th><th>Regular</th><th>% off</th><th>Savings</th>
 <th>eBay sold low</th><th>eBay sold high</th><th>Mean</th><th>Median</th><th>Typical 50%</th>
-<th>Retailer vs eBay</th><th>Sales</th><th>Observed</th><th>File / status</th><th>Match</th><th>LLM</th><th>Open</th>
+<th>All-condition range / median</th><th>Retailer vs eBay</th><th>New sales</th><th>Observed</th><th>File / status</th><th>Match</th><th>LLM</th><th>Open</th>
 </tr></thead><tbody id="rows"></tbody></table></div>
 </main>
 <script>
@@ -506,12 +513,13 @@ function render(){
       <td class="n">${x.retail_discount==null?'—':x.retail_discount+'%'}</td><td class="n">${usd(x.retail_savings)}</td>
       <td class="n">${usd(x.sold_low)}</td><td class="n">${usd(x.sold_high)}</td><td class="n">${usd(x.sold_mean)}</td><td class="n">${usd(x.median)}</td>
       <td class="n">${x.typical_low==null?'—':usd(x.typical_low)+' – '+usd(x.typical_high)}</td>
+      <td class="n">${x.general_low==null?'—':usd(x.general_low)+' – '+usd(x.general_high)}<br><small>median ${usd(x.general_median)} · n=${x.general_sample_count??0}</small></td>
       <td>${vs}</td><td class="n">${x.sample_count??0}</td><td class="obs">${esc(obs)}</td>
       <td><small>${file}</small><br><small>${esc(x.status||'')}</small><br><small>${esc(x.ebay_status||'')}</small>${diag?'<br><small>'+esc(diag)+'</small>':''}</td>
       <td>${matchCell}</td>
       <td>${llmCell}</td>
       <td><a class="btn" href="${esc(x.ebay_url)}" target="_blank" rel="noopener noreferrer">Open eBay</a></td></tr>`;
-  }).join('')||'<tr><td colspan="18">No candidates match the current filters. Try All dates or a different view.</td></tr>';
+  }).join('')||'<tr><td colspan="19">No candidates match the current filters. Try All dates or a different view.</td></tr>';
 }
 async function poll(){try{const r=await fetch('/api/state',{cache:'no-store'});state=await r.json();populateSources();populateCategories();render();}catch(e){}}
 async function refineStatus(){try{const r=await fetch('/api/refine/status',{cache:'no-store'});const j=await r.json();const running=j.status==='running';$('refineSelected').disabled=running;$('refineNew').disabled=running;$('refineMsg').textContent=running?'Refining…':(j.message||'');if(j.status==='success')poll();}catch(e){}}

@@ -35,12 +35,14 @@ ALLOWED_VERDICTS = {"EXACT_MATCH", "WRONG_CONFIG", "WRONG_MODEL",
 USED_RE = re.compile(r"\b(?:used|pre[ -]?owned|refurbished|renewed|open[ -]?box|"
                      r"scratch(?:ed|es)?|dent(?:ed|s)?|for parts|repair only)\b", re.I)
 SYSTEM_PROMPT = (
-    "You are a strict product-identity adjudicator for purchase research. "
+    "You are a practical product-identity filter for purchase research. "
     "You receive several retailer offers and their sold eBay listing titles, already "
-    "extracted by a local parser. Your only job is to remove listings that are not the "
-    "same item. Do not calculate prices, medians, gaps or profits. Never invent listings, "
-    "prices, dates or attributes. If the title does not prove the configuration or "
-    "condition, return UNKNOWN. Return JSON only, with no prose."
+    "extracted by a local parser. Remove only listings that are obviously a different "
+    "product. Do not require every retailer specification to appear in the sold title: "
+    "missing optional specs or missing condition are not contradictions. If the listing "
+    "clearly names the same brand, model/family and product type, mark EXACT_MATCH. "
+    "Do not calculate prices, medians, gaps or profits. Never invent listings, prices, "
+    "dates or attributes. Return JSON only, with no prose."
 )
 USER_RULES = (
     "Classify every listing. EXACT_MATCH only when the model and configuration match and "
@@ -274,7 +276,7 @@ def write_top10(output, records, receipt):
     return winners
 
 
-def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=120,
+def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=500,
            only_keys=None, max_input_chars=80000):
     output = Path(output)
     products = load_products(output)
@@ -476,7 +478,7 @@ def main(argv=None):
     except ValueError:
         default_chars = 80000
     parser.add_argument("--min-confidence", type=float, default=default_confidence)
-    parser.add_argument("--max-listings", type=int, default=120)
+    parser.add_argument("--max-listings", type=int, default=500)
     parser.add_argument("--max-input-chars", type=int, default=default_chars)
     parser.add_argument("--keys-file", help="JSON file containing only the retailer keys to refine")
     parser.add_argument("--json", action="store_true")

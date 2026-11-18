@@ -214,6 +214,39 @@ def reprocess_thread(folder, downloads, staging, output):
             REPROCESSING = False
 
 
+def reset_llm_record(output, key):
+    current_path = Path(output) / "comparisons" / "comparisons.json"
+    raw_path = Path(output) / "comparisons" / "comparisons_raw.json"
+    if not current_path.is_file():
+        return False
+    try:
+        current = json.loads(current_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    raw_by_key = {}
+    if raw_path.is_file():
+        try:
+            for row in json.loads(raw_path.read_text(encoding="utf-8")):
+                raw_by_key[row.get("retailer", {}).get("key")] = row
+        except (OSError, ValueError):
+            raw_by_key = {}
+    found = False
+    for index, row in enumerate(current):
+        if row.get("retailer", {}).get("key") != key:
+            continue
+        found = True
+        if key in raw_by_key:
+            current[index] = raw_by_key[key]
+        else:
+            row.pop("llm_checked", None)
+            row.pop("llm_refinement", None)
+        break
+    if found:
+        current_path.write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n",
+                                encoding="utf-8")
+    return found
+
+
 def load_armed(output):
     path = Path(output) / "llm_armed.json"
     if not path.is_file():
@@ -268,7 +301,7 @@ button,.btn{display:inline-block;padding:9px 13px;border-radius:8px;border:0;bac
 .btn.alt{background:#fff;color:#17508d;border:1px solid #b9cce2}.tablewrap{overflow:auto;border:1px solid #e2e8f0;border-radius:11px;background:#fff}
 table{border-collapse:collapse;width:100%;min-width:1500px}th{background:#eaf0f8;font-size:11px;color:#50617a;position:sticky;top:0;padding:10px;text-align:left;white-space:nowrap}
 td{border-top:1px solid #e9edf3;padding:10px;vertical-align:top;font-size:12px}tbody tr:hover{background:#f8fbff}
-td.n{white-space:nowrap;font-variant-numeric:tabular-nums}.item{min-width:260px}.good{color:#08734a;font-weight:750}.bad{color:#8b4626}.wait{color:#9a630e}td select{padding:5px;font-size:11px;max-width:220px}
+td.n{white-space:nowrap;font-variant-numeric:tabular-nums}.item{min-width:260px}.good{color:#08734a;font-weight:750}.bad{color:#8b4626}.wait{color:#9a630e}td select{padding:5px;font-size:11px;max-width:220px}button.reset-llm{padding:2px 6px;font-size:10px;background:#fff;color:#17508d;border:1px solid #b9cce2;border-radius:5px;cursor:pointer}
 small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b798c;font-size:13px}.sources{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:9px 12px;margin:10px 0}.sources strong{font-size:12px;color:#50617a}.sources label{font-size:13px;color:#2d3f52}
 @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
@@ -410,7 +443,7 @@ function render(){
     const rank=view==='top10'?index+1:(x.fixture_index??'');
     const armed=(state.armed||[]).includes(x.key);
     const llmCell=x.llm_checked
-      ? `<span class="good">POST-LLM</span><br><small>pre ${esc(x.llm_pre_summary||'—')}</small><br><small>post ${esc(x.llm_post_summary||'—')}</small><br><small>${esc(x.llm_summary||'')}</small>`
+      ? `<span class="good">POST-LLM</span> <button class="reset-llm" data-key="${esc(x.key)}">Reset</button><br><small>pre ${esc(x.llm_pre_summary||'—')}</small><br><small>post ${esc(x.llm_post_summary||'—')}</small><br><small>${esc(x.llm_summary||'')}</small>`
       : `<span class="wait">PRE-LLM</span><br><label><input type="checkbox" class="arm" data-key="${esc(x.key)}" ${armed?'checked':''}> arm</label>`;
     const manual=x.manual_file||'';
     const fileOptions=(state.files||[]).map(f=>`<option value="${esc(f.name)}" ${manual===f.name?'selected':''}>${esc(f.name)}</option>`).join('');
@@ -446,6 +479,12 @@ $('rows').addEventListener('change',async e=>{
     const r=await fetch('/api/manual-map',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,file})});
     const j=await r.json();
     if(j.error)alert(j.error);else{$('refineMsg').textContent='Manual match applied…';setTimeout(poll,1200);}
+  }
+  if(e.target.matches('.reset-llm')){
+    const key=e.target.dataset.key;
+    const r=await fetch('/api/llm-reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key})});
+    const j=await r.json();
+    if(j.error)alert(j.error);else{$('refineMsg').textContent='LLM check reset';poll();}
   }
 });
 $('next').onclick=()=>{
@@ -533,6 +572,21 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, json.dumps({"ok": True, "armed": armed},
                                               ensure_ascii=False),
                               "application/json; charset=utf-8")
+        if self.path == "/api/llm-reset":
+            key = str(body.get("key") or "").strip()
+            if not key:
+                return self._send(400, json.dumps({"error": "Missing candidate key."}),
+                                  "application/json; charset=utf-8")
+            with LOCK:
+                output = STATE.get("output")
+                folder = STATE.get("folder")
+                downloads = STATE.get("downloads") or None
+                staging = STATE.get("staging")
+            if not output or not reset_llm_record(output, key):
+                return self._send(404, json.dumps({"error": "Candidate not found."}),
+                                  "application/json; charset=utf-8")
+            update_state(folder, downloads, staging, output, [], "LLM check reset")
+            return self._send(200, json.dumps({"ok": True}), "application/json; charset=utf-8")
         if self.path == "/api/manual-map":
             key = str(body.get("key") or "").strip()
             filename = str(body.get("file") or "").strip()

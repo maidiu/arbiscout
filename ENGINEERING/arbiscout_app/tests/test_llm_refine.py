@@ -118,6 +118,27 @@ class LLMRefineTests(unittest.TestCase):
             self.assertIn("n=2", candidate["llm_post_summary"])
             self.assertIn("median $100.00", candidate["llm_post_summary"])
 
+    def test_reset_llm_restores_raw_record(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "comparisons").mkdir()
+            key = "dell:dc16255"
+            raw = {"retailer": {"key": key, "title": "Dell 16 Laptop"},
+                   "comparison": {"sample_count": 2, "historical_median": 218.75,
+                                  "diagnostics": {}}}
+            refined = {"retailer": {"key": key, "title": "Dell 16 Laptop"},
+                       "llm_checked": True,
+                       "llm_refinement": {"exact": 0, "removed": 120},
+                       "comparison": {"sample_count": 0, "historical_median": None,
+                                      "diagnostics": {}}}
+            (root / "comparisons" / "comparisons_raw.json").write_text(json.dumps([raw]))
+            (root / "comparisons" / "comparisons.json").write_text(json.dumps([refined]))
+            self.assertTrue(ebay_watcher.reset_llm_record(root, key))
+            current = json.loads((root / "comparisons" / "comparisons.json").read_text())
+            self.assertNotIn("llm_checked", current[0])
+            self.assertNotIn("llm_refinement", current[0])
+            self.assertEqual(current[0]["comparison"]["sample_count"], 2)
+
     def test_multiple_retailers_are_sent_in_one_compact_job(self):
         now = datetime.now(timezone.utc).isoformat()
         products = [

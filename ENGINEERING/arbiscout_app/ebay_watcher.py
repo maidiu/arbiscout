@@ -301,7 +301,7 @@ small{color:#738197}.money{font-weight:700;white-space:nowrap}.count{color:#6b79
     <option value="today">Today</option>
     <option value="24h">Last 24 hours</option>
     <option value="7d">Last 7 days</option>
-    <option value="30d">Last 30 days</option>
+    <option value="30d" selected>Last 30 days</option>
     <option value="all">All dates</option>
     <option value="custom">Custom…</option>
   </select>

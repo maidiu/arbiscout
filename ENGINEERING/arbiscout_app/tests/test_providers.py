@@ -51,6 +51,12 @@ class ProviderHelperTests(unittest.TestCase):
         self.assertEqual(by_sku["c"]["stock_status"], 1)
         self.assertTrue(by_sku["a"]["market_price_reference"])
 
+    def test_dell_model_code_extraction(self):
+        self.assertEqual(providers.dell_model("Dell16LaptopDC16255"), "DC16255")
+        self.assertEqual(providers.dell_model("XPS13DX13260"), "DX13260")
+        self.assertEqual(providers.dell_model("Dell14SDS14270"), "DS14270")
+        self.assertEqual(providers.dell_model("XPS13"), "XPS13")
+
     def test_dell_parser_rejects_missing_payload(self):
         with self.assertRaises(RuntimeError):
             providers.dell_products_from_html("<html>no offers</html>")

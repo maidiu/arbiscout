@@ -112,7 +112,7 @@ def build_records(raw):
         if record:
             for field in ("category", "kroger_zip", "kroger_location_id",
                           "stock_status", "market_price_reference",
-                          "regular_price_source"):
+                          "regular_price_source", "variant_code"):
                 if field in entry:
                     record[field] = entry[field]
             store.add([record])
@@ -320,6 +320,11 @@ def dell_category(title, url):
     return "Computers & Tablets"
 
 
+def dell_model(variant):
+    match = re.search(r'([A-Z]{2}\d{4,}[A-Z0-9]*)$', variant or '')
+    return match.group(1).upper() if match else (variant or None)
+
+
 def dell_products_from_html(page_html, source_url=DELL_URL):
     match = re.search(r'ProductsDetailInfo\s*=\s*JSON\.parse\("(.*?)"\)', page_html or "", re.S)
     if not match:
@@ -352,7 +357,8 @@ def dell_products_from_html(page_html, source_url=DELL_URL):
             "current": current,
             "regular": regular,
             "sku": item.get("productId") or key,
-            "model": item.get("variantCode"),
+            "model": dell_model(item.get("variantCode")),
+            "variant_code": item.get("variantCode"),
             "brand": "Dell",
             "condition": "New",
             "source": "https://www.dell.com",

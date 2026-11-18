@@ -34,7 +34,7 @@ The 49 HOLD sources emit no products and have no invented selectors, endpoints o
 ## Verification
 
 - Root tests: `python3 -m unittest discover -s tests` — **5 passed**.
-- App tests: `python3 -m unittest discover -s ENGINEERING/arbiscout_app/tests` — **42 executed, 41 passed, 1 skipped**.
+- App tests: `python3 -m unittest discover -s ENGINEERING/arbiscout_app/tests` — **43 executed, 42 passed, 1 skipped**.
 - Workroom validator: `python3 CONTROL_ROOM/RETAILER_EXPANSION/20261117_R1/scripts/validate_and_render.py --check` — **PASS, 54 treatment files**.
 - `git diff --check` — clean at the treatment commit.
 
@@ -42,5 +42,6 @@ The 49 HOLD sources emit no products and have no invented selectors, endpoints o
 
 - Rights/terms, permitted purpose, retention and redistribution remain unresolved for all 54; the five local adapters are not production-authorized.
 - The 49 HOLD cases need authorized page-1/page-2 captures or approved feeds before selectors, pagination and price semantics can be established. Do not guess them.
+- Dell model-code fix: `Dell16LaptopDC16255` now maps to `DC16255`; the existing saved Dell 16 page yields **3 usable sold observations**, provisional median **$599.99** vs retail **$649.99**. This is still displayed-price evidence, not verified actual paid.
 - Fresh identity, stock, payable-price and independent reviewer acceptance remain open.
 - Next productive move: resolve Dell rights/configuration identity and, in parallel, choose the next highest-yield HOLD family with a viable permission path. Promote only cases with exact evidence.

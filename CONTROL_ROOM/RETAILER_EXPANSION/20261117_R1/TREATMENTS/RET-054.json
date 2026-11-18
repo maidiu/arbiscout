@@ -39,13 +39,15 @@
     "correct_current_prices_verified": false,
     "observed_local_rows": 36,
     "capture_sha256": "282354b2a263f37db709cc76a0f9251c42799df04887be5f0c63d722e783bf4c",
-    "captured_at": "2026-11-17T19:56:38-05:00"
+    "captured_at": "2026-11-17T19:56:38-05:00",
+    "model_strategy": "Trailing two-letter + digits code from variantCode; raw variant_code retained.",
+    "local_ebay_match": "Dell 16 DC16255: 3 usable sold observations in the 30-day window; provisional median 599.99; retail 649.99."
   },
   "receipts": [
     {
       "type": "SOURCE_RECEIPT",
       "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
-      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
+      "sha256": "8829069d218f1878ef01efda60874679b776fef6d75926a9bec72464ae12ba5b",
       "commit_sha": null,
       "captured_at": "2026-11-17",
       "verdict": "LOCAL_CAPTURE_NOT_AUTHORIZED",
@@ -54,7 +56,7 @@
     {
       "type": "PAGING_RECEIPT",
       "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
-      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
+      "sha256": "8829069d218f1878ef01efda60874679b776fef6d75926a9bec72464ae12ba5b",
       "commit_sha": null,
       "captured_at": "2026-11-17",
       "verdict": "SINGLE_PAGE_NOT_EXHAUSTIVE",
@@ -63,7 +65,7 @@
     {
       "type": "PRICE_EXTRACTION_RECEIPT",
       "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
-      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
+      "sha256": "8829069d218f1878ef01efda60874679b776fef6d75926a9bec72464ae12ba5b",
       "commit_sha": null,
       "captured_at": "2026-11-17",
       "verdict": "PARSER_VERIFIED_LOCAL_CAPTURE",
@@ -72,11 +74,11 @@
     {
       "type": "IDENTITY_RECEIPT",
       "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
-      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
+      "sha256": "8829069d218f1878ef01efda60874679b776fef6d75926a9bec72464ae12ba5b",
       "commit_sha": null,
       "captured_at": "2026-11-17",
       "verdict": "PARTIAL_IDENTITY",
-      "notes": "productId, variantCode and pdUrl retained; GTIN and final configuration unverified."
+      "notes": "productId, variantCode, pdUrl and derived model code (DC16255 for Dell 16) retained; GTIN/final configuration unverified."
     },
     {
       "type": "RIGHTS_RECEIPT",
@@ -90,7 +92,7 @@
     {
       "type": "CATALOG_RECEIPT",
       "path": "ENGINEERING/arbiscout_app/sources/receipts/RET-054.json",
-      "sha256": "fb6af4250a028185628a30f80ee1ce7eec77d12a7419f730e36a95550d052e43",
+      "sha256": "8829069d218f1878ef01efda60874679b776fef6d75926a9bec72464ae12ba5b",
       "commit_sha": null,
       "captured_at": "2026-11-17",
       "verdict": "LOCAL_TEST_ONLY",
@@ -141,6 +143,11 @@
       "date": "2026-11-17",
       "kind": "DELL_CAPTURE_AND_FIXTURE_20261117",
       "note": "Captured Dell Top Deals (2,137,332 bytes; sha256 282354b2...); parsed 36 offers (34 paired, 2 current-only); implemented providers.py parser and tests; local catalog test 36 rows; rights not authorized."
+    },
+    {
+      "date": "2026-11-17",
+      "kind": "DELL_MODEL_CODE_FIX_20261117",
+      "note": "Derived Dell model code from variantCode (DC16255 for Dell 16) so eBay model matching accepts DC16255 titles. Existing Dell fixture now yields 3 usable sold observations, provisional median 599.99, retail 649.99."
     }
   ],
   "coverage": {

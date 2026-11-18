@@ -32,10 +32,17 @@
     "market_price_is_not_paid_price": true
   },
   "IDENTITY_RECEIPT": {
-    "fields": ["productId", "variantCode", "pdUrl", "title", "snpStockStatus"],
+    "fields": [
+      "productId",
+      "variantCode",
+      "pdUrl",
+      "title",
+      "snpStockStatus"
+    ],
     "gtin_verified": false,
     "configuration_verified": false,
-    "note": "No cross-seller consolidation; base product URL and productId are retained."
+    "note": "No cross-seller consolidation; productId, variantCode, pdUrl and derived model code are retained. GTIN and final configuration remain unverified.",
+    "model_derivation": "Trailing two-letter + digits code from variantCode (e.g., Dell16LaptopDC16255 -> DC16255); raw variant_code is retained."
   },
   "RIGHTS_RECEIPT": {
     "access_gate": "TERMS_REVIEW_NEEDED",
@@ -63,5 +70,6 @@
     "ENGINEERING/arbiscout_app/tests/test_providers.py",
     "ENGINEERING/arbiscout_app/tests/test_control_room.py",
     "ENGINEERING/arbiscout_app/tests/test_catalog.py"
-  ]
+  ],
+  "local_evidence": "36 embedded offers parsed; 34 with current and market reference; 2 current-only; Dell 16 model DC16255 matched 3 usable eBay sold observations locally after the model-code fix."
 }

@@ -56,7 +56,8 @@ ARBISCOUT — COMPLETE TEST VERSION
 5. eBay evidence
    Save completed-listing pages into ebay_saved/ or ~/Downloads. The Results
    page watches both folders, matches pages by their eBay search query, and
-   updates automatically. Any filename works. The app never fetches eBay itself.
+   updates automatically. Any filename works, but save as HTML; Safari Web Archive
+   (.webarchive) files are not read. The app never fetches eBay itself.
 
 IMPORTANT: Displayed eBay sold prices are provisional, not independently
 verified actual-paid historical sale prices. Gaps are gross; fees, shipping

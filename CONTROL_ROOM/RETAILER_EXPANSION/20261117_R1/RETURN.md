@@ -44,5 +44,6 @@ The 49 HOLD sources emit no products and have no invented selectors, endpoints o
 - Rights/terms, permitted purpose, retention and redistribution remain unresolved for all 54; the five local adapters are not production-authorized.
 - The 49 HOLD cases need authorized page-1/page-2 captures or approved feeds before selectors, pagination and price semantics can be established. Do not guess them.
 - Dell model-code fix: `Dell16LaptopDC16255` now maps to `DC16255`; the existing saved Dell 16 page yields **3 usable sold observations**, provisional median **$599.99** vs retail **$649.99**. This is still displayed-price evidence, not verified actual paid.
+- Results watcher now stages already-saved eBay HTML before its first comparison and reuses a single running instance; the saved Dell 16 page shows 3 usable sold observations. Save HTML, not Safari `.webarchive` files.
 - Fresh identity, stock, payable-price and independent reviewer acceptance remain open.
 - Next productive move: resolve Dell rights/configuration identity and, in parallel, choose the next highest-yield HOLD family with a viable permission path. Promote only cases with exact evidence.

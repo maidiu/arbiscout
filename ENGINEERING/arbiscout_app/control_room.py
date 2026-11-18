@@ -20,6 +20,7 @@ import threading
 import time
 import webbrowser
 from urllib.parse import parse_qs, urlparse
+from urllib.request import urlopen
 
 APP_DIR = Path(__file__).resolve().parent
 ENV_PATH = APP_DIR / ".env"
@@ -323,6 +324,17 @@ def ensure_catalog():
     return proc, result
 
 
+def watcher_url_if_running():
+    try:
+        with urlopen("http://127.0.0.1:8765/api/state", timeout=1) as response:
+            if response.status == 200:
+                json.loads(response.read())
+                return "http://127.0.0.1:8765/"
+    except Exception:
+        return None
+    return None
+
+
 def ensure_watcher():
     global WATCHER_PROC, WATCHER_URL, WATCHER_OUTPUT
     selected = APP_DIR / "catalog" / "selected" / "retailer" / "products.json"
@@ -348,6 +360,11 @@ def ensure_watcher():
             WATCHER_PROC.kill()
         WATCHER_PROC = None
         WATCHER_URL = None
+    existing = watcher_url_if_running()
+    if existing:
+        WATCHER_URL = existing
+        WATCHER_OUTPUT = output
+        return None, existing
     args = ["ebay_watcher.py", "--folder", "ebay_saved", "--output", output,
             "--port", "8765", "--no-open"]
     if keep:

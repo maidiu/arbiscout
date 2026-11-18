@@ -372,13 +372,33 @@ def main(argv=None):
         raise SystemExit("Could not find a free local port.")
     threading.Thread(target=server.serve_forever, daemon=True).start()
 
+    watch_dirs = [folder] + ([downloads] if downloads and downloads.is_dir() else [])
+    seen = {}
+    initial_pages = []
+    for directory in watch_dirs:
+        if not directory.is_dir():
+            continue
+        for path in sorted(directory.glob("*.html")):
+            if not is_ebay_saved(path):
+                continue
+            try:
+                stat = path.stat()
+            except OSError:
+                continue
+            digest = hashlib.sha1(str(path.resolve()).encode()).hexdigest()[:6]
+            destination = staging / f"{digest}_{path.name}"
+            destination.write_bytes(path.read_bytes())
+            seen[str(path.resolve())] = (stat.st_mtime_ns, stat.st_size)
+            initial_pages.append(path)
     try:
         run_test.execute(ebay_pages=str(staging), reuse_retailer=True,
                          output=str(output), as_of=datetime.now(timezone.utc),
                          ebay_auto_match=True, keep_selection=a.keep_selection)
     except Exception as exc:
         print("Initial processing error:", exc)
-    update_state(folder, downloads, staging, output, [], "Watching for saved files...")
+    initial_message = (f"Processed {len(initial_pages)} saved page(s) at startup"
+                       if initial_pages else "Watching for saved files...")
+    update_state(folder, downloads, staging, output, [], initial_message)
 
     url = f"http://127.0.0.1:{port}/"
     print("eBay capture console:", url, flush=True)
@@ -387,11 +407,9 @@ def main(argv=None):
     if not a.no_open:
         webbrowser.open(url)
 
-    seen = {}
     pending = {}
     content_cache = {}
-    last_message = "Watching for saved files..."
-    watch_dirs = [folder] + ([downloads] if downloads and downloads.is_dir() else [])
+    last_message = initial_message
     try:
         while True:
             current = {}

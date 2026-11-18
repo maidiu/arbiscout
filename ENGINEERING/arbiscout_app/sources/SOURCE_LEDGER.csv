@@ -1,0 +1,30 @@
+claim,source_url,evidence_type,checked,supported_detail
+"REI page 2 has 30 rows and 9,387 total",https://www.rei.com/f/scd-deals?page=2,PUBLIC_HTML_TEXT,2026-11-17,Pagination and exact price/compared-to/range
+"Backcountry clearance 4,061 results and page=5",https://www.backcountry.com/rc/clearance?page=5,PUBLIC_HTML_TEXT,2026-11-17,"Deep pages, category facets and color counts"
+Acme Tools offset 24 size 24,https://www.acmetools.com/price-drop/?start=24&sz=24,PUBLIC_HTML_TEXT,2026-11-17,"SKU#, current, Was, stock, shipping, clearance status"
+Bass Pro firstResult and page,https://www.basspro.com/l/bargain-cave-fishing-sale-and-clearance?firstResult=32&page=2,INDEXED_REAL_URL,2026-11-17,"Query shape, do not infer page-size constant"
+Cabela firstResult and page,https://www.cabelas.com/l/fishing-boating-hot-deals?firstResult=36&page=2,INDEXED_REAL_URL,2026-11-17,Query shape differs from Bass Pro
+Petco 48-page plus sort,https://www.petco.com/category/top-deals/clearance?page=2&sortby=offerprice&sortorder=ascending,PUBLIC_HTML_TEXT,2026-11-17,"1-48 of 527, was-price markers and choices"
+LEGO page 2,https://www.lego.com/en-us/categories/sales-and-deals?page=2,INDEXED_REAL_URL,2026-11-17,Pagination URL
+Dell deal offer JSON,https://www.dell.com/en-us/shop/deals/dc,PUBLIC_INDEXED_CONTENT,2026-11-17,Embedded offerid/productData and stockstatus objects
+Chewy today’s deals dual-price,https://www.chewy.com/deals/todays-deals-2723,PUBLIC_HTML_TEXT,2026-11-17,Chewy Price vs Autoship Price
+PetSmart strikethrough definitions,https://www.petsmart.com/help/promotional-terms,OFFICIAL_TERMS,2026-11-17,Strikethrough may not be prior actual price
+Costco warehouse savings,https://www.costco.com/o/-/warehouse-savings,PUBLIC_HTML_TEXT,2026-11-17,Member/online/warehouse location campaign terms
+Sams Instant Savings requirements,https://help.samsclub.com/app/answers/detail/a_id/520/~/what-is-sams-club-instant-savings-program,OFFICIAL_TERMS,2026-11-17,Active membership needed
+CVS ExtraCare price entitlement,https://www.cvs.com/extracare/overview,OFFICIAL_TERMS,2026-11-17,Price account-linked
+Awin feed download and update information,https://help.awin.com/developers/docs/product-feed-publisher-guide-intro,OFFICIAL_API_DOC,2026-11-17,Feed list and last-updated
+CJ GraphQL Product Feed Search,https://docs.cj.com/docs/productfeed-api-search,OFFICIAL_API_DOC,2026-11-17,Publisher productFeeds/product query
+Impact product catalog download,https://help.impact.com/partner/what-would-you-like-to-learn-about/platform-features/marketing-content/product-marketplace-and-catalogs/download-product-catalogs-as-a-partner,OFFICIAL_API_DOC,2026-11-17,Catalog download via website/FTP/API
+WooCommerce Store products on_sale,https://developer.woocommerce.com/docs/apis/store-api/resources-endpoints/products/,OFFICIAL_API_DOC,2026-11-17,on_sale=true; page/per_page; variation exclusion
+Keepa deal browse,https://keepa.com/api-docs/deals.html,OFFICIAL_API_DOC,2026-11-17,"Tokenized deal query, ASIN data"
+Woot official developer,https://developer.woot.com/,OFFICIAL_API_DOC,2026-11-17,Category feed + offer batch expansion
+Best Buy API,https://developer.bestbuy.com/apis,OFFICIAL_API_DOC,2026-11-17,"Catalog, pricing, SKU"
+Tractor Supply tabbed Shop Items On Sale and Now/Was,https://www.tractorsupply.com/,PUBLIC_HTML_TEXT,2026-11-17,"Tabbed category list, product prices, See Price at Checkout"
+Harbor Freight public clearance 51 listings,https://www.harborfreight.com/merchandising-promotions/clearance.html,PUBLIC_HTML_TEXT,2026-11-17,Online Exclusive/In-Store Only/Choose Options per product
+Wayfair Closeout current/was,https://www.wayfair.com/daily-sales/closeout,PUBLIC_HTML_TEXT,2026-11-17,Closeout card prices and discount countdown
+Advance Auto coupons/clearance landing,https://shop.advanceautoparts.com/o/advance-auto-parts-coupons-and-deals,PUBLIC_HTML_TEXT,2026-11-17,Clearance campaign and exclusions
+Walgreens official coupon mechanics,https://www.walgreens.com/topic/help/shophelp/coupons_help.jsp,OFFICIAL_TERMS,2026-11-17,myWalgreens clipped coupons and weekly ad
+CompsAPI price information not retailer feed,https://compsapi.com/,PROVIDER_CLAIM,2026-11-17,eBay actual paid-price claim; not retailer feed
+Current ArbiScout implementation,https://github.com/maidiu/arbiscout/tree/work/arbiscout-local-build/ENGINEERING/arbiscout_app,REPOSITORY_SOURCE,2026-11-17,Crawler/categorizer/eBay watcher
+ARB-020 F1 restrictions and candidate matrix,https://github.com/maidiu/arbiscout/tree/agent/arb020-f1-zero-api-fees-scraping-feasibility-r1/CONTROL_ROOM/WORKERS/RETURNS,REPOSITORY_SOURCE,2026-11-17,"Technical, terms and feasibility, October research"
+ARB-020 F2 evidence ten,https://github.com/maidiu/arbiscout/blob/1abba9ad24a846d73d06efa9943f550f475b5fa1/CONTROL_ROOM/WORKERS/RETURNS/ARB-020-F2-SPECIALIST-FEED-COVERAGE-R1/06_EXPANDED_TEN_SOURCE_SHORTLIST_AND_TERMS_CORRECTION_R2.md,REPOSITORY_SOURCE,2026-11-17,"Ten documented leads, zero granted use rights"

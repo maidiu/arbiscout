@@ -86,7 +86,7 @@ Mac: `start_arbiscout.command`. Windows: `start_arbiscout.bat`. Both open the sa
 - **Control room** — source jobs, progress/Stop, Kroger ZIP for the next run, Settings.
 - **Deals** — all products; filter by source/category/date; sort; search; Save rows; Saved-only; top-N or hand-picked selection. Woot variants are grouped by product family with a variant count.
 - **Results** — capture eBay pages and see sold low/high/mean/median, typical range, gap and below-low/median flags; filter by source/category/date, Top 10 positive gaps, waiting, or captured; per-row Open eBay and Open next waiting.
-- **Settings** — keys, Best Buy URL, Woot feed, Kroger terms, and raw generated reports.
+- **Settings** — keys, Best Buy URL, Woot feed, Kroger terms, raw generated reports, and **Source coverage (54 cases)**. Four sources are implemented locally; 50 are explicit HOLD with blockers. HOLD sources emit no products and have no fabricated selectors.
 
 Deals rebuilds from the latest source files when opened. Results restarts on the selected output when opened from the control room. Kroger ZIP is per-run and not saved. Gaps are gross; fees, shipping and net margin are excluded.
 

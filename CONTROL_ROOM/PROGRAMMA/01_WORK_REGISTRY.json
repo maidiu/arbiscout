@@ -1665,6 +1665,43 @@
       "last_verified_at": "2026-11-17",
       "acceptance_dependencies": [],
       "completion_evidence": []
+    },
+    {
+      "id": "ARB-111",
+      "title": "54-case retailer source coverage registry and HOLD ledger",
+      "level": "L2",
+      "stage": "O",
+      "status": "PROTOTYPE_DRAFT",
+      "owner": "HQ_UNASSIGNED",
+      "dependencies": [
+        "ARB-110"
+      ],
+      "required_capability": "Register all 54 retailer/source mechanisms from the 2026-11-17 research handoff in a source-neutral registry; wrap the four existing local adapters; mark the remaining 50 as explicit HOLD with rights/feed/terms/capture blockers; generate a 54-row coverage ledger, per-source receipts and a Settings coverage view",
+      "first_consumer": "local operator reviewing which retailer sources are implemented and why every other source is HOLD",
+      "acceptance": "Coverage ledger contains 54 unique IDs; Best Buy, Woot, Meh and Kroger are IMPLEMENTED_LOCAL; every other source is HOLD with a blocker and next action; no HOLD is production-ready or has fabricated selectors; receipts exist for the four implemented adapters; Settings shows the 54-row table; local tests pass",
+      "blocker": "50 sources lack authorized captures, rights review or approved feeds; local-only prototype; no independent review",
+      "next_action": "Obtain authorized page-1/page-2 captures and rights review for the highest-priority HOLD sources; keep the others HOLD rather than guessing selectors",
+      "implementation_ref": "ENGINEERING/arbiscout_app/source_registry.py",
+      "source_ids": [],
+      "engineering_verdict": "NOT_REVIEWED",
+      "economic_evidence_verdict": "NOT_REVIEWED",
+      "authorization_verdict": "NOT_REVIEWED",
+      "related_tasks": [
+        "ARB-020",
+        "ARB-110"
+      ],
+      "dependency_groups": [],
+      "priority": "P1",
+      "finding": "54-case registry and coverage ledger added. RET-001 Best Buy, RET-046 Woot, RET-047 Meh and RET-048 Kroger are IMPLEMENTED_LOCAL; the other 50 are explicit HOLD (5 rights, 9 approved feed, 36 terms). Every HOLD has a blocker and next action; none is production-ready and none has fabricated selectors. Settings shows the 54-row table. Source, paging, price-extraction and rights receipts exist for the four local adapters. Local tests: 38 executed, 37 passed, 1 skipped. No independent review and no live rights upgrade.",
+      "finding_refs": [
+        "ENGINEERING/arbiscout_app/source_registry.py",
+        "ENGINEERING/arbiscout_app/sources/coverage_ledger.md",
+        "ENGINEERING/arbiscout_app/sources/receipts/",
+        "ENGINEERING/arbiscout_app/control_room.py"
+      ],
+      "last_verified_at": "2026-11-17",
+      "acceptance_dependencies": [],
+      "completion_evidence": []
     }
   ],
   "terminal_constitution": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
@@ -1680,5 +1717,5 @@
   "question_registry": "CONTROL_ROOM/PROGRAMMA/QUESTIONS (Q001-Q112)",
   "source_examples_not_mandatory": true,
   "data_format": "Canonical JSON registers + generated Markdown dashboards and CSV tables",
-  "task_count": 51
+  "task_count": 52
 }

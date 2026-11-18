@@ -1,3 +1,5 @@
+> **2026-11-17 retailer source coverage:** 54-case source-neutral registry and ledger; **4 implemented locally** (Best Buy, Woot, Meh, Kroger) and **50 explicit HOLD** (5 rights, 9 approved feed, 36 terms). Settings shows the 54-row table. Local app/registry tests: **38 executed, 37 passed, 1 skipped**. No HOLD is production-ready; no selectors were fabricated. [Coverage ledger](../../ENGINEERING/arbiscout_app/sources/coverage_ledger.md).
+
 > **SOURCEFREE TEST EXTENSION — 2026-11-07**: Current runnable 20-retailer-offers -> locally date-filtered eBay sold-result pages -> provisional top-ten comparison is `ENGINEERING/arbiscout_app/run_test.py`, with instructions `TEST_VERSION.md`. [GitHub Actions run #42412720168](https://github.com/maidiu/arbiscout/actions/runs/42412720168): 20 active-app tests executed (19 passed, 1 user-snapshot test skipped); 4 root/PROGRAMMA tests passed; synthetic example returned 20 checked, 20 provisional positive differences, 10 ranked, **zero real verified actual-paid sales**. [Evidence and no-overclaim court](../PROGRAMMA/10_TWENTY_TO_TEN_TEST_RECEIPT_20261107_R1.md). Historical source bank remains immutable; PR #16 stays unmerged.
 
 > **CURRENTNESS CANDIDATE — 2026-11-07** · Banked code on isolated branch `agent/programma-arbiscout-codebank-ebay30d-20261107-r1` (initial exact source commit `f98f11e220d038650f36be52cdfe49e49aa05111`). **16 sourcefree local tests PASS** on retail crawler, saved Best Buy fixture/snapshot and 30-day eBay parsing/selection/comparison. **No successful live eBay request, actual paid Best Offer verification, eligible source grant, independent receiving, or canonical merge.** See [code-bank receipt](../PROGRAMMA/07_CODE_BANK_SOURCE_AND_RECEIVING_COURT_20261107_R1.md) and [first-consumer court](../PROGRAMMA/08_TERMINAL_EBAY30D_FIRST_CONSUMER_AND_NEGATIVE_COURT_R1.md). Preexisting October 31 summary below is historical for its source cut.
@@ -12,7 +14,7 @@ Broadly index genuine retailer bargains with offered purchase prices **maximally
 
 ## Programma operational records
 
-- **40 task nodes:** [generated task table](../PROGRAMMA/TASKS_TABLE.md) · [canonical work JSON](../PROGRAMMA/01_WORK_REGISTRY.json).
+- **52 task nodes:** [generated task table](../PROGRAMMA/TASKS_TABLE.md) · [canonical work JSON](../PROGRAMMA/01_WORK_REGISTRY.json).
 - **112 question/substantiation nodes:** [generated question table](../PROGRAMMA/QUESTIONS_TABLE.md) · [seven canonical JSON files](../PROGRAMMA/QUESTIONS/).
 - **16 source evidence records:** [source registry](../PROGRAMMA/02_SOURCE_REGISTRY.json).
 - [Compact dependency-priority dashboard](../PROGRAMMA/DASHBOARD.md), [task CSV](../PROGRAMMA/TASKS_TABLE.csv), [question CSV](../PROGRAMMA/QUESTIONS_TABLE.csv).

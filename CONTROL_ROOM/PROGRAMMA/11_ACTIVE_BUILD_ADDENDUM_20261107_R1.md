@@ -32,3 +32,12 @@ This addendum records the active local build on `work/arbiscout-local-build`. It
 - Work registry: `ARB-100`–`ARB-105` added; `ARB-020`, `ARB-031`, `ARB-040`, `ARB-050`, `ARB-051`, `ARB-060`, `ARB-071`, `ARB-080`, `ARB-081` updated.
 - Source registry: `E-MEH-API`, `E-WOOT-API`, `E-KROGER-API`, `E-EBAY-SAVED-SOLD` added.
 - Acceptance matrix: `A03`–`A07`, `A12` updated; `A13` and `A14` added.
+
+## 2026-11-17 — 54-case retailer source coverage registry
+
+- Added `ENGINEERING/arbiscout_app/source_registry.py` and a generated 54-row `sources/coverage_ledger.json` / `.md`.
+- **4 implemented locally:** RET-001 Best Buy, RET-046 Woot, RET-047 Meh, RET-048 Kroger.
+- **50 HOLD:** 5 rights, 9 approved-feed and 36 terms blockers. Every HOLD has a blocker and next action; none is production-ready.
+- Added source, paging, price-extraction and rights receipts for the four local adapters under `sources/receipts/`.
+- Settings now shows the 54-case coverage table.
+- Local tests: **38 executed, 37 passed, 1 skipped**. No independent review; no live rights upgrade; no fabricated selectors.

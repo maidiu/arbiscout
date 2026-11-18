@@ -1,5 +1,7 @@
 # PROGRAMMA ARBISCOUT
 
+> **2026-11-17 retailer source coverage:** the 54-case research handoff is now a source-neutral registry and coverage ledger. Four adapters are implemented locally (Best Buy, Woot, Meh, Kroger); 50 sources are explicit HOLD with rights/feed/terms/capture blockers. Settings shows the 54-row table. Local app/registry tests: 38 executed, 37 passed, 1 skipped. No HOLD is production-ready and no selectors were fabricated. See [coverage ledger](../../ENGINEERING/arbiscout_app/sources/coverage_ledger.md).
+
 > **CURRENT CANDIDATE ENGINEERING / SOURCE CAPITAL (2026-11-07, isolated draft — NOT ADOPTED ON MAIN).** Exact code banking commit `f98f11e220d038650f36be52cdfe49e49aa05111` on `agent/programma-arbiscout-codebank-ebay30d-20261107-r1` preserves the full local crawler, dashboard, eBay 30-day *fixture-tested* comparison and legacy experiments. Read [source custody and scoped receiving](07_CODE_BANK_SOURCE_AND_RECEIVING_COURT_20261107_R1.md), [terminal first-consumer and negative court](08_TERMINAL_EBAY30D_FIRST_CONSUMER_AND_NEGATIVE_COURT_R1.md), and [exact manifest](09_SOURCE_BANK_MANIFEST_20261107_R1.json). **Active local addendum:** [11_ACTIVE_BUILD_ADDENDUM_20261107_R1.md](11_ACTIVE_BUILD_ADDENDUM_20261107_R1.md) records the browser-mode retailer run (137 products / 74 pairs / 12 listing pages / 0 failed), user-saved eBay watcher (25 files / 20 matched / 8 positive provisional gaps), sold low/high/mean/median and middle-50% range, and Meh/Woot/Kroger API adapters executed with user-supplied keys. **21 app tests executed, 20 passed, 1 skipped; 0 live actual-paid eBay proofs; 0 net-margin proofs; no independent review; no protected merge.** The October 31 text below is retained as historical source-cut planning, not a denial that new candidate code exists.
 
 ## Whole purchase-research project: retailer purchase bargains indexed against regular eBay sale patterns
@@ -23,9 +25,10 @@ Track actual existing research, provider/API documentation, old draft PR #1, pri
 ### O — Organize, Adjudicate the whole
 
 **Machine sources of truth:**
-- [Work registry](01_WORK_REGISTRY.json): 51 capabilities, explicit ALL-OF technical prerequisites, optional ANY-OF alternative-source gates, nonblocking related work, P0–P3 priority, source and acceptance state.
+- [Work registry](01_WORK_REGISTRY.json): 52 capabilities, explicit ALL-OF technical prerequisites, optional ANY-OF alternative-source gates, nonblocking related work, P0–P3 priority, source and acceptance state.
 - [Question registries](QUESTIONS/): 112 audited investigation/substantiation questions, divided into eight files, each carrying status, priority, question prerequisites, work-task dependencies for operational proof, findings and evidence refs.
 - [Source registry](02_SOURCE_REGISTRY.json): provider documentary/evidential facts separated from API permissions, access, price coverage and cost.
+- [Retailer source coverage](../../ENGINEERING/arbiscout_app/sources/coverage_ledger.md): 54 audited mechanisms; four implemented local adapters; 50 explicit HOLD with blockers.
 - [Generated dashboard](DASHBOARD.md): status, high-leverage foundations, task and question tables; [CSV views](TASKS_TABLE.csv) / [questions CSV](QUESTIONS_TABLE.csv) when spreadsheet-style filtering is preferable.
 - [Architecture and dependencies](03_ARCHITECTURE_AND_CRITICAL_PATH.md), [acceptance](04_ACCEPTANCE_MATRIX.md), [why-not](05_DECISION_AND_WHY_NOT_LOG.md), [current checkpoint](../STATUS/CURRENT_PROGRESS.json).
 

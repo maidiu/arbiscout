@@ -1,0 +1,37 @@
+{
+  "id": "RET-047",
+  "name": "Meh",
+  "status": "IMPLEMENTED_LOCAL",
+  "SOURCE_RECEIPT": {
+    "adapter": "providers.py (fetch_meh)",
+    "mechanism": "SINGLE_DAILY_DEAL_FEED",
+    "source_urls": [
+      "https://meh.com/api/1/current.json"
+    ],
+    "capture": "GET current-deal JSON with apikey; one request per run.",
+    "local_evidence": "One current deal item; current price only when no list price is supplied.",
+    "variant_policy": "Item variants are kept distinct by item id/query.",
+    "limitations": "One deal per day; current price only; no historical or list price guarantee."
+  },
+  "PAGING_RECEIPT": {
+    "strategy": "No pagination; single current deal.",
+    "not_exhaustive": false
+  },
+  "PRICE_EXTRACTION_RECEIPT": {
+    "current_price_role": "Current item price.",
+    "regular_price_role": "List/MSRP only when supplied; otherwise null.",
+    "rejections": "Sold-out deal is not emitted as a purchasable offer.",
+    "no_range_minimum_as_buyable": true
+  },
+  "RIGHTS_RECEIPT": {
+    "access_gate": "TERMS_REVIEW_NEEDED",
+    "permission_certified": false,
+    "production_ready": false,
+    "note": "User-supplied API key; purpose and redistribution rights remain to be reviewed."
+  },
+  "fixture_status": "LIVE_API_LOCAL_TEST_ONLY",
+  "live_status": "EXECUTED_LOCALLY",
+  "tests": [
+    "tests/test_providers.py"
+  ]
+}

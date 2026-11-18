@@ -1,0 +1,47 @@
+{
+  "id": "RET-001",
+  "name": "Best Buy",
+  "status": "IMPLEMENTED_LOCAL",
+  "SOURCE_RECEIPT": {
+    "adapter": "arbiscout.py",
+    "mechanism": "HYDRATED_LISTING_WITH_BESTBUY_SELECTORS",
+    "source_urls": [
+      "https://www.bestbuy.com/black-friday",
+      "https://www.bestbuy.com/site/top-deals/top-100-deals-this-season/pcmcat1765308864276.c"
+    ],
+    "capture": "Installed Chrome via Playwright; wait for lazy prices, bounded scroll, save settled HTML; no individual product pages by default.",
+    "extractors": [
+      "[data-testid=product-card]",
+      ".wf-offer",
+      "generic listing cards",
+      "Schema.org Product JSON-LD"
+    ],
+    "local_evidence": "Bounded live run: 137 unique products, 74 complete price pairs, 12 listing pages, 0 failed pages.",
+    "variant_policy": "Dedupe by product URL/SKU; conflicting prices or variants are flagged, not merged.",
+    "limitations": "Retailer edge protection varies; live rights/terms review and independent acceptance remain open."
+  },
+  "PAGING_RECEIPT": {
+    "strategy": "Bounded same-host sale/clearance link queue, depth 2, maximum 12 secondary listing pages.",
+    "page_2_evidence": "Category and Top 100 links discovered from the landing page; no product-page fallback in the current live test path.",
+    "stop_reason": "Configured page bound reached.",
+    "not_exhaustive": true
+  },
+  "PRICE_EXTRACTION_RECEIPT": {
+    "current_price_role": "Observed customer price on the listing card.",
+    "regular_price_role": "Observed regular/comparable price on the same card.",
+    "rejections": "Incomplete pairs, conflicting variants/prices and missing prices are excluded from the 20-candidate discount selection.",
+    "no_range_minimum_as_buyable": true
+  },
+  "RIGHTS_RECEIPT": {
+    "access_gate": "PURPOSE/TERMS_HOLD",
+    "permission_certified": false,
+    "production_ready": false,
+    "note": "Local browser run only; Best Buy terms and access permission are not independently accepted."
+  },
+  "fixture_status": "SOURCEFREE_TESTS_ONLY",
+  "live_status": "LOCAL_RUN_NOT_REEXECUTED",
+  "tests": [
+    "tests/test_app.py",
+    "tests/test_catalog.py"
+  ]
+}

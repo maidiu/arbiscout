@@ -139,6 +139,46 @@ class LLMRefineTests(unittest.TestCase):
             self.assertNotIn("llm_refinement", current[0])
             self.assertEqual(current[0]["comparison"]["sample_count"], 2)
 
+    def test_refine_preserves_unselected_candidates(self):
+        now = datetime.now(timezone.utc).isoformat()
+        dell = {"key": "dell:dc16255", "title": "Dell 16 Laptop", "model": "DC16255",
+                "brand": "Dell", "condition": "New", "current_price": 649.99,
+                "regular_price": 1099.99, "ebay_query": "Dell DC16255",
+                "url": "https://www.dell.com/en-us/shop/laptop-computers/spd/dell16/dc16255"}
+        lego = {"key": "lego:76470", "title": "LEGO Set", "model": "76470",
+                "brand": "LEGO", "condition": "New", "current_price": 63.99,
+                "regular_price": 79.99, "ebay_query": "LEGO 76470",
+                "url": "https://www.lego.com/en-us/product/set-76470"}
+        observation = {"item_id": "d1", "retailer_key": "dell:dc16255",
+                       "title": "Dell 16 DC16255 16GB 512GB", "sold_at": now,
+                       "displayed_price": 600.0, "paid_price": 600.0,
+                       "price_status": "DISPLAYED_SOLD"}
+        receipt = {"as_of_utc": now, "synthetic_demo": False, "selected_retail_offers": 2,
+                   "positive_provisional_count": 0, "top_ten_count": 0,
+                   "actual_paid_verified_count": 0, "source_mode": "SAVED_EBAY_HTML"}
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "comparisons").mkdir()
+            (root / "selection.json").write_text(json.dumps({"products": [dell]}))
+            (root / "run_receipt.json").write_text(json.dumps(receipt))
+            (root / "comparisons" / "sold_observations.json").write_text(json.dumps([observation]))
+            records = [
+                {"retailer": dell, "ebay_search_url": "x", "ebay_status": "PARSED",
+                 "fixture_file": "dell.html", "comparison": {"sample_count": 1, "diagnostics": {}}},
+                {"retailer": lego, "ebay_search_url": "x", "ebay_status": "PARSED",
+                 "fixture_file": "lego.html", "comparison": {"sample_count": 1, "diagnostics": {}}},
+            ]
+            (root / "comparisons" / "comparisons.json").write_text(json.dumps(records))
+            with patch("llm_refine.call_llm", return_value={"listings": [
+                    {"retailer_id": "dell:dc16255", "item_id": "d1",
+                     "verdict": "EXACT_MATCH", "confidence": 0.95}]}):
+                llm_refine.refine(root, "test-model", "http://test", "key")
+            refined = json.loads((root / "comparisons" / "comparisons.json").read_text())
+            self.assertEqual(len(refined), 2)
+            self.assertEqual({r["retailer"]["key"] for r in refined}, {"dell:dc16255", "lego:76470"})
+            lego_row = next(r for r in refined if r["retailer"]["key"] == "lego:76470")
+            self.assertNotIn("llm_checked", lego_row)
+
     def test_multiple_retailers_are_sent_in_one_compact_job(self):
         now = datetime.now(timezone.utc).isoformat()
         products = [

@@ -424,6 +424,20 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=50
     current_path = output / "comparisons" / "comparisons.json"
     if not raw_path.is_file() and current_path.is_file():
         raw_path.write_text(current_path.read_text(encoding="utf-8"), encoding="utf-8")
+    raw_records = []
+    if raw_path.is_file():
+        try:
+            raw_records = json.loads(raw_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            raw_records = []
+    base = raw_records or list(existing.values())
+    processed = {row.get("retailer", {}).get("key"): row for row in records}
+    merged = []
+    for row in base:
+        key = row.get("retailer", {}).get("key")
+        merged.append(processed.pop(key, row))
+    merged.extend(processed.values())
+    records = merged
     (output / "comparisons" / "comparisons.json").write_text(
         json.dumps(records, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     (output / "comparisons" / "comparisons_llm.json").write_text(

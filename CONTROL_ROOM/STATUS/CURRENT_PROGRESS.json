@@ -17,7 +17,7 @@
     "live_marketplace_integrations": 0,
     "real_scored_opportunities": 0,
     "sourcefree_current_candidate": "ENGINEERING/arbiscout_app: browser-mode retailer fetch, saved eBay sold-page watcher, sold-price distribution stats and Meh/Woot/Kroger API adapters (local prototype, not independently reviewed)",
-    "local_sourcefree_tests_passed": 50,
+    "local_sourcefree_tests_passed": 51,
     "github_app_tests": {
       "run_url": "https://github.com/maidiu/arbiscout/actions/runs/42412720168",
       "head": "7c486130958a69d213f3098106f790ce93435b7d",
@@ -39,7 +39,7 @@
       "verified_actual_paid_prices": 0,
       "artifact_id": 13590102124
     },
-    "local_sourcefree_tests_executed": 51,
+    "local_sourcefree_tests_executed": 52,
     "local_sourcefree_tests_skipped": 1,
     "active_build": {
       "status": "LOCAL_PROTOTYPE_DRAFT_NOT_INDEPENDENTLY_REVIEWED",
@@ -141,7 +141,8 @@
     "Nov 17 eBay matching: saved-page mapping now scores sold-item titles/model codes, not only the auto-suggested query; a changed Dell query still matched the DC16255 page (query score 0.389, model score 1.0).",
     "Nov 17 LEGO RET-029: single robots-checked sale-page capture parsed 18 sets (18 paired) from JSON-LD + __NEXT_DATA__; providers.py parser, control-room job, catalog source, synthetic fixture tests and local catalog test added; treatment FIXTURE_VALIDATED, rights/live acceptance still open.",
     "Nov 17 optional LLM identity refinement: sanitized extracted listings can be adjudicated by a configurable OpenAI-compatible endpoint; strict JSON verdicts filter wrong-config/used/unknown rows; cache, raw backup and Results button added; no live provider call tested.",
-    "Nov 17 LLM refinement UX: per-candidate arm/disarm plus Run selected and Run all new; selected candidates are combined into one compact identity-only job when safe, with a configurable input-size limit. No live provider call made."
+    "Nov 17 LLM refinement UX: per-candidate arm/disarm plus Run selected and Run all new; selected candidates are combined into one compact identity-only job when safe, with a configurable input-size limit. No live provider call made.",
+    "Nov 17 LLM result display: checked rows show post-LLM exact/removed, usable sample, median and gap; `llm_checked` disables re-arming and excludes rows from Run all new."
   ],
   "remaining": [
     "Review and merge PROGRAMMA branch with exact current CI and independent source checks",
@@ -204,7 +205,7 @@
     }
   ],
   "active_workers": [],
-  "delta": "2026-11-07: exact candidate code bank + 16 local offline unit tests + 30-day date filtering and provisional dashboard; all external actual-paid, authorization, independent reviewer and protected merge gates remain HOLD. Prior October 31 planning source cut preserved. / SAME DAY TEST EXTENSION: PR16 active run_test.py, CI app test 20 (19 PASS/1 user-snapshot SKIP), 20 synthetic offers -> 20 provisional positive matches -> 10 displayed top rows, 0 real actual-paid; status court CONTROL_ROOM/PROGRAMMA/10_TWENTY_TO_TEN_TEST_RECEIPT_20261107_R1.md; immutable source bank retained. / 2026-11-17: 54-case retailer coverage registry added; 4 implemented local adapters, 50 explicit HOLD, 38 local tests (37 pass/1 skip), Settings coverage table; no rights upgrade. / 2026-11-17: Dell RET-054 fixture-validated from one local capture; 5 implemented local, 49 HOLD, 42 app tests (41 pass/1 skip); rights remain unresolved. / Dell model-code fix yields 3 usable sold observations for Dell 16; 43 app tests (42 pass/1 skip). / eBay mapping accepts user-improved queries via sold-title/model matching; 45 app tests (44 pass/1 skip). / LEGO RET-029 fixture-validated from one local capture; 6 implemented local, 48 HOLD, 48 app tests (47 pass/1 skip). / Optional LLM identity refinement layer added with fake-LLM tests; 50 app tests (49 pass/1 skip), no live provider call. / LLM refinement UX now supports arm/disarm and combined selected/all-new jobs; 51 app tests (50 pass/1 skip).",
+  "delta": "2026-11-07: exact candidate code bank + 16 local offline unit tests + 30-day date filtering and provisional dashboard; all external actual-paid, authorization, independent reviewer and protected merge gates remain HOLD. Prior October 31 planning source cut preserved. / SAME DAY TEST EXTENSION: PR16 active run_test.py, CI app test 20 (19 PASS/1 user-snapshot SKIP), 20 synthetic offers -> 20 provisional positive matches -> 10 displayed top rows, 0 real actual-paid; status court CONTROL_ROOM/PROGRAMMA/10_TWENTY_TO_TEN_TEST_RECEIPT_20261107_R1.md; immutable source bank retained. / 2026-11-17: 54-case retailer coverage registry added; 4 implemented local adapters, 50 explicit HOLD, 38 local tests (37 pass/1 skip), Settings coverage table; no rights upgrade. / 2026-11-17: Dell RET-054 fixture-validated from one local capture; 5 implemented local, 49 HOLD, 42 app tests (41 pass/1 skip); rights remain unresolved. / Dell model-code fix yields 3 usable sold observations for Dell 16; 43 app tests (42 pass/1 skip). / eBay mapping accepts user-improved queries via sold-title/model matching; 45 app tests (44 pass/1 skip). / LEGO RET-029 fixture-validated from one local capture; 6 implemented local, 48 HOLD, 48 app tests (47 pass/1 skip). / Optional LLM identity refinement layer added with fake-LLM tests; 50 app tests (49 pass/1 skip), no live provider call. / LLM refinement UX now supports arm/disarm and combined selected/all-new jobs; 51 app tests (50 pass/1 skip). / Post-LLM findings and persistent llm_checked guard added; 52 app tests (51 pass/1 skip).",
   "current_mandate": "Purchase research ONLY: find major-retailer acquisition prices maximally below regular comparable eBay historical completed-sale price patterns; calculate and rank observed gaps.",
   "constitution_ref": "CONTROL_ROOM/PRODUCT_CONSTITUTION.md",
   "programma": {

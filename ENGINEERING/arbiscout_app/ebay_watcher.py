@@ -53,11 +53,27 @@ def load_state(output):
     for row in rows:
         c = row["comparison"]
         p = row["retailer"]
+        refinement = row.get("llm_refinement") or {}
+        checked = bool(row.get("llm_checked") or refinement)
+        summary_parts = []
+        if refinement.get("exact") is not None:
+            summary_parts.append(f"{refinement.get('exact')} exact")
+        if refinement.get("removed") is not None:
+            summary_parts.append(f"{refinement.get('removed')} removed")
+        if c.get("sample_count") is not None:
+            summary_parts.append(f"{c.get('sample_count')} usable sales")
+        if c.get("historical_median") is not None:
+            summary_parts.append(f"median ${c.get('historical_median'):,.2f}")
+        if c.get("gap") is not None:
+            summary_parts.append(f"gap ${c.get('gap'):,.2f}")
+        llm_summary = " · ".join(summary_parts)
         candidates.append({
             "fixture_index": row.get("fixture_index"),
             "fixture_file": row.get("fixture_file"),
             "key": p.get("key") or p.get("url"),
-            "llm_refined": bool(row.get("llm_refinement")),
+            "llm_refined": checked,
+            "llm_checked": checked,
+            "llm_summary": llm_summary,
             "title": p.get("title"),
             "retail_url": p.get("url"),
             "observed_at": p.get("observed_at"),
@@ -309,7 +325,7 @@ function render(){
   $('kLow').textContent=rows.filter(x=>x.below_low===true).length;
   $('kMed').textContent=rows.filter(x=>x.below_median===true).length;
   $('paths').innerHTML='<b>Save into either:</b> '+esc(state.folder)+(state.downloads?' &nbsp;or&nbsp; '+esc(state.downloads):'')+
-    '<br><small>Showing '+rows.length+' of '+state.total+' candidates · output: '+esc(state.output)+'</small>'+
+    '<br><small>Showing '+rows.length+' of '+state.total+' candidates · LLM checked '+state.candidates.filter(x=>x.llm_checked).length+' · output: '+esc(state.output)+'</small>'+
     '<br><small>Any filename works; pages are matched by their eBay search query. Working copies: '+esc(state.staging)+'</small>';
   visible=rows;
   $('rows').innerHTML=rows.map((x,index)=>{
@@ -318,6 +334,10 @@ function render(){
     const file=waiting?'<span class="wait">Waiting for file</span>':esc(x.fixture_file||'');
     const obs=x.observed_at?new Date(x.observed_at).toLocaleString():'—';
     const rank=view==='top10'?index+1:(x.fixture_index??'');
+    const armed=(state.armed||[]).includes(x.key);
+    const llmCell=x.llm_checked
+      ? `<span class="good">LLM checked</span><br><small>${esc(x.llm_summary||'')}</small>`
+      : `<label><input type="checkbox" class="arm" data-key="${esc(x.key)}" ${armed?'checked':''}> arm</label>`;
     const diag=x.diagnostics?`matched ${x.diagnostics.usable??0}; rejected ${x.diagnostics.model_rejected??0}; unknown offers ${x.diagnostics.unknown_best_offer??0}${x.diagnostics.llm_exact!=null?`; LLM exact ${x.diagnostics.llm_exact}, removed ${x.diagnostics.llm_removed}`:''}`:'';
     return `<tr><td class="n">${rank}</td>
       <td class="item"><a href="${esc(x.retail_url)}" target="_blank" rel="noopener noreferrer"><b>${esc(x.title)}</b></a>${x.source?'<br><small>'+esc(x.source)+'</small>':''}${x.category?'<br><small>'+esc(x.category)+'</small>':''}${x.variant_count>1?'<br><small>'+x.variant_count+' variants</small>':''}${x.kroger_zip?'<br><small>ZIP '+esc(x.kroger_zip)+'</small>':''}</td>
@@ -327,7 +347,7 @@ function render(){
       <td class="n">${x.typical_low==null?'—':usd(x.typical_low)+' – '+usd(x.typical_high)}</td>
       <td>${vs}</td><td class="n">${x.sample_count??0}</td><td class="obs">${esc(obs)}</td>
       <td><small>${file}</small><br><small>${esc(x.status||'')}</small><br><small>${esc(x.ebay_status||'')}</small>${diag?'<br><small>'+esc(diag)+'</small>':''}</td>
-      <td><label><input type="checkbox" class="arm" data-key="${esc(x.key)}" ${(state.armed||[]).includes(x.key)?'checked':''}> ${x.llm_refined?'<span class="good">refined</span>':'arm'}</label></td>
+      <td>${llmCell}</td>
       <td><a class="btn" href="${esc(x.ebay_url)}" target="_blank" rel="noopener noreferrer">Open eBay</a></td></tr>`;
   }).join('')||'<tr><td colspan="17">No candidates match the current filters. Try All dates or a different view.</td></tr>';
 }
@@ -407,6 +427,12 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send(400, json.dumps({"error": "Missing candidate key."}),
                                   "application/json; charset=utf-8")
             with LOCK:
+                candidate = next((c for c in STATE.get("candidates", [])
+                                  if c.get("key") == key), None)
+                if body.get("armed") and candidate and candidate.get("llm_checked"):
+                    return self._send(400, json.dumps(
+                        {"error": "This candidate is already LLM-checked."}),
+                        "application/json; charset=utf-8")
                 if body.get("armed"):
                     ARMED.add(key)
                 else:
@@ -433,11 +459,13 @@ class Handler(BaseHTTPRequestHandler):
                                   "application/json; charset=utf-8")
             if mode == "selected":
                 keys = [c.get("key") for c in candidates
-                        if c.get("key") in armed and (c.get("sample_count") or 0) > 0]
+                        if c.get("key") in armed and not c.get("llm_checked")
+                        and (c.get("sample_count") or 0) > 0]
                 label = "armed"
             elif mode in ("new", "all_new", "all"):
                 keys = [c.get("key") for c in candidates
-                        if c.get("key") and not c.get("llm_refined")
+                        if c.get("key") and not c.get("llm_checked")
+                        and not c.get("llm_refined")
                         and (c.get("sample_count") or 0) > 0]
                 label = "new"
             else:

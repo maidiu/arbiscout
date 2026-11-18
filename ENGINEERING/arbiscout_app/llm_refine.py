@@ -381,6 +381,7 @@ def refine(output, model, base_url, api_key, min_confidence=0.8, max_listings=12
             "fixture_index": previous.get("fixture_index"),
             "fixture_file": previous.get("fixture_file") or "LLM refined",
             "comparison": comparison,
+            "llm_checked": True,
             "llm_refinement": {
                 "model": model, "prompt_version": PROMPT_VERSION,
                 "listings": len(source_observations), "exact": len(exact),

@@ -7,6 +7,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import ebay_watcher
 import llm_refine
 
 
@@ -81,8 +82,34 @@ class LLMRefineTests(unittest.TestCase):
             refined = json.loads((root / "comparisons" / "comparisons.json").read_text())
             self.assertEqual(refined[0]["comparison"]["diagnostics"]["llm_exact"], 1)
             self.assertEqual(refined[0]["comparison"]["diagnostics"]["llm_removed"], 2)
+            self.assertTrue(refined[0]["llm_checked"])
             self.assertTrue((root / "comparisons" / "llm_verdicts.json").is_file())
             self.assertTrue((root / "comparisons" / "comparisons_raw.json").is_file())
+
+    def test_results_state_exposes_llm_checked_and_post_llm_summary(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "comparisons").mkdir()
+            product = {"key": "dell:dc16255", "title": "Dell 16 Laptop",
+                       "url": "https://www.dell.com/en-us/shop/laptop-computers/spd/xps/dc16255",
+                       "current_price": 649.99, "regular_price": 1099.99}
+            record = {
+                "retailer": product, "ebay_search_url": "https://www.ebay.com/sch/i.html",
+                "ebay_status": "LLM_REFINED", "fixture_index": 1, "fixture_file": "01.html",
+                "llm_checked": True,
+                "llm_refinement": {"exact": 2, "removed": 1, "unknown": 0},
+                "comparison": {"status": "INSUFFICIENT_VERIFIED_SALES",
+                               "sample_count": 2, "historical_median": 100.0,
+                               "gap": 10.0, "diagnostics": {}},
+            }
+            (root / "comparisons" / "comparisons.json").write_text(json.dumps([record]))
+            state = ebay_watcher.load_state(root)
+            candidate = state["candidates"][0]
+            self.assertTrue(candidate["llm_checked"])
+            self.assertIn("2 exact", candidate["llm_summary"])
+            self.assertIn("1 removed", candidate["llm_summary"])
+            self.assertIn("median $100.00", candidate["llm_summary"])
+            self.assertIn("gap $10.00", candidate["llm_summary"])
 
     def test_multiple_retailers_are_sent_in_one_compact_job(self):
         now = datetime.now(timezone.utc).isoformat()

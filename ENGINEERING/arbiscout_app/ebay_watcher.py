@@ -535,16 +535,20 @@ $('rows').addEventListener('change',async e=>{
   }
   if(e.target.matches('.manual')){
     const key=e.target.dataset.key,file=e.target.value;
+    const candidate=state.candidates.find(c=>c.key===key);
+    if(candidate)candidate.manual_file=file;
+    render();
     const r=await fetch('/api/manual-map',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,file})});
     const j=await r.json();
-    if(j.error)alert(j.error);else{$('refineMsg').textContent='Manual match applied…';setTimeout(poll,1200);}
+    if(j.error)alert(j.error);else{$('refineMsg').textContent='Manual match applying…';setTimeout(poll,1200);}
   }
-  if(e.target.matches('.reset-llm')){
-    const key=e.target.dataset.key;
-    const r=await fetch('/api/llm-reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key})});
-    const j=await r.json();
-    if(j.error)alert(j.error);else{$('refineMsg').textContent='LLM check reset';poll();}
-  }
+});
+$('rows').addEventListener('click',async e=>{
+  if(!e.target.matches('.reset-llm'))return;
+  const key=e.target.dataset.key;
+  const r=await fetch('/api/llm-reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key})});
+  const j=await r.json();
+  if(j.error)alert(j.error);else{$('refineMsg').textContent='LLM check reset';poll();}
 });
 $('next').onclick=()=>{
   const x=visible.find(c=>c.ebay_status==='NO_FIXTURE_FOR_PRODUCT'||c.ebay_status==='NO_MATCHING_FIXTURE')
@@ -670,6 +674,7 @@ class Handler(BaseHTTPRequestHandler):
             else:
                 MANUAL.pop(key, None)
             save_manual(output)
+            update_state(folder, downloads, staging, output, [], "Applying manual match...")
             threading.Thread(target=reprocess_thread,
                              args=(folder, downloads, staging, output), daemon=True).start()
             return self._send(200, json.dumps({"ok": True, "file": filename,
